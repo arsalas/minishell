@@ -1,0 +1,1 @@
+echo -n -> escribe sin salto de linea
