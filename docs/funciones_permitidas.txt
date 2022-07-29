@@ -1,0 +1,346 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    explicaciones.txt                                  :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amurcia- <amurcia-@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/07/28 16:36:30 by amurcia-          #+#    #+#              #
+#    Updated: 2022/07/28 16:36:32 by amurcia-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+https://tiswww.case.edu/php/chet/readline/readline.html#IDX357
+
+    • readline
+Obtiene una línea de usuario con posibilidad de edición
+char *readline (const char *prompt);
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+
+    • rl_clear_history
+Borra la lista de historial eliminando todas las entradas, de la misma manera que la función clear_history() de la biblioteca de historial
+Difiere de clear_history porque libera datos privados que Readline guarda en la lista de historial
+Sintaxis:	void rl_clear_history (void);
+
+
+    • rl_on_new_line
+Indica a las funciones de actualización que nos hemos movido a una nueva línea (vacía), generalmente después de generar una nueva línea
+Sintaxis:	int rl_on_new_line (void);
+
+
+    • rl_replace_line
+Reemplaza el contenido del búfer de línea actual con TEXTO. Si CLEAR_UNDO es distinto de cero, liberamos la lista de deshacer actual
+Sintaxis:	void rl_replace_line (const char *text, int clear_undo) 
+
+
+    • rl_redisplay
+Cambia lo que se muestra en la pantalla para reflejar el contenido actual de rl_line_buffer
+Sintaxis:	void rl_redisplay (void);
+
+
+    • add_history
+Coloca el string al final de la lista del historial. El campo de datos se establece a NULL, si lo hay
+Si el número máximo de entradas del historial se ha establecido mediante stifle_history(), y el nuevo número de entradas del historial supera ese máximo, se elimina la entrada del historial más antigua
+Sintaxis:	void add_history (const char *string);
+
+Un historial de listas es un array de entradas de historial. Una entrada de historial se declara de la siguiente manera:
+typedef void *histdata_t;
+
+typedef struct _hist_entry {
+  char *line;
+  char *timestamp;
+  histdata_t data;
+} HIST_ENTRY;
+
+    • printf
+    • malloc
+    • free
+    • write
+
+
+    • access
+Comprueba si el proceso de llamada puede acceder a la ruta del archivo. Si pathname es un enlace simbólico, se elimina la referencia
+El modo especifica las comprobaciones de accesibilidad que se realizarán y es el valor F_OK o una máscara que consta del OR bit a bit de uno o más de R_OK, W_OK y X_OK. F_OK comprueba la existencia del archivo. R_OK, W_OK y X_OK comprueban si el archivo existe y otorga permisos de lectura, escritura y ejecución, respectivamente.
+
+En caso de éxito (se otorgan todos los permisos solicitados), se devuelve cero. En caso de error (al menos un bit en el modo solicitó un permiso que se denegó, o se produjo algún otro error), se devuelve -1 y errno se configura de manera adecuada.
+Sintaxis:	int access(const char *pathname, int mode);
+#include <unistd.h>
+
+
+    • Open
+Abre un file descriptor
+Sintaxis:	int open(const char *pathname, int flags)
+#include <fcntl.h>
+
+
+    • read
+Lee de un file descriptor
+Sintaxis:	ssize_t read(int fd, void *buf, size_t count);
+#include <unistd.h>
+
+
+    • close
+Cierra un file descriptor, de modo que ya no hace referencia a ningún archivo y se puede reutilizar
+Sintaxis:	int clone(int fd);
+#include <unistd.h>
+
+
+    • fork
+Crea un nuevo proceso, el hijo, que se ejecuta simultaneamente con el proceso que realiza la llamada.
+Despues de haberse creado, ambos procesos ejecutan la siguiente instruccion. 
+Un proceso hijo utiliza el mismo programa, CPU y archivos abiertos que el padre.
+No toma parametros y devuelve un valor entero: 
+	-negativo para error
+	-cero al hijo
+	-positivo al padre. El valor contiene el ID del nuevo hijo
+Sintaxis:	pid_t fork(void);
+#include <sys/types.h>
+
+
+    • wait
+Espera el cambio de estado de los procesos hijos
+Normalmente se llama despues de la llamada al sistema fork, que crea un nuevo proceso hijo
+Cuando usamos wait,se suspende el programa hasta que uno de sus procesos hijos termine
+Sintaxis:	pid_t wait(int *status);
+#include <sys/wait.h>
+
+
+    • waitpid
+Espera un cambio de estado en un proceso hijo ESPECIFICO
+También utiliza las macros WIFEXITED y WIFSIGNALED para comprobar si el proceso hijo ha terminado normalmente o ha terminado por la señal, respectivamente, y luego imprime el correspondiente mensaje de estado en la consola
+Sintaxis:	pid_t waitpid(pid_t pid, int status, int options);
+#include <sys/wait.h>
+
+
+    • wait3
+Suspende la ejecución del proceso actual hasta que finalice un hijo o hasta que se produzca una señal cuya acción sea finalizar el proceso actual o llamar a una función manejadora de señales
+Proceso zombie> si un hijo ha terminado cuando se realiza la llamada, la función regresa inmediatamente y todos los recursos utilizados por el hijo son liberados
+Sintaxis:	pid_t wait3(int *wstatus, int options, struct rusage *rusage);
+#include <sys/wait.h>
+
+
+    • wait4
+wait3, pero el hijo esta ESPECIFICADO POR EL ARGUMENTO PID
+Sintaxis:	pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage);
+#include <sys/wait.h>
+
+
+    • signal
+Trata de manera inmediata la señal recibida
+Sintaxis:	void (*signal(int sig, void (*func)(int)))(int);
+#include <signal.h>
+
+
+    • sigaction
+Mira el PID de quien te esta enviando una señal y lo utiliza para mandarle una señal
+Sintaxis:	int sigaction(int signum, const struct sigaction *restrict act, struct sigaction *restrict oldact);
+#include <signal.h>
+
+
+    • kill
+Manda una señal a un proceso
+Sintaxis:	int kill(pid_t pid, int sig);
+#include <signal.h>
+
+    • exit
+Finaliza el proceso de llamada inmediatamente
+Cualquier descriptor de archivo abierto que pertenezca al proceso se cierra y los hijos del proceso son heredados por el proceso 1, init, y el padre del proceso recibe una señal SIGCHLD
+Sintaxis:	void exit(int status) 
+#include <signal.h>
+
+
+    • getcwd
+Devuelve el directorio de trabajo actual
+Toma dos argumentos - el buffer char* donde se almacena el nombre de la ruta y el número de bytes asignados en el buffer dado
+En caso de error devuelve NULL
+Sintaxis:	char *getcwd(char *buf, size_t size); 
+#include <unistd.h>
+
+
+    • chdir
+Cambia el directorio de trabajo actual del proceso al directorio especificado en la ruta
+Sintaxis:	int chdir(const char *path);
+#include <unistd.h>
+
+
+STAT, LSTAT, FSTAT
+No se necesitan derechos de acceso al fichero para conseguir la  información  pero  sí  se  necesitan  derechos de búsqueda para todos los directorios
+
+    • stat
+Examina el fichero al que apunta file_name y llena buf
+Retorna -1 en caso de error
+Sintaxis:	int stat(const char *filename, struct stat *buf);
+#include <sys/stat.h>
+
+
+    • lstat
+Igual que stat, pero en caso de que
+Sintaxis:	   int lstat(const char *file_name, struct stat *buf);
+#include <sys/stat.h>
+
+
+    • fstat
+
+Sintaxis:	int fstat(int filedes, struct stat *buf);
+
+
+    • unlink
+Elimina el enlace del fichero al que hace referencia
+Si uno o más procesos tienen el archivo abierto cuando se elimina el último enlace, el enlace se eliminará antes de que vuelva unlink(), pero la eliminación del contenido del archivo se pospondrá hasta que se cierren todas las referencias al archivo
+Sintaxis:	int unlink(const char *pathname);
+ #include <unistd.h>
+
+
+    • execve
+Ejecuta el programa al que hace referencia el nombre de la ruta
+Sintaxis:	int execve(const char *pathname, char *const argv[], char *const envp[]);
+#include <unistd.h>
+
+
+    • dup
+Asigna un nuevo file descriptor, que hace referencia a la misma descripción de archivo abierto que el file descriptor anterior. Después, los file descriptors pueden utilizarse indistintamente
+El fd será aquel con el número más bajo que no se ha usado en el proceso de llamada
+Comparten candados (locks), indicadores de posición de fichero y flags, pero no comparten la flag close-on-exec.
+Sintaxis:	int dup(int oldfd);
+#include <unistd.h>
+
+    • dup2
+Hace lo mismo que dup, pero no utiliza el file descriptor con el número más bajo, sino el despecificado en newfd.
+Sintaxis:	int dup2(int oldfd, int newfd);
+#include <unistd.h>
+
+
+    • pipe
+Se usa para abrir files descriptors, que se usan para comunicarse entre diferentes procesos
+Sintaxis:	int pipe(int pipefd[2]); 
+#include <unistd.h>
+
+
+    • opendir
+Abre un directorio
+Sintaxis:	DIR *opendir(const char *name_directory); 
+#include <dirent.h>
+
+    • readdir
+Lee las entradas del directorio abierto 
+Sintaxis:	struct dirent *readdir(DIR *dir); 
+#include <dirent.h>
+
+
+    • closedir
+Cierra el flujo del directorio
+Sintaxis:	int closedir(DIR *dir); 
+#include <dirent.h>
+
+
+    • strerror
+Busca en un array el número de error errnum y devuelve un puntero a una cadena de mensaje de error
+Sintaxis:	char *strerror(int errnum);
+#include <string.h>
+
+
+    • perror 
+Imprime un mensaje de error descriptivo en stderr. Primero se imprime la cadena str, seguida de dos puntos y luego un espacio
+Sintaxis:	void perror(const char *str);
+#include <string.h>
+
+
+    • isatty
+Determina si el file descriptor se refiere a un dispositivo de terminal válido
+Sintaxis:	 isatty(int fd);
+#include <stdlib.h>
+#include <unistd.h>
+
+
+
+    • ttyname
+Obtiene el nombre del dispositivo relacionado con el file descriptor para el cual isatty() es verdadero
+Coloca los resultados en buf, pero si no hay suficiente espacio (indicado por len), devuelve error
+Sintaxis:	int ttyname_r(int fd, char *buf, size_t len);
+#include <unistd.h>
+
+
+    • ttyslot
+Retorna el índice del terminal actual del usuario en el archivo ttys()
+Si el terminal es un pseudo-terminal y no hay entrada especial en el archivo devuelto ttys(), el número de ranura devuelto es 1 + último número de ranura + minor(tty)
+Devuelve un número único para cada dispositivo pseudo-terminal
+Sintaxis:	int ttyslot(void);
+#include <unistd.h>
+
+
+    • ioctl
+Manipula los parámetros en los dispositivos. 
+El argumento “request” selecciona la función de control a realizar y dependerá del dispositivo al que se dirige
+El tipo de argumento depende de la solicitud de control en particular, pero es un número entero o un puntero a una estructura de datos específica del dispositivo
+Sintaxis:	int ioctl(int fd, unsigned long request, ...);
+#include <sys/ioctl.h>
+
+
+    • getenv
+Busca la cadena de entorno a la que apunta el nombre y devuelve el valor asociado a la cadena
+Sintaxis:	char *getenv(const char *name)
+#include <stdlib.h>
+
+
+Las funciones de termios describen una interfaz de terminal general que se proporciona para controlar los puertos de comunicaciones asincrónicas.
+Muchas de estas funciones pueden tener un argumento termios_p que apunta a una estructura termios:
+
+tcflag_t c_iflag;      /* input modes */
+tcflag_t c_oflag;      /* output modes */
+tcflag_t c_cflag;      /* control modes */
+tcflag_t c_lflag;      /* local modes */
+cc_t     c_cc[NCCS];   /* special characters */
+
+    • tcsetattr
+Establece los parámetros asociados al terminal
+Si option_actions es TCSANOW, el cambio se producirá inmediatamente.
+Si option_actions es TCSADRAIN, el cambio se producirá después de que se transmita toda la salida escrita en fildes. Esta función debe usarse cuando se cambian parámetros que afectan la salida.
+Si option_actions es TCSAFLUSH, el cambio se producirá después de que se transmita toda la salida escrita en fildes, y todas las entradas recibidas hasta el momento pero no leídas se descartarán antes de que se realice el cambio.
+#include <termios.h>
+Sintaxis:	int tcsetattr(int fd, int optional_actions, const struct termios *termios_p);
+
+
+    • tcgetattr
+Obtiene los parámetros asociados con el terminal al que hace referencia fildes y los almacena en la estructura termios a la que hace referencia termios_p
+Exito = 0		Error = -1
+#include <termios.h>
+Sintaxis:	int tcgetattr(int fildes, struct termios *termios_p); 
+
+
+    • tgetent
+Obtiene la entrada termcap para id
+#include <termios.h>
+Sintaxis:	int tgetent(char *bp, const char *name);
+Éxito = 1		No existe la entrada = 0	Error = -1
+
+
+    • tgetflag
+Obtiene la entrada boolean para id
+Sintaxis:	int tgetflag(const char *id); 
+#include <termios.h>
+
+    • tgetnum
+Obtiene la entrada numérica para id
+Sintaxis:	int tgetnum(const char *id);
+#include <termios.h>
+
+    • tgetstr
+Obtiene la string de entrada para id
+Sintaxis:	char *tgetstr(char id[2], char **area);
+#include <termios.h>
+
+
+
+    • tgoto
+Intancia los parámetros en la capacidad data
+La salida de esta rutina debe pasarse a tputs()
+Sintaxis:	char *tgoto(char *cap, int col, int row);
+#include <termios.h>
+
+    • tputs
+Puede recuperar capacidades por nombre termcap o terminfo
+Aplica información de relleno a la cadena str y la genera. Str debe ser una variable de cadena o lo que retorna tparm, tgetstr o tgoto.
+Sintaxis:	int tputs(const char *str, int affcnt, int (*putc)(int));
+#include <termios.h>
