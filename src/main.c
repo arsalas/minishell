@@ -1,9 +1,12 @@
-#include <stdlib.h>
+
 #include <stdio.h>
+#include "libft.h"
+#include "minishell.h"
+
 
 int main(void)
 {
-	printf("USER: %s\n", getenv("USER"));
-	
-		return 0;
+    printf("Minishell not implemented yet\n");
+
+    return 0;
 }

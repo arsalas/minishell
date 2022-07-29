@@ -5,17 +5,15 @@ NC				:= \033[m
 # FLAGS
 CC				:= gcc
 CFLAGS 			:= -Wall -Wextra -Werror
-EXTRA_FLAGS		:= -lreadline
+READ_FLAGS		:= -lreadline
 FLAGS			:= $(CFLAGS)
-
 RM 				:= rm -f
 
 # SRC
-MAIN			= main.c
-SRCS 			= 
+SRCS 			= main.c
 
 # LIBS
-LIBS_PATH		:= libs
+LIBS_PATH		:= ../libs
 LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
 
 # FOLDERS
@@ -23,21 +21,20 @@ OBJS_DIR		:= obj
 BIN_DIR			:= bin
 
 #INCLUDES
-INC_PATH		:= inc
+INC_PATH		:= ../inc
 INCLUDES 		:= $(LIBS_PATH)/libft/ $(INC_PATH)/
 INC 			= $(addprefix -I , $(INCLUDES))
 
 # OBJECTS
-OBJS_MAIN		= $(addprefix $(OBJS_DIR)/, $(MAIN:.c=.o))
-OBJS_SRC		= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
-OBJS			= $(OBJS_MAIN) $(OBJS_SRC)
+OBJS		= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
+OBJS_TEST	= $(addprefix ../, $(OBJS_MAIN))
 
 # DEPENDECES
 DEPS				= $(patsubst %.o, %.d, $(OBJS)) 
 DEPFLAGS			= -MMD -MF
 
 # PROGRAM NAME
-NAME 			:= minishell
+NAME 			:= minishell_test
 
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
@@ -46,31 +43,24 @@ vpath %.c src
 
 .SECONDEXPANSION:
 
-all: make_libs $(BIN)
+all:	$(BIN)
 
 $(OBJS_DIR)/%.o: %.c | $$(@D)
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@ $(DEPFLAGS) $(patsubst %.o, %.d, $@) $(EXTRA_FLAGS)
-
-make_libs:
-	@make -C $(LIBS_PATH)/libft
+	@$(CC) $(FLAGS)  $(INC) -c $< -o $@ $(DEPFLAGS) $(patsubst %.o, %.d, $@) $(READ_FLAGS)
 
 $(BIN): $(OBJS) $(BIN_DIR) $(LIBS)
-	@$(CC) $(FLAGS) $(INC) $(OBJS) $(LIBS) -o $(BIN) $(EXTRA_FLAGS)
+	@$(CC) $(FLAGS) $(INC) $(OBJS) $(OBJS_TEST) $(LIBS) -o $(BIN) $(READ_FLAGS)
 	@echo "$(GREEN)$(NAME) compiled!$(NC)"
 
 run: all
 	@./$(BIN)
 
 leaks: $(BIN)
-	@leaks -atExit -- ./$(BIN)
-
-test: all
-	@echo "$(GREEN)Executing tests...$(NC)"
-	@make run -C tests/ OBJS_MAIN="$(OBJS_SRC)"
+	@leaks -atExit -- ./$(NAME)
 
 clean:
 	@make fclean -C $(LIBS_PATH)/libft
-	@$(RM) $(OBJS) $(DEPS)
+	@$(RM) $(OBJS)
 	@echo "$(GREEN)$(NAME) cleaned!$(NC)"
 
 fclean:		clean
@@ -84,6 +74,4 @@ $(OBJS_DIR):
 $(BIN_DIR):
 	@mkdir -p $(BIN_DIR)
 
--include $(DEPS)
-
-.PHONY:		all clean fclean re make_libs leaks test
+.PHONY:		all clean fclean re leaks

@@ -1,1 +1,13 @@
+COMANDOS:
 echo -n -> escribe sin salto de linea
+
+FUNCIONES:
+readline -> lee una linea del terminal y la retorna(malloc)
+access -> comprueba el fichero indicado y su modo
+rl_clear_history -> limpia el historial
+rl_on_new_line -> indica que nos hemos movido a una nueva linea
+rl_replace_line -> reemplaza el contenido de rl_line_buffer con texto, si clear_undo != 0 se borra la lista asociada a la linea actual
+getcwd -> retorna un string con el path absoluto del directoria actual(malloc)
+chdir -> cambia el directorio actual
+stat -> retorna informacion de un archivo
+fstat -> igual que stat pero se pasa el filedescripton y no el path
