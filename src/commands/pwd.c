@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   headline.c                                         :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 17:45:57 by aramirez         ###   ########.fr       */
+/*   Created: 2022/08/01 17:48:03 by aramirez          #+#    #+#             */
+/*   Updated: 2022/08/01 19:44:40 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief Obtiene el nombre de usuario
+ * @brief Printa la ruta actual
  * 
- * @return user
  */
-char	*get_user(void)
+void	cmd_pwd(void)
 {
-	return (getenv("USER"));
-}
+	char	cwd[256];
 
-/**
- * @brief Pone en pantalla el encabeado del minishell
- * 
- */
-void	print_headline(void)
-{
-	printf(GRN"%s@minishell %% "RESET, get_user());
+	getcwd(cwd, sizeof(cwd));
+	printf("%s\n", cwd);
 }

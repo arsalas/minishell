@@ -15,27 +15,31 @@
 #include "minishell.h"
 #include <stdio.h>
 
-int main(void)
+int main(int argc, char **argv, char *envp[])
 {
-
-    printf("headline:\n");
-    print_headline();
-    char *line = readline("");
+    for (int i = 0; i < 50; i++)
+    {
+        printf("%s\n", envp[i]);
+    }
+    (void)argv;
+    (void)argc;
+    chdir("../");
+    cmd_pwd();
     return (0);
 
-    printf("\n");
-    char cwd[256];
-    printf("USER: %s\n", getenv("USER"));
-    printf("ft_atoi: %i\n", ft_atoi("1000"));
-    printf("line: %s", line);
-    // F_OK flag : Used to check for existence of file.
-    // R_OK flag : Used to check for read permission bit.
-    // W_OK flag : Used to check for write permission bit.
-    // X_OK flag : Used to check for execute permission bit.
-    printf("current path: %s\n", getcwd(cwd, sizeof(cwd)));
-    printf("access: %i\n", access("./main.c", F_OK));
-    chdir("src");
-    printf("current path: %s\n", getcwd(cwd, sizeof(cwd)));
-    printf("access: %i\n", access("./main.c", F_OK));
-    return 0;
+    // printf("\n");
+    // char cwd[256];
+    // printf("USER: %s\n", getenv("USER"));
+    // printf("ft_atoi: %i\n", ft_atoi("1000"));
+    // printf("line: %s", line);
+    // // F_OK flag : Used to check for existence of file.
+    // // R_OK flag : Used to check for read permission bit.
+    // // W_OK flag : Used to check for write permission bit.
+    // // X_OK flag : Used to check for execute permission bit.
+    // printf("current path: %s\n", getcwd(cwd, sizeof(cwd)));
+    // printf("access: %i\n", access("./main.c", F_OK));
+    // chdir("src");
+    // printf("current path: %s\n", getcwd(cwd, sizeof(cwd)));
+    // printf("access: %i\n", access("./main.c", F_OK));
+    // return 0;
 }

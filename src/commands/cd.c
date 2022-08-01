@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   headline.c                                         :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 17:45:57 by aramirez         ###   ########.fr       */
+/*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
+/*   Updated: 2022/08/01 17:39:37 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief Obtiene el nombre de usuario
- * 
- * @return user
- */
-char	*get_user(void)
+void	cmd_cd(void)
 {
-	return (getenv("USER"));
-}
-
-/**
- * @brief Pone en pantalla el encabeado del minishell
- * 
- */
-void	print_headline(void)
-{
-	printf(GRN"%s@minishell %% "RESET, get_user());
+	// TODO: completar
+	not_implemented();
 }

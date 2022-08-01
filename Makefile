@@ -13,8 +13,9 @@ RM 				:= rm -f
 # SRC
 MAIN			= main.c 
 
-SRCS 			= headline.c strings.c memory.c \
-				errors.c
+SRCS 			= headline.c memory.c utils.c \
+				errors.c \
+				cd.c echo.c env.c exit.c export.c pwd.c unset.c
 
 # LIBS
 LIBS_PATH		:= libs
@@ -45,7 +46,7 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src src/utils src/errors
+vpath %.c src src/utils src/errors src/commands
 
 .SECONDEXPANSION:
 
