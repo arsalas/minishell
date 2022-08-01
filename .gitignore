@@ -5,4 +5,5 @@ libs/*/bin
 tests/obj
 tests/bin
 .vscode
-
+*DS_Store
+.normignore

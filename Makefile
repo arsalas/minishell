@@ -5,14 +5,16 @@ NC				:= \033[m
 # FLAGS
 CC				:= gcc
 CFLAGS 			:= -Wall -Wextra -Werror
-EXTRA_FLAGS		:= -lreadline
+READ_FLAGS		:= -lreadline
 FLAGS			:= $(CFLAGS)
 
 RM 				:= rm -f
 
 # SRC
-MAIN			= main.c
-SRCS 			= 
+MAIN			= main.c 
+
+SRCS 			= headline.c strings.c memory.c \
+				errors.c
 
 # LIBS
 LIBS_PATH		:= libs
@@ -32,6 +34,7 @@ OBJS_MAIN		= $(addprefix $(OBJS_DIR)/, $(MAIN:.c=.o))
 OBJS_SRC		= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 OBJS			= $(OBJS_MAIN) $(OBJS_SRC)
 
+
 # DEPENDECES
 DEPS				= $(patsubst %.o, %.d, $(OBJS)) 
 DEPFLAGS			= -MMD -MF
@@ -42,20 +45,20 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src
+vpath %.c src src/utils src/errors
 
 .SECONDEXPANSION:
 
 all: make_libs $(BIN)
 
 $(OBJS_DIR)/%.o: %.c | $$(@D)
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@ $(DEPFLAGS) $(patsubst %.o, %.d, $@) $(EXTRA_FLAGS)
+	@$(CC) $(FLAGS) $(INC) -c $< -o $@ $(DEPFLAGS) $(patsubst %.o, %.d, $@) 
 
 make_libs:
 	@make -C $(LIBS_PATH)/libft
 
 $(BIN): $(OBJS) $(BIN_DIR) $(LIBS)
-	@$(CC) $(FLAGS) $(INC) $(OBJS) $(LIBS) -o $(BIN) $(EXTRA_FLAGS)
+	@$(CC) $(FLAGS) $(INC) $(OBJS) $(LIBS) -o $(BIN) $(READ_FLAGS)
 	@echo "$(GREEN)$(NAME) compiled!$(NC)"
 
 run: all
@@ -66,7 +69,7 @@ leaks: $(BIN)
 
 test: all
 	@echo "$(GREEN)Executing tests...$(NC)"
-	@make run -C tests/ OBJS_MAIN="$(OBJS_SRC)"
+	@make run -e -C tests/ OBJS_SRC="$(OBJS_SRC)"
 
 clean:
 	@make fclean -C $(LIBS_PATH)/libft

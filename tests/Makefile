@@ -10,7 +10,7 @@ FLAGS			:= $(CFLAGS)
 RM 				:= rm -f
 
 # SRC
-SRCS 			= main.c
+SRCS 			= main.c \
 
 # LIBS
 LIBS_PATH		:= ../libs
@@ -27,11 +27,11 @@ INC 			= $(addprefix -I , $(INCLUDES))
 
 # OBJECTS
 OBJS		= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
-OBJS_TEST	= $(addprefix ../, $(OBJS_MAIN))
+OBJS_TEST	= $(addprefix ../, $(OBJS_SRC))
 
 # DEPENDECES
 DEPS				= $(patsubst %.o, %.d, $(OBJS)) 
-DEPFLAGS			= -MMD -MF
+DEPFLAGS			:= -MMD -MF
 
 # PROGRAM NAME
 NAME 			:= minishell_test
@@ -46,7 +46,7 @@ vpath %.c src
 all:	$(BIN)
 
 $(OBJS_DIR)/%.o: %.c | $$(@D)
-	@$(CC) $(FLAGS)  $(INC) -c $< -o $@ $(DEPFLAGS) $(patsubst %.o, %.d, $@) $(READ_FLAGS)
+	@$(CC) $(FLAGS)  $(INC) -c $< -o $@ $(DEPFLAGS) $(patsubst %.o, %.d, $@)
 
 $(BIN): $(OBJS) $(BIN_DIR) $(LIBS)
 	@$(CC) $(FLAGS) $(INC) $(OBJS) $(OBJS_TEST) $(LIBS) -o $(BIN) $(READ_FLAGS)

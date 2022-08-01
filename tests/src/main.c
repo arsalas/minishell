@@ -11,14 +11,22 @@
 #include <fcntl.h>
 
 #include "libft.h"
+
 #include "minishell.h"
+#include <stdio.h>
 
 int main(void)
 {
+
+    printf("headline:\n");
+    print_headline();
+    char *line = readline("");
+    return (0);
+
+    printf("\n");
     char cwd[256];
     printf("USER: %s\n", getenv("USER"));
     printf("ft_atoi: %i\n", ft_atoi("1000"));
-    char *line = readline("Enter text: ");
     printf("line: %s", line);
     // F_OK flag : Used to check for existence of file.
     // R_OK flag : Used to check for read permission bit.
