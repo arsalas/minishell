@@ -17,25 +17,11 @@
 
 int main(void)
 {
+	t_minishell	*minishell;
 
-    printf("headline:\n");
-    print_headline();
-    char *line = readline("");
+	minishell = malloc(sizeof(t_minishell));
+	if (!minishell)
+		return (-1);
+    ft_parse(minishell);
     return (0);
-
-    printf("\n");
-    char cwd[256];
-    printf("USER: %s\n", getenv("USER"));
-    printf("ft_atoi: %i\n", ft_atoi("1000"));
-    printf("line: %s", line);
-    // F_OK flag : Used to check for existence of file.
-    // R_OK flag : Used to check for read permission bit.
-    // W_OK flag : Used to check for write permission bit.
-    // X_OK flag : Used to check for execute permission bit.
-    printf("current path: %s\n", getcwd(cwd, sizeof(cwd)));
-    printf("access: %i\n", access("./main.c", F_OK));
-    chdir("src");
-    printf("current path: %s\n", getcwd(cwd, sizeof(cwd)));
-    printf("access: %i\n", access("./main.c", F_OK));
-    return 0;
 }
