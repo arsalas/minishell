@@ -13,5 +13,16 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+typedef struct s_minishell
+{
+	int tokens;
+	int pid;
+	int input;
+	int line;
+	int double_quo;
+	int simple_quo;
+	int phrases;
+	int separator;
+}	t_minishell;
 
 #endif
