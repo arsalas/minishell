@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:27:34 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 18:32:28 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:49:38 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	have_var(char *str)
  * @param str string a printar
  * @param have_flag indica si incluye la flag de salto de linea
  */
-void	cmd_echo(char *str, bool have_flag)
+void	echo(char *str, bool have_flag)
 {
 	printf("%s", str);
 	if (have_flag)

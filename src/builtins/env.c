@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/02 17:08:39 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:43:20 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * 
  * @param env 
  */
-void	b_env(void)
+void	env(void)
 {
 	print_env();
 }

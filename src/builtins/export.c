@@ -6,14 +6,19 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:48:44 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 17:48:54 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:47:29 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cmd_export(void)
+/**
+ * @brief Crea una nueva variable de entorno
+ * 
+ * @param name 
+ * @param content 
+ */
+void	export(char *name, char *content)
 {
-	// TODO: completar
-	not_implemented();
+	push_env(name, content);
 }

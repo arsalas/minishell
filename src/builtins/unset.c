@@ -6,14 +6,18 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 17:50:02 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:48:17 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cmd_unset(void)
+/**
+ * @brief Elimina una variable de entorno
+ * 
+ * @param name 
+ */
+void	unset(char *name)
 {
-	// TODO: completar
-	not_implemented();
+	delete_env(name);
 }

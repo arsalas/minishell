@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:48:03 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 19:44:40 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:49:10 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 /**
  * @brief Printa la ruta actual
- * 
  */
-void	cmd_pwd(void)
+void	pwd(void)
 {
 	char	cwd[256];
 

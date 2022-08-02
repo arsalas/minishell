@@ -6,13 +6,13 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 17:39:37 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:49:35 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cmd_cd(void)
+void	cd(void)
 {
 	// TODO: completar
 	not_implemented();

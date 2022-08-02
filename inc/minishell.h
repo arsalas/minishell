@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/02 17:09:23 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:11:12 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # include "builtins.h"
 # include "utils.h"
 # include "env.h"
+
+# define READ_END 0
+# define WRITE_END 1
 
 typedef struct s_env_details
 {
