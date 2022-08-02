@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   headline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 19:47:56 by aramirez         ###   ########.fr       */
+/*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
+/*   Updated: 2022/08/01 17:45:57 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief Obtiene el numero de elementos de entorno
+ * @brief Obtiene el nombre de usuario
  * 
- * @param env entorno
- * @return int 
+ * @return user
  */
-int get_env_elements(char **env)
+char	*get_user(void)
 {
-    int count;
-
-    count = 0;
-    while(env[count])
-        count++;
-    return (count);
+	return (getenv("USER"));
 }
 
-void	cmd_env(char **env)
+/**
+ * @brief Pone en pantalla el encabeado del minishell
+ * 
+ */
+void	print_prompt(void)
 {
-	int elements;
-    int i;
-
-    i = 0;
-    elements = get_env_elements(env);
-    while (i < elements)
-    {
-        printf("%s\n", env[i]);
-        i++;
-    }
+	printf(GRN"%s@minishell %% "RESET, get_user());
 }

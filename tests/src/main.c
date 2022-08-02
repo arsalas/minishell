@@ -1,30 +1,14 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-#include <readline/readline.h>
-#include <readline/history.h>
-
-#include <unistd.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
-#include "libft.h"
-
 #include "minishell.h"
-#include <stdio.h>
+#include "test.h"
 
 int main(int argc, char **argv, char *envp[])
 {
-    for (int i = 0; i < 50; i++)
-    {
-        printf("%s\n", envp[i]);
-    }
+   
     (void)argv;
     (void)argc;
-    chdir("../");
-    cmd_pwd();
+    (void)envp;
+    test_pwd();
+    // test_env(envp);
     return (0);
 
     // printf("\n");

@@ -10,23 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef COMMANDS_H
+# define COMMANDS_H
 
-/**
- * @brief Obtiene el nombre de usuario
- * 
- * @return user
- */
-char	*get_user(void)
-{
-	return (getenv("USER"));
-}
+void	cmd_pwd(void);
+void	cmd_env(char **env);
 
-/**
- * @brief Pone en pantalla el encabeado del minishell
- * 
- */
-void	print_headline(void)
-{
-	printf(GRN"%s@minishell %% "RESET, get_user());
-}
+#endif

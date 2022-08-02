@@ -28,6 +28,8 @@
 # include <stdio.h>
 # include "libft.h"
 # include "colors.h"
+# include "commands.h"
+# include "utils.h"
 
 typedef struct s_minishell
 {
@@ -41,10 +43,6 @@ typedef struct s_minishell
 	int	separator;
 }	t_minishell;
 
-void	print_headline(void);
-void	not_implemented(void);
-void	memory_error(void);
 
-void	cmd_pwd(void);
 
 #endif
