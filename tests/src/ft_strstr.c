@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:51:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/01 20:51:33 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/02 20:35:37 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char	*ft_strstr(const char *haystack, const char *needle)
 	f = 0;
 	while (haystack[i] != '\0')
 	{
+		if (haystack[i] == ' ' || haystack[i] == '\t')
+			i++;
 		if (haystack[i] == needle[0])
 		{
 			f = ft_searchstr(str, needle, i);
