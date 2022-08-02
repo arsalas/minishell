@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   headline.c                                         :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 17:45:57 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:33:30 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ char	*get_user(void)
 }
 
 /**
- * @brief Pone en pantalla el encabeado del minishell
- * 
+ * @brief Pone en pantalla el prompt del minishell
  */
 void	print_prompt(void)
 {

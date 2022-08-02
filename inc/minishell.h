@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/01 19:34:53 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/02 17:09:23 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,46 @@
 # include <stdio.h>
 # include "libft.h"
 # include "colors.h"
-# include "commands.h"
+# include "builtins.h"
 # include "utils.h"
+# include "env.h"
+
+typedef struct s_env_details
+{
+	char	*title;
+	char	*content;
+}	t_env_details;
+
+typedef struct s_env
+{
+	int				count;
+	t_env_details	*vars;
+}	t_env;
 
 typedef struct s_minishell
 {
-	int	tokens;
-	int	pid;
-	int	input;
-	int	line;
-	int	double_quo;
-	int	simple_quo;
-	int	phrases;
-	int	separator;
+	int		tokens;
+	int		pid;
+	int		input;
+	int		line;
+	int		double_quo;
+	int		simple_quo;
+	int		phrases;
+	int		separator;
+	t_env	env;
 }	t_minishell;
 
+typedef enum e_builtins
+{
+	B_CD,
+	B_ECHO,
+	B_ENV,
+	B_EXIT,
+	B_EXPORT,
+	B_PWD,
+	B_UNSET
+}	t_builtins;
 
+t_minishell	*g_minishell;
 
 #endif

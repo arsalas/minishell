@@ -1,14 +1,24 @@
 #include "minishell.h"
 #include "test.h"
 
-int main(int argc, char **argv, char *envp[])
+int main(int argc, char *argv[], char *envp[])
 {
-   
+    g_minishell = get_memory(sizeof(t_minishell));
+    init_env(envp);
     (void)argv;
     (void)argc;
     (void)envp;
     test_pwd();
-    // test_env(envp);
+    test_env(envp);
+
+    // char *str[4];
+    // str[0] = "";
+    // str[1] = "Hola $USER";
+    // str[2] = "Mundo";
+    // str[3] = NULL;
+    // str[1] = NULL;
+    // execve("/bin/env", str, envp);
+    // execve("/bin/echo", str, envp);
     return (0);
 
     // printf("\n");
