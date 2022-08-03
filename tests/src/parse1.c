@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/02 20:46:41 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/03 17:17:15 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ void	ft_odd_quotes(t_minishell *minishell)
 	}
 }
 
-//Miramos la cantidad de comandos que tenemos
+/*
+* Miramos la cantidad de pipes
+* 39 == '
+* 34 == "
+* 124 == |
+*/
 void	ft_number_pipes(t_minishell *minishell)
 {
 	int	count;
@@ -92,6 +97,7 @@ void	ft_parse(t_minishell *minishell)
 	while (1)
 	{
 		minishell->input = readline("minishell");
+		add_history(minishell->input);
 		ft_odd_quotes(minishell);
 		ft_number_pipes(minishell);
 		ft_count_commands(minishell);
