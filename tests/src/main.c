@@ -7,6 +7,10 @@ int main(int argc, char *argv[], char *envp[])
 {
 	t_minishell	*minishell;
 
+    (void)argc;
+    (void)argv;
+    (void)envp;
+
 	minishell = malloc(sizeof(t_minishell));
 	if (!minishell)
 		return (-1);
