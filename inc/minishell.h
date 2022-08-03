@@ -28,9 +28,12 @@
 # include <stdio.h>
 # include "libft.h"
 # include "colors.h"
+# include "enums.h"
 # include "builtins.h"
 # include "utils.h"
 # include "env.h"
+# include "pipes.h"
+# include "errors.h"
 
 # define READ_END 0
 # define WRITE_END 1
@@ -60,17 +63,7 @@ typedef struct s_minishell
 	t_env	env;
 }	t_minishell;
 
-typedef enum e_builtins
-{
-	B_CD,
-	B_ECHO,
-	B_ENV,
-	B_EXIT,
-	B_EXPORT,
-	B_PWD,
-	B_UNSET
-}	t_builtins;
 
-t_minishell	*g_minishell;
+extern t_minishell	*g_minishell;
 
 #endif

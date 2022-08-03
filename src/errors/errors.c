@@ -29,3 +29,22 @@ void	memory_error(void)
 	perror("Error al reservar memoria\n");
 	close_minishell();
 }
+
+/**
+ * @brief Printa por pantalla comando no encontrado
+ * 
+ * @param cmd comando utilizado
+ */
+void    cmd_not_found(char *cmd)
+{
+    printf("minishell: %s: command not found\n");
+}
+
+/**
+ * @brief Gestion de error al crear un fork
+ */
+void    fork_error(void)
+{
+	perror("Error al crear el fork\n");
+	close_minishell();
+}

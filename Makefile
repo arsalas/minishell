@@ -17,6 +17,7 @@ SRCS 			= prompt.c memory.c utils.c \
 				errors.c \
 				cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 				env_aux1.c env_aux2.c env_aux3.c \
+				pipes.c \
 
 # LIBS
 LIBS_PATH		:= libs
@@ -47,7 +48,7 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src src/utils src/errors src/builtins src/env
+vpath %.c src src/utils src/errors src/builtins src/env src/pipes
 
 .SECONDEXPANSION:
 

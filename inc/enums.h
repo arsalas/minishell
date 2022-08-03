@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 18:24:05 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/02 16:23:50 by aramirez         ###   ########.fr       */
+/*   Created: 2022/08/02 21:44:32 by aramirez          #+#    #+#             */
+/*   Updated: 2022/08/03 00:00:27 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef ENUMS_H
+# define ENUMS_H
 
-t_minishell	*g_minishell;
-
-int	main(void)
+typedef enum e_builtins
 {
-	g_minishell = get_memory(sizeof(t_minishell));
-    not_implemented();
-	return (0);
-}
+	B_CD,
+	B_ECHO,
+	B_ENV,
+	B_EXIT,
+	B_EXPORT,
+	B_PWD,
+	B_UNSET
+}	t_builtins;
+
+
+
+#endif

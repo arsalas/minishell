@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 18:24:05 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/02 16:23:50 by aramirez         ###   ########.fr       */
+/*   Created: 2022/08/03 00:26:10 by aramirez          #+#    #+#             */
+/*   Updated: 2022/08/03 00:28:11 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef ERRORS_H
+# define ERRORS_H
 
-t_minishell	*g_minishell;
+void	close_minishell(void);
+void	memory_error(void);
+void    cmd_not_found(char *cmd);
+void    fork_error(void);
 
-int	main(void)
-{
-	g_minishell = get_memory(sizeof(t_minishell));
-    not_implemented();
-	return (0);
-}
+#endif

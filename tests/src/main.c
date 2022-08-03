@@ -1,6 +1,8 @@
 #include "minishell.h"
 #include "test.h"
 
+t_minishell	*g_minishell;
+
 int main(int argc, char *argv[], char *envp[])
 {
     g_minishell = get_memory(sizeof(t_minishell));
@@ -9,7 +11,9 @@ int main(int argc, char *argv[], char *envp[])
     (void)argc;
     (void)envp;
     test_pwd();
-    test_env(envp);
+    // test_env(envp);
+    int fd[2];
+    create_pipe(fd, 67);
 
     // char *str[4];
     // str[0] = "";
