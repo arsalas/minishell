@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/03 17:26:01 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/03 18:01:37 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ typedef struct s_env
 
 typedef struct s_command
 {
-	int echo;
-	int cd;
-	int pwd;
-	int export;
+	int	echo;
+	int	cd;
+	int	pwd;
+	int	export;
 }	t_command;
 
 /*
@@ -75,8 +75,10 @@ typedef struct s_minishell
 	char		**traces;
 	int			flag;
 	t_command	*command;
-	t_env	env;
+	t_env		env;
 }	t_minishell;
+
+extern t_minishell	*g_minishell;
 
 //FILES IN PARSE
 
@@ -87,7 +89,7 @@ void	ft_init_minishell(t_minishell *minishell);
 void	ft_command_in_pipe(t_minishell *minishell);
 void	ft_count_commands(t_minishell *minishell);
 void	ft_which_command(t_minishell *minishell);
-char	*strstr(const char *haystack, const char *needle);
+char	*ft_strstr(const char *haystack, const char *needle);
 int		ft_strncmp_mod(const char *s1, const char *s2, size_t n);
 
 #endif
