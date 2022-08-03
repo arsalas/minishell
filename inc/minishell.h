@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/03 14:23:37 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/03 17:26:01 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,44 @@ typedef struct s_env
 	t_env_details	*vars;
 }	t_env;
 
+typedef struct s_command
+{
+	int echo;
+	int cd;
+	int pwd;
+	int export;
+}	t_command;
+
+/*
+* INPUT es la string que me dan por terminal
+* QUO hace referencia a las comillas
+* PIPE indica el numero de pipes que hay
+* TRACES hace referencia al array bidimensional en funcion de cuantos pipes haya
+* FLAG indica si hemos encontrado un flag despues de echo
+*/
 typedef struct s_minishell
 {
-	int		tokens;
-	int		pid;
-	int		input;
-	int		line;
-	int		double_quo;
-	int		simple_quo;
-	int		phrases;
-	int		separator;
+	int			pid;
+	char		*input;
+	int			double_quo;
+	int			simple_quo;
+	int			pipe;
+	char		**traces;
+	int			flag;
+	t_command	*command;
 	t_env	env;
 }	t_minishell;
 
-extern t_minishell	*g_minishell;
+//FILES IN PARSE
+
+void	print_string(char *str);
+void	print_headline(void);
+void	ft_parse(t_minishell *minishell);
+void	ft_init_minishell(t_minishell *minishell);
+void	ft_command_in_pipe(t_minishell *minishell);
+void	ft_count_commands(t_minishell *minishell);
+void	ft_which_command(t_minishell *minishell);
+char	*strstr(const char *haystack, const char *needle);
+int		ft_strncmp_mod(const char *s1, const char *s2, size_t n);
 
 #endif
