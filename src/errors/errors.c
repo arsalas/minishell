@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:17:36 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/02 18:35:17 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:24:42 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	memory_error(void)
  * 
  * @param cmd comando utilizado
  */
-void    cmd_not_found(char *cmd)
+void	cmd_not_found(char *cmd)
 {
-    printf("minishell: %s: command not found\n");
+	printf("minishell: %s: command not found\n", cmd);
 }
 
 /**
  * @brief Gestion de error al crear un fork
  */
-void    fork_error(void)
+void	fork_error(void)
 {
 	perror("Error al crear el fork\n");
 	close_minishell();

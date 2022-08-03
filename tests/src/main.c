@@ -12,8 +12,7 @@ int main(int argc, char *argv[], char *envp[])
     (void)envp;
     test_pwd();
     // test_env(envp);
-    int fd[2];
-    create_pipe(fd, 67);
+    create_pipe(67, true);
 
     // char *str[4];
     // str[0] = "";

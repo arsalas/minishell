@@ -13,7 +13,7 @@ RM 				:= rm -f
 # SRC
 MAIN			= main.c 
 
-SRCS 			= prompt.c memory.c utils.c \
+SRCS 			= prompt.c memory.c utils.c process.c \
 				errors.c \
 				cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 				env_aux1.c env_aux2.c env_aux3.c \

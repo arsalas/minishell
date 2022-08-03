@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipes.h                                            :+:      :+:    :+:   */
+/*   forks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 21:44:32 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/03 14:23:02 by aramirez         ###   ########.fr       */
+/*   Created: 2022/08/03 14:15:44 by aramirez          #+#    #+#             */
+/*   Updated: 2022/08/03 14:18:20 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPES_H
-# define PIPES_H
+#include "minishell.h"
 
-# include "minishell.h"
+/**
+ * @brief Crea un proceso nuevo
+ * 
+ * @return pimd nuevo proceso 
+ */
+int	create_process(void)
+{
+	int	pid;
 
-void	create_pipe(t_builtins cmd, bool is_last);
-
-#endif
+	pid = fork();
+	if (pid == -1)
+		fork_error();
+	return (pid);
+}

@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/02 19:11:12 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:23:37 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct s_minishell
 	int		separator;
 	t_env	env;
 }	t_minishell;
-
 
 extern t_minishell	*g_minishell;
 
