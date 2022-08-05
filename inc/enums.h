@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 21:44:32 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/03 00:00:27 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/04 17:14:39 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 typedef enum e_builtins
 {
-	B_CD,
-	B_ECHO,
-	B_ENV,
-	B_EXIT,
-	B_EXPORT,
-	B_PWD,
-	B_UNSET
+	C_CD,
+	C_ECHO,
+	C_ENV,
+	C_UNSET,
+	C_EXIT,
+	C_EXPORT,
+	C_PWD,
+	C_OTHERS
 }	t_builtins;
 
 
