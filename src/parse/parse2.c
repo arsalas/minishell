@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/03 20:22:33 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/05 18:44:42 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_builtins	ft_get_command(char *word)
 	t_builtins	command;
 	char		**words;
 
-	words = ft_split(word, ' ');
+	words = ft_split_tab(word);
 	if (ft_strcmp("echo", words[0]))
 		command = C_ECHO;
 	else if (ft_strcmp("cd", words[0]))
@@ -66,6 +66,7 @@ t_builtins	ft_get_command(char *word)
 }
 
 //En caso de que nos hayan pasado mas de un comando con pipes
+//FT_LOOK_FOR_FLAG es para mirar si tenemos un flag en el ECHO
 void	ft_command_in_pipe(t_minishell *minishell)
 {
 	int	word;
@@ -79,7 +80,7 @@ void	ft_command_in_pipe(t_minishell *minishell)
 		if (ft_get_command(minishell->traces[word]) == C_EXPORT)
 			printf("EXPORT\n");
 		if (ft_get_command(minishell->traces[word]) == C_ECHO)
-			printf("ECHO\n");
+			ft_look_for_flag(minishell->traces[word]);
 		if (ft_get_command(minishell->traces[word]) == C_ENV)
 			printf("ENV\n");
 		if (ft_get_command(minishell->traces[word]) == C_EXIT)
