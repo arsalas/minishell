@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/03 18:01:37 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/08 17:01:26 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,32 @@ typedef struct s_minishell
 	int			flag;
 	t_command	*command;
 	t_env		env;
+	int			status;
 }	t_minishell;
 
 extern t_minishell	*g_minishell;
 
 //FILES IN PARSE
-
 void	print_string(char *str);
 void	print_headline(void);
 void	ft_parse(t_minishell *minishell);
 void	ft_init_minishell(t_minishell *minishell);
 void	ft_command_in_pipe(t_minishell *minishell);
-void	ft_count_commands(t_minishell *minishell);
+
 void	ft_which_command(t_minishell *minishell);
 char	*ft_strstr(const char *haystack, const char *needle);
-int		ft_strncmp_mod(const char *s1, const char *s2, size_t n);
+bool	ft_strcmp(const char *s1, const char *s2);
+void	ft_free_split(char **words);
+void	ft_get_signal(t_minishell *minishell);
+char	**ft_split_words(char *str);
+void	ft_get_signal(t_minishell *minishell);
+//PARSE3 and PARSE4
+int		ft_is_pwd(char **words);
+int		ft_is_env(char **words);
+int		ft_is_unset(char **words);
+int		ft_is_exit(char **words);
+int		ft_is_export(char **words);
+int		ft_is_cd(char **words);
+int		ft_is_echo(char **words);
 
 #endif

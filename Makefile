@@ -18,7 +18,7 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 				cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 				env_aux1.c env_aux2.c env_aux3.c \
 				pipes.c \
-				parse1.c parse2.c ft_split_tab.c ft_strstr.c ft_strcmp.c \
+				parse1.c parse2.c parse3.c parse4.c ft_split_words.c ft_strstr.c ft_strcmp.c \
 				signal1.c
 
 # LIBS
