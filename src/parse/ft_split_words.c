@@ -6,38 +6,36 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 11:34:56 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/08 19:14:42 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:28:45 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static size_t	ft_len_word(char *str)
+static size_t	ft_len_word(char *str, int start)
 {
-	size_t	cont;
-
-	cont = 0;
-	while (str[cont] && str[cont] != ' '
-		&& str[cont] != '\t' && str[cont] != '\n')
-		cont++;
-	return (cont);
+	while (str[start] && str[start] != ' '
+		&& str[start] != '\t' && str[start] != '\n')
+		start++;
+	return (start);
 }
 
-static char	*ft_bidimensional(char *str)
+static char	*ft_bidimensional(char *str, int start)
 {
 	int		cont;
 	int		len;
 	char	*word;
 
 	cont = 0;
-	len = ft_len_word(str);
+	len = ft_len_word(str, start);
 	word = (char *)malloc(sizeof(char) * len + 1);
-	while (cont < len)
+	while (start < len)
 	{
-		word[cont] = str[cont];
+		word[cont] = str[start];
 		cont++;
+		start++;
 	}
-	word[cont] = '\0';
+	word[start] = '\0';
 	return (word);
 }
 
@@ -52,7 +50,7 @@ static char	**ft_refile(char **array, char *str)
 		cont++;
 	while (str[cont] != '\0')
 	{
-		array[cont_w] = ft_bidimensional(str);
+		array[cont_w] = ft_bidimensional(str, cont);
 		cont_w++;
 		while (str[cont] && str[cont] != ' '
 			&& str[cont] != '\t' && str[cont] != '\n')
