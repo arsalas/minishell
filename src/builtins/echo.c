@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:27:34 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/08 19:06:08 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:28:29 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,8 @@ void	ft_print_the_echo(char **words)
 void	ft_look_for_flag(char *inside_pipes)
 {
 	char	**words;
-	int		count;
-	int cont = 0;
-	while (inside_pipes[cont])
-	{
-		printf("EN MI INSIDE PIPES HE OBTENIDO:%c\n", inside_pipes[cont]);
-		cont++;
-	}
-//	printf("ANTES DEL SPLIT TENGO:%c\n", inside_pipes[6]);
-	count = 0;
+
 	words = ft_split_words(inside_pipes);
-//	printf("DESPUES DEL SPLIT\n");
-	printf("DEBERIA SER HOLA:%s\n", words[1]);
-//	if (ft_strcmp("-n", words[1]) || ft_strcmp("-N", words[2]))
-//	if (words[1][0] == '-' && (words[1][1] == 'N' || words[1][1] == 'n'))
-	while (words[cont])
-	{
-		printf("EN MI SPLIT HE OBTENIDO:%s\n", words[cont]);
-		cont++;
-	}
 	if (words[1] != NULL &&
 		(ft_strcmp("-n", words[1]) || ft_strcmp("-N", words[2])))
 	{
