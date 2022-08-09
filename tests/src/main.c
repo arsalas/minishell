@@ -12,7 +12,7 @@ int main(int argc, char *argv[], char *envp[])
     (void)envp;
 
 
-    create_pipe(2);
+    create_pipe(3);
 	// minishell = malloc(sizeof(t_minishell));
 	// if (!minishell)
 	// 	return (-1);

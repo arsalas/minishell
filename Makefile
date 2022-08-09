@@ -4,8 +4,8 @@ NC				:= \033[m
 
 # FLAGS
 CC				:= gcc
-CFLAGS 			:= -Wall -Wextra -Werror
-READ_FLAGS		:= -lreadline
+CFLAGS 			:= -Wall -Wextra -Werror 
+READ_FLAGS		:= -I ~/.brew/opt/readline/include
 FLAGS			:= $(CFLAGS)
 
 RM 				:= rm -f
