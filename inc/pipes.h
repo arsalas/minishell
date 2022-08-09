@@ -15,7 +15,14 @@
 
 # include "minishell.h"
 
-void    create_pipe(int process);
-void	create_only_pipe(void);
+void    execute_pipe(int process);
+int     first_pipe_father(int *fd);
+int     intermediate_pipe_father(int *fd1, int *fd2);
+int     last_pipe_father(int *fd1, int *fd2);
+void    first_pipe_child(int *fd);
+void    intermediate_pipe_child(int *fd1, int *fd2);
+void    last_pipe_child(int *fd);
+int     **create_fd(int pipes);
+int     *create_pid(int process);
 
 #endif
