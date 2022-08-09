@@ -6,13 +6,13 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:24:05 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/09 13:27:08 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:33:36 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void first_pipe_child(int *fd)
+void	first_pipe_child(int *fd)
 {
 	close(fd[READ_END]);
 	dup2(fd[WRITE_END], STDOUT_FILENO);
@@ -21,18 +21,19 @@ void first_pipe_child(int *fd)
 	exit(0);
 }
 
-void intermediate_pipe_child(int *fd1, int *fd2)
+void	intermediate_pipe_child(int *fd1, int *fd2)
 {
 	close(fd2[READ_END]);
 	dup2(fd1[READ_END], STDIN_FILENO);
 	close(fd1[READ_END]);
 	dup2(fd2[WRITE_END], STDOUT_FILENO);
 	close(fd2[WRITE_END]);
-	execlp("/bin/grep", "grep", "s", NULL);
+	// execlp("/bin/grep", "grep", "a", NULL);
+	execlp("/usr/bin/wc", "wc", "-l", NULL);
 	exit(0);
 }
 
-void last_pipe_child(int *fd)
+void	last_pipe_child(int *fd)
 {
 	dup2(fd[READ_END], STDIN_FILENO);
 	close(fd[READ_END]);
@@ -40,13 +41,13 @@ void last_pipe_child(int *fd)
 	exit(0);
 }
 
-int first_pipe_father(int *fd)
+int	first_pipe_father(int *fd)
 {
 	pipe(fd);
 	return (create_process());
 }
 
-int intermediate_pipe_father(int *fd1, int *fd2)
+int	intermediate_pipe_father(int *fd1, int *fd2)
 {
 	close(fd1[WRITE_END]);
 	pipe(fd2);
@@ -75,17 +76,17 @@ int **create_fd(int pipes)
 	return (fd);
 }
 
-int	*create_pid(int process)
+int *create_pid(int process)
 {
 	return (get_memory(sizeof(int) * process));
 }
 
-void	create_pipe(int process)
+void create_pipe(int process)
 {
-	int	status;
-	int	**fd;
-	int	*pid;
-	int	i;
+	int status;
+	int **fd;
+	int *pid;
+	int i;
 
 	i = 1;
 	fd = create_fd(process - 1);
@@ -93,35 +94,47 @@ void	create_pipe(int process)
 	pid[0] = first_pipe_father(fd[0]);
 	if (pid[0] == 0)
 		first_pipe_child(fd[0]);
-	else
+	while (i < process - 1)
 	{
-		pid[1] = intermediate_pipe_father(fd[0], fd[1]);
-		if (pid[1] == 0)
-			intermediate_pipe_child(fd[0], fd[1]);
-		else
-		{
-			pid[2] = last_pipe_father(fd[0], fd[1]);
-			if (pid[2] == 0)
-				last_pipe_child(fd[1]);
-		}
-
+		pid[i] = intermediate_pipe_father(fd[i - 1], fd[i]);
+		if (pid[i] == 0)
+			intermediate_pipe_child(fd[i - 1], fd[i]);
+		i++;
 	}
-	close(fd[1][READ_END]);
+	pid[process - 1] = last_pipe_father(fd[process - 3], fd[process - 2]);
+	if (pid[process - 1] == 0)
+		last_pipe_child(fd[process - 2]);
+	close(fd[process - 2][READ_END]);
 	i = 0;
 	while (i < process)
 	{
-		wait(&status);
+		waitpid(pid[i], &status, 0);
 		i++;
 	}
+}
+
+void	create_only_pipe(void)
+{
+	int status;
+	int **fd;
+	int *pid;
+
+	fd = create_fd(1);
+	pid = create_pid(1);
+	pid[0] = first_pipe_father(fd[0]);
+	if (pid[0] == 0)
+		last_pipe_child(fd[0]);
+	close(fd[0][READ_END]);
+	waitpid(pid[0], &status, 0);
 }
 
 // TODO --> Borrar
 void create_pipe2(t_builtins cmd, bool is_last)
 {
-	int	status;
-	int	fd1[2];
-	int	fd2[2];
-	int	pid1, pid2, pid3;
+	int status;
+	int fd1[2];
+	int fd2[2];
+	int pid1, pid2, pid3;
 
 	(void)cmd;
 	(void)is_last;

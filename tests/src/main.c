@@ -11,8 +11,9 @@ int main(int argc, char *argv[], char *envp[])
     (void)argv;
     (void)envp;
 
-
-    create_pipe(3);
+    chdir("../");
+    // create_pipe(6);
+    create_only_pipe();
 	// minishell = malloc(sizeof(t_minishell));
 	// if (!minishell)
 	// 	return (-1);

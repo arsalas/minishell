@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 21:44:32 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/03 14:23:02 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:15:56 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 # include "minishell.h"
 
 void    create_pipe(int process);
+void	create_only_pipe(void);
 
 #endif
