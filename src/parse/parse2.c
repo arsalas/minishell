@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/09 13:45:20 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/09 18:12:55 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_command_in_pipe(t_minishell *minishell)
 	{
 		ft_get_command(minishell->traces[inside_pipes]);
 		if (ft_get_command(minishell->traces[inside_pipes]) == C_ECHO)
-			ft_look_for_flag(minishell->traces[inside_pipes]);
+			ft_make_echo(minishell, minishell->traces[inside_pipes]);
 		else if (ft_get_command(minishell->traces[inside_pipes]) == C_CD)
 			printf("CD\n");
 		else if (ft_get_command(minishell->traces[inside_pipes]) == C_EXPORT)

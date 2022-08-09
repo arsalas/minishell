@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/08 16:04:33 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/09 18:28:20 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,22 @@ void	ft_odd_quotes(t_minishell *minishell, char *traces)
 {
 	int	count;
 
+	minishell->double_quo = 0;
+	minishell->simple_quo = 0;
 	count = 0;
 	while (traces[count])
 	{
-		if (traces[count] == 34)
+		if (traces[count] == 92 &&
+			(traces[count + 1] == 34 || traces[count + 1] == 39))
+		{
+			minishell->slash++;
+			count += 2;
+		}
+		else if (traces[count] == 34)
 			minishell->double_quo++;
 		else if (traces[count] == 39)
 			minishell->simple_quo++;
 		count++;
-	}
-	if ((minishell->double_quo > 0 && minishell->double_quo % 2 != 0)
-		|| (minishell->simple_quo > 0 && minishell->simple_quo % 2 != 0))
-	{
-		printf("Error\nComillas no cerradas\n");
-		exit (0);
 	}
 }
 
@@ -81,13 +83,6 @@ void	ft_init_minishell(t_minishell *minishell)
 	minishell->pipe = 0;
 }
 
-/*
-* COSAS QUE ESTAN MAL:
-* 1. Solamente miro que este la palabra echo, no que antes y despues tenga un espacio, o sea inicio o final de linea. nomecho tambien cuenta como echo
-* 2. Hay que mirar si el flag que hay despues de echo no es "echo -nono". Mismo caso que el punto 1
-*/
-
-//VAMOS A TENER QUE LAMAR A LA FUNCION ODD_QUOTES SEGUN EL COMANDO, PORQUE NO ES NECESARIO PARA EXPORT
 void	ft_parse(t_minishell *minishell)
 {
 	int	cont;
@@ -102,11 +97,11 @@ void	ft_parse(t_minishell *minishell)
 		ft_number_pipes(minishell);
 		if (minishell->pipe == 0)
 			ft_odd_quotes(minishell, minishell->input);
-		while (cont <= minishell->pipe)
-		{
-			ft_odd_quotes(minishell, minishell->traces[cont]);
-			cont++;
-		}
+		// while (cont <= minishell->pipe)
+		// {
+		// 	ft_odd_quotes(minishell, minishell->traces[cont]);
+		// 	cont++;
+		// }
 		ft_command_in_pipe(minishell);
 		clear_history();
 	}
