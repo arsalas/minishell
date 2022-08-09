@@ -1,1 +1,7 @@
+pipes:
 https://www.programacion.com.py/escritorio/c/pipes-en-c-linux
+Evaluacion minishell:
+https://github.com/rizky/42-corrections/blob/master/minishell.pdf
+https://www.youtube.com/watch?v=DAkCD6CsEFI
+Comandos minishell:
+https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html

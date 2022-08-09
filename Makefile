@@ -4,8 +4,8 @@ NC				:= \033[m
 
 # FLAGS
 CC				:= gcc
-CFLAGS 			:= -Wall -Wextra -Werror
-READ_FLAGS		:= -lreadline
+CFLAGS 			:= -Wall -Wextra -Werror 
+READ_FLAGS		:= -lreadline -L ~/.brew/opt/readline/lib
 FLAGS			:= $(CFLAGS)
 
 RM 				:= rm -f
@@ -31,7 +31,7 @@ BIN_DIR			:= bin
 
 #INCLUDES
 INC_PATH		:= inc
-INCLUDES 		:= $(LIBS_PATH)/libft/ $(INC_PATH)/
+INCLUDES 		:= $(LIBS_PATH)/libft/ $(INC_PATH)/ ~/.brew/opt/readline/include
 INC 			= $(addprefix -I , $(INCLUDES))
 
 # OBJECTS
