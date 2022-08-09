@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/08 17:01:26 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:44:46 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,9 @@ int		ft_is_exit(char **words);
 int		ft_is_export(char **words);
 int		ft_is_cd(char **words);
 int		ft_is_echo(char **words);
+void    ft_free_split(char **words);
+void	ft_get_signal(t_minishell *minishell);
+char	**ft_split_tab(char const *s);
+void	ft_get_signal(t_minishell *minishell);
 
 #endif
