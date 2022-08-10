@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 12:47:41 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:30:31 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ typedef struct s_minishell
 	int			pipe;
 	char		**traces;
 	int			flag;
+	int			start;
+	int			slash;
+	int			previous_double;
+	int			previous_simple;
 	t_command	*command;
 	t_env		env;
 	int			status;
-	int			start;
-	int			previous_simple;
-	int			previous_double;
-	int			slash;
 }	t_minishell;
 
 extern t_minishell	*g_minishell;
@@ -99,6 +99,8 @@ void	ft_free_split(char **words);
 void	ft_get_signal(t_minishell *minishell);
 char	**ft_split_words(char *str);
 void	ft_get_signal(t_minishell *minishell);
+void	ft_odd_quotes(t_minishell *minishell, char *traces);
+
 //PARSE3 and PARSE4
 int		ft_is_pwd(char **words);
 int		ft_is_env(char **words);
@@ -107,9 +109,24 @@ int		ft_is_exit(char **words);
 int		ft_is_export(char **words);
 int		ft_is_cd(char **words);
 int		ft_is_echo(char **words);
-void    ft_free_split(char **words);
+void	ft_free_split(char **words);
 void	ft_get_signal(t_minishell *minishell);
 char	**ft_split_tab(char const *s);
 void	ft_get_signal(t_minishell *minishell);
+//FILES IN SIGNAL
+void	ft_get_signal(t_minishell *minishell);
+
+//FILES IN BUILTINGS: ECHO
+void	ft_look_for_flag(t_minishell *minishell, char *inside_pipes);
+void	ft_quotes_error(t_minishell *minishell, char *inside);
+void	ft_make_echo(t_minishell *minishell, char *inside_pipes);
+void	ft_print_the_echo(t_minishell *minishell, char *words);
+void	ft_start_command(t_minishell *minishell, char *word);
+
+//FILES IN BULTINGS: EXPORT
+void	ft_make_export(t_minishell *minishell, char *inside_pipes);
+void	ft_save_the_export(char *words, int cont, int len);
+int		ft_start_export(char *word);
+int		ft_end_export(int count, char *word);
 
 #endif
