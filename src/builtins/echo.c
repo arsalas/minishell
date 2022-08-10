@@ -6,13 +6,13 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:27:34 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 10:51:56 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:21:50 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_start_echo(t_minishell *minishell, char *word)
+void	ft_start_command(t_minishell *minishell, char *word)
 {
 	minishell->start = 0;
 	while (word[minishell->start] && (word[minishell->start] == '\n' || word[minishell->start] == 't' || word[minishell->start]	== ' '))
@@ -20,15 +20,14 @@ void	ft_start_echo(t_minishell *minishell, char *word)
 	minishell->start += +4;
 	while (word[minishell->start] && (word[minishell->start] == '\n' || word[minishell->start] == 't' || word[minishell->start]	== ' '))
 		minishell->start++;
-	printf("START ES %d\n", minishell->start);
 }
 
+//PRINTAMOS LO QUE HAY EN ECHO
 void	ft_print_the_echo(t_minishell *minishell, char *words)
 {
 	int		letter;
 
-	letter = 0;
-	ft_start_echo(minishell, words);
+	ft_start_command(minishell, words);
 	letter = minishell->start;
 	while (words[letter])
 	{
@@ -90,6 +89,7 @@ void	ft_print_the_echo(t_minishell *minishell, char *words)
 	}
 }
 
+//MIRAMOS SI LAS COMILLAS ESTAN CERRADAS
 void	ft_quotes_error(t_minishell *minishell, char *inside)
 {
 	int	count;
@@ -137,24 +137,46 @@ void	ft_quotes_error(t_minishell *minishell, char *inside)
 }
 
 // MIRAMOS SI TENEMOS FLAG
-void	ft_look_for_flag(char *inside_pipes)
+bool	ft_look_for_flag(char *inside_pipes)
 {
 	char	**words;
+	int		cont;
 
+	cont = 2;
 	words = ft_split_words(inside_pipes);
-	if (words[1] != NULL &&
-		(ft_strcmp("-n", words[1]) || ft_strcmp("-N", words[2])))
+	if (words[1][0] == '-' && words[1][1] == 'n')
 	{
-		printf("ECHO -N\n");
-		return ;
+		while (words[1][cont] == 'n')
+			cont++;
+		if (words[1][cont] != '\0')
+		{
+			printf("ERROR\nEste flag no existe");
+			close_minishell();
+		}
+		printf("TENEMOS FLAG\n");
+		return (true);
+	}
+	else if (words[1][0] == '-' && words[1][1] == 'N')
+	{
+		while (words[1][cont] == 'N')
+			cont++;
+		if (words[1][cont] != '\0')
+		{
+			printf("ERROR\nEste flag no existe\n");
+			close_minishell();
+		}
+		printf("TENEMOS FLAG\n");
+		return (true);
 	}
 	ft_free_split(words);
+	return (false);
 }
 
 // TODAS LAS FUNCIONES PARA HACER EL ECHO
 void	ft_make_echo(t_minishell *minishell, char *inside_pipes)
 {
-	ft_look_for_flag(inside_pipes);
+	if (ft_look_for_flag(inside_pipes))
+		return ;
 	ft_odd_quotes(minishell, inside_pipes);
 	ft_quotes_error(minishell, inside_pipes);
 	ft_print_the_echo(minishell, inside_pipes);
