@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:27:34 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 12:21:50 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:46:18 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,17 @@ void	ft_start_command(t_minishell *minishell, char *word)
 	minishell->start = 0;
 	while (word[minishell->start] && (word[minishell->start] == '\n' || word[minishell->start] == 't' || word[minishell->start]	== ' '))
 		minishell->start++;
-	minishell->start += +4;
+	if (minishell->flag == 0)
+		minishell->start += +4;
+	if (minishell->flag == 1)
+	{
+		minishell->start += +4;
+		while (word[minishell->start] && (word[minishell->start] == '\n' || word[minishell->start] == 't' || word[minishell->start]	== ' '))
+			minishell->start++;
+		minishell->start += +2;
+		while (word[minishell->start] == 'N' || word[minishell->start] == 'n')
+			minishell->start++;
+	}
 	while (word[minishell->start] && (word[minishell->start] == '\n' || word[minishell->start] == 't' || word[minishell->start]	== ' '))
 		minishell->start++;
 }
@@ -81,7 +91,7 @@ void	ft_print_the_echo(t_minishell *minishell, char *words)
 			printf("%c", words[letter]);
 			letter++;
 		}
-		if (words[letter] == '\0')
+		if (words[letter] == '\0' && minishell->flag != 1)
 		{
 			printf("\n");
 			return ;
@@ -137,7 +147,7 @@ void	ft_quotes_error(t_minishell *minishell, char *inside)
 }
 
 // MIRAMOS SI TENEMOS FLAG
-bool	ft_look_for_flag(char *inside_pipes)
+void	ft_look_for_flag(t_minishell *minishell, char *inside_pipes)
 {
 	char	**words;
 	int		cont;
@@ -153,8 +163,8 @@ bool	ft_look_for_flag(char *inside_pipes)
 			printf("ERROR\nEste flag no existe");
 			close_minishell();
 		}
+		minishell->flag = 1;
 		printf("TENEMOS FLAG\n");
-		return (true);
 	}
 	else if (words[1][0] == '-' && words[1][1] == 'N')
 	{
@@ -165,8 +175,8 @@ bool	ft_look_for_flag(char *inside_pipes)
 			printf("ERROR\nEste flag no existe\n");
 			close_minishell();
 		}
+		minishell->flag = 1;
 		printf("TENEMOS FLAG\n");
-		return (true);
 	}
 	ft_free_split(words);
 	return (false);
@@ -177,6 +187,15 @@ void	ft_make_echo(t_minishell *minishell, char *inside_pipes)
 {
 	if (ft_look_for_flag(inside_pipes))
 		return ;
+	ft_odd_quotes(minishell, inside_pipes);
+	ft_quotes_error(minishell, inside_pipes);
+	ft_print_the_echo(minishell, inside_pipes);
+}
+
+// TODAS LAS FUNCIONES PARA HACER EL ECHO
+void	ft_make_echo(t_minishell *minishell, char *inside_pipes)
+{
+	ft_look_for_flag(minishell, inside_pipes);
 	ft_odd_quotes(minishell, inside_pipes);
 	ft_quotes_error(minishell, inside_pipes);
 	ft_print_the_echo(minishell, inside_pipes);
