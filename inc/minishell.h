@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 12:30:31 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:09:36 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_command
 	int	export;
 }	t_command;
 
+
+
 /*
 * INPUT es la string que me dan por terminal
 * QUO hace referencia a las comillas
@@ -82,6 +84,7 @@ typedef struct s_minishell
 	t_env		env;
 	int			status;
 }	t_minishell;
+
 
 extern t_minishell	*g_minishell;
 

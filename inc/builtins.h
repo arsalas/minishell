@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/05 18:07:42 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:55:14 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	pwd(void);
 void	env(void);
 void	export(char *name, char *content);
 void	unset(char *name);
-void	ft_look_for_flag(char *word);
-void	ft_print_the_echo(char **words);
+// void	ft_look_for_flag(char *word);
+// void	ft_print_the_echo(char **words);
 
 #endif
