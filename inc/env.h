@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 16:02:48 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/10 16:19:07 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	print_env(void);
 void	push_env(char *title, char *content);
 void	delete_env(char *name);
 char	*get_env_var(char *name);
+int		get_index_by_var(char *name);
 
 #endif

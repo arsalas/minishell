@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 00:41:31 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 13:29:12 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/10 17:57:49 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void first_pipe_child(int *fd)
     close(fd[READ_END]);
     dup2(fd[WRITE_END], STDOUT_FILENO);
     close(fd[WRITE_END]);
-    execlp("/bin/ls", "ls", "-l", NULL);
+    // execlp("/bin/ls", "ls", "-l", NULL);
+    ft_make_echo(g_minishell, "Primer pipe1");
     exit(0);
 }
 
@@ -40,7 +41,8 @@ void intermediate_pipe_child(int *fd1, int *fd2)
     dup2(fd2[WRITE_END], STDOUT_FILENO);
     close(fd2[WRITE_END]);
     // execlp("/bin/grep", "grep", "a", NULL);
-    execlp("/usr/bin/wc", "wc", "-l", NULL);
+    ft_make_echo(g_minishell, "Intermediate pipe2");
+    // execlp("/usr/bin/wc", "wc", "-l", NULL);
     exit(0);
 }
 
@@ -49,10 +51,14 @@ void intermediate_pipe_child(int *fd1, int *fd2)
  * 
  * @param fd 
  */
-void last_pipe_child(int *fd)
+void    last_pipe_child(int *fd)
 {
     dup2(fd[READ_END], STDIN_FILENO);
     close(fd[READ_END]);
-    execlp("/usr/bin/wc", "wc", "-l", NULL);
+    // ft_make_echo(g_minishell, "echo \"'hola\"");
+    char *str[] = {"programa", "\"$USER ", " Mundo", NULL};
+    char *env[] = {"USER=aramirez", "USER=aramirez", "Mundo=fds", NULL};
+    execve("/bin/echo", str,env);
+    // execlp("/usr/bin/wc", "wc", "-l", NULL);
     exit(0);
 }

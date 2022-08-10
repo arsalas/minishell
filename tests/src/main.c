@@ -13,8 +13,16 @@ int main(int argc, char *argv[], char *envp[])
 
     // chdir("../");
 	g_minishell = malloc(sizeof(t_minishell));
-    init_env(envp);
-    test_env(envp);
+    t_pipe commands[3];
+    commands[0].command = C_ECHO;
+    commands[0].content = "Primer pipe1";
+    commands[1].command = C_ECHO;
+    commands[1].content = "Segundo pipe2";
+    commands[2].command = C_ECHO;
+    commands[2].content = "Tercer pipe3";
+    execute_pipe(3, commands);
+    // init_env(envp);
+    // test_env(envp);
     return (0);
 	if (!minishell)
 		return (-1);
