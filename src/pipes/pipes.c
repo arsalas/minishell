@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:24:05 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/09 17:33:36 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:04:39 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,12 @@ void execute_single_pipe(void)
  * 
  * @param process cantidad de procesos a ejecutar por los pipes
  */
-void execute_pipe(int process)
+void execute_pipe(int process, t_pipe *commands)
 {
+    (void)commands;
     if (process < 2)
+        return ;
+    if (process == 1)
         return ;
     if (process == 2)
         return (execute_single_pipe());
