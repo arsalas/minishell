@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:27:34 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 10:37:56 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/10 10:51:56 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,12 @@ void	ft_print_the_echo(t_minishell *minishell, char *words)
 			letter++;
 			while (words[letter])
 			{
-				if (words[letter] == 34)
+				if (words[letter] == 92 && (words[letter + 1] == 34 || words[letter + 1] == 39))
+				{
+					printf("%c", words[letter + 1]);
+					letter += 2;
+				}
+				if (words[letter] == 34 && words[letter -1] != 92)
 				{
 					letter++;
 					break ;
@@ -58,7 +63,12 @@ void	ft_print_the_echo(t_minishell *minishell, char *words)
 			letter++;
 			while (words[letter])
 			{
-				if (words[letter] == 39)
+				if (words[letter] == 92 && (words[letter + 1] == 34 || words[letter + 1] == 39))
+				{
+					printf("%c", words[letter + 1]);
+					letter += 2;
+				}
+				if (words[letter] == 39 && words[letter -1] != 92)
 				{
 					letter++;
 					break ;
@@ -95,7 +105,7 @@ void	ft_quotes_error(t_minishell *minishell, char *inside)
 			count++;
 			while (inside[count])
 			{
-				if (inside[count] == 34)
+				if (inside[count] == 34 && inside[count -1] != 92)
 				{
 					minishell->previous_double++;
 					break ;
@@ -109,7 +119,7 @@ void	ft_quotes_error(t_minishell *minishell, char *inside)
 			count++;
 			while (inside[count])
 			{
-				if (inside[count] == 39)
+				if (inside[count] == 39 && inside[count -1] != 92)
 				{
 					minishell->previous_simple++;
 					break ;
