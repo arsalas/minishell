@@ -5,7 +5,6 @@ NC				:= \033[m
 # FLAGS
 CC				:= gcc
 CFLAGS 			:= -Wall -Wextra -Werror 
-READ_FLAGS		:= -lreadline -L ~/.brew/opt/readline/lib
 FLAGS			:= $(CFLAGS)
 
 RM 				:= rm -f
@@ -17,7 +16,7 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 				errors.c \
 				cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 				env_aux1.c env_aux2.c env_aux3.c \
-				pipes.c \
+				pipes.c pipes_aux.c pipes_child.c pipes_father.c \
 				parse1.c parse2.c parse3.c parse4.c ft_split_words.c ft_strstr.c ft_strcmp.c \
 				signal1.c
 
@@ -25,13 +24,15 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 LIBS_PATH		:= libs
 LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
 
+READ_FLAGS		:= -lreadline -L $(LIBS_PATH)/readline
+
 # FOLDERS
 OBJS_DIR		:= obj
 BIN_DIR			:= bin
 
 #INCLUDES
 INC_PATH		:= inc
-INCLUDES 		:= $(LIBS_PATH)/libft/ $(INC_PATH)/ ~/.brew/opt/readline/include
+INCLUDES 		:= $(LIBS_PATH)/libft/ $(INC_PATH)/ $(LIBS_PATH)/readline/include
 INC 			= $(addprefix -I , $(INCLUDES))
 
 # OBJECTS
