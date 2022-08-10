@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/09 18:12:55 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:50:45 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,23 @@ t_builtins	ft_get_command(char *inside_pipes)
 }
 
 //En caso de que nos hayan pasado mas de un comando con pipes
-//FT_LOOK_FOR_FLAG es para mirar si tenemos un flag en el ECHO
-void	ft_command_in_pipe(t_minishell *minishell)
-{
-	int		inside_pipes;
 
-	inside_pipes = 0;
-	while (minishell->traces[inside_pipes])
-	{
-		ft_get_command(minishell->traces[inside_pipes]);
-		if (ft_get_command(minishell->traces[inside_pipes]) == C_ECHO)
-			ft_make_echo(minishell, minishell->traces[inside_pipes]);
-		else if (ft_get_command(minishell->traces[inside_pipes]) == C_CD)
-			printf("CD\n");
-		else if (ft_get_command(minishell->traces[inside_pipes]) == C_EXPORT)
-			printf("EXPORT\n");
-		else if (ft_get_command(minishell->traces[inside_pipes]) == C_ENV)
-			printf("ENV\n");
-		else if (ft_get_command(minishell->traces[inside_pipes]) == C_EXIT)
-			printf("EXIT\n");
-		else if (ft_get_command(minishell->traces[inside_pipes]) == C_PWD)
-			printf("PWD\n");
-		else if (ft_get_command(minishell->traces[inside_pipes]) == C_UNSET)
-			printf("UNSET\n");
-		else if (ft_get_command(minishell->traces[inside_pipes]) == C_OTHERS)
-			printf("OTHERS\n");
-		inside_pipes++;
-	}
+t_builtins	ft_command_in_pipe(t_minishell *minishell)
+{
+	ft_get_command(minishell->traces[0]);
+	if (ft_get_command(minishell->traces[0]) == C_ECHO)
+		return (C_ECHO);
+	if (ft_get_command(minishell->traces[0]) == C_CD)
+		return (C_CD);
+	if (ft_get_command(minishell->traces[0]) == C_EXPORT)
+		return (C_EXPORT);
+	if (ft_get_command(minishell->traces[0]) == C_ENV)
+		return (C_ENV);
+	if (ft_get_command(minishell->traces[0]) == C_EXIT)
+		return (C_EXIT);
+	if (ft_get_command(minishell->traces[0]) == C_PWD)
+		return (C_PWD);
+	if (ft_get_command(minishell->traces[0]) == C_UNSET)
+		return (C_UNSET);
+	return (C_OTHERS);
 }

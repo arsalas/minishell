@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/09 18:28:20 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:31:47 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	ft_init_minishell(t_minishell *minishell)
 
 void	ft_parse(t_minishell *minishell)
 {
-	int	cont;
+	int		cont;
+	t_pipe	*commands;
 
 	cont = 0;
 	ft_init_minishell(minishell);
@@ -97,11 +98,15 @@ void	ft_parse(t_minishell *minishell)
 		ft_number_pipes(minishell);
 		if (minishell->pipe == 0)
 			ft_odd_quotes(minishell, minishell->input);
-		// while (cont <= minishell->pipe)
-		// {
-		// 	ft_odd_quotes(minishell, minishell->traces[cont]);
-		// 	cont++;
-		// }
+		commands = get_memory(sizeof(t_pipe) * (minishell->pipe) + 1);
+		int i = 0;
+		while (i < minishell->pipe + 1)
+		{
+			commands[i].command = ft_command_in_pipe(minishell);
+			commands[i].content = minishell->traces[i];
+			printf("%i | %s", commands[i].command, commands[i].content);
+			i++;
+		}
 		ft_command_in_pipe(minishell);
 		clear_history();
 	}

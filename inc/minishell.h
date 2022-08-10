@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 13:09:36 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:17:55 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	print_string(char *str);
 void	print_headline(void);
 void	ft_parse(t_minishell *minishell);
 void	ft_init_minishell(t_minishell *minishell);
-void	ft_command_in_pipe(t_minishell *minishell);
+t_builtins	ft_command_in_pipe(t_minishell *minishell);
 
 void	ft_which_command(t_minishell *minishell);
 char	*ft_strstr(const char *haystack, const char *needle);

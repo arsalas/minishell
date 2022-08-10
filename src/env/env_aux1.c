@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:45:38 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/02 17:06:26 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/10 16:03:58 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,20 @@ void	set_env_element(int count, char *env)
 {
 	g_minishell->env.vars[count].title = get_env_title(env);
 	g_minishell->env.vars[count].content = get_env_content(env);
+}
+
+/**
+ * @brief Obtiene el contenido de una variable de entorno
+ * 
+ * @param name 
+ * @return contenido de la variable 
+ */
+char	*get_env_var(char *name)
+{
+	int	i;
+
+	i = get_index_by_var(name);
+	if (i == -1)
+		return ("");
+	return (g_minishell->env.vars[i].content);
 }
