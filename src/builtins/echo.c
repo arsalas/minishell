@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:27:34 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 12:46:18 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:35:12 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,17 +179,6 @@ void	ft_look_for_flag(t_minishell *minishell, char *inside_pipes)
 		printf("TENEMOS FLAG\n");
 	}
 	ft_free_split(words);
-	return (false);
-}
-
-// TODAS LAS FUNCIONES PARA HACER EL ECHO
-void	ft_make_echo(t_minishell *minishell, char *inside_pipes)
-{
-	if (ft_look_for_flag(inside_pipes))
-		return ;
-	ft_odd_quotes(minishell, inside_pipes);
-	ft_quotes_error(minishell, inside_pipes);
-	ft_print_the_echo(minishell, inside_pipes);
 }
 
 // TODAS LAS FUNCIONES PARA HACER EL ECHO
