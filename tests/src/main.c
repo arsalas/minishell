@@ -20,7 +20,8 @@ int main(int argc, char *argv[], char *envp[])
     commands[1].content = "Segundo pipe2";
     commands[2].command = C_ECHO;
     commands[2].content = "Tercer pipe3";
-    execute_pipe(3, commands);
+    // execute_pipe(3, commands);
+    test_echo();
     // init_env(envp);
     // test_env(envp);
     return (0);

@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 13:17:55 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 13:33:06 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # include "env.h"
 # include "pipes.h"
 # include "errors.h"
+# include "echo.h"
 
 # define READ_END 0
 # define WRITE_END 1

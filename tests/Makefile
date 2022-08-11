@@ -11,7 +11,7 @@ RM 				:= rm -f
 
 # SRC
 SRCS 			= main.c \
-				env.c
+				env.c echo.c
 
 # LIBS
 LIBS_PATH		:= ../libs
