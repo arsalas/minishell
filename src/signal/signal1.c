@@ -6,11 +6,31 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/05 21:21:25 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 11:09:15 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+//FT_PROCESS va a ser en caso de que estemos en un comando bloqueante
+//FALTA modificar el PID
+/*
+static void	ft_bloq(int signal)
+{
+	if (!kill(AQUI TENEMOS QUE PONER EL PID, DEL TIPO PID_T, signal))
+	{
+		if (signal == SIGINT)
+		{
+			ft_putchar_fd('\n', 1);
+		//	g_minishell->status = 131;
+		}
+		if (signal == SIGQUIT)
+		{
+			ft_putstr_fd("Quit: 3\n", 1);
+		//	g_minishell->status = 131;
+		}
+	}
+}*/
 
 /*
 * SIGINT para CONTROL C - termina el proceso
@@ -20,53 +40,30 @@
 */
 static void	ft_handle(int signal)
 {
-	if (signal == SIGINT)
-	{
-		g_minishell->status = 1;
-		rl_on_new_line();
-		return ;
-	}
-	if (signal == SIGQUIT)
-	{
-		g_minishell->status = 0;
-		return ;
-	}
-	if (signal == SIGTERM)
-	{
-		g_minishell->status = 0;
-		printf("exit\n");
-		close_minishell();
-	}
+	// if ((signal == SIGINT || signal == SIGQUIT) && g_minishell != 0)
+	// 	ft_bloq(signal);
+	// else 
+	// {
+		if (signal == SIGINT)
+		{
+			ft_putchar_fd('\n', 1);
+		//	g_minishell->status = 1;
+			print_prompt();
+		//	rl_on_new_line();
+		}
+		if (signal == SIGQUIT)
+		{
+			ft_putstr_fd("\b\b  \b\b", 1);
+		//	g_minishell->status = 0;
+		}
+		if (signal == SIGTERM)
+		{
+		//	g_minishell->status = 0;
+			printf("Exit\n");
+			close_minishell();
+		}
+	//  }
 }
-
-/*
-* SOLAMENTE si estamos en un comando bloqueante
-* g_status = 130 == Cntrol C
-*
-*/
-/*
-static void	ft_handle_bloq(int signal)
-{
-	if (signal == SIGINT)
-	{
-		g_minishell->status = 130;
-	//	rl_replace_line("", 0);
-		rl_on_new_line();
-		return ;
-	}
-	if (signal == SIGQUIT)
-	{
-		g_minishell->status = 0;
-		return ;
-	}
-	if (signal == SIGTERM)
-	{
-		g_minishell->status = 0;
-	//	rl_replace_line("", 0);
-		rl_on_new_line();
-		return ;
-	}
-}*/
 
 void	ft_get_signal(t_minishell *minishell)
 {
