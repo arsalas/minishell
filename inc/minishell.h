@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 19:22:23 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 13:45:43 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ typedef struct s_command
 	int	export;
 }	t_command;
 
-
-
 /*
 * INPUT es la string que me dan por terminal
 * QUO hace referencia a las comillas
 * PIPE indica el numero de pipes que hay
 * TRACES hace referencia al array bidimensional en funcion de cuantos pipes haya
 * FLAG indica si hemos encontrado un flag despues de echo
+* PREV es el string de lo que hay antes del = en export
+* POST es el string de lo que hay despues del = en export
 */
 typedef struct s_minishell
 {
@@ -138,5 +138,9 @@ void	ft_equal_error(char *words);
 
 //FILES IN BULTINGS: EXIT
 void	ft_exit(char *str);
+
+//FILES IN BULTINGS: CD
+void	ft_cd(char *input);
+char	*ft_add_home_paths(char *word);
 
 #endif
