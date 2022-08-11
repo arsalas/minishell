@@ -6,12 +6,14 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 19:00:12 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:01:04 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
+
+# include "minishell.h"
 
 void	print_prompt(void);
 void	not_implemented(void);
