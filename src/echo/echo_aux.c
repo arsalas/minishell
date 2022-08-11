@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:14:01 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 13:41:41 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 15:24:16 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ bool	is_var(char *str)
 
 char	*get_var_name(char *str)
 {
-	int	i;
+	int		len;
+	char	*name;
 
-	i = 0;
-	while (str[i])
-	{
-	}
+	len = ft_strlen(str);
+	name = ft_substr(str, 1, len - 1);
+	return (name);
 }

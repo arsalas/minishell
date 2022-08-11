@@ -22,8 +22,8 @@ int main(int argc, char *argv[], char *envp[])
     commands[2].content = "Tercer pipe3";
     // execute_pipe(3, commands);
     test_echo();
-    // init_env(envp);
-    // test_env(envp);
+    init_env(envp);
+    test_env(envp);
     return (0);
 	if (!minishell)
 		return (-1);

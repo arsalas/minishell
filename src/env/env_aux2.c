@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:45:38 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/02 17:14:01 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 14:19:31 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,19 @@ void	print_env(void)
 			g_minishell->env.vars[i].content);
 		i++;
 	}
+}
+
+/**
+ * @brief Cambia el valor de una variable de entorno
+ * 
+ * @param name 
+ * @param content 
+ */
+void	update_env_var(char *name, char *content)
+{
+	int	position;
+
+	position = get_index_by_var(name);
+	free(g_minishell->env.vars[position].content);
+	g_minishell->env.vars[position].content = ft_strdup(content);
 }
