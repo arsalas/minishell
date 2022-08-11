@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 19:38:29 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 11:01:11 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	ft_exit(char *str)
 	count = 0;
 	while (str[count])
 	{
-		while (str[count] && (str[count] == '\n' || str[count] == '\t' || str[count]	== ' '))
+		while (str[count] && (str[count] == '\n' || str[count] == '\t' || str[count] == ' '))
 			count++;
 		count += 4;
-		while (str[count] && (str[count] == '\n' || str[count] == '\t' || str[count]	== ' '))
+		while (str[count] && (str[count] == '\n' || str[count] == '\t' || str[count] == ' '))
 			count++;
 		while (str[count])
 		{
