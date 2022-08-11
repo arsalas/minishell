@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 17:53:53 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:00:21 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ posicion del array
 * Input es aquello que hay entre pipes en el momento en que me dan CD como comando
 * Words es el input separado por espacio, \t o \n
 */
-void	ft_pase_cd(char *input)
+void	ft_parse_cd(char *input)
 {
 	char	**words;
 	char	*path;

@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 18:22:29 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:00:43 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include "pipes.h"
 # include "errors.h"
 # include "echo.h"
+# include "parse.h"
 
 # define READ_END 0
 # define WRITE_END 1
@@ -79,13 +80,11 @@ typedef struct s_minishell
 	char		**traces;
 	t_command	*command;
 	t_env		env;
-	t_parse		*parse;
+	t_parse		parse;
 	int			status;
 }	t_minishell;
 
 extern t_minishell	*g_minishell;
-
-//FILES IN UTILS
 
 //FILES IN HISTORY
 void	ft_clear_history(void);
@@ -94,62 +93,6 @@ char	*ft_get_input(void);
 
 //FILES IN MINISHELL: INIT
 void	ft_init_minishell(void);
-void	ft_read(t_minishell *minishell);
-
-
-//FILES IN PARSE
-void		ft_search_command_in_pipe(void);
-void		ft_number_pipes(void);
-void		ft_odd_quotes(char *traces);
-t_builtins	ft_command_in_pipe(void);
-t_builtins	ft_get_command(char *inside_pipes);
-int			ft_is_cd(char **words);
-int			ft_is_export(char **words);
-int			ft_is_echo(char **words);
-int			ft_is_exit(char **words);
-int			ft_is_unset(char **words);
-int			ft_is_env(char **words);
-int			ft_is_pwd(char **words);
-
-void	ft_which_command(t_minishell *minishell);
-char	*ft_strstr(const char *haystack, const char *needle);
-bool	ft_strcmp(const char *s1, const char *s2);
-void	ft_free_split(char **words);
-void	ft_get_signal(t_minishell *minishell);
-char	**ft_split_words(char *str);
-void	ft_get_signal(t_minishell *minishell);
-void	ft_odd_quotes(t_minishell *minishell, char *traces);
-
-//PARSE3 and PARSE4
-int		ft_is_pwd(char **words);
-int		ft_is_env(char **words);
-int		ft_is_unset(char **words);
-int		ft_is_exit(char **words);
-int		ft_is_export(char **words);
-int		ft_is_cd(char **words);
-int		ft_is_echo(char **words);
-void	ft_free_split(char **words);
-void	ft_get_signal(t_minishell *minishell);
-char	**ft_split_tab(char const *s);
-void	ft_get_signal(t_minishell *minishell);
-//FILES IN SIGNAL
-void	ft_get_signal(t_minishell *minishell);
-
-//FILES IN BUILTINGS: ECHO
-void	ft_look_for_flag(t_minishell *minishell, char *inside_pipes);
-void	ft_quotes_error(t_minishell *minishell, char *inside);
-void	ft_make_echo(t_minishell *minishell, char *inside_pipes);
-void	ft_print_the_echo(t_minishell *minishell, char *words);
-void	ft_start_command(t_minishell *minishell, char *word);
-
-//FILES IN BULTINGS: EXPORT
-void	ft_make_export(t_minishell *minishell, char *inside_pipes);
-void	ft_save_the_export(t_minishell *minishell, char *words, int start, int len);
-int		ft_start_export(char *word);
-int		ft_end_export(int count, char *word);
-void	ft_equal_error(char *words);
-
-//FILES IN BULTINGS: CD
-char	*ft_add_home_paths(char *word);
+void	ft_read(void);
 
 #endif
