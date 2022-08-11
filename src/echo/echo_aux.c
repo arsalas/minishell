@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:14:01 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 15:24:16 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:41:06 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ bool	is_var(char *str)
 	return (false);
 }
 
+/**
+ * @brief Obtiene el contenido de una variable de entorno
+ * 
+ * @param str 
+ * @return contenido variable de entorno
+ */
 char	*get_var_name(char *str)
 {
 	int		len;

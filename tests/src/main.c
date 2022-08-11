@@ -5,7 +5,6 @@ t_minishell	*g_minishell;
 
 int main(int argc, char *argv[], char *envp[])
 {
-	t_minishell	*minishell;
 
     (void)argc;
     (void)argv;
@@ -23,10 +22,8 @@ int main(int argc, char *argv[], char *envp[])
     // execute_pipe(3, commands);
     test_echo();
     init_env(envp);
-    test_env(envp);
-    return (0);
-	if (!minishell)
-		return (-1);
-    ft_parse(minishell);
+    // test_env(envp);
+    printf("%s\n", get_env_var(get_var_name("$USER")));
+    // return (0);
     return (0);
 }

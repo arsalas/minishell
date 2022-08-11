@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/10 13:31:47 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:43:17 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,39 +61,18 @@ void	ft_number_pipes(t_minishell *minishell)
 		minishell->traces = ft_split(minishell->input, '|');
 }
 
-void	ft_get_pid(t_minishell *minishell)
+char	*ft_get_input(void)
 {
-	pid_t	pid;
-
-	pid = fork();
-	if (!pid || pid < 0)
-		exit (0);
-	waitpid(pid, NULL, 0);
-	minishell->pid = pid;
-}
-
-//INICIALIZAMOS LAS VARIABLES DE NUESTRA ESTRUCTURA MINISHELL
-void	ft_init_minishell(t_minishell *minishell)
-{
-	minishell->pid = 0;
-	minishell->pid = 0;
-	minishell->input = 0;
-	minishell->double_quo = 0;
-	minishell->simple_quo = 0;
-	minishell->pipe = 0;
+	return (readline("minishell: "));
 }
 
 void	ft_parse(t_minishell *minishell)
 {
-	// int		cont;
 	t_pipe	*commands;
 
-	// cont = 0;
-	ft_init_minishell(minishell);
-	ft_get_pid(minishell);
 	while (1)
 	{
-		minishell->input = readline("minishell: ");
+		g_minishell->input = ft_get_input();
 		add_history(minishell->input);
 		ft_number_pipes(minishell);
 		if (minishell->pipe == 0)
@@ -111,3 +90,7 @@ void	ft_parse(t_minishell *minishell)
 		clear_history();
 	}
 }
+
+
+// TODO: funcion que inicie minishell malloc y inicie env
+// TODO: funcion principal que espera un input

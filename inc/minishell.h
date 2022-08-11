@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 18:20:15 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:22:29 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,16 +111,45 @@ int			ft_is_unset(char **words);
 int			ft_is_env(char **words);
 int			ft_is_pwd(char **words);
 
-//FILES IN EXIT
-void	ft_exit(char *str);
-int	ft_its_not_digit(char *str, int len);
-int		ft_after_exit(char *str, int count);
-int		ft_empty_piece(char *str, int count);
+void	ft_which_command(t_minishell *minishell);
+char	*ft_strstr(const char *haystack, const char *needle);
+bool	ft_strcmp(const char *s1, const char *s2);
+void	ft_free_split(char **words);
+void	ft_get_signal(t_minishell *minishell);
+char	**ft_split_words(char *str);
+void	ft_get_signal(t_minishell *minishell);
+void	ft_odd_quotes(t_minishell *minishell, char *traces);
+
+//PARSE3 and PARSE4
+int		ft_is_pwd(char **words);
+int		ft_is_env(char **words);
+int		ft_is_unset(char **words);
+int		ft_is_exit(char **words);
+int		ft_is_export(char **words);
+int		ft_is_cd(char **words);
+int		ft_is_echo(char **words);
+void	ft_free_split(char **words);
+void	ft_get_signal(t_minishell *minishell);
+char	**ft_split_tab(char const *s);
+void	ft_get_signal(t_minishell *minishell);
+//FILES IN SIGNAL
+void	ft_get_signal(t_minishell *minishell);
+
+//FILES IN BUILTINGS: ECHO
+void	ft_look_for_flag(t_minishell *minishell, char *inside_pipes);
+void	ft_quotes_error(t_minishell *minishell, char *inside);
+void	ft_make_echo(t_minishell *minishell, char *inside_pipes);
+void	ft_print_the_echo(t_minishell *minishell, char *words);
+void	ft_start_command(t_minishell *minishell, char *word);
+
+//FILES IN BULTINGS: EXPORT
+void	ft_make_export(t_minishell *minishell, char *inside_pipes);
+void	ft_save_the_export(t_minishell *minishell, char *words, int start, int len);
+int		ft_start_export(char *word);
+int		ft_end_export(int count, char *word);
+void	ft_equal_error(char *words);
 
 //FILES IN BULTINGS: CD
-void	ft_cd(char *input);
-void	ft_parse_cd(char *input);
-char	*ft_old_cd(void);
 char	*ft_add_home_paths(char *word);
 
 #endif
