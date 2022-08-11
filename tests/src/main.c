@@ -22,7 +22,8 @@ int main(int argc, char *argv[], char *envp[])
     // execute_pipe(3, commands);
     test_echo();
     init_env(envp);
-    test_env(envp);
+    // test_env(envp);
+    printf("%s\n", get_env_var(get_var_name("$USER")));
     // return (0);
     return (0);
 }

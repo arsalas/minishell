@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 13:29:48 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:49:24 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define ECHO_H
 
 bool	is_var(char *str);
+char	*get_var_name(char *str);
 
 #endif
