@@ -3,94 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   parse1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/11 15:51:18 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:33:51 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//Comprobamos comillas
-void	ft_odd_quotes(t_minishell *minishell, char *traces)
+/*
+* Contamos la cantidad de comillas, siempre y cuando no esten despues del \
+*/
+void	ft_odd_quotes(char *traces)
 {
 	int	count;
 
-	minishell->double_quo = 0;
-	minishell->simple_quo = 0;
+	g_minishell->double_quo = 0;
+	g_minishell->simple_quo = 0;
 	count = 0;
 	while (traces[count])
 	{
 		if (traces[count] == 92 &&
 			(traces[count + 1] == 34 || traces[count + 1] == 39))
 		{
-			minishell->slash++;
+			g_minishell->slash++;
 			count += 2;
 		}
 		else if (traces[count] == 34)
-			minishell->double_quo++;
+			g_minishell->double_quo++;
 		else if (traces[count] == 39)
-			minishell->simple_quo++;
+			g_minishell->simple_quo++;
 		count++;
 	}
 }
 
 /*
 * Miramos la cantidad de pipes
-* 39 == '
-* 34 == "
-* 124 == |
 */
-void	ft_number_pipes(t_minishell *minishell)
+void	ft_number_pipes(void)
 {
 	int	count;
 	int	quote;
 
 	count = 0;
 	quote = 0;
-	while (minishell->input[count])
+	while (g_minishell->input[count])
 	{
-		if (minishell->input[count] == 34 || minishell->input[count] == 39)
+		if (g_minishell->input[count] == 34 || g_minishell->input[count] == 39)
 			quote++;
-		if (minishell->input[count] == 124 && (quote % 2 == 0 || quote == 0))
-			minishell->pipe++;
+		if (g_minishell->input[count] == 124 && (quote % 2 == 0 || quote == 0))
+			g_minishell->pipe++;
 		count++;
 	}
 	if (count > 0)
-		minishell->traces = ft_split(minishell->input, '|');
+		g_minishell->traces = ft_split(g_minishell->input, '|');
 }
 
-char	*ft_get_input(void)
+/*
+* Obtenemos el comando que hay entre pipes
+*/
+void	ft_search_command_in_pipe(void)
 {
-	return (readline("minishell: ");
-}
-
-void	ft_parse(t_minishell *minishell)
-{
+	int		i;
 	t_pipe	*commands;
 
-	while (1)
+	i = 0;
+	commands = get_memory(sizeof(t_pipe) * (g_minishell->pipe) + 1);
+	while (i < g_minishell->pipe + 1)
 	{
-		g_minishell->input = ft_get_input();
-		add_history(minishell->input);
-		ft_number_pipes(minishell);
-		if (minishell->pipe == 0)
-			ft_odd_quotes(minishell, minishell->input);
-		commands = get_memory(sizeof(t_pipe) * (minishell->pipe) + 1);
-		int i = 0;
-		while (i < minishell->pipe + 1)
-		{
-			commands[i].command = ft_command_in_pipe(minishell);
-			commands[i].content = minishell->traces[i];
-			printf("%i | %s", commands[i].command, commands[i].content);
-			i++;
-		}
-		ft_command_in_pipe(minishell);
-		clear_history();
+		commands[i].command = ft_command_in_pipe(g_minishell);
+		commands[i].content = g_minishell->traces[i];
+		i++;
 	}
 }
-
 
 // TODO: funcion que inicie minishell malloc y inicie env
 // TODO: funcion principal que espera un input
