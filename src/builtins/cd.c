@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 13:45:42 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 15:30:29 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_add_home_path(char *word)
 
 	if (!ft_strncmp(word, "~/", 2))
 	{
-		path = getenv("HOME");
+		path = get_env_var("HOME");
 		paths = ft_substr(path, 1, ft_strlen(word));
 		free(word);
 		word = ft_strjoin(path, paths);
@@ -35,18 +35,20 @@ char	*ft_add_home_path(char *word)
 
 char	*ft_old_cd(void)
 {
+	char	*old_path;
 	char	*path;
 
-	path = getenv("OLDPWD");
-	if (path == getenv("OLDPWD"))
+	old_path = get_env_var("OLDPWD");
+	path = get_env_var("PWD");
+	printf("PWD IS %s \n", path);
+	if (path == NULL)
 	{
-		path = getenv("PWD");
-		ft_putstr_fd(path, 1);
-		ft_putchar_fd('\n', 1);
-		return (path);
+		printf("cd: OLDPWD not set\n");
+		return (0);
 	}
-	printf("cd: OLDPWD not set");
-	return (0);
+	ft_putstr_fd(path, 1);
+	ft_putchar_fd('\n', 1);
+	return (path);
 }
 /*
 //ANADIMOS EL DIRECTORIO
@@ -54,6 +56,17 @@ void	ft_set_directory(char *input)
 {
 	int	home;
 }*/
+
+/*
+TODO
+PARA PODER OBTENER OLDPWD DEBEMOS CREARLO
+ASIGNAMOS PWDOLD EL VALOR DE PWD
+Y CAMBIAMOS EL PWD
+
+ANTES DE HACER EL CD GUARDAMOS EL PWD EN PWDOLD
+set_env_element(int count, char *env)
+posicion del array
+*/
 
 //SI NOS DAN ~ O -- HAY QUE BUSCAR HOME EN EL ENVIRONMENT
 void	ft_cd(char *input)
