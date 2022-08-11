@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/10 15:50:45 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:43:57 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_free_split(char **words)
-{
-	int	count;
-
-	count = 0;
-	while (words[count])
-	{
-		free(words[count]);
-		count++;
-	}
-	free(words);
-}
 
 t_builtins	ft_get_command(char *inside_pipes)
 {
@@ -53,22 +40,22 @@ t_builtins	ft_get_command(char *inside_pipes)
 
 //En caso de que nos hayan pasado mas de un comando con pipes
 
-t_builtins	ft_command_in_pipe(t_minishell *minishell)
+t_builtins	ft_command_in_pipe(void)
 {
-	ft_get_command(minishell->traces[0]);
-	if (ft_get_command(minishell->traces[0]) == C_ECHO)
+	ft_get_command(g_minishell->traces[0]);
+	if (ft_get_command(g_minishell->traces[0]) == C_ECHO)
 		return (C_ECHO);
-	if (ft_get_command(minishell->traces[0]) == C_CD)
+	if (ft_get_command(g_minishell->traces[0]) == C_CD)
 		return (C_CD);
-	if (ft_get_command(minishell->traces[0]) == C_EXPORT)
+	if (ft_get_command(g_minishell->traces[0]) == C_EXPORT)
 		return (C_EXPORT);
-	if (ft_get_command(minishell->traces[0]) == C_ENV)
+	if (ft_get_command(g_minishell->traces[0]) == C_ENV)
 		return (C_ENV);
-	if (ft_get_command(minishell->traces[0]) == C_EXIT)
+	if (ft_get_command(g_minishell->traces[0]) == C_EXIT)
 		return (C_EXIT);
-	if (ft_get_command(minishell->traces[0]) == C_PWD)
+	if (ft_get_command(g_minishell->traces[0]) == C_PWD)
 		return (C_PWD);
-	if (ft_get_command(minishell->traces[0]) == C_UNSET)
+	if (ft_get_command(g_minishell->traces[0]) == C_UNSET)
 		return (C_UNSET);
 	return (C_OTHERS);
 }
