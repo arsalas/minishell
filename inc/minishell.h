@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 18:02:51 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:20:15 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,6 @@ typedef struct s_minishell
 extern t_minishell	*g_minishell;
 
 //FILES IN UTILS
-char	**ft_split_words(char *str);
-void	ft_free_split(char **words);
-bool	ft_strcmp(const char *s1, const char *s2);
-char	*ft_strstr(const char *haystack, const char *needle);
 
 //FILES IN HISTORY
 void	ft_clear_history(void);

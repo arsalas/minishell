@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/03 14:19:18 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:20:18 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,9 @@ void	*get_memory(size_t size);
 void	*ft_realloc(void *ptr, size_t size);
 void	free_memory(void);
 int		create_process(void);
+char	**ft_split_words(char *str);
+void	ft_free_split(char **words);
+bool	ft_strcmp(const char *s1, const char *s2);
+char	*ft_strstr(const char *haystack, const char *needle);
 
 #endif
