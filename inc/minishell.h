@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 15:42:26 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:49:50 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include "pipes.h"
 # include "errors.h"
 # include "echo.h"
+# include "parse.h"
 
 # define READ_END 0
 # define WRITE_END 1
@@ -59,85 +60,39 @@ typedef struct s_command
 	int	export;
 }	t_command;
 
+typedef struct s_parse
+{
+	int	double_quo;
+	int	simple_quo;
+	int	pipe;
+	int	slash;
+}	t_parse;
+
 /*
 * INPUT es la string que me dan por terminal
+* TRACES es el array bidimensional en funcion de cuantos pipes haya
 * QUO hace referencia a las comillas
 * PIPE indica el numero de pipes que hay
-* TRACES hace referencia al array bidimensional en funcion de cuantos pipes haya
-* FLAG indica si hemos encontrado un flag despues de echo
-* PREV es el string de lo que hay antes del = en export
-* POST es el string de lo que hay despues del = en export
 */
 typedef struct s_minishell
 {
-	int			pid;
 	char		*input;
-	int			double_quo;
-	int			simple_quo;
-	int			pipe;
 	char		**traces;
-	int			flag;
-	int			start;
-	int			slash;
-	int			previous_double;
-	int			previous_simple;
-	//PREV AND POST SON EL PREVIO Y EL POSTERIOR DEL = PARA EXPORT
-	char		*prev;
-	char		*post;
 	t_command	*command;
 	t_env		env;
+	t_parse		parse;
 	int			status;
 }	t_minishell;
 
-
 extern t_minishell	*g_minishell;
 
-//FILES IN PARSE
-void	print_string(char *str);
-void	print_headline(void);
-void	ft_parse(t_minishell *minishell);
-void	ft_init_minishell(t_minishell *minishell);
-t_builtins	ft_command_in_pipe(t_minishell *minishell);
+//FILES IN HISTORY
+void	ft_clear_history(void);
+void	ft_read_history(void);
+char	*ft_get_input(void);
 
-void	ft_which_command(t_minishell *minishell);
-char	*ft_strstr(const char *haystack, const char *needle);
-bool	ft_strcmp(const char *s1, const char *s2);
-void	ft_free_split(char **words);
-void	ft_get_signal(t_minishell *minishell);
-char	**ft_split_words(char *str);
-void	ft_get_signal(t_minishell *minishell);
-void	ft_odd_quotes(t_minishell *minishell, char *traces);
-
-//PARSE3 and PARSE4
-int		ft_is_pwd(char **words);
-int		ft_is_env(char **words);
-int		ft_is_unset(char **words);
-int		ft_is_exit(char **words);
-int		ft_is_export(char **words);
-int		ft_is_cd(char **words);
-int		ft_is_echo(char **words);
-void	ft_free_split(char **words);
-void	ft_get_signal(t_minishell *minishell);
-char	**ft_split_tab(char const *s);
-void	ft_get_signal(t_minishell *minishell);
-//FILES IN SIGNAL
-void	ft_get_signal(t_minishell *minishell);
-
-//FILES IN BUILTINGS: ECHO
-void	ft_look_for_flag(t_minishell *minishell, char *inside_pipes);
-void	ft_quotes_error(t_minishell *minishell, char *inside);
-void	ft_make_echo(t_minishell *minishell, char *inside_pipes);
-void	ft_print_the_echo(t_minishell *minishell, char *words);
-void	ft_start_command(t_minishell *minishell, char *word);
-
-//FILES IN BULTINGS: EXPORT
-void	ft_make_export(t_minishell *minishell, char *inside_pipes);
-void	ft_save_the_export(t_minishell *minishell, char *words, int start, int len);
-int		ft_start_export(char *word);
-int		ft_end_export(int count, char *word);
-void	ft_equal_error(char *words);
-
-//FILES IN BULTINGS: CD
-char	*ft_add_home_paths(char *word);
+//FILES IN MINISHELL: INIT
+void	ft_init_minishell(void);
+void	ft_read(void);
 
 #endif
