@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/11 15:51:18 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:06:47 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_number_pipes(t_minishell *minishell)
 
 char	*ft_get_input(void)
 {
-	return (readline("minishell: ");
+	return (readline("minishell: "));
 }
 
 void	ft_parse(t_minishell *minishell)
