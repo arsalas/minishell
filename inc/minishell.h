@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 13:33:06 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 15:36:25 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ typedef struct s_command
 	int	export;
 }	t_command;
 
-
-
 /*
 * INPUT es la string que me dan por terminal
 * QUO hace referencia a las comillas
 * PIPE indica el numero de pipes que hay
 * TRACES hace referencia al array bidimensional en funcion de cuantos pipes haya
 * FLAG indica si hemos encontrado un flag despues de echo
+* PREV es el string de lo que hay antes del = en export
+* POST es el string de lo que hay despues del = en export
 */
 typedef struct s_minishell
 {
@@ -81,6 +81,9 @@ typedef struct s_minishell
 	int			slash;
 	int			previous_double;
 	int			previous_simple;
+	//PREV AND POST SON EL PREVIO Y EL POSTERIOR DEL = PARA EXPORT
+	char		*prev;
+	char		*post;
 	t_command	*command;
 	t_env		env;
 	int			status;
@@ -129,8 +132,16 @@ void	ft_start_command(t_minishell *minishell, char *word);
 
 //FILES IN BULTINGS: EXPORT
 void	ft_make_export(t_minishell *minishell, char *inside_pipes);
-void	ft_save_the_export(char *words, int cont, int len);
+void	ft_save_the_export(t_minishell *minishell, char *words, int start, int len);
 int		ft_start_export(char *word);
 int		ft_end_export(int count, char *word);
+void	ft_equal_error(char *words);
+
+//FILES IN BULTINGS: EXIT
+void	ft_exit(char *str);
+
+//FILES IN BULTINGS: CD
+void	ft_cd(char *input);
+char	*ft_add_home_paths(char *word);
 
 #endif
