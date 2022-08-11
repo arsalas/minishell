@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes_child.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 00:41:31 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 13:12:40 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:03:53 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void    first_pipe_child(int *fd)
     dup2(fd[WRITE_END], STDOUT_FILENO);
     close(fd[WRITE_END]);
     // execlp("/bin/ls", "ls", "-l", NULL);
-    ft_make_echo(g_minishell, "Primer pipe1");
+ //   ft_make_echo(g_minishell, "Primer pipe1");
     exit(0);
 }
 
@@ -40,7 +40,7 @@ void    intermediate_pipe_child(int *fd1, int *fd2)
     close(fd1[READ_END]);
     dup2(fd2[WRITE_END], STDOUT_FILENO);
     close(fd2[WRITE_END]);
-    ft_make_echo(g_minishell, "Intermediate pipe2");
+  //  ft_make_echo(g_minishell, "Intermediate pipe2");
     // execlp("/usr/bin/wc", "wc", "-l", NULL);
     exit(0);
 }
