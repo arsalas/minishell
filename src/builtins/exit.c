@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 18:02:46 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:10:31 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	ft_its_not_digit(char *str, int len)
 {
 	int		count;
 	char	*str_error;
-
 
 	count = ft_strlen(str);
 	str_error = (char *)malloc((sizeof(char) * count + 1));
