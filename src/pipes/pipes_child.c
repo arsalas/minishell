@@ -14,8 +14,8 @@
 
 /**
  * @brief Ejecuta el comando del primer pipe
- * 
- * @param fd 
+ *
+ * @param fd
  */
 void first_pipe_child(int *fd)
 {
@@ -29,9 +29,9 @@ void first_pipe_child(int *fd)
 
 /**
  * @brief Ejecuta el comando intermedia de un pipe
- * 
- * @param fd1 
- * @param fd2 
+ *
+ * @param fd1
+ * @param fd2
  */
 void intermediate_pipe_child(int *fd1, int *fd2)
 {
@@ -48,17 +48,20 @@ void intermediate_pipe_child(int *fd1, int *fd2)
 
 /**
  * @brief Ejecuta el ultimo comando de un pipe
- * 
- * @param fd 
+ *
+ * @param fd
  */
-void    last_pipe_child(int *fd)
+void last_pipe_child(int *fd)
 {
     dup2(fd[READ_END], STDIN_FILENO);
     close(fd[READ_END]);
     // ft_make_echo(g_minishell, "echo \"'hola\"");
-    char *str[] = {"programa", "\"$USER ", " Mundo", NULL};
+    char *str[] = {"programa", "'$USER ", " Mundo", NULL};
     char *env[] = {"USER=aramirez", "USER=aramirez", "Mundo=fds", NULL};
     execve("/bin/echo", str,env);
+    //    printf("%i\n", access("../a.out", X_OK));
+    //     execve("../a.out", str,env);
+    ft_others("../a.out", str);
     // execlp("/usr/bin/wc", "wc", "-l", NULL);
     exit(0);
 }

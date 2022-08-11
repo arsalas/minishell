@@ -85,10 +85,10 @@ void	ft_init_minishell(t_minishell *minishell)
 
 void	ft_parse(t_minishell *minishell)
 {
-	int		cont;
+	// int		cont;
 	t_pipe	*commands;
 
-	cont = 0;
+	// cont = 0;
 	ft_init_minishell(minishell);
 	ft_get_pid(minishell);
 	while (1)
