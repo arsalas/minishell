@@ -24,9 +24,9 @@ int main(int argc, char *argv[], char *envp[])
     test_echo();
     init_env(envp);
     test_env(envp);
-    return (0);
+    // return (0);
 	if (!minishell)
 		return (-1);
-    ft_parse(minishell);
+    ft_parse(g_minishell);
     return (0);
 }

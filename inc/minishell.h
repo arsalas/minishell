@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 15:36:25 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 15:42:26 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,7 @@ int		ft_start_export(char *word);
 int		ft_end_export(int count, char *word);
 void	ft_equal_error(char *words);
 
-//FILES IN BULTINGS: EXIT
-void	ft_exit(char *str);
-
 //FILES IN BULTINGS: CD
-void	ft_cd(char *input);
 char	*ft_add_home_paths(char *word);
 
 #endif
