@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 13:17:55 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/10 19:22:23 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ typedef struct s_minishell
 	int			slash;
 	int			previous_double;
 	int			previous_simple;
+	//PREV AND POST SON EL PREVIO Y EL POSTERIOR DEL = PARA EXPORT
+	char		*prev;
+	char		*post;
 	t_command	*command;
 	t_env		env;
 	int			status;
@@ -128,8 +131,12 @@ void	ft_start_command(t_minishell *minishell, char *word);
 
 //FILES IN BULTINGS: EXPORT
 void	ft_make_export(t_minishell *minishell, char *inside_pipes);
-void	ft_save_the_export(char *words, int cont, int len);
+void	ft_save_the_export(t_minishell *minishell, char *words, int start, int len);
 int		ft_start_export(char *word);
 int		ft_end_export(int count, char *word);
+void	ft_equal_error(char *words);
+
+//FILES IN BULTINGS: EXIT
+void	ft_exit(char *str);
 
 #endif
