@@ -17,9 +17,12 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 				cd.c echo.c env.c exit.c export.c pwd.c unset.c others.c \
 				env_aux1.c env_aux2.c env_aux3.c \
 				pipes.c pipes_aux.c pipes_child.c pipes_father.c \
-				parse1.c parse2.c parse3.c parse4.c ft_split_words.c ft_strstr.c ft_strcmp.c \
+				parse1.c parse2.c parse3.c parse4.c \
 				signal1.c \
-				echo_aux.c
+				echo_aux.c \
+				history.c \
+				init.c \
+				ft_free_split.c ft_split_words.c ft_strstr.c ft_strcmp.c \
 
 # LIBS
 LIBS_PATH		:= libs
@@ -52,7 +55,7 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo
+vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell
 
 .SECONDEXPANSION:
 
