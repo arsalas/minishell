@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_strncmp_mod.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 18:54:41 by amurcia-         ###   ########.fr       */
+/*   Created: 2022/05/10 11:51:56 by amurcia-          #+#    #+#             */
+/*   Updated: 2022/08/03 19:44:36 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief Obtiene el nombre de usuario
- * 
- * @return user
- */
-char	*get_user(void)
+bool	ft_strcmp(const char *s1, const char *s2)
 {
-	return (getenv("USER"));
-}
+	size_t	cont;
 
-/**
- * @brief Pone en pantalla el prompt del minishell
- */
-void	print_prompt(void)
-{
-	printf(UMAG"%s@minishell %% "RESET, get_user());
+	cont = 0;
+	if (s1 == NULL && s2 == NULL)
+		return (true);
+	if (s1 == NULL || s2 == NULL)
+		return (false);
+	while (s1[cont] != '\0' || s2[cont] != '\0')
+	{
+		if (s1[cont] != s2[cont])
+			return (false);
+		cont++;
+	}
+	return (true);
 }

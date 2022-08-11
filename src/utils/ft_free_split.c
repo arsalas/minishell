@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 18:54:41 by amurcia-         ###   ########.fr       */
+/*   Created: 2022/08/11 16:41:43 by amurcia-          #+#    #+#             */
+/*   Updated: 2022/08/11 16:42:20 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief Obtiene el nombre de usuario
- * 
- * @return user
- */
-char	*get_user(void)
+/*
+* Free de un array bidimensional
+*/
+void	ft_free_split(char **words)
 {
-	return (getenv("USER"));
-}
+	int	count;
 
-/**
- * @brief Pone en pantalla el prompt del minishell
- */
-void	print_prompt(void)
-{
-	printf(UMAG"%s@minishell %% "RESET, get_user());
+	count = 0;
+	while (words[count])
+	{
+		free(words[count]);
+		count++;
+	}
+	free(words);
 }
