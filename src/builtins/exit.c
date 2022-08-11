@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 17:03:15 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:02:46 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 * Nos saltamos los espacios, \t o \n que haya en el string
 */
-int	ft_empty_piece(char str, int count)
+int	ft_empty_piece(char *str, int count)
 {
 	while (str[count] && (str[count] == '\n'
 			|| str[count] == '\t' || str[count] == ' '))
@@ -37,11 +37,18 @@ int	ft_after_exit(char *str, int count)
 /*
 * Damos error en caso de que nos den un no digit despues de exit
 */
-int	ft_its_not_digit(char *str, int count)
+int	ft_its_not_digit(char *str, int len)
 {
-	while (str[count] && !(ft_isdigit(str[count])))
+	int		count;
+	char	*str_error;
+
+
+	count = ft_strlen(str);
+	str_error = (char *)malloc((sizeof(char) * count + 1));
+	count = 0;
+	while (str[len] && !(ft_isdigit(str[len])))
 	{
-		str_error[len] = str[count];
+		str_error[count] = str[len];
 		len++;
 		count++;
 	}
@@ -55,12 +62,7 @@ int	ft_its_not_digit(char *str, int count)
 void	ft_exit(char *str)
 {
 	int		count;
-	int		len;
-	char	*str_error;
 
-	count = ft_strlen(str);
-	len = 0;
-	str_error = (char *)malloc((sizeof(char) * count + 1));
 	count = 0;
 	while (str[count])
 	{

@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 15:30:29 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:32:47 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@ set_env_element(int count, char *env)
 posicion del array
 */
 
-//SI NOS DAN ~ O -- HAY QUE BUSCAR HOME EN EL ENVIRONMENT
-void	ft_cd(char *input)
+/*
+* Input es aquello que hay entre pipes en el momento en que me dan CD como comando
+* Words es el input separado por espacio, \t o \n
+*/
+void	ft_parse_cd(char *input)
 {
 	char	**words;
 	char	*path;
@@ -91,3 +94,12 @@ void	ft_cd(char *input)
 	// ft_set_directory(input);
 	// printf("words is %s\n", words[1]);
 }
+
+/*
+* Realizamos la funcion CD
+*/
+void	ft_cd(char *input)
+{
+	ft_parse_cd(input);
+}
+//SI NOS DAN ~ O -- HAY QUE BUSCAR HOME EN EL ENVIRONMENT

@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:48:44 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 17:32:56 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:48:32 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	export(char *name, char *content)
 	push_env(name, content);
 }
 
+/*
 int	ft_end_export(int start, char *word)
 {
 	int	count;
@@ -111,3 +112,4 @@ void	ft_make_export(t_minishell *minishell, char *inside_pipes)
 	len = ft_end_export(start, inside_pipes);
 	ft_save_the_export(minishell, inside_pipes, start, len);
 }
+*/

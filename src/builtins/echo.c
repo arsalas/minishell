@@ -6,12 +6,12 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:27:34 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 12:35:12 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:46:57 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 void	ft_start_command(t_minishell *minishell, char *word)
 {
 	minishell->start = 0;
@@ -189,3 +189,4 @@ void	ft_make_echo(t_minishell *minishell, char *inside_pipes)
 	ft_quotes_error(minishell, inside_pipes);
 	ft_print_the_echo(minishell, inside_pipes);
 }
+*/
