@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 19:47:46 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:47:53 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_exit(char *str);
 int		ft_its_not_digit(char *str, int len);
 int		ft_after_exit(char *str, int count);
 int		ft_empty_piece(char *str, int count);
-void	ft_make_exit(char *str);
 
 //CD
 void	ft_cd(char *input);
