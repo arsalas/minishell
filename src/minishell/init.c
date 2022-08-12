@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:30:13 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/11 16:32:53 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/12 11:15:54 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,34 @@ char	*ft_get_input(void)
 }
 
 /*
+* Para que no de segmentation fault cuando no se escriba nada en el input
+* Te gusta mi recursividad?
+*/
+void	ft_is_empty(void)
+{
+	int	cont;
+
+	cont = 0;
+	while (g_minishell->input[cont] == '\0' || g_minishell->input[cont] == ' '
+		|| g_minishell->input[cont] == '\n' || g_minishell->input[0] == '\t')
+	{
+		ft_read();
+		cont++;
+	}
+}
+
+/*
 * Leemos en bucle
 */
-void	ft_read(t_minishell *minishell)
+void	ft_read(void)
 {
 	while (1)
 	{
 		g_minishell->input = ft_get_input();
+		ft_is_empty();
 		ft_read_history();
 		ft_number_pipes();
-		if (g_minishell->pipe == 0)
+		if (g_minishell->parse.pipe == 0)
 			ft_odd_quotes(g_minishell->input);
 		ft_search_command_in_pipe();
 		ft_command_in_pipe();
@@ -40,12 +58,36 @@ void	ft_read(t_minishell *minishell)
 }
 
 /*
-* Iniciamos g_minishell
+* Esta estructura es necesaria para que funcione Control D
+* porque es una senal falsa, necesita una estructura termios
 */
-void	ft_init_minishell(void)
+void	ft_init_controld(void)
 {
-	g_minishell = malloc(sizeof(t_minishell));
-	if (!g_minishell)
-		return (-1);
+	tcgetattr(STDIN_FILENO, &g_minishell->term);
+	g_minishell->term.c_lflag &= ~(ECHOCTL);
+	tcsetattr(STDIN_FILENO, TCSANOW, &g_minishell->term);
+}
+
+/*
+* Cuando comenzamos el programa, status = 0
+* Iniciamos las senales antes de leer
+*/
+void	ft_signal(void)
+{
+	g_minishell->status = 0;
+	ft_get_signal();
+}
+
+/*
+* Iniciamos g_minishell
+* Iniciamos environment
+*/
+void	ft_init_minishell(char **env)
+{
+	g_minishell = get_memory(sizeof(t_minishell));
+	init_env(env);
+	update_env_var("OLDPWD", "minishell");
+	update_env_var("PWD", "minishell");
+	ft_signal();
 	ft_read();
 }

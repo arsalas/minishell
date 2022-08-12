@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes_child.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 00:41:31 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 18:03:53 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:07:42 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void    last_pipe_child(int *fd)
 {
     dup2(fd[READ_END], STDIN_FILENO);
     close(fd[READ_END]);
-    // ft_make_echo(g_minishell, "echo \"'hola\"");
     char *str[] = {"programa", "'$USER ", " Mundo", NULL};
     // char *env[] = {"USER=aramirez", "USER=aramirez", "Mundo=fds", NULL};
     // execve("/bin/echo", str,env);
