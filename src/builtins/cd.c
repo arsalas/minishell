@@ -38,10 +38,10 @@ char	*ft_add_home_path(char *word)
 */
 char	*ft_old_cd(void)
 {
-	char	*old_path;
+	// char	*old_path;
 	char	*path;
 
-	old_path = get_env_var("OLDPWD");
+	// old_path = get_env_var("OLDPWD");
 	path = get_env_var("PWD");
 	if (old_path == path)
 	{
@@ -123,7 +123,7 @@ posicion del array
 void	ft_parse_cd(char *input)
 {
 	char	**words;
-	char	*path;
+	// char	*path;
 
 	words = ft_split_words(input);
 	if (!words[1])
@@ -135,7 +135,7 @@ void	ft_parse_cd(char *input)
 	}
 	if (words[1][0] == '-')
 	{
-		path = ft_old_cd();
+		// path = ft_old_cd();
 		return ;
 	}
 	words[1] = ft_add_home_path(words[1]);
