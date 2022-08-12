@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 22:01:36 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:25:59 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ char	*ft_add_home_path(char *word)
 */
 char	*ft_old_cd(void)
 {
-	// char	*old_path;
+	char	*old_path;
 	char	*path;
 
-	// old_path = get_env_var("OLDPWD");
+	old_path = get_env_var("OLDPWD");
 	path = get_env_var("PWD");
 	if (old_path == path)
 	{
