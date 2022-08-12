@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/12 11:13:54 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:13:28 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ char	*ft_get_input(void);
 void	ft_init_minishell(char **env);
 void	ft_read(void);
 void	ft_signal(void);
+
+//FILES IN SIGNAL
+void	ft_get_signal(void);
 
 //FILES IN SIGNAL
 void	ft_get_signal(void);
