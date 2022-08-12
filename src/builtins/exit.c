@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 20:46:44 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:10:31 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_its_not_digit(char *str, int len)
 /*
 * Realizamos la funcion exit
 */
-void	ft_make_exit(char *str)
+void	ft_exit(char *str)
 {
 	int		count;
 
@@ -79,9 +79,4 @@ void	ft_make_exit(char *str)
 	free (str);
 	printf("exit\n");
 	close_minishell();
-}
-
-void	ft_exit(char *str)
-{
-	ft_make_exit(str);
 }

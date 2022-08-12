@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 22:01:36 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:32:47 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ char	*ft_add_home_path(char *word)
 	return (word);
 }
 
-/*
-* El comando cd - nos lleva al directorio de trabajo anterior
-*/
 char	*ft_old_cd(void)
 {
 	char	*old_path;
@@ -43,7 +40,8 @@ char	*ft_old_cd(void)
 
 	old_path = get_env_var("OLDPWD");
 	path = get_env_var("PWD");
-	if (old_path == path)
+	printf("PWD IS %s \n", path);
+	if (path == NULL)
 	{
 		printf("cd: OLDPWD not set\n");
 		return (0);
@@ -52,58 +50,12 @@ char	*ft_old_cd(void)
 	ft_putchar_fd('\n', 1);
 	return (path);
 }
-
 /*
-* Si podemos ir a ese directorio, iremos
-*/
-int	ft_can_go(char *path)
-{
-	char	*pwd;
-	pwd = getcwd(NULL, 0);
-	if (!chdir(path))
-	{
-		if (pwd)
-		{
-	//		set_env("OLDPWD", pwd);
-			free(pwd);
-		}
-		if (pwd == getcwd(NULL, 0))
-		{
-	//		set_env("PWD", pwd);
-			free(pwd);
-		}
-		return (1);
-	}
-	free (pwd);
-	return (0);
-}
-
-/*
-* No podemos acceder a este directorio, por diversos motivos
-* 1 - No es un directorio
-* 2 - Permiso denegado
-* 3 - No existe el directorio
-*/
-void	ft_cant_go(char *path)
-{
-	(void) path;
-	printf("De eso nada, aqui quieto\n");
-}
-
 //ANADIMOS EL DIRECTORIO
-int	ft_set_directory(char *path)
+void	ft_set_directory(char *input)
 {
 	int	home;
-
-	home = 0;
-	if (ft_can_go(path))
-		return (1);
-	ft_cant_go(path);
-	ft_putstr_fd("minishell: cd: ", 2);
-	ft_putstr_fd(path, 2);
-	g_minishell->status = 1;
-	return (0);
-}
+}*/
 
 /*
 TODO
@@ -139,7 +91,7 @@ void	ft_parse_cd(char *input)
 		return ;
 	}
 	words[1] = ft_add_home_path(words[1]);
-	ft_set_directory(input);
+	// ft_set_directory(input);
 	// printf("words is %s\n", words[1]);
 }
 

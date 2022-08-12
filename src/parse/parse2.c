@@ -6,16 +6,12 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/11 20:58:52 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:43:57 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-* Comprobamos el input con echo, cd, export, etc
-* Si hay coincidencia, command = comando
-*/
 t_builtins	ft_get_command(char *inside_pipes)
 {
 	t_builtins	command;
@@ -42,24 +38,21 @@ t_builtins	ft_get_command(char *inside_pipes)
 	return (command);
 }
 
-/*
-* Miramos que comando nos estan pasando
-*/
+//En caso de que nos hayan pasado mas de un comando con pipes
+
 t_builtins	ft_command_in_pipe(void)
 {
 	ft_get_command(g_minishell->traces[0]);
 	if (ft_get_command(g_minishell->traces[0]) == C_ECHO)
 		return (C_ECHO);
 	if (ft_get_command(g_minishell->traces[0]) == C_CD)
-		ft_cd(g_minishell->traces[0]);
-	//	return (C_CD);
+		return (C_CD);
 	if (ft_get_command(g_minishell->traces[0]) == C_EXPORT)
 		return (C_EXPORT);
 	if (ft_get_command(g_minishell->traces[0]) == C_ENV)
 		return (C_ENV);
 	if (ft_get_command(g_minishell->traces[0]) == C_EXIT)
-		ft_exit(g_minishell->traces[0]);
-	//	return (C_EXIT);
+		return (C_EXIT);
 	if (ft_get_command(g_minishell->traces[0]) == C_PWD)
 		return (C_PWD);
 	if (ft_get_command(g_minishell->traces[0]) == C_UNSET)
