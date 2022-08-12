@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:30:13 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/12 13:32:58 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:32:53 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ char	*ft_get_input(void)
 /*
 * Leemos en bucle
 */
-void	ft_read(void)
+void	ft_read(t_minishell *minishell)
 {
 	while (1)
 	{
 		g_minishell->input = ft_get_input();
 		ft_read_history();
 		ft_number_pipes();
-		if (g_minishell->parse.pipe == 0)
+		if (g_minishell->pipe == 0)
 			ft_odd_quotes(g_minishell->input);
 		ft_search_command_in_pipe();
 		ft_command_in_pipe();
@@ -40,35 +40,12 @@ void	ft_read(void)
 }
 
 /*
-* Esta estructura es necesaria para que funcione Control D
-* porque es una senal falsa, necesita una estructura termios
-*/
-void	ft_init_controld(void)
-{
-	tcgetattr(STDIN_FILENO, &g_minishell->term);
-	g_minishell->term.c_lflag &= ~(ECHOCTL);
-	tcsetattr(STDIN_FILENO, TCSANOW, &g_minishell->term);
-}
-
-/*
-* Cuando comenzamos el programa, status = 0
-* Iniciamos las senales antes de leer
-*/
-void	ft_signal(void)
-{
-	g_minishell->status = 0;
-	ft_get_signal();
-}
-
-/*
 * Iniciamos g_minishell
 */
 void	ft_init_minishell(void)
 {
-	g_minishell = get_memory(sizeof(t_minishell));
-	init_env(env);
-	update_env_var("OLDPWD", "minishell");
-	update_env_var("PWD", "minishell");
-	ft_signal();
+	g_minishell = malloc(sizeof(t_minishell));
+	if (!g_minishell)
+		return (-1);
 	ft_read();
 }

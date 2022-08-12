@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 18:32:47 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:32:48 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ posicion del array
 void	ft_parse_cd(char *input)
 {
 	char	**words;
-	char	*path;
+	// char	*path;
 
 	words = ft_split_words(input);
 	if (!words[1])
@@ -87,7 +87,7 @@ void	ft_parse_cd(char *input)
 	}
 	if (words[1][0] == '-')
 	{
-		path = ft_old_cd();
+		// path = ft_old_cd();
 		return ;
 	}
 	words[1] = ft_add_home_path(words[1]);

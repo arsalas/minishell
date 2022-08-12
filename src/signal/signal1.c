@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/11 18:29:29 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:32:43 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 //FT_PROCESS va a ser en caso de que estemos en un comando bloqueante
 //FALTA modificar el PID
 
+/*
+* En caso de estar en un comando bloqueante, como es el cat, status varia
+*/
 static void	ft_bloq(int signal)
 {
-	(void) signal;
 // 	if (!kill(AQUI TENEMOS QUE PONER EL PID, DEL TIPO PID_T, signal))
 // 	{
 // 		if (signal == SIGINT)
@@ -39,37 +41,55 @@ static void	ft_bloq(int signal)
 * SIGTERM para CONTROL D - salimos
 * Tenemos que utilizar la variable global, y status va a ser el resultado del ultimo pipe
 */
-static void	ft_handle(int signal)
+
+/*
+* Control + D
+*/
+static void	ft_handle_d(int signal)
 {
-	if ((signal == SIGINT || signal == SIGQUIT) && g_minishell != 0)
+	(void) signal;
+	g_minishell->status = 0;
+	printf("Exit\n");
+	exit (0);
+}
+
+/*
+* Control + \ 
+*/
+static void	ft_handle_slash(int signal)
+{
+	if (signal == SIGQUIT && g_minishell != 0)
 		ft_bloq(signal);
-	else
+	else if (signal == SIGQUIT)
 	{
-		if (signal == SIGINT)
-		{
-			ft_putchar_fd('\n', 1);
-			g_minishell->status = 1;
-			print_prompt();
-			rl_on_new_line();
-		}
-		if (signal == SIGQUIT)
-		{
-			ft_putstr_fd("\b\b  \b\b", 1);
-			g_minishell->status = 0;
-		}
-		if (signal == SIGTERM)
-		{
-			g_minishell->status = 0;
-			printf("Exit\n");
-			close_minishell();
-		}
+		ft_putstr_fd("\b\b  \b\b", 1);
+		g_minishell->status = 0;
 	}
 }
 
-void	ft_get_signal(t_minishell *minishell)
+/*
+* Control + C
+*/
+static void	ft_handle_c(int signal)
 {
-	(void) minishell;
-	signal(SIGINT, &ft_handle);
-	signal(SIGQUIT, &ft_handle);
-	signal(SIGTERM, &ft_handle);
+	if (signal == SIGINT && g_minishell->status != 0)
+		ft_bloq(signal);
+	else if (signal == SIGINT)
+	{
+	//	ft_putchar_fd('\n', 1);
+	//	printf(UMAG"\n %s@minishell %% "RESET, get_user());
+		g_minishell->status = 1;
+		print_prompt();
+	//	rl_on_new_line();
+	}
+}
+
+/*
+* Enviamos una senal
+*/
+void	ft_get_signal(void)
+{
+	signal(SIGINT, &ft_handle_c);
+	signal(SIGQUIT, &ft_handle_slash);
+	signal(SIGTERM, &ft_handle_d);
 }

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/12 11:18:35 by amurcia-         ###   ########.fr       */
+/*   Created: 2022/08/11 16:27:51 by amurcia-          #+#    #+#             */
+/*   Updated: 2022/08/11 16:29:30 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief Obtiene el nombre de usuario
- * 
- * @return user
- */
-char	*get_user(void)
+/*
+* Creamos un historial
+*/
+void	ft_read_history(void)
 {
-	return (getenv("USER"));
+	add_history(g_minishell->input);
 }
 
-/**
- * @brief Pone en pantalla el prompt del minishell
- */
-void	print_prompt(void)
+/*
+* Limpiamos el historial
+*/
+void	ft_clear_history(void)
 {
-	printf(UMAG"%s@minishell %% "RESET, get_user());
+	clear_history();
 }
