@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 18:49:50 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/11 22:23:40 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_minishell
 	t_env		env;
 	t_parse		parse;
 	int			status;
+	struct termios term;
 }	t_minishell;
 
 extern t_minishell	*g_minishell;
@@ -92,7 +93,10 @@ void	ft_read_history(void);
 char	*ft_get_input(void);
 
 //FILES IN MINISHELL: INIT
-void	ft_init_minishell(void);
+void	ft_init_minishell(char **env);
 void	ft_read(void);
+
+//FILES IN SIGNAL
+void	ft_get_signal(void);
 
 #endif
