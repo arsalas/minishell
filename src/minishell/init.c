@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:30:13 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/12 13:15:26 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:40:05 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	ft_init_minishell(char **env)
 {
 	g_minishell = get_memory(sizeof(t_minishell));
 	init_env(env);
-	update_env_var("OLDPWD", "minishell");
-	update_env_var("PWD", "minishell");
 	ft_signal();
 	ft_read();
 }

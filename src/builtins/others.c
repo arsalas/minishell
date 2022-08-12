@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 23:34:47 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/11 09:53:53 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:24:34 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
  * @return true 
  * @return false 
  */
-bool    is_path(char *str)
+bool	is_path(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == '/')
-            return (true);
-        i++;
-    }
-    return (false);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '/')
+			return (true);
+		i++;
+	}
+	return (false);
 }
 
 /**
@@ -39,15 +39,15 @@ bool    is_path(char *str)
  * @param path 
  * @param argv 
  */
-void    ft_others(char *path, char**argv)
+void	ft_others(char *path, char**argv)
 {
-    if(access(path, X_OK) == -1)
-    {
-        if (is_path(path))
-            printf("%s: No such file or directory\n", path);  
-        else
-            printf("%s: command not found\n", path);  
-    }
-    // TODO --> generar la array de str del env
-    execve(path, argv, argv);
+	if (access(path, X_OK) == -1)
+	{
+		if (is_path(path))
+			printf("%s: No such file or directory\n", path);
+		else
+			printf("%s: command not found\n", path);
+	}
+	// TODO --> generar la array de str del env
+	execve(path, argv, argv);
 }
