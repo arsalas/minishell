@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/12 13:32:43 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:15:00 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ static void	ft_bloq(int signal)
 {
 // 	if (!kill(AQUI TENEMOS QUE PONER EL PID, DEL TIPO PID_T, signal))
 // 	{
-// 		if (signal == SIGINT)
-// 		{
-// 			ft_putchar_fd('\n', 1);
-// 		//	g_minishell->status = 131;
-// 		}
-// 		if (signal == SIGQUIT)
-// 		{
-// 			ft_putstr_fd("Quit: 3\n", 1);
-// 		//	g_minishell->status = 131;
-// 		}
-// 	}
+		if (signal == SIGINT)
+		{
+			ft_putchar_fd('\n', 1);
+			g_minishell->status = 131;
+		}
+		if (signal == SIGQUIT)
+		{
+			ft_putstr_fd("Quit: 3\n", 1);
+			g_minishell->status = 131;
+		}
+//	}
 }
 
 /*

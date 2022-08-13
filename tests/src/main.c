@@ -19,10 +19,6 @@ int main(int argc, char *argv[], char *envp[])
     // commands[2].content = "Tercer pipe3";
     // // execute_pipe(3, commands);
     // test_echo();
-    // init_env(envp);
-    // test_env(envp);
-    // return (0);
-
-    ft_init_minishell();
+    ft_init_minishell(envp);
     return (0);
 }
