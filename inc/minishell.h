@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:34:55 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/12 13:13:28 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/13 19:44:49 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_command
 
 typedef struct s_parse
 {
+	int	quo;
 	int	double_quo;
 	int	simple_quo;
 	int	pipe;
@@ -98,9 +99,10 @@ void	ft_read(void);
 void	ft_signal(void);
 
 //FILES IN SIGNAL
-void	ft_get_signal(void);
+void	rl_replace_line(const char *text, int clear_undo);
+int		ft_get_signal(void);
 
-//FILES IN SIGNAL
-void	ft_get_signal(void);
+//FILES IN MEMORY
+void	ft_free_usual(void);
 
 #endif

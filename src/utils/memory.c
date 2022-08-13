@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/02 18:34:58 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/13 19:44:16 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,17 @@ void	*ft_realloc(void *ptr, size_t size)
 
 /**
  * @brief Libera toda la memoria reservada
+ * Falta hacer free de g_minishell->traces
  */
 void	free_memory(void)
 {
-	not_implemented();
+	printf("We have to make free\n");
+	//free(g_minishell->input);
+	//ft_free_split(g_minishell->traces);
+}
+
+void	ft_free_usual(void)
+{
+	free (g_minishell->input);
+	ft_free_split(g_minishell->traces);
 }

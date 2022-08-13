@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/12 13:25:59 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:11:06 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 // PRIMERO vamos a mirar si despues de CD nos dan ~/
 // En caso de que NO, vamos a coger el environment de HOME y lo vamos a poner desde
 // la primera posicion hasta la longitud de lo que hay despues de CD
+
+/*
+* Si nos dan "cd ~/" nos tenemos que ir a home"
+*/
 char	*ft_add_home_path(char *word)
 {
 	char	*path;
@@ -42,12 +46,13 @@ char	*ft_old_cd(void)
 	char	*path;
 
 	old_path = get_env_var("OLDPWD");
-	path = get_env_var("PWD");
-	if (old_path == path)
+
+	if (old_path == NULL)
 	{
 		printf("cd: OLDPWD not set\n");
 		return (0);
 	}
+	path = get_env_var("PWD");
 	ft_putstr_fd(path, 1);
 	ft_putchar_fd('\n', 1);
 	return (path);
@@ -59,6 +64,43 @@ char	*ft_old_cd(void)
 int	ft_can_go(char *path)
 {
 	char	*pwd;
+
+	pwd = getcwd(NULL, 0);
+	if (!chdir(path))
+	{
+		if (pwd)
+		{
+			setenv("OLDPWD", pwd, 1);
+			free(pwd);
+		}
+		if (pwd == getcwd(NULL, 0))
+		{
+			setenv("PWD", pwd, 1);
+			free(pwd);
+		}
+		return (1);
+	}
+	chdir(path);
+	update_env_var("PWD", path);
+	free (pwd);
+	return (0);
+}
+
+/*
+* No podemos acceder a este directorio, por diversos motivos
+* 1 - No es un directorio
+* 2 - Permiso denegado
+* 3 - No existe el directorio
+*/
+void	ft_cant_go(char *path)
+{
+	(void) path;
+}
+
+int	ft_change_pos(char *path)
+{
+	char	*pwd;
+
 	pwd = getcwd(NULL, 0);
 	if (!chdir(path))
 	{
@@ -78,30 +120,15 @@ int	ft_can_go(char *path)
 	return (0);
 }
 
-/*
-* No podemos acceder a este directorio, por diversos motivos
-* 1 - No es un directorio
-* 2 - Permiso denegado
-* 3 - No existe el directorio
-*/
-void	ft_cant_go(char *path)
-{
-	(void) path;
-	printf("De eso nada, aqui quieto\n");
-}
-
 //ANADIMOS EL DIRECTORIO
 int	ft_set_directory(char *path)
 {
-	int	home;
-
-	home = 0;
 	if (ft_can_go(path))
 		return (1);
-	ft_cant_go(path);
 	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(path, 2);
 	g_minishell->status = 1;
+	ft_cant_go(path);
 	return (0);
 }
 
@@ -123,24 +150,23 @@ posicion del array
 void	ft_parse_cd(char *input)
 {
 	char	**words;
-	// char	*path;
+	char	*path;
 
 	words = ft_split_words(input);
 	if (!words[1])
 		return ;
 	if (words[1][0] == '~' || (words[1][0] == '-' && words[1][1] == '-'))
 	{
-		ft_putstr_fd("minishell: cd: HOME\n", 1);
+		ft_putstr_fd("minishell: cd: $(HOME)\n", 1);
 		return ;
 	}
 	if (words[1][0] == '-')
 	{
-		// path = ft_old_cd();
+		path = ft_old_cd();
 		return ;
 	}
 	words[1] = ft_add_home_path(words[1]);
 	ft_set_directory(input);
-	// printf("words is %s\n", words[1]);
 }
 
 /*

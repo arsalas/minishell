@@ -6,11 +6,24 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/11 20:58:52 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/13 20:34:23 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_is_empty(char *str)
+{
+	int	cont;
+
+	cont = 0;
+	while (str[cont] && (str[cont] == '\n'
+			|| str[cont] == '\t' || str[cont] == ' '))
+	{
+		cont++;
+	}
+	return (cont);
+}
 
 /*
 * Comprobamos el input con echo, cd, export, etc
@@ -18,9 +31,13 @@
 */
 t_builtins	ft_get_command(char *inside_pipes)
 {
-	t_builtins	command;
 	char		**words;
+	int			empty;
+	t_builtins	command;
 
+	empty = ft_is_empty(inside_pipes);
+	if (inside_pipes[empty] == '\0')
+		return (C_OTHERS);
 	words = ft_split_words(inside_pipes);
 	if (ft_is_echo(words) == 0)
 		command = C_ECHO;
@@ -43,11 +60,10 @@ t_builtins	ft_get_command(char *inside_pipes)
 }
 
 /*
-* Miramos que comando nos estan pasando
+* Obtenemos el comando que hay entre pipes
 */
 t_builtins	ft_command_in_pipe(void)
 {
-	ft_get_command(g_minishell->traces[0]);
 	if (ft_get_command(g_minishell->traces[0]) == C_ECHO)
 		return (C_ECHO);
 	if (ft_get_command(g_minishell->traces[0]) == C_CD)
@@ -61,7 +77,8 @@ t_builtins	ft_command_in_pipe(void)
 		ft_exit(g_minishell->traces[0]);
 	//	return (C_EXIT);
 	if (ft_get_command(g_minishell->traces[0]) == C_PWD)
-		return (C_PWD);
+		pwd();
+	//	return (C_PWD);
 	if (ft_get_command(g_minishell->traces[0]) == C_UNSET)
 		return (C_UNSET);
 	return (C_OTHERS);

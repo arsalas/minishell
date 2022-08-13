@@ -17,7 +17,7 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 				cd.c echo.c env.c exit.c export.c pwd.c unset.c others.c \
 				env_aux1.c env_aux2.c env_aux3.c \
 				pipes.c pipes_aux.c pipes_child.c pipes_father.c \
-				parse1.c parse2.c parse3.c parse4.c \
+				global_parse.c parse1.c parse2.c parse3.c parse4.c \
 				signal1.c \
 				echo_aux.c \
 				history.c \
@@ -28,7 +28,8 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 LIBS_PATH		:= libs
 LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
 
-READ_FLAGS		:= -lreadline -L $(LIBS_PATH)/readline
+READ_FLAGS		:= -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include -lreadline 
+#-L $(LIBS_PATH)/readline -I $(LIBS_PATH)/readline
 
 # FOLDERS
 OBJS_DIR		:= obj
