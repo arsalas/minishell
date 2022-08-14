@@ -223,5 +223,5 @@ void    ft_echo(char *input)
     char    *echo;
 
     echo = extract_echo_input(input);
-    execute_echo(echo);
+    execute_echo(echo, echo_have_flag(input));
 }

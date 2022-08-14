@@ -14,6 +14,6 @@
 # define ECHO_H
 
 bool	is_var(char *str);
-void    execute_echo(char *input);
+void    execute_echo(char *input, bool have_flag);
 
 #endif

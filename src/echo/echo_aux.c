@@ -42,16 +42,13 @@ bool	is_var(char *str)
 	return (false);
 }
 
-// char	*get_var_name(char *str)
-// {
-// 	int		len;
-// 	char	*name;
-
-// 	len = ft_strlen(str);
-// 	name = ft_substr(str, 1, len - 1);
-// 	return (name);
-// }
-
+/**
+ * @brief Printa la variable de entorno 
+ * y devuelve el numero de caracteres de el literal de la variablde con $ 
+ * 
+ * @param input nombre variable de entorno
+ * @return numero de caracteres de la variable de entorno
+ */
 int print_env_var(char *input)
 {
     int     end;
@@ -65,6 +62,7 @@ int print_env_var(char *input)
     free(name);
     return (end);
 }
+
 
 void    print_echo_token(char *token)
 {
@@ -83,7 +81,7 @@ void    print_echo_token(char *token)
     }
 }
 
-void    print_echo(char **tokens)
+void    print_echo(char **tokens, bool have_flag)
 {
     int i;
 
@@ -93,14 +91,15 @@ void    print_echo(char **tokens)
         print_echo_token(tokens[i]);
         i++;
     }
-    printf("\n");
+    if (!have_flag)
+        printf("\n");
 }
 
-void    execute_echo(char *input)
+void    execute_echo(char *input, bool have_flag)
 {
     char    **tokens;
     
     tokens = parse_echo(input);
     free(input);
-    print_echo(tokens);
+    print_echo(tokens, have_flag);
 }
