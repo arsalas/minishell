@@ -27,5 +27,6 @@ char	*get_user(void)
  */
 void	print_prompt(void)
 {
-	printf(UMAG"%s@minishell %% "RESET, get_user());
+	// printf(UMAG"%s@minishell %% "RESET, get_user());
+    printf(BLU"┌──("BMAG"%s@minishell"BLU")-["BWHT"%s"BLU"] "BMAG"\n"BLU"└─"BMAG"$"RESET, get_user(), getenv("PWD"));
 }
