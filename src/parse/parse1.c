@@ -75,7 +75,7 @@ void	ft_search_command_in_pipe(void)
 	while (i < g_minishell->parse.pipe + 1)
 	{
 		commands[i].command = ft_command_in_pipe();
-		commands[i].content = g_minishell->traces[i];
+		// commands[i].command = g_minishell->traces[i];
 		i++;
 	}
 }

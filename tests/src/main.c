@@ -19,6 +19,8 @@ int main(int argc, char *argv[], char *envp[])
     // commands[2].content = "Tercer pipe3";
     // // execute_pipe(3, commands);
     // test_echo();
-    ft_init_minishell(envp);
+    // printf("%s\n", ft_trim("     \t      \t           "));
+    // ft_init_minishell(envp);
+    printf("pipes: %i\n", get_quantity_process_in_input("echo fsdfsd  |  echo \\' | fsdfsd"));
     return (0);
 }

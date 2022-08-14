@@ -36,6 +36,8 @@
 # include "errors.h"
 # include "echo.h"
 # include "parse.h"
+# include "input.h"
+# include "commands.h"
 
 # define READ_END 0
 # define WRITE_END 1
@@ -76,13 +78,15 @@ typedef struct s_parse
 */
 typedef struct s_minishell
 {
-	char		*input;
-	char		**traces;
-	t_command	*command;
-	t_env		env;
-	t_parse		parse;
-	int			status;
-	struct termios term;
+	char		    *input;
+	char		    **traces;
+	t_command	    *command;
+	t_env		    env;
+	t_parse		    parse;
+	int			    status;
+	struct termios  term;
+    t_builtins      last_command;
+    t_process       process;
 }	t_minishell;
 
 extern t_minishell	*g_minishell;
@@ -102,5 +106,9 @@ void	ft_get_signal(void);
 
 //FILES IN SIGNAL
 void	ft_get_signal(void);
+
+
+
+
 
 #endif

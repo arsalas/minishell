@@ -17,13 +17,13 @@
  *
  * @param fd
  */
-void    first_pipe_child(int *fd)
+void    first_pipe_child(int *fd, t_pipe command)
 {
+    (void)command;
     close(fd[READ_END]);
     dup2(fd[WRITE_END], STDOUT_FILENO);
     close(fd[WRITE_END]);
-    // execlp("/bin/ls", "ls", "-l", NULL);
- //   ft_make_echo(g_minishell, "Primer pipe1");
+    ft_execute(command);
     exit(0);
 }
 
@@ -33,15 +33,15 @@ void    first_pipe_child(int *fd)
  * @param fd1
  * @param fd2
  */
-void    intermediate_pipe_child(int *fd1, int *fd2)
+void    intermediate_pipe_child(int *fd1, int *fd2, t_pipe command)
 {
+    (void)command;
     close(fd2[READ_END]);
     dup2(fd1[READ_END], STDIN_FILENO);
     close(fd1[READ_END]);
     dup2(fd2[WRITE_END], STDOUT_FILENO);
     close(fd2[WRITE_END]);
-  //  ft_make_echo(g_minishell, "Intermediate pipe2");
-    // execlp("/usr/bin/wc", "wc", "-l", NULL);
+    ft_execute(command);
     exit(0);
 }
 
@@ -50,16 +50,17 @@ void    intermediate_pipe_child(int *fd1, int *fd2)
  *
  * @param fd
  */
-void    last_pipe_child(int *fd)
+void    last_pipe_child(int *fd, t_pipe command)
 {
     dup2(fd[READ_END], STDIN_FILENO);
     close(fd[READ_END]);
-    char *str[] = {"programa", "'$USER ", " Mundo", NULL};
+    ft_execute(command);
+    // char *str[] = {"programa", "'$USER ", " Mundo", NULL};
     // char *env[] = {"USER=aramirez", "USER=aramirez", "Mundo=fds", NULL};
     // execve("/bin/echo", str,env);
     //    printf("%i\n", access("../a.out", X_OK));
     //     execve("../a.out", str,env);
-    ft_others("../test.txt", str);
+    // ft_others("../test.txt", str);
     // execlp("/usr/bin/wc", "wc", "-l", NULL);
     exit(0);
 }

@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history.c                                          :+:      :+:    :+:   */
+/*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 16:27:51 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/11 16:29:30 by amurcia-         ###   ########.fr       */
+/*   Created: 2022/08/13 13:57:35 by aramirez          #+#    #+#             */
+/*   Updated: 2022/08/13 18:43:30 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 
-/*
-* Creamos un historial
-*/
-void	ft_read_history(void)
-{
-	add_history(g_minishell->input);
-}
+#ifndef INPUT_H
+# define INPUT_H
 
-/*
-* Limpiamos el historial
-*/
-void	ft_clear_history(void)
-{
-	clear_history();
-}
+void    req_new_input(void);
+int     get_quantity_process_in_input(char *input);
+char    *extract_content_process_input(char *input);
+char    *extract_others_process_input(char *input);
+
+#endif

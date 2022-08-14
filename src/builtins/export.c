@@ -12,15 +12,78 @@
 
 #include "minishell.h"
 
+static bool have_correct_format(char *input)
+{
+    int i;
+
+    i = 0;
+    while (input[i])
+    {
+        if (input[i] == '=' && input[i - 1] != ' ')
+            return (true);
+        i++;
+    }
+    return (false);
+}
+
+static int get_finish_position(char *input)
+{
+    int i;
+
+    i = 0;
+    while (input[i] != '=')
+        i++;
+    return (i);
+}
+
+static int get_start_export(char *input)
+{
+    int i;
+
+    i = 6;
+    while (input[i] == ' ')
+        i++;
+    return (i);
+}
+
+static char    *get_export_name(char *input)
+{
+    int len;
+    int start;
+
+    start = get_start_export(input);
+    len = get_finish_position(input);
+    return (ft_substr(input, start, len - start));
+}
+
+static char    *get_export_content(char *input)
+{
+    int len;
+    int start;
+
+    start = get_finish_position(input) + 1;
+    len = ft_strlen(input);
+    return (ft_substr(input, start, len));
+}
+
 /**
  * @brief Crea una nueva variable de entorno
  * 
  * @param name 
  * @param content 
  */
-void	export(char *name, char *content)
+void	ft_export(char *input)
 {
+    char    *name;
+    char    *content;
+
+    if (!have_correct_format(input))
+        return ;
+    name = get_export_name(input);
+    content = get_export_content(input);
 	push_env(name, content);
+    free(name);
+    free(content);
 }
 
 /*

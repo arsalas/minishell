@@ -30,7 +30,13 @@ typedef enum e_builtins
 typedef struct s_pipe
 {
 	t_builtins	command;
-	char		*content;
+	char		*input;
 }	t_pipe;
+
+typedef struct s_process
+{
+    int     quantity;
+    t_pipe  *content;
+}   t_process;
 
 #endif

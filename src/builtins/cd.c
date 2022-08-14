@@ -93,9 +93,9 @@ void	ft_cant_go(char *path)
 //ANADIMOS EL DIRECTORIO
 int	ft_set_directory(char *path)
 {
-	int	home;
+	// int	home;
 
-	home = 0;
+	// home = 0;
 	if (ft_can_go(path))
 		return (1);
 	ft_cant_go(path);
