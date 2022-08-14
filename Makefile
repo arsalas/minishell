@@ -17,7 +17,7 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 				cd.c echo.c env.c exit.c export.c pwd.c unset.c others.c \
 				env_aux1.c env_aux2.c env_aux3.c \
 				pipes.c pipes_aux.c pipes_child.c pipes_father.c \
-				parse1.c parse2.c parse3.c parse4.c \
+				parse1.c parse2.c parse3.c parse4.c parse_echo.c \
 				signal1.c \
 				echo_aux.c \
 				history.c \

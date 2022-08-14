@@ -1,7 +1,7 @@
 #include "minishell.h"
 #include "test.h"
 
-t_minishell	*g_minishell;
+t_minishell *g_minishell;
 
 int main(int argc, char *argv[], char *envp[])
 {
@@ -21,6 +21,9 @@ int main(int argc, char *argv[], char *envp[])
     // test_echo();
     // printf("%s\n", ft_trim("     \t      \t           "));
     // ft_init_minishell(envp);
-    printf("pipes: %i\n", get_quantity_process_in_input("echo fsdfsd  |  echo \\' | fsdfsd"));
+    // printf("pipes: %i\n", get_quantity_process_in_input("echo fsdfsd  |  echo \\' | fsdfsd"));
+    // printf("%s\n", extract_next_echo_token("\'Hola Mundo $\""));
+    // parse_echo("\\\"Hola Mundo \"Como estamos\"");
+    parse_echo("\"Hola Mundo\"Como estamos'Todo' Bien");
     return (0);
 }

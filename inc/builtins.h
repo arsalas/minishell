@@ -18,6 +18,7 @@ void	ft_env(void);
 void	ft_export(char *input);
 void	unset(char *name);
 void    ft_others(char *path, char**argv);
+void    ft_echo(char *input);
 // void	ft_look_for_flag(char *word);
 // void	ft_print_the_echo(char **words);
 

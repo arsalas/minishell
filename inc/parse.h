@@ -27,5 +27,7 @@ int			ft_is_exit(char **words);
 int			ft_is_unset(char **words);
 int			ft_is_env(char **words);
 int			ft_is_pwd(char **words);
+char        *extract_next_echo_token(char *input);
+char        **parse_echo(char *input);
 
 #endif
