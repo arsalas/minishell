@@ -38,7 +38,7 @@ char    *extract_next_echo_token(char *input)
     int     start;
 
     i = 0;
-    if (input[0] == '"' || input[0] == '\'')
+    if (is_quote(input[0]))
     {
        quote = input[0];
         i = 1;
@@ -53,7 +53,7 @@ char    *extract_next_echo_token(char *input)
     }
     else
     {
-        while (input[i] && ((input[i] != '"' && input[i] != '\'') || ((input[i] == '"' || input[i] == '\'') && input[i - 1] == '\\') ))
+        while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]) && input[i - 1] == '\\') ))
             i++;
     } 
     return (ft_substr(input, start, i - start));
@@ -65,7 +65,7 @@ int    get_next_echo_token_start(char *input)
     int     i;
 
     i = 0;
-    if (input[0] == '"' || input[0] == '\'')
+    if (is_quote(input[0]))
     {
        quote = input[0];
         i = 1;
@@ -79,7 +79,7 @@ int    get_next_echo_token_start(char *input)
     }
     else
     {
-        while (input[i] && ((input[i] != '"' && input[i] != '\'') || ((input[i] == '"' || input[i] == '\'') && input[i - 1] == '\\') ))
+        while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]) && input[i - 1] == '\\') ))
             i++;
     } 
     if (quote == '\'' || quote == '"')

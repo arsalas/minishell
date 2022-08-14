@@ -26,5 +26,7 @@ void	ft_free_split(char **words);
 bool	ft_strcmp(const char *s1, const char *s2);
 char	*ft_strstr(const char *haystack, const char *needle);
 char	*ft_trim(char *str);
+bool    is_quote(char c);
+bool    is_scaped_char(char c);
 
 #endif

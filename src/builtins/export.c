@@ -66,6 +66,14 @@ static char    *get_export_content(char *input)
     return (ft_substr(input, start, len));
 }
 
+bool    exist_env_var(char *name)
+{
+    if (get_index_by_var(name) == -1)
+        return (false);
+    return (true);
+}
+
+
 /**
  * @brief Crea una nueva variable de entorno
  * 
@@ -81,7 +89,10 @@ void	ft_export(char *input)
         return ;
     name = get_export_name(input);
     content = get_export_content(input);
-	push_env(name, content);
+    if (exist_env_var(name))
+        update_env_var(name, content);
+    else
+	    push_env(name, content);
     free(name);
     free(content);
 }
