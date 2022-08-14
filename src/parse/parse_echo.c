@@ -87,6 +87,12 @@ int    get_next_echo_token_start(char *input)
     return (i);
 }
 
+/**
+ * @brief Parsea el comando echo
+ * 
+ * @param input 
+ * @return char** 
+ */
 char    **parse_echo(char *input)
 {
     char    **tokens;
