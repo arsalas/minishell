@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:14:08 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/14 12:29:31 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/14 19:09:34 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ int    get_next_echo_token_start(char *input)
     return (i);
 }
 
+/**
+ * @brief Parsea el comando echo
+ * 
+ * @param input 
+ * @return char** 
+ */
 char    **parse_echo(char *input)
 {
     char    **tokens;
