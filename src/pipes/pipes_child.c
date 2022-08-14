@@ -19,6 +19,7 @@
  */
 void    first_pipe_child(int *fd, t_pipe command)
 {
+    (void)command;
     close(fd[READ_END]);
     dup2(fd[WRITE_END], STDOUT_FILENO);
     close(fd[WRITE_END]);
@@ -34,6 +35,7 @@ void    first_pipe_child(int *fd, t_pipe command)
  */
 void    intermediate_pipe_child(int *fd1, int *fd2, t_pipe command)
 {
+    (void)command;
     close(fd2[READ_END]);
     dup2(fd1[READ_END], STDIN_FILENO);
     close(fd1[READ_END]);
@@ -53,5 +55,12 @@ void    last_pipe_child(int *fd, t_pipe command)
     dup2(fd[READ_END], STDIN_FILENO);
     close(fd[READ_END]);
     ft_execute(command);
+    // char *str[] = {"programa", "'$USER ", " Mundo", NULL};
+    // char *env[] = {"USER=aramirez", "USER=aramirez", "Mundo=fds", NULL};
+    // execve("/bin/echo", str,env);
+    //    printf("%i\n", access("../a.out", X_OK));
+    //     execve("../a.out", str,env);
+    // ft_others("../test.txt", str);
+    // execlp("/usr/bin/wc", "wc", "-l", NULL);
     exit(0);
 }
