@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:31:29 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/13 21:11:06 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/15 11:30:38 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,27 @@
 // En caso de que NO, vamos a coger el environment de HOME y lo vamos a poner desde
 // la primera posicion hasta la longitud de lo que hay despues de CD
 
-/*
-* Si nos dan "cd ~/" nos tenemos que ir a home"
-*/
-char	*ft_add_home_path(char *word)
-{
-	char	*path;
-	char	*paths;
+// /*
+// * Si nos dan "cd ~/" nos tenemos que ir a home"
+// */
+// char	*ft_add_home_path(char *word)
+// {
+// 	char	*path;
+// 	char	*paths;
 
-	if (!ft_strncmp(word, "~/", 2))
-	{
-		path = get_env_var("HOME");
-		paths = ft_substr(path, 1, ft_strlen(word));
-		free(word);
-		word = ft_strjoin(path, paths);
-		free (path);
-		free (paths);
-		return (word);
-	}
-	return (word);
-}
+// 	if (!ft_strncmp(word, "~/", 2))
+// 	{
+// 		path = get_env_var("HOME");
+// 		paths = ft_substr(path, 1, ft_strlen(word));
+// 		free(word);
+// 		word = ft_strjoin(path, paths);
+// 		free (path);
+// 		free (paths);
+// 		return (word);
+// 	}
+// 	return (word);
+// }
 
-/*
-* El comando cd - nos lleva al directorio de trabajo anterior
-*/
-char	*ft_old_cd(void)
-{
-	char	*old_path;
-	char	*path;
-
-	old_path = get_env_var("OLDPWD");
-
-	if (old_path == NULL)
-	{
-		printf("cd: OLDPWD not set\n");
-		return (0);
-	}
-	path = get_env_var("PWD");
-	ft_putstr_fd(path, 1);
-	ft_putchar_fd('\n', 1);
-	return (path);
-}
 
 /*
 * Si podemos ir a ese directorio, iremos
@@ -144,36 +124,9 @@ posicion del array
 */
 
 /*
-* Input es aquello que hay entre pipes en el momento en que me dan CD como comando
-* Words es el input separado por espacio, \t o \n
-*/
-void	ft_parse_cd(char *input)
-{
-	char	**words;
-	char	*path;
-
-	words = ft_split_words(input);
-	if (!words[1])
-		return ;
-	if (words[1][0] == '~' || (words[1][0] == '-' && words[1][1] == '-'))
-	{
-		ft_putstr_fd("minishell: cd: $(HOME)\n", 1);
-		return ;
-	}
-	if (words[1][0] == '-')
-	{
-		path = ft_old_cd();
-		return ;
-	}
-	words[1] = ft_add_home_path(words[1]);
-	ft_set_directory(input);
-}
-
-/*
 * Realizamos la funcion CD
 */
 void	ft_cd(char *input)
 {
 	ft_parse_cd(input);
 }
-//SI NOS DAN ~ O -- HAY QUE BUSCAR HOME EN EL ENVIRONMENT
