@@ -28,8 +28,9 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 LIBS_PATH		:= libs
 LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
 
-READ_FLAGS		:= -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include -lreadline 
+# READ_FLAGS		:= -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include -lreadline 
 #-L $(LIBS_PATH)/readline -I $(LIBS_PATH)/readline
+READ_FLAGS		:= -L $(LIBS_PATH)/readline/opt/readline/lib -I $(LIBS_PATH)/readline/opt/readline/include -lreadline 
 
 # FOLDERS
 OBJS_DIR		:= obj
