@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 18:48:28 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/13 20:26:25 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:14:18 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ int			ft_is_exit(char **words);
 int			ft_is_unset(char **words);
 int			ft_is_env(char **words);
 int			ft_is_pwd(char **words);
+
+char        *extract_next_echo_token(char *input);
+char        **parse_echo(char *input);
 
 #endif

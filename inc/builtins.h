@@ -3,23 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/15 11:55:13 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:10:36 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
-
-void	pwd(void);
-void	env(void);
-void	export(char *name, char *content);
-void	unset(char *name);
-void    ft_others(char *path, char**argv);
-// void	ft_look_for_flag(char *word);
-// void	ft_print_the_echo(char **words);
 
 //EXIT
 void	ft_exit(char *str);
@@ -40,5 +32,12 @@ int	    ft_set_directory(char *path);
 int	    ft_change_pos(char *path);
 void	ft_cant_go(char *path);
 int	    ft_can_go(char *path);
+
+void	pwd(void);
+void	ft_env(void);
+void	ft_export(char *input);
+void	unset(char *name);
+void    ft_others(char *path, char**argv);
+void    ft_echo(char *input);
 
 #endif

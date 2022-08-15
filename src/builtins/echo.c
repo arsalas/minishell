@@ -190,3 +190,38 @@ void	ft_make_echo(t_minishell *minishell, char *inside_pipes)
 	ft_print_the_echo(minishell, inside_pipes);
 }
 */
+
+//TODO --> detectar si hay flag
+bool echo_have_flag(char *input)
+{
+    (void)input;
+    return (false);
+}
+
+int get_start_echo_input(char *input)
+{
+    int i;
+
+    i = 4;
+    while (input[i] == ' ')
+        i++;
+    return(i);
+}
+
+char    *extract_echo_input(char *input)
+{
+    int start;
+    int end;
+
+    start = get_start_echo_input(input);
+    end = ft_strlen(input);
+    return (ft_substr(input, start, end - start));
+}
+
+void    ft_echo(char *input)
+{
+    char    *echo;
+
+    echo = extract_echo_input(input);
+    execute_echo(echo, echo_have_flag(input));
+}

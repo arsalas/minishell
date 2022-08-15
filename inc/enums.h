@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 21:44:32 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/10 13:06:51 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:03:23 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,13 @@ typedef enum e_builtins
 typedef struct s_pipe
 {
 	t_builtins	command;
-	char		*content;
+	char		*input;
 }	t_pipe;
 
+typedef struct s_process
+{
+    int     quantity;
+    t_pipe  *content;
+}   t_process;
 
 #endif

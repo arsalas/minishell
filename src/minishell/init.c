@@ -55,6 +55,18 @@ void	ft_signal(void)
 	ft_get_signal();
 }
 
+/**
+ * @brief Ejecucion del programa minishell
+ * 
+ */
+void	ft_execute_minishell(void)
+{
+	while (g_minishell->last_command != C_EXIT)
+	{
+		req_new_input();
+	}
+}
+
 /*
 * Iniciamos g_minishell
 * Iniciamos environment
@@ -62,8 +74,11 @@ void	ft_signal(void)
 void	ft_init_minishell(char **env)
 {
 	g_minishell = get_memory(sizeof(t_minishell));
+	g_minishell->last_command = C_OTHERS;
+    g_minishell->process.quantity = 0;
 	init_env(env);
 	update_env_var("PWD", "minishell");
 	ft_signal();
-	ft_read();
+	// ft_read();
+	ft_execute_minishell();
 }

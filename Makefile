@@ -23,6 +23,9 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 				history.c \
 				init.c \
 				ft_free_split.c ft_split_words.c ft_strstr.c ft_strcmp.c \
+				input.c input_aux1.c \
+				commands.c \
+
 
 # LIBS
 LIBS_PATH		:= libs
@@ -100,4 +103,3 @@ $(BIN_DIR):
 
 -include $(DEPS)
 
-.PHONY:		all clean fclean re make_libs leaks test

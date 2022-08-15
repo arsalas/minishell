@@ -19,3 +19,29 @@ void	not_implemented(void)
 {
 	printf("Not implemented yet\n");
 }
+
+/**
+ * @brief Indica si el caracter pasado es una comilla
+ * 
+ * @param c character
+ * @return bool 
+ */
+bool    is_quote(char c)
+{
+    if (c == '"' || c == '\'')
+        return (true);
+    return (false);
+}
+
+/**
+ * @brief Indica si el caracter pasado es un caracter escapado
+ * 
+ * @param c character
+ * @return bool 
+ */
+bool    is_scaped_char(char c)
+{
+    if (c == '\'' || c == '"' || c == '\\' || c == '$' || c == '>'|| c == '<')
+        return (true);
+    return (false);
+}
