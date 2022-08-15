@@ -45,6 +45,7 @@ int	ft_look_for_old(char **words)
 		path = ft_old_cd();
 		return (1);
 	}
+    (void)path;
 	return (0);
 }
 
