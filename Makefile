@@ -22,7 +22,7 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 				echo_aux.c \
 				history.c \
 				init.c \
-				ft_free_split.c ft_split_words.c ft_strstr.c ft_strcmp.c \
+				ft_free_split.c ft_split_words.c ft_strstr.c ft_strcmp.c ft_trim.c\
 				input.c input_aux1.c \
 				commands.c \
 
@@ -31,8 +31,10 @@ SRCS 			= prompt.c memory.c utils.c process.c \
 LIBS_PATH		:= libs
 LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
 
-READ_FLAGS		:= -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include -lreadline 
+# READ_FLAGS		:= -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include -lreadline 
+READ_FLAGS		= -L $(LIBS_PATH)/readline/lib -I/$(LIBS_PATH)/readline/include -lreadline
 #-L $(LIBS_PATH)/readline -I $(LIBS_PATH)/readline
+#-L/$(LIBS_PATH)/readline -I/$(LIBS_PATH)/readline -lreadline
 
 # FOLDERS
 OBJS_DIR		:= obj
@@ -59,7 +61,7 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell
+vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell src/input src/commands
 
 .SECONDEXPANSION:
 

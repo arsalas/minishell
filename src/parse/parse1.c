@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/15 12:40:45 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:53:16 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	ft_search_command_in_pipe(void)
 	while (i < g_minishell->parse.pipe + 1)
 	{
 		commands[i].command = ft_command_in_pipe();
-		commands[i].content = g_minishell->traces[i];
+		// commands[i].content = g_minishell->traces[i];
 		i++;
 	}
 }
