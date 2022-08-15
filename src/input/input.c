@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/13 23:17:12 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:59:42 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void req_new_input(void)
     char *input;
 
     input = ft_get_input();
+    if (!input)
+    {
+        printf("exit\n");
+        close_minishell();
+    }
     g_minishell->input = ft_trim(input);
     if (ft_strlen(g_minishell->input) == 0)
         return;
