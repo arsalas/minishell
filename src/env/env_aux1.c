@@ -16,7 +16,7 @@
  * @brief Obtiene el numero de elementos de entorno
  *
  * @param env entorno
- * @return int
+* @return int
  */
 int	get_env_elements(char **env)
 {
@@ -39,7 +39,7 @@ void	init_env(char **env)
 	g_minishell->env.vars = get_memory(sizeof(t_env_details)
 			* g_minishell->env.count);
 	complete_env_info(env);
-    push_env("OLDPWD", get_env_var("PWD"));
+	push_env("OLDPWD", get_env_var("PWD"));
 }
 
 /**
