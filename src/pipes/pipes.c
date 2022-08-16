@@ -23,7 +23,8 @@ void	execute_multiple_pipe(int process, t_pipe *commands)
 	int	**fd;
 	int	*pid;
 	int	i;
-    (void)commands;
+
+	(void)commands;
 	i = 1;
 	fd = create_fd(process - 1);
 	pid = create_pid(process);
@@ -82,12 +83,11 @@ void	execute_pipe(t_process process)
 	if (process.quantity == 0)
 		return ;
 	if (process.quantity == 1)
-    {
+	{
 		ft_execute(process.content[0]);
-        return ;
-    }
+		return ;
+	}
 	if (process.quantity == 2)
 		return (execute_single_pipe(process.content));
 	execute_multiple_pipe(process.quantity, process.content);
 }
-

@@ -18,10 +18,10 @@
  * @param fd 
  * @return pid del proceso generado
  */
-int first_pipe_father(int *fd)
+int	first_pipe_father(int *fd)
 {
-    pipe(fd);
-    return (create_process());
+	pipe(fd);
+	return (create_process());
 }
 
 /**
@@ -31,11 +31,11 @@ int first_pipe_father(int *fd)
  * @param fd2 
  * @return pid del proceso generado 
  */
-int intermediate_pipe_father(int *fd1, int *fd2)
+int	intermediate_pipe_father(int *fd1, int *fd2)
 {
-    close(fd1[WRITE_END]);
-    pipe(fd2);
-    return (create_process());
+	close(fd1[WRITE_END]);
+	pipe(fd2);
+	return (create_process());
 }
 
 /**
@@ -45,9 +45,9 @@ int intermediate_pipe_father(int *fd1, int *fd2)
  * @param fd2 
  * @return pid del proceso generado
  */
-int last_pipe_father(int *fd1, int *fd2)
+int	last_pipe_father(int *fd1, int *fd2)
 {
-    close(fd1[READ_END]);
-    close(fd2[WRITE_END]);
-    return (create_process());
+	close(fd1[READ_END]);
+	close(fd2[WRITE_END]);
+	return (create_process());
 }

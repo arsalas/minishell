@@ -17,13 +17,13 @@
  *
  * @param fd
  */
-void    first_pipe_child(int *fd, t_pipe command)
+void	first_pipe_child(int *fd, t_pipe command)
 {
-    close(fd[READ_END]);
-    dup2(fd[WRITE_END], STDOUT_FILENO);
-    close(fd[WRITE_END]);
-    ft_execute(command);
-    exit(0);
+	close(fd[READ_END]);
+	dup2(fd[WRITE_END], STDOUT_FILENO);
+	close(fd[WRITE_END]);
+	ft_execute(command);
+	exit(0);
 }
 
 /**
@@ -32,15 +32,15 @@ void    first_pipe_child(int *fd, t_pipe command)
  * @param fd1
  * @param fd2
  */
-void    intermediate_pipe_child(int *fd1, int *fd2, t_pipe command)
+void	intermediate_pipe_child(int *fd1, int *fd2, t_pipe command)
 {
-    close(fd2[READ_END]);
-    dup2(fd1[READ_END], STDIN_FILENO);
-    close(fd1[READ_END]);
-    dup2(fd2[WRITE_END], STDOUT_FILENO);
-    close(fd2[WRITE_END]);
-    ft_execute(command);
-    exit(0);
+	close(fd2[READ_END]);
+	dup2(fd1[READ_END], STDIN_FILENO);
+	close(fd1[READ_END]);
+	dup2(fd2[WRITE_END], STDOUT_FILENO);
+	close(fd2[WRITE_END]);
+	ft_execute(command);
+	exit(0);
 }
 
 /**
@@ -48,10 +48,10 @@ void    intermediate_pipe_child(int *fd1, int *fd2, t_pipe command)
  *
  * @param fd
  */
-void    last_pipe_child(int *fd, t_pipe command)
+void	last_pipe_child(int *fd, t_pipe command)
 {
-    dup2(fd[READ_END], STDIN_FILENO);
-    close(fd[READ_END]);
-    ft_execute(command);
-    exit(0);
+	dup2(fd[READ_END], STDIN_FILENO);
+	close(fd[READ_END]);
+	ft_execute(command);
+	exit(0);
 }

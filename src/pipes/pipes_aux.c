@@ -19,19 +19,19 @@
  * @param pipes cantidad de pipes
  * @return array con los fd[2]
  */
-int **create_fd(int pipes)
+int	**create_fd(int pipes)
 {
-    int i;
-    int **fd;
+	int	i;
+	int	**fd;
 
-    i = 0;
-    fd = get_memory(sizeof(int *) * pipes);
-    while (i < pipes)
-    {
-        fd[i] = get_memory(sizeof(int) * 2);
-        i++;
-    }
-    return (fd);
+	i = 0;
+	fd = get_memory(sizeof(int *) * pipes);
+	while (i < pipes)
+	{
+		fd[i] = get_memory(sizeof(int) * 2);
+		i++;
+	}
+	return (fd);
 }
 
 /**
@@ -40,8 +40,7 @@ int **create_fd(int pipes)
  * @param process cantidad de procesos a ejecutar
  * @return array de pids
  */
-int *create_pid(int process)
+int	*create_pid(int process)
 {
-    return (get_memory(sizeof(int) * process));
+	return (get_memory(sizeof(int) * process));
 }
-

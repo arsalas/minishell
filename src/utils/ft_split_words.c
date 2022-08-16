@@ -59,7 +59,6 @@ static char	**ft_refile(char **array, char *str)
 			cont++;
 	}
 	return (array);
-
 }
 
 static size_t	ft_count_words(char *str)

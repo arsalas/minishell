@@ -26,11 +26,11 @@ void	not_implemented(void)
  * @param c character
  * @return bool 
  */
-bool    is_quote(char c)
+bool	is_quote(char c)
 {
-    if (c == '"' || c == '\'')
-        return (true);
-    return (false);
+	if (c == '"' || c == '\'')
+		return (true);
+	return (false);
 }
 
 /**
@@ -39,9 +39,9 @@ bool    is_quote(char c)
  * @param c character
  * @return bool 
  */
-bool    is_scaped_char(char c)
+bool	is_scaped_char(char c)
 {
-    if (c == '\'' || c == '"' || c == '\\' || c == '$' || c == '>'|| c == '<')
-        return (true);
-    return (false);
+	if (c == '\'' || c == '"' || c == '\\' || c == '$' || c == '>'|| c == '<')
+		return (true);
+	return (false);
 }

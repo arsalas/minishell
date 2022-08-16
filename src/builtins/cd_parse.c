@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/15 11:59:19 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/16 18:38:29 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_look_for_old(char **words)
 		path = ft_old_cd();
 		return (1);
 	}
-    (void)path;
+	(void)path;
 	return (0);
 }
 
@@ -54,24 +54,24 @@ int	ft_look_for_old(char **words)
 */
 void	ft_go_home(void)
 {
-    update_env_var("OLDPWD", getenv("PWD"));
-    update_env_var("PWD", getenv("HOME"));
-    chdir(getenv("HOME"));
+	update_env_var("OLDPWD", getenv("PWD"));
+	update_env_var("PWD", getenv("HOME"));
+	chdir(getenv("HOME"));
 }
 
 /*
 * Comprobamos si vamos a HOME
 */
-int ft_get_home_dir(char *words)
+int	ft_get_home_dir(char *words)
 {
-    if ((words[0] == '~' && words[1] == '\0')
-        || (words[0] == '~' && words[1] == '/' && words[2] == '\0')
-        || (words[0] == '-' && words[1] == '-' && words[2] == '\0'))
+	if ((words[0] == '~' && words[1] == '\0')
+		|| (words[0] == '~' && words[1] == '/' && words[2] == '\0')
+		|| (words[0] == '-' && words[1] == '-' && words[2] == '\0'))
 	{
-        ft_go_home();
-        return (1);
-    }
-    return (0);
+		ft_go_home();
+		return (1);
+	}
+	return (0);
 }
 
 /*
@@ -84,11 +84,11 @@ void	ft_parse_cd(char *input)
 	char	**words;
 
 	words = ft_split_words(input);
-    if (words[1] == NULL)
-     {
-        ft_go_home();
-        return ;
-    }
+	if (words[1] == NULL)
+	{
+		ft_go_home();
+		return ;
+	}
 	if (ft_get_home_dir(words[1]) == 1)
 		return ;
 	if (ft_look_for_old(words) == 1)

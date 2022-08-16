@@ -12,44 +12,43 @@
 
 #include "minishell.h"
 
-
-static bool is_special_char(char c)
+static bool	is_special_char(char c)
 {
-    if (c == ' ' || c == '\t')
-        return (true);
-    return (false);
+	if (c == ' ' || c == '\t')
+		return (true);
+	return (false);
 }
 
-static int  get_start(char *str)
+static int	get_start(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(str[i] && is_special_char(str[i]))
-        i++;
-    return (i);
+	i = 0;
+	while (str[i] && is_special_char(str[i]))
+		i++;
+	return (i);
 }
 
-static int  get_end(char *str)
+static int	get_end(char *str)
 {
-    int i;
+	int	i;
 
-    i = ft_strlen(str) - 1;
-    while(i >= 0 && is_special_char(str[i]))
-        i--;
-    return (i + 1);
+	i = ft_strlen(str) - 1;
+	while (i >= 0 && is_special_char(str[i]))
+		i--;
+	return (i + 1);
 }
 
 char	*ft_trim(char *str)
 {
-	char    *new_str;
-    int     start;
-    int     finish;
-    int     len;
+	char	*new_str;
+	int		start;
+	int		finish;
+	int		len;
 
-    start = get_start(str);
-    finish = get_end(str);
-    len = finish - start;
-    new_str = ft_substr(str, start, len);
+	start = get_start(str);
+	finish = get_end(str);
+	len = finish - start;
+	new_str = ft_substr(str, start, len);
 	return (new_str);
 }
