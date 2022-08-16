@@ -13,18 +13,35 @@
 #include "minishell.h"
 
 /**
+ * @brief Espera a que terminen los procesos de los pipes
+ * 
+ * @param process 
+ * @param pid 
+ */
+static void	wait_pipes_process(int process, int **pid)
+{
+	int	status;
+	int	i;
+
+	i = 0;
+	while (i < process)
+	{
+		waitpid(pid[i], &status, 0);
+		i++;
+	}
+}
+
+/**
  * @brief Ejecuta los procesos para n pipes
  * 
  * @param process cantidad de procesos a ejecutar por los pipes
  */
 void	execute_multiple_pipe(int process, t_pipe *commands)
 {
-	int	status;
 	int	**fd;
 	int	*pid;
 	int	i;
 
-	(void)commands;
 	i = 1;
 	fd = create_fd(process - 1);
 	pid = create_pid(process);
@@ -42,12 +59,7 @@ void	execute_multiple_pipe(int process, t_pipe *commands)
 	if (pid[process - 1] == 0)
 		last_pipe_child(fd[process - 2], commands[process - 1]);
 	close(fd[process - 2][READ_END]);
-	i = 0;
-	while (i < process)
-	{
-		waitpid(pid[i], &status, 0);
-		i++;
-	}
+	wait_process(process, pid);
 }
 
 /**
