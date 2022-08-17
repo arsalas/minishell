@@ -73,9 +73,10 @@ void	ft_execute_minishell(void)
 */
 void	ft_init_minishell(char **env)
 {
-	g_minishell = get_memory(sizeof(t_minishell));
+	g_minishell = get_memory(sizeof(t_minishell), true);
 	g_minishell->last_command = C_OTHERS;
 	g_minishell->process.quantity = 0;
+	g_minishell->memory.quantity = 0;
 	init_env(env);
 	update_env_var("PWD", "minishell");
 	ft_signal();

@@ -13,10 +13,12 @@
 #ifndef UTILS_H
 # define UTILS_H
 
+# include "stdbool.h"
+
 void	print_prompt(void);
 void	not_implemented(void);
 void	memory_error(void);
-void	*get_memory(size_t size);
+void	*get_memory(size_t size, bool is_permanent);
 void	*ft_realloc(void *ptr, size_t size);
 void	free_memory(void);
 int		create_process(void);

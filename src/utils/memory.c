@@ -6,11 +6,19 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/15 12:48:36 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/17 15:56:37 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	add_memory(void *pnt)
+{
+	g_minishell->memory.quantity++;
+	ft_realloc(g_minishell->memory.memory,
+		sizeof(void *) * g_minishell->memory.quantity);
+	g_minishell->memory.memory[g_minishell->memory.quantity] = pnt;
+}
 
 /**
  * @brief Reserva memoria
@@ -18,13 +26,15 @@
  * @param size Memoria a reservar
  * @return void* puntero a la memoria reservada
  */
-void	*get_memory(size_t size)
+void	*get_memory(size_t size, bool is_permanent)
 {
 	void	*mem;
 
 	mem = malloc(size);
 	if (!mem)
 		memory_error();
+	if (!is_permanent)
+		add_memory(mem);
 	return (mem);
 }
 
@@ -40,10 +50,10 @@ void	*ft_realloc(void *ptr, size_t size)
 	void	*new_ptr;
 
 	if (ptr == NULL)
-		return (get_memory(size));
+		return (get_memory(size, true));
 	if (!size)
 		return (ptr);
-	new_ptr = malloc(size);
+	new_ptr = get_memory(size, true);
 	ft_memcpy(new_ptr, ptr, size);
 	return (new_ptr);
 }
@@ -54,9 +64,15 @@ void	*ft_realloc(void *ptr, size_t size)
  */
 void	free_memory(void)
 {
+	int	i;
+
+	i = g_minishell->memory.quantity - 1;
+	while (i >= 0)
+	{
+		free(g_minishell->memory.memory[i]);
+		i--;
+	}
 	printf("We have to make free\n");
-	//free(g_minishell->input);
-	//ft_free_split(g_minishell->traces);
 }
 
 void	ft_free_usual(void)

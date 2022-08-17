@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/16 18:59:41 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/17 15:51:43 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	get_process_content(void)
 	int	i;
 
 	i = 0;
-	g_minishell->process.content = get_memory(sizeof(t_pipe) * g_minishell->process.quantity);
+	g_minishell->process.content = get_memory(sizeof(t_pipe) * g_minishell->process.quantity, true);
 	while (i < g_minishell->process.quantity)
 	{
 		g_minishell->process.content[i].command = ft_get_command(g_minishell->input);

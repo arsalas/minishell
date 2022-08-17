@@ -18,7 +18,7 @@
  * @param process 
  * @param pid 
  */
-static void	wait_pipes_process(int process, int **pid)
+static void	wait_pipes_process(int process, int *pid)
 {
 	int	status;
 	int	i;
@@ -59,7 +59,7 @@ void	execute_multiple_pipe(int process, t_pipe *commands)
 	if (pid[process - 1] == 0)
 		last_pipe_child(fd[process - 2], commands[process - 1]);
 	close(fd[process - 2][READ_END]);
-	wait_process(process, pid);
+	wait_pipes_process(process, pid);
 }
 
 /**
