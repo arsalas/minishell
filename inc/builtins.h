@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/15 12:10:36 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/17 18:59:25 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	    ft_get_home_dir(char *words);
 void	ft_go_home(void);
 int	    ft_look_for_old(char **words);
 char	*ft_old_cd(void);
-int	    ft_set_directory(char *path);
+int	    ft_set_directory(char **words);
 int	    ft_change_pos(char *path);
-void	ft_cant_go(char *path);
-int	    ft_can_go(char *path);
+void	ft_can_go(char *path);
+int	    ft_cant_go(char *path);
 
 void	pwd(void);
 void	ft_env(void);
@@ -39,5 +39,9 @@ void	ft_export(char *input);
 void	unset(char *name);
 void    ft_others(char *path, char**argv);
 void    ft_echo(char *input);
+int     ft_look_for_root(char **words);
+
+// OTHERS
+bool	is_path(char *str);
 
 #endif
