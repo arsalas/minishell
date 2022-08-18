@@ -64,6 +64,7 @@ void	ft_execute_minishell(void)
 	while (g_minishell->last_command != C_EXIT)
 	{
 		req_new_input();
+        free_memory();
 	}
 }
 

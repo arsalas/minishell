@@ -15,9 +15,9 @@
 void	add_memory(void *pnt)
 {
 	g_minishell->memory.quantity++;
-	ft_realloc(g_minishell->memory.memory,
-		sizeof(void *) * g_minishell->memory.quantity);
-	g_minishell->memory.memory[g_minishell->memory.quantity] = pnt;
+	g_minishell->memory.memory = ft_realloc(g_minishell->memory.memory,
+		sizeof(void *) * (g_minishell->memory.quantity));
+	g_minishell->memory.memory[g_minishell->memory.quantity - 1] = pnt;
 }
 
 /**
