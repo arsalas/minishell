@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/18 17:35:11 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:07:50 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_old_cd(void)
 * Comprobamos si nos dan un solo guion, porque implica que nos vamos al
 * puesto de trabajo anterior (no es lo mismo que cd ..)
 */
-int	ft_look_for_old(char *words)
+bool	ft_look_for_old(char *words)
 {
 	char	*path;
 
@@ -47,8 +47,8 @@ int	ft_look_for_old(char *words)
 		path = ft_old_cd();
 		return (1);
 	}
-	(void)path;
-	return (0);
+
+	return (false);
 }
 
 /*
@@ -66,26 +66,26 @@ void	ft_go_home(void)
 /*
 * Comprobamos si vamos a HOME
 */
-int	ft_get_home_dir(char *words)
+bool	ft_get_home_dir(char *words)
 {
 	if ((words[0] == '~' && words[1] == '\0')
 		|| (words[0] == '~' && words[1] == '/' && words[2] == '\0')
 		|| (words[0] == '-' && words[1] == '-' && words[2] == '\0'))
 	{
 		ft_go_home();
-		return (1);
+		return (true);
 	}
-	return (0);
+	return (false);
 }
 
-int ft_look_for_root(char *words)
+bool ft_look_for_root(char *words)
 {
 	if (words[0] == '/' && words[1] == '\0')
 	{
 		update_env_var("OLDPWD", get_env_var("PWD"));
 //		getdir("/");
 		update_env_var("PWD", "/");
-		return (1);
+		return (true);
 	}
-	return (0);
+	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/17 19:43:48 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:21:56 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,17 @@ void	ft_parse_cd(char *input)
 	paths = ft_split(words[1], '/');
 	while (paths[count] != NULL)
 	{
-		ft_get_home_dir(paths[count]);
-		ft_look_for_old(paths[count]);
-		ft_look_for_root(paths[count]);
-		ft_set_directory(paths[count]);
-		count++;
+		if (ft_get_home_dir(paths[count]))
+			count++;
+		else if (ft_look_for_old(paths[count]))
+			count++;
+		else if (ft_look_for_root(paths[count]))
+			count++;
+		else
+		{
+			ft_set_directory(paths[count]);
+			count++;
+		}
 	}
 }
 
