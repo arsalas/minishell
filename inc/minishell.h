@@ -38,6 +38,7 @@
 # include "parse.h"
 # include "input.h"
 # include "commands.h"
+# include "helpers.h"
 
 # define READ_END 0
 # define WRITE_END 1
@@ -71,6 +72,12 @@ typedef struct s_parse
 	int	slash;
 }	t_parse;
 
+typedef struct s_memory
+{
+	int		quantity;
+	void	**memory;
+}	t_memory;
+
 /*
 * INPUT es la string que me dan por terminal
 * TRACES es el array bidimensional en funcion de cuantos pipes haya
@@ -86,8 +93,9 @@ typedef struct s_minishell
 	t_parse			parse;
 	int				status;
 	struct termios	term;
-	t_builtins      last_command;
-    t_process       process;
+	t_builtins		last_command;
+	t_process		process;
+	t_memory		memory;
 }	t_minishell;
 
 extern t_minishell	*g_minishell;

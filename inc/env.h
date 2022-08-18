@@ -26,5 +26,6 @@ void	delete_env(char *name);
 char	*get_env_var(char *name);
 int		get_index_by_var(char *name);
 void	update_env_var(char *name, char *content);
+void	free_all_env(void);
 
 #endif
