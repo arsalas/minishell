@@ -26,4 +26,6 @@ void	ft_execute(t_pipe builting)
 		return (ft_export(builting.input));
 	if (builting.command == C_ECHO)
 		return (ft_echo(builting.input));
+	if (builting.command == C_CD)
+		return (ft_cd(builting.input));
 }

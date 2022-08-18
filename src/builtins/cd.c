@@ -12,116 +12,76 @@
 
 #include "minishell.h"
 
-// PRIMERO vamos a mirar si despues de CD nos dan ~/
-// En caso de que NO, vamos a coger el environment de HOME y lo vamos a poner desde
-// la primera posicion hasta la longitud de lo que hay despues de CD
-
-// /*
-// * Si nos dan "cd ~/" nos tenemos que ir a home"
-// */
-// char	*ft_add_home_path(char *word)
-// {
-// 	char	*path;
-// 	char	*paths;
-
-// 	if (!ft_strncmp(word, "~/", 2))
-// 	{
-// 		path = get_env_var("HOME");
-// 		paths = ft_substr(path, 1, ft_strlen(word));
-// 		free(word);
-// 		word = ft_strjoin(path, paths);
-// 		free (path);
-// 		free (paths);
-// 		return (word);
-// 	}
-// 	return (word);
-// }
-
-
 /*
 * Si podemos ir a ese directorio, iremos
 */
-int	ft_can_go(char *path)
+void	ft_can_go(char *path)
 {
 	char	*pwd;
+	char	*long_path;
 
-	pwd = getcwd(NULL, 0);
-	if (!chdir(path))
+	long_path = ft_strjoin((get_env_var("PWD")), "/");
+	if (is_path(long_path))
 	{
-		if (pwd)
-		{
-			setenv("OLDPWD", pwd, 1);
-			free(pwd);
-		}
-		if (pwd == getcwd(NULL, 0))
-		{
-			setenv("PWD", pwd, 1);
-			free(pwd);
-		}
-		return (1);
+		update_env_var("OLDPWD", get_env_var("PWD"));
+		pwd = getcwd(NULL, 0);
+		chdir(path);
+		update_env_var("PWD", (ft_strjoin(long_path, path)));
+		free (pwd);
 	}
-	chdir(path);
-	update_env_var("PWD", path);
-	free (pwd);
-	return (0);
 }
 
 /*
 * No podemos acceder a este directorio, por diversos motivos
 * 1 - No es un directorio
-* 2 - Permiso denegado
-* 3 - No existe el directorio
+* 2 - No existe el directorio
+* 3 - Permiso denegado
 */
-void	ft_cant_go(char *path)
+int	ft_cant_go(char *path)
 {
-	(void) path;
-}
+	struct stat	st;
+	char		*long_path;
 
-int	ft_change_pos(char *path)
-{
-	char	*pwd;
-
-	pwd = getcwd(NULL, 0);
-	if (!chdir(path))
+	long_path = ft_strjoin((get_env_var("PWD")), "/");
+	long_path = ft_strjoin(long_path, path);
+	if (chdir(path) != 0)
 	{
-		if (pwd)
-		{
-	//		set_env("OLDPWD", pwd);
-			free(pwd);
-		}
-		if (pwd == getcwd(NULL, 0))
-		{
-	//		set_env("PWD", pwd);
-			free(pwd);
-		}
+		printf("cd: no such file or directory: %s\n", long_path);
 		return (1);
 	}
-	free (pwd);
-	return (0);
-}
-
-//ANADIMOS EL DIRECTORIO
-int	ft_set_directory(char *path)
-{
-	if (ft_can_go(path))
-		return (1);
-	ft_putstr_fd("minishell: cd: ", 2);
-	ft_putstr_fd(path, 2);
-	g_minishell->status = 1;
-	ft_cant_go(path);
+	if (access(long_path, X_OK) == -1)
+	{
+		if (is_path(long_path))
+		{
+			printf("cd: not a directory: %s\n", long_path);
+			return (2);
+		}
+	}
+	//CREO QUE ESTO DE AQUI ABAJO DEBERIA ESTAR NEGADO
+	if ((st.st_mode & S_IXUSR))
+	{
+		printf("Permission denied\n");
+		return (3);
+	}
 	return (0);
 }
 
 /*
-TODO
-PARA PODER OBTENER OLDPWD DEBEMOS CREARLO
-ASIGNAMOS PWDOLD EL VALOR DE PWD
-Y CAMBIAMOS EL PWD
-
-ANTES DE HACER EL CD GUARDAMOS EL PWD EN PWDOLD
-set_env_element(int count, char *env)
-posicion del array
+* Mandamos a una funcion u otra segun pueda o no ir
 */
+int	ft_set_directory(char *words)
+{
+	char	*path;
+
+	path = words;
+	// if (ft_cant_go(path) != 0)
+	// {
+	// 	g_minishell->status = 1;
+	// 	return (0);
+	// }
+	ft_can_go(path);
+	return (0);
+}
 
 /*
 * Realizamos la funcion CD

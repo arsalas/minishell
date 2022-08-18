@@ -39,7 +39,7 @@ void	init_env(char **env)
 	g_minishell->env.vars = get_memory(sizeof(t_env_details)
 			* g_minishell->env.count);
 	complete_env_info(env);
-    push_env("OLDPWD", get_env_var("PWD"));
+    update_env_var("OLDPWD", get_env_var("PWD"));
 }
 
 /**
