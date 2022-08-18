@@ -69,16 +69,16 @@ int	ft_cant_go(char *path)
 /*
 * Mandamos a una funcion u otra segun pueda o no ir
 */
-int	ft_set_directory(char **words)
+int	ft_set_directory(char *words)
 {
 	char	*path;
 
-	path = words[1];
-	if (ft_cant_go(path) != 0)
-	{
-		g_minishell->status = 1;
-		return (0);
-	}
+	path = words;
+	// if (ft_cant_go(path) != 0)
+	// {
+	// 	g_minishell->status = 1;
+	// 	return (0);
+	// }
 	ft_can_go(path);
 	return (0);
 }

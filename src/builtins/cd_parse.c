@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/17 19:07:07 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:36:57 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ char	*ft_old_cd(void)
 * Comprobamos si nos dan un solo guion, porque implica que nos vamos al
 * puesto de trabajo anterior (no es lo mismo que cd ..)
 */
-int	ft_look_for_old(char **words)
+int	ft_look_for_old(char *words)
 {
 	char	*path;
 
-	if (words[1][0] == '-' && words[1][1] == '\0')
+	if (words[0] == '-' && words[1] == '\0')
 	{
 		path = ft_old_cd();
 		return (1);
@@ -77,9 +77,9 @@ int ft_get_home_dir(char *words)
     return (0);
 }
 
-int ft_look_for_root(char **words)
+int ft_look_for_root(char *words)
 {
-	if (words[1][0] == '/' && words[1][1] == '\0')
+	if (words[0] == '/' && words[1] == '\0')
 	{
 		update_env_var("OLDPWD", get_env_var("PWD"));
 //		getdir("/");
