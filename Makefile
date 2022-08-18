@@ -37,9 +37,12 @@ LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
 
 ifeq ($(shell uname),Linux)
 READ_FLAGS		:= -L $(LIBS_PATH)/readline_brew/opt/readline/lib -I $(LIBS_PATH)/readline_brew/opt/readline/include -lreadline
+else ifeq ($(USER)-,amurcia-)
+READ_FLAGS		:= -L $(LIBS_PATH)/readline_brew/opt/readline/lib -I $(LIBS_PATH)/readline_brew/opt/readline/include -lreadline
 else
 READ_FLAGS		:= -L $(LIBS_PATH)/readline/lib -I $(LIBS_PATH)/readline/include/readline -lreadline 
 endif
+# -L $(LIBS_PATH)/readline/opt/readline/lib -I $(LIBS_PATH)/readline/opt/readline/include -lredline 
 
 # FOLDERS
 OBJS_DIR		:= obj
