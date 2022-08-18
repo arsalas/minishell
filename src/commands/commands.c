@@ -14,7 +14,7 @@
 
 void	ft_execute(t_pipe builting)
 {
-    g_minishell->last_command = builting.command;
+	g_minishell->last_command = builting.command;
 	if (builting.command == C_ENV)
 		return (ft_env());
 	//? que hace el string de exit

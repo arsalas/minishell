@@ -85,5 +85,5 @@ void	update_env_var(char *name, char *content)
 
 	position = get_index_by_var(name);
 	free(g_minishell->env.vars[position].content);
-	g_minishell->env.vars[position].content = ft_strdup(content);
+	g_minishell->env.vars[position].content = ft_strcpy(content);
 }

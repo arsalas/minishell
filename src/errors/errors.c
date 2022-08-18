@@ -26,7 +26,7 @@ void	close_minishell(void)
  */
 void	memory_error(void)
 {
-	perror("Error al reservar memoria\n");
+	perror("Memory error\n");
 	close_minishell();
 }
 
@@ -45,6 +45,6 @@ void	cmd_not_found(char *cmd)
  */
 void	fork_error(void)
 {
-	perror("Error al crear el fork\n");
+	perror("Error in process fork\n");
 	close_minishell();
 }

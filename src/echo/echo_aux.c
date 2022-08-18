@@ -49,57 +49,56 @@ bool	is_var(char *str)
  * @param input nombre variable de entorno
  * @return numero de caracteres de la variable de entorno
  */
-int print_env_var(char *input)
+int	print_env_var(char *input)
 {
-    int     end;
-    char    *name;
-    
-    end = 0;
-    while (input[end] && (input[end] != ' ' && input[end] != ','))
-        end++;
-    name = ft_substr(input, 1, end - 1);
-    printf("%s", get_env_var(name));
-    free(name);
-    return (end);
+	int		end;
+	char	*name;
+
+	end = 0;
+	while (input[end] && (input[end] != ' ' && input[end] != ','))
+		end++;
+	name = ft_substr(input, 1, end - 1);
+	printf("%s", get_env_var(name));
+	free(name);
+	return (end);
 }
 
-
-void    print_echo_token(char *token)
+void	print_echo_token(char *token)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (token[i])
-    {
-        if (token[i] == '$' && token[i + 1] != ' ')
-        {
-            i += print_env_var(&token[i]);
-        }
-        if (token[i] != '\\' || (token[i] == '\\' && i > 0 && token[i - 1] == '\\'))
-            printf("%c", token[i]);
-        i++;
-    }
+	i = 0;
+	while (token[i])
+	{
+		if (token[i] == '$' && token[i + 1] != ' ')
+		{
+			i += print_env_var(&token[i]);
+		}
+		if (token[i] != '\\' || (token[i] == '\\' && i > 0 && token[i - 1] == '\\'))
+			printf("%c", token[i]);
+		i++;
+	}
 }
 
-void    print_echo(char **tokens, bool have_flag)
+void	print_echo(char **tokens, bool have_flag)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (tokens[i])
-    {
-        print_echo_token(tokens[i]);
-        i++;
-    }
-    if (!have_flag)
-        printf("\n");
+	i = 0;
+	while (tokens[i])
+	{
+		print_echo_token(tokens[i]);
+		i++;
+	}
+	if (!have_flag)
+		printf("\n");
 }
 
-void    execute_echo(char *input, bool have_flag)
+void	execute_echo(char *input, bool have_flag)
 {
-    char    **tokens;
-    
-    tokens = parse_echo(input);
-    free(input);
-    print_echo(tokens, have_flag);
+	char	**tokens;
+
+	tokens = parse_echo(input);
+	free(input);
+	print_echo(tokens, have_flag);
 }

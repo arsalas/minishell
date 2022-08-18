@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 13:53:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/13 23:19:32 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/16 18:57:01 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,36 @@
  * @param input 
  * @return int 
  */
-int get_quantity_process_in_input(char *input)
+int	get_quantity_process_in_input(char *input)
 {
-	bool    is_open_quote;
-    bool    is_slash;
-    char    quote;
-    int     pipes;
-    int     i;
+	bool	is_open_quote;
+	bool	is_slash;
+	char	quote;
+	int		pipes;
+	int		i;
 
-    is_open_quote = false;
-    is_slash = false;
-    pipes = 0;
-    quote = '\0';
-    i = 0;
-    while (input[i++])
-    {
-        if (input[i] == '\\')
-            is_slash = !is_slash;
-        if (((input[i] == '"' || input[i] == '\'') && !is_slash && is_open_quote && quote == input[i]))
-            is_open_quote = false;
-        else if (!is_open_quote && !is_slash && (input[i] == '"' || input[i] == '\''))
-        {
-            is_open_quote = true;
-            quote = input[i];
-        }
-        else if(input[i] == '|' && !is_slash && !is_open_quote)
-            pipes++;
-        if (input[i] != '\\')
-            is_slash = false;
-    }
-    return (pipes + 1);
+	is_open_quote = false;
+	is_slash = false;
+	pipes = 0;
+	quote = '\0';
+	i = 0;
+	while (input[i++])
+	{
+		if (input[i] == '\\')
+			is_slash = !is_slash;
+		if (((input[i] == '"' || input[i] == '\'') && !is_slash && is_open_quote && quote == input[i]))
+			is_open_quote = false;
+		else if (!is_open_quote && !is_slash && (input[i] == '"' || input[i] == '\''))
+		{
+			is_open_quote = true;
+			quote = input[i];
+		}
+		else if (input[i] == '|' && !is_slash && !is_open_quote)
+			pipes++;
+		if (input[i] != '\\')
+			is_slash = false;
+	}
+	return (pipes + 1);
 }
 
 /**
@@ -56,34 +56,34 @@ int get_quantity_process_in_input(char *input)
  * @param input 
  * @return int 
  */
-int get_finish_process_in_input(char *input)
+int	get_finish_process_in_input(char *input)
 {
-	bool    is_open_quote;
-    bool    is_slash;
-    char    quote;
-    int     i;
+	bool	is_open_quote;
+	bool	is_slash;
+	char	quote;
+	int		i;
 
-    is_open_quote = false;
-    is_slash = false;
-    quote = '\0';
-    i = 0;
-    while (input[i++])
-    {
-        if (input[i] == '\\')
-            is_slash = !is_slash;
-        if (((input[i] == '"' || input[i] == '\'') && !is_slash && is_open_quote && quote == input[i]))
-            is_open_quote = false;
-        else if (!is_open_quote && !is_slash && (input[i] == '"' || input[i] == '\''))
-        {
-            is_open_quote = true;
-            quote = input[i];
-        }
-        else if(input[i] == '|' && !is_slash && !is_open_quote)
-            return (i);
-        if (input[i] != '\\')
-            is_slash = false;
-    }
-    return (i);
+	is_open_quote = false;
+	is_slash = false;
+	quote = '\0';
+	i = 0;
+	while (input[i++])
+	{
+		if (input[i] == '\\')
+			is_slash = !is_slash;
+		if (((input[i] == '"' || input[i] == '\'') && !is_slash && is_open_quote && quote == input[i]))
+			is_open_quote = false;
+		else if (!is_open_quote && !is_slash && (input[i] == '"' || input[i] == '\''))
+		{
+			is_open_quote = true;
+			quote = input[i];
+		}
+		else if (input[i] == '|' && !is_slash && !is_open_quote)
+			return (i);
+		if (input[i] != '\\')
+			is_slash = false;
+	}
+	return (i);
 }
 
 /**
@@ -92,12 +92,12 @@ int get_finish_process_in_input(char *input)
  * @param input 
  * @return char* 
  */
-char    *extract_content_process_input(char *input)
+char	*extract_content_process_input(char *input)
 {
-    int     len;
-    
-    len = get_finish_process_in_input(input);
-    return (ft_substr(input, 0, len));
+	int	len;
+
+	len = get_finish_process_in_input(input);
+	return (ft_substr(input, 0, len));
 }
 
 /**
@@ -106,14 +106,14 @@ char    *extract_content_process_input(char *input)
  * @param str 
  * @return int 
  */
-int get_ignore_chars_process(char *str)
+int	get_ignore_chars_process(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i] == '|' || str[i] == ' ')
-        i++;
-    return (i);
+	i = 0;
+	while (str[i] == '|' || str[i] == ' ')
+		i++;
+	return (i);
 }
 
 /**
@@ -122,15 +122,15 @@ int get_ignore_chars_process(char *str)
  * @param input 
  * @return char* 
  */
-char    *extract_others_process_input(char *input)
+char	*extract_others_process_input(char *input)
 {
-    int     len;
-    int     start;
-    char    *str;
+	int		len;
+	int		start;
+	char	*str;
 
-    start = get_finish_process_in_input(input);
-    len = ft_strlen(input);
-    str = ft_substr(input, start + get_ignore_chars_process(&input[start]), len);
-    free(g_minishell->input);
-    return (str);
+	start = get_finish_process_in_input(input);
+	len = ft_strlen(input);
+	str = ft_substr(input, start + get_ignore_chars_process(&input[start]), len);
+	free(g_minishell->input);
+	return (str);
 }
