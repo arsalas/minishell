@@ -40,15 +40,12 @@ char	*ft_old_cd(void)
 */
 bool	ft_look_for_old(char *words)
 {
-	char	*path;
+	// char	*path;
 
-	if (words[0] == '-' && words[1] == '\0')
-	{
-		path = ft_old_cd();
-		return (1);
-	}
-
-	return (false);
+	if (!(words[0] == '-' && words[1] == '\0'))
+	    return (false);
+    ft_old_cd();
+    return (true);
 }
 
 /*
