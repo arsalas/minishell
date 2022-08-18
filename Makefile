@@ -34,14 +34,13 @@ LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
 
 # READ_FLAGS		:= -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include -lreadline 
 #-L $(LIBS_PATH)/readline -I $(LIBS_PATH)/readline
-
-# ifeq ($(shell uname),Linux)
-# READ_FLAGS		:= -L $(LIBS_PATH)/readline_brew/opt/readline/lib -I $(LIBS_PATH)/readline_brew/opt/readline/include -lreadline
-# else ifeq ($(USER)-,amurcia-)
+ifeq ($(shell uname),Linux)
+READ_FLAGS		:= -L $(LIBS_PATH)/readline_brew/opt/readline/lib -I $(LIBS_PATH)/readline_brew/opt/readline/include -lreadline
+else ifeq ($(USER),amurcia-)
 READ_FLAGS		:= -L $(LIBS_PATH)/readline_alicia/opt/readline/lib -I $(LIBS_PATH)/readline_alicia/opt/readline/include -lreadline
-# else
-# READ_FLAGS		:= -L $(LIBS_PATH)/readline/lib -I $(LIBS_PATH)/readline/include/readline -lreadline 
-# endif
+else
+READ_FLAGS		:= -L $(LIBS_PATH)/readline/lib -I $(LIBS_PATH)/readline/include/readline -lreadline 
+endif
 # -L $(LIBS_PATH)/readline/opt/readline/lib -I $(LIBS_PATH)/readline/opt/readline/include -lredline 
 
 # FOLDERS
