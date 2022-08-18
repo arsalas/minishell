@@ -5,9 +5,10 @@ NC				:= \033[m
 # FLAGS
 CC				:= gcc
 CFLAGS 			:= -Wall -Wextra -Werror
-READ_FLAGS		:= -lreadline
 FLAGS			:= $(CFLAGS)
 RM 				:= rm -f
+
+
 
 # SRC
 SRCS 			= main.c \
@@ -16,6 +17,12 @@ SRCS 			= main.c \
 # LIBS
 LIBS_PATH		:= ../libs
 LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
+
+ifeq ($(shell uname),Linux)
+READ_FLAGS		:= -L $(LIBS_PATH)/readline_brew/opt/readline/lib -I $(LIBS_PATH)/readline_brew/opt/readline/include -lreadline
+else
+READ_FLAGS		:= -L $(LIBS_PATH)/readline/lib -I $(LIBS_PATH)/readline/include/readline -lreadline 
+endif
 
 # FOLDERS
 OBJS_DIR		:= obj

@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/17 17:06:17 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/18 13:57:41 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	*ft_realloc(void *ptr, size_t size)
 		return (ptr);
 	new_ptr = get_memory(size, true);
 	ft_memcpy(new_ptr, ptr, size);
+	free(ptr);
 	return (new_ptr);
 }
 
@@ -72,7 +73,9 @@ void	free_memory(void)
 		free(g_minishell->memory.memory[i]);
 		i--;
 	}
-	printf("We have to make free\n");
+	// free_all_env();
+	// TODO --> free de minishell deja 1 leak
+	// free(g_minishell);
 }
 
 void	ft_free_usual(void)

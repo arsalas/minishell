@@ -22,7 +22,7 @@ SRCS 			= prompt.c utils.c process.c \
 				echo_aux.c  parse_echo.c\
 				history.c \
 				init.c \
-				ft_free_split.c ft_split_words.c ft_strstr.c ft_strcmp.c ft_trim.c\
+				ft_free_split.c ft_split_words.c ft_strstr.c ft_strcmp.c ft_trim.c ft_strcpy.c ft_join.c\
 				input.c input_aux1.c \
 				commands.c \
 				memory.c \
@@ -66,7 +66,7 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell src/input src/commands src/echo src/memory
+vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell src/input src/commands src/echo src/memory src/helpers
 
 .SECONDEXPANSION:
 
