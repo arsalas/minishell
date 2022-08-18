@@ -24,6 +24,9 @@ int main(int argc, char *argv[], char *envp[])
     // printf("pipes: %i\n", get_quantity_process_in_input("echo fsdfsd  |  echo \\' | fsdfsd"));
     // printf("%s\n", extract_next_echo_token("\'Hola Mundo $\""));
     // parse_echo("\\\"Hola Mundo \"Como estamos\"");
-    parse_echo("\"Hola Mundo\"Como estamos'Todo' Bien");
+    // parse_echo("\"Hola Mundo\"Como estamos'Todo' Bien");
+    char *arr[] = {"System", "Volumes", "Data", "sgoinfre", "Perso", "aramirez", "minishell", NULL};
+    char *str = ft_join(arr, '/');
+    printf("%s\n", str);
     return (0);
 }

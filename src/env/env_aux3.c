@@ -23,9 +23,9 @@ void	push_env(char *title, char *content)
 	g_minishell->env.count++;
 	g_minishell->env.vars = ft_realloc(g_minishell->env.vars,
 			sizeof(t_env_details) * g_minishell->env.count);
-	g_minishell->env.vars[g_minishell->env.count - 1].title = ft_strdup(title);
+	g_minishell->env.vars[g_minishell->env.count - 1].title = ft_strcpy(title);
 	g_minishell->env.vars[g_minishell->env.count - 1].content
-		= ft_strdup(content);
+		= ft_strcpy(content);
 }
 
 /**
@@ -89,4 +89,16 @@ void	delete_env(char *name)
 	g_minishell->env.count--;
 	g_minishell->env.vars = ft_realloc(g_minishell->env.vars,
 			sizeof(t_env_details) * g_minishell->env.count);
+}
+
+void	free_all_env(void)
+{
+	int	i;
+
+	i = 0;
+	while (i < g_minishell->env.count)
+	{
+		free_env(i);
+		i++;
+	}
 }

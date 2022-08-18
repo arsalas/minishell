@@ -6,12 +6,11 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:14:08 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/14 12:29:31 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/18 13:16:06 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 //TODO --> escapar comillas
 
@@ -21,70 +20,70 @@
  * @param input 
  * @return int 
  */
-int get_start_echo(char *input)
+int	get_start_echo(char *input)
 {
-    int i;
+	int	i;
 
-    i = 4;
-    while (input[i] == ' ')
-        i++;
-    return (i);
+	i = 4;
+	while (input[i] == ' ')
+		i++;
+	return (i);
 }
 
-char    *extract_next_echo_token(char *input)
+char	*extract_next_echo_token(char *input)
 {
-    char    quote;
-    int     i;
-    int     start;
+	char	quote;
+	int		i;
+	int		start;
 
-    i = 0;
-    if (is_quote(input[0]))
-    {
-       quote = input[0];
-        i = 1;
-    }
-    else
-        quote = '\0';
-    start = i;
-    if (quote)
-    {
-        while ((input[i] && input[i] != quote) || (input[i] == quote && input[i - 1] == '\\'))
-            i++;
-    }
-    else
-    {
-        while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]) && input[i - 1] == '\\') ))
-            i++;
-    } 
-    return (ft_substr(input, start, i - start));
+	i = 0;
+	if (is_quote(input[0]))
+	{
+		quote = input[0];
+		i = 1;
+	}
+	else
+		quote = '\0';
+	start = i;
+	if (quote)
+	{
+		while ((input[i] && input[i] != quote) || (input[i] == quote && input[i - 1] == '\\'))
+			i++;
+	}
+	else
+	{
+		while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]) && input[i - 1] == '\\') ))
+			i++;
+	}
+	return (ft_substr(input, start, i - start));
 }
 
-int    get_next_echo_token_start(char *input)
+int	get_next_echo_token_start(char *input)
 {
-    char    quote;
-    int     i;
+	char	quote;
+	int		i;
 
-    i = 0;
-    if (is_quote(input[0]))
-    {
-       quote = input[0];
-        i = 1;
-    }
-    else
-        quote = '\0';
-    if (quote)
-    {
-        while ((input[i] && input[i] != quote) || (input[i] == quote && input[i - 1] == '\\'))
-            i++;
-    }
-    else
-    {
-        while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]) && input[i - 1] == '\\') ))
-            i++;
-    } 
-    if (quote == '\'' || quote == '"')
-        i += 1;
-    return (i);
+	i = 0;
+	if (is_quote(input[0]))
+	{
+		quote = input[0];
+		i = 1;
+	}
+	else
+		quote = '\0';
+	if (quote)
+	{
+		while ((input[i] && input[i] != quote) || (input[i] == quote && input[i - 1] == '\\'))
+			i++;
+	}
+	else
+	{
+		while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]) && input[i - 1] == '\\') ))
+			i++;
+	}
+	if (quote == '\'' || quote == '"')
+		i += 1;
+	return (i);
 }
 
 /**
@@ -93,24 +92,24 @@ int    get_next_echo_token_start(char *input)
  * @param input 
  * @return char** 
  */
-char    **parse_echo(char *input)
+char	**parse_echo(char *input)
 {
-    char    **tokens;
-    int     i;
-    int     start;
+	char	**tokens;
+	int		i;
+	int		start;
 
-    start = 0;
-    tokens = get_memory(sizeof(char *));
-    i = 0;
-    tokens[i] = extract_next_echo_token(input);
-    while (ft_strlen(tokens[i]) > 0)
-    {
-        start += get_next_echo_token_start(&input[start]);
-        i++;
-        tokens = ft_realloc(tokens, sizeof(char *) * (i + 1));
-        tokens[i] = extract_next_echo_token(&input[start]);
-    }
-    tokens = ft_realloc(tokens, sizeof(char *) * (i + 1));
-    tokens[i] = NULL;
-    return (tokens);
+	start = 0;
+	tokens = get_memory(sizeof(char *), true);
+	i = 0;
+	tokens[i] = extract_next_echo_token(input);
+	while (ft_strlen(tokens[i]) > 0)
+	{
+		start += get_next_echo_token_start(&input[start]);
+		i++;
+		tokens = ft_realloc(tokens, sizeof(char *) * (i + 1));
+		tokens[i] = extract_next_echo_token(&input[start]);
+	}
+	tokens = ft_realloc(tokens, sizeof(char *) * (i + 1));
+	tokens[i] = NULL;
+	return (tokens);
 }

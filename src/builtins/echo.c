@@ -192,36 +192,36 @@ void	ft_make_echo(t_minishell *minishell, char *inside_pipes)
 */
 
 //TODO --> detectar si hay flag
-bool echo_have_flag(char *input)
+bool	echo_have_flag(char *input)
 {
-    (void)input;
-    return (false);
+	(void)input;
+	return (false);
 }
 
-int get_start_echo_input(char *input)
+int	get_start_echo_input(char *input)
 {
-    int i;
+	int	i;
 
-    i = 4;
-    while (input[i] == ' ')
-        i++;
-    return(i);
+	i = 4;
+	while (input[i] == ' ')
+		i++;
+	return (i);
 }
 
-char    *extract_echo_input(char *input)
+char	*extract_echo_input(char *input)
 {
-    int start;
-    int end;
+	int	start;
+	int	end;
 
-    start = get_start_echo_input(input);
-    end = ft_strlen(input);
-    return (ft_substr(input, start, end - start));
+	start = get_start_echo_input(input);
+	end = ft_strlen(input);
+	return (ft_substr(input, start, end - start));
 }
 
-void    ft_echo(char *input)
+void	ft_echo(char *input)
 {
-    char    *echo;
+	char	*echo;
 
-    echo = extract_echo_input(input);
-    execute_echo(echo, echo_have_flag(input));
+	echo = extract_echo_input(input);
+	execute_echo(echo, echo_have_flag(input));
 }

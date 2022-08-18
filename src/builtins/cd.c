@@ -39,7 +39,7 @@ void	ft_can_go(char *path)
 */
 int	ft_cant_go(char *path)
 {
-	struct stat	st;
+//	struct stat	st;
 	char		*long_path;
 
 	long_path = ft_strjoin((get_env_var("PWD")), "/");
@@ -58,9 +58,10 @@ int	ft_cant_go(char *path)
 		}
 	}
 	//CREO QUE ESTO DE AQUI ABAJO DEBERIA ESTAR NEGADO
-	if ((st.st_mode & S_IXUSR))
+//	if (!(st.st_mode & S_IXUSR))
+	if (access(long_path, R_OK) == -1)
 	{
-		printf("Permission denied\n");
+		printf("cd: permission denied: %s\n", path);
 		return (3);
 	}
 	return (0);
@@ -74,11 +75,11 @@ int	ft_set_directory(char *words)
 	char	*path;
 
 	path = words;
-	// if (ft_cant_go(path) != 0)
-	// {
-	// 	g_minishell->status = 1;
-	// 	return (0);
-	// }
+	if (ft_cant_go(path) != 0)
+	{
+		g_minishell->status = 1;
+		return (0);
+	}
 	ft_can_go(path);
 	return (0);
 }
