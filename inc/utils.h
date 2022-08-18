@@ -13,20 +13,16 @@
 #ifndef UTILS_H
 # define UTILS_H
 
+# include "stdbool.h"
+
 void	print_prompt(void);
 void	not_implemented(void);
 void	memory_error(void);
-void	*get_memory(size_t size);
-void	*ft_realloc(void *ptr, size_t size);
+void	*get_memory(size_t size, bool is_permanent);
 void	free_memory(void);
 int		create_process(void);
 
-char	**ft_split_words(char *str);
-void	ft_free_split(char **words);
-bool	ft_strcmp(const char *s1, const char *s2);
-char	*ft_strstr(const char *haystack, const char *needle);
-char	*ft_trim(char *str);
-bool    is_quote(char c);
-bool    is_scaped_char(char c);
+bool	is_quote(char c);
+bool	is_scaped_char(char c);
 
 #endif

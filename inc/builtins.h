@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/17 19:37:08 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/18 22:45:36 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ void	ft_make_exit(char *str);
 void	ft_cd(char *input);
 void	ft_parse_cd(char *input);
 int	    ft_no_more_data(char **words);
-int	    ft_get_home_dir(char *words);
+bool	ft_get_home_dir(char *words);
 void	ft_go_home(void);
-int	    ft_look_for_old(char *words);
+bool	    ft_look_for_old(char *words);
 char	*ft_old_cd(void);
 int	    ft_set_directory(char *words);
 int	    ft_change_pos(char *path);
 void	ft_can_go(char *path);
 int	    ft_cant_go(char *path);
+bool    ft_look_for_home(char **words);
 
 void	pwd(void);
 void	ft_env(void);
@@ -39,7 +40,7 @@ void	ft_export(char *input);
 void	unset(char *name);
 void    ft_others(char *path, char**argv);
 void    ft_echo(char *input);
-int     ft_look_for_root(char *words);
+bool    ft_look_for_root(char **words);
 
 // OTHERS
 bool	is_path(char *str);

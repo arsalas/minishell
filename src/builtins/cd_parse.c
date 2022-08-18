@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/18 18:07:50 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/18 22:32:09 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ bool	ft_look_for_old(char *words)
 		path = ft_old_cd();
 		return (1);
 	}
-
 	return (false);
 }
 
@@ -59,8 +58,6 @@ void	ft_go_home(void)
     update_env_var("OLDPWD", get_env_var("PWD"));
     update_env_var("PWD", get_env_var("HOME"));
     chdir(get_env_var("HOME"));
-	printf("PWD IS %s\n", get_env_var("PWD"));
-	printf("OLDPWD IS %s\n", get_env_var("OLDPWD"));
 }
 
 /*
@@ -78,14 +75,39 @@ bool	ft_get_home_dir(char *words)
 	return (false);
 }
 
-bool ft_look_for_root(char *words)
+/*
+* Nos dan : cd /
+* Y nada mas, implica que nos vamos a la raiz
+*/
+bool ft_look_for_root(char **words)
 {
-	if (words[0] == '/' && words[1] == '\0')
+	char	**path_split;
+	int		cont;
+
+	cont = 0;
+	if (words[1][0] == '/' && words[1][1] == '\0')
 	{
-		update_env_var("OLDPWD", get_env_var("PWD"));
-//		getdir("/");
-		update_env_var("PWD", "/");
+		path_split = ft_split(getcwd(NULL, 0), '/');
+		while (path_split[cont])
+		{
+			ft_can_go("..");
+			cont++;
+		}
 		return (true);
+	}
+	return (false);
+}
+
+/*
+* Nos dan solamente : cd
+* Y nada mas, implica que nos vamos a home
+*/
+bool ft_look_for_home(char **words)
+{
+	if (words[1] == NULL)
+	{
+        ft_go_home();
+        return (true);
 	}
 	return (false);
 }
