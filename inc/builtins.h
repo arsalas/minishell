@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/19 17:17:54 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/19 17:23:34 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	    ft_change_pos(char *path);
 void	ft_can_go(char *path);
 int	    ft_cant_go(char *path);
 bool    ft_look_for_home(char **words);
+int		ft_set_directory(char *words);
 
 void	pwd(void);
 void	ft_env(void);
