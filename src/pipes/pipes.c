@@ -27,6 +27,8 @@ static void	wait_pipes_process(int process, int *pid)
 	while (i < process)
 	{
 		waitpid(pid[i], &status, 0);
+		if (WIFEXITED(status))
+			g_minishell->last_process = WEXITSTATUS(status);
 		i++;
 	}
 }
@@ -68,7 +70,6 @@ void	execute_multiple_pipe(int process, t_pipe *commands)
  */
 void	execute_single_pipe(t_pipe *commands)
 {
-	int	status;
 	int	fd[2];
 	int	*pid;
 
@@ -82,7 +83,7 @@ void	execute_single_pipe(t_pipe *commands)
 	pid[1] = create_process();
 	if (pid[1] == 0)
 		last_pipe_child(fd, commands[1]);
-	wait(&status);
+	wait_pipes_process(2, pid);
 }
 
 /**
