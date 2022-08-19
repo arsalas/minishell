@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/19 17:13:12 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/19 17:19:50 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_parse_cd(char *input)
 	words = ft_split_words(input);
 	if (ft_look_for_home(words))
 		return ;
-
 	if (ft_look_for_root(words))
 		return ;
 	given_path = ft_split(words[1], '/');

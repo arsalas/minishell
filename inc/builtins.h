@@ -25,6 +25,7 @@ void	ft_make_exit(char *str);
 //CD
 void	ft_cd(char *input);
 void	ft_parse_cd(char *input);
+bool	ft_look_for_old(char *words);
 int	    ft_no_more_data(char **words);
 bool	ft_get_home_dir(char *words);
 void	ft_go_home(void);
