@@ -92,6 +92,7 @@ typedef struct s_minishell
 	t_env			env;
 	t_parse			parse;
 	int				status;
+	int				last_process;
 	struct termios	term;
 	t_builtins		last_command;
 	t_process		process;
