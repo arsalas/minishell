@@ -48,3 +48,33 @@ void	fork_error(void)
 	perror("Error in process fork\n");
 	close_minishell();
 }
+
+/**
+ * @brief Printa por pantalla que no es un directorio
+ * 
+ * @param path sitio al que hemos intentado ir
+ */
+void	ft_not_directory(char *path)
+{
+	printf("cd: not a directory: %s\n", path);
+}
+
+/**
+ * @brief Printa por pantalla que no tenemos permiso de acceso
+ * 
+ * @param path sitio al que hemos intentado ir
+ */
+void	ft_no_permission(char *path)
+{
+	printf("cd: permission denied: %s\n", path);
+}
+
+/**
+ * @brief Printa por pantalla que no se ha encontrado el archivo o directorio
+ * 
+ * @param path sitio al que hemos intentado ir
+ */
+void	ft_no_file_dir(char *path)
+{
+	printf("cd: no such file or directory: %s\n", path);
+}

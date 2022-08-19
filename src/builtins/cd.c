@@ -17,18 +17,9 @@
 */
 void	ft_can_go(char *path)
 {
-	char	*pwd;
-	char	*long_path;
-
-	long_path = ft_strjoin((get_env_var("PWD")), "/");
-	if (is_path(long_path))
-	{
-		update_env_var("OLDPWD", get_env_var("PWD"));
-		pwd = getcwd(NULL, 0);
-		chdir(path);
-		update_env_var("PWD", (ft_strjoin(long_path, path)));
-		free (pwd);
-	}
+	update_env_var("OLDPWD", get_env_var("PWD"));
+	chdir(path);
+	update_env_var("PWD", getcwd(NULL, 0));
 }
 
 /*
@@ -39,31 +30,29 @@ void	ft_can_go(char *path)
 */
 int	ft_cant_go(char *path)
 {
-//	struct stat	st;
-	char		*long_path;
+	char	*long_path;
 
 	long_path = ft_strjoin((get_env_var("PWD")), "/");
 	long_path = ft_strjoin(long_path, path);
 	if (chdir(path) != 0)
 	{
-		printf("cd: no such file or directory: %s\n", long_path);
+		ft_no_file_dir(long_path);
 		return (1);
 	}
 	if (access(long_path, X_OK) == -1)
 	{
 		if (is_path(long_path))
 		{
-			printf("cd: not a directory: %s\n", long_path);
+			ft_not_directory(long_path);
 			return (2);
 		}
 	}
-	//CREO QUE ESTO DE AQUI ABAJO DEBERIA ESTAR NEGADO
-//	if (!(st.st_mode & S_IXUSR))
 	if (access(long_path, R_OK) == -1)
 	{
-		printf("cd: permission denied: %s\n", path);
+		ft_no_permission(long_path);
 		return (3);
 	}
+	chdir(get_env_var("PWD"));
 	return (0);
 }
 
@@ -75,7 +64,7 @@ int	ft_set_directory(char *words)
 	char	*path;
 
 	path = words;
-	if (ft_cant_go(path) != 0)
+	if (ft_cant_go(words) != 0)
 	{
 		g_minishell->status = 1;
 		return (0);

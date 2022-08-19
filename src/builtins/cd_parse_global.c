@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse_global.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/18 18:21:56 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/19 17:13:12 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,27 @@
 void	ft_parse_cd(char *input)
 {
 	char	**words;
-	char	**paths;
+	char	**given_path;
 	int		count;
 
 	count = 0;
 	words = ft_split_words(input);
-    if (words[1] == NULL)
+	if (ft_look_for_home(words))
+		return ;
+
+	if (ft_look_for_root(words))
+		return ;
+	given_path = ft_split(words[1], '/');
+	while (given_path[count] != NULL)
 	{
-        ft_go_home();
-        return ;
-	}
-	paths = ft_split(words[1], '/');
-	while (paths[count] != NULL)
-	{
-		if (ft_get_home_dir(paths[count]))
+		if (ft_get_home_dir(given_path[count]))
 			count++;
-		else if (ft_look_for_old(paths[count]))
-			count++;
-		else if (ft_look_for_root(paths[count]))
+		else if (ft_look_for_old(given_path[count]))
 			count++;
 		else
 		{
-			ft_set_directory(paths[count]);
+			ft_set_directory(given_path[count]);
 			count++;
 		}
 	}
 }
-
-
-// TODO
-// TENGO QUE HACER QUE ENTRE EN UNO Y NO EN LOS DEMAS
-// PORQUE SINO TENDRE QUE ENTRAR EN EL ULTIMO Y PONDRA ~ EN LA RUTA
-// PONER LOS DOS PUNTOS

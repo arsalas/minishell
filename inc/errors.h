@@ -17,5 +17,8 @@ void	close_minishell(void);
 void	memory_error(void);
 void	cmd_not_found(char *cmd);
 void	fork_error(void);
+void	ft_no_file_dir(char *path);
+void	ft_no_permission(char *path);
+void	ft_not_directory(char *path);
 
 #endif
