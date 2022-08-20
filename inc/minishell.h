@@ -26,6 +26,7 @@
 # include <readline/history.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include "libft.h"
 # include "colors.h"
 # include "enums.h"
@@ -78,6 +79,13 @@ typedef struct s_memory
 	void	**memory;
 }	t_memory;
 
+typedef struct s_tokens
+{
+	int		token;
+	char	*content;
+	char	*path;
+}	t_tokens;
+
 /*
 * INPUT es la string que me dan por terminal
 * TRACES es el array bidimensional en funcion de cuantos pipes haya
@@ -96,6 +104,7 @@ typedef struct s_minishell
 	t_builtins		last_command;
 	t_process		process;
 	t_memory		memory;
+	t_tokens		tokens;
 }	t_minishell;
 
 extern t_minishell	*g_minishell;
@@ -116,5 +125,13 @@ int		ft_get_signal(void);
 
 //FILES IN MEMORY
 void	ft_free_usual(void);
+
+
+//FILES IN REDIRECTIONS 
+void    ft_get_redir(char *input);
+int 	ft_redir_in(int fd);
+int 	ft_trunc(int fd);
+int 	ft_append(int fd);
+int 	ft_fd(void);
 
 #endif

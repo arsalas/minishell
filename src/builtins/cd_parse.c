@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/18 22:32:09 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/18 22:47:30 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ bool	ft_get_home_dir(char *words)
 * Nos dan : cd /
 * Y nada mas, implica que nos vamos a la raiz
 */
-bool ft_look_for_root(char **words)
+bool	ft_look_for_root(char **words)
 {
 	char	**path_split;
 	int		cont;
@@ -102,7 +102,7 @@ bool ft_look_for_root(char **words)
 * Nos dan solamente : cd
 * Y nada mas, implica que nos vamos a home
 */
-bool ft_look_for_home(char **words)
+bool	ft_look_for_home(char **words)
 {
 	if (words[1] == NULL)
 	{

@@ -26,6 +26,7 @@ SRCS 			= prompt.c utils.c process.c \
 				input.c input_aux1.c \
 				commands.c \
 				memory.c \
+				get_redir.c \
 
 
 # LIBS
@@ -69,7 +70,7 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell src/input src/commands src/echo src/memory src/helpers
+vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell src/input src/commands src/echo src/memory src/helpers src/redirections
 
 .SECONDEXPANSION:
 
