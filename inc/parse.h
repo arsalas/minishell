@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 18:48:28 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/22 18:59:59 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:39:06 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int			ft_is_pwd(char **words);
 char        *extract_next_echo_token(char *input);
 char        **parse_echo(char *input);
 bool        have_redirect(char *raw);
+int	        get_redirect_quantity(char *raw);
 
 #endif

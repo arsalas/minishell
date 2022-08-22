@@ -43,7 +43,7 @@ int main(int argc, char *argv[], char *envp[])
 
 
 
-    printf("%i\n", have_redirect("dsfs <dgd"));
+    printf("%i\n", get_redirect_quantity("dsfs> <<dgd"));
     // input = ft_get_input();
     // if (input[cont] == '>' && input[cont + 1] == ' ')
     // {
