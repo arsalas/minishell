@@ -58,7 +58,10 @@ int	print_env_var(char *input)
 	while (input[end] && (input[end] != ' ' && input[end] != ','))
 		end++;
 	name = ft_substr(input, 1, end - 1);
-	printf("%s", get_env_var(name));
+	if (ft_strncmp(name, "?", 1) == 0)
+		printf("%i", g_minishell->last_process);
+	else
+		printf("%s", get_env_var(name));
 	free(name);
 	return (end);
 }

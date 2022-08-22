@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/18 22:47:30 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:08:04 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,10 @@ char	*ft_old_cd(void)
 */
 bool	ft_look_for_old(char *words)
 {
-	char	*path;
-
-	if (words[0] == '-' && words[1] == '\0')
-	{
-		path = ft_old_cd();
-		return (1);
-	}
-	return (false);
+	if (!(words[0] == '-' && words[1] == '\0'))
+	    return (false);
+    ft_old_cd();
+    return (true);
 }
 
 /*
