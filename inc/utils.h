@@ -24,5 +24,6 @@ int		create_process(void);
 
 bool	is_quote(char c);
 bool	is_scaped_char(char c);
+bool	is_redirect(char c);
 
 #endif

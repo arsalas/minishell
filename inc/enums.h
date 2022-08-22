@@ -27,16 +27,39 @@ typedef enum e_builtins
 	C_OTHERS
 }	t_builtins;
 
+typedef enum e_redir_type
+{
+	REIN,
+	REOUT,
+	DOUBBLE_REIN,
+	DOUBBLE_REOUT
+}	t_redir_type;
+
+typedef struct s_redir_info
+{
+	t_redir_type	types;
+	char			*files;
+}	t_redir_info;
+
+typedef struct s_redirs
+{
+	int	     		quantity; // 2
+	t_redir_info	*info;	// [{type: REOUT, files: test2.txt}, {type: REOUT, files: test}]
+}	t_redirs;
+
 typedef struct s_pipe
 {
-	t_builtins	command;
-	char		*input;
+	t_builtins	command; // C_OTHERS
+	char		*raw;	// /bin/wc < test2.txt < test
+	char		*input; // /bin/wc -> hola adios
+	t_redirs	*redirs;
+
 }	t_pipe;
 
 typedef struct s_process
 {
-    int     quantity;
-    t_pipe  *content;
+    int		quantity;
+    t_pipe	*content;
 }   t_process;
 
 #endif

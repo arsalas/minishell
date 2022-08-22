@@ -1,7 +1,7 @@
 #include "minishell.h"
 #include "test.h"
 
-// t_minishell *g_minishell;
+t_minishell *g_minishell;
 /*
 int main(int argc, char *argv[], char *envp[])
 {
@@ -37,16 +37,19 @@ int main(int argc, char *argv[], char *envp[])
     (void)argc;
     (void)argv;
     (void)envp;
-    char *input;
-    int fd1;
-    int cont = 1;
+    // char *input;
+    // int fd1;
+    // int cont = 1;
 
-    input = ft_get_input();
-    if (input[cont] == '>' && input[cont + 1] == ' ')
-    {
-        fd1 = open("/System/Volumes/Data/sgoinfre/Perso/amurcia-/minishell/prueba.txt", O_CREAT | O_RDWR | O_APPEND, 0666);
-        ft_putstr_fd("hello", 2);
-        close (fd1);
-    }
+
+
+    printf("%i\n", have_redirect("dsfs <dgd"));
+    // input = ft_get_input();
+    // if (input[cont] == '>' && input[cont + 1] == ' ')
+    // {
+    //     fd1 = open("/System/Volumes/Data/sgoinfre/Perso/amurcia-/minishell/prueba.txt", O_CREAT | O_RDWR | O_APPEND, 0666);
+    //     ft_putstr_fd("hello", 2);
+    //     close (fd1);
+    // }
     return (0);
 }
