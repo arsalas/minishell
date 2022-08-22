@@ -43,7 +43,7 @@ int main(int argc, char *argv[], char *envp[])
 
 
 
-    printf("%i\n", get_redirect_quantity("dsfs> <<dgd"));
+    printf("%s\n", extract_content_input("echo > gd.txt"));
     // input = ft_get_input();
     // if (input[cont] == '>' && input[cont + 1] == ' ')
     // {

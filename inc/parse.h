@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 18:48:28 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/22 19:39:06 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:33:35 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,8 @@ char        *extract_next_echo_token(char *input);
 char        **parse_echo(char *input);
 bool        have_redirect(char *raw);
 int	        get_redirect_quantity(char *raw);
+t_redir_type get_redirect_type(char *raw, int number);
+char        *extract_content_input(char *raw);
+char        *get_filename_redirect(char *raw, int number);
 
 #endif
