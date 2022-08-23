@@ -41,8 +41,8 @@ int	get_index_by_var(char *name)
 	i = 0;
 	while (i < g_minishell->env.count)
 	{
-		if (ft_strncmp(name, g_minishell->env.vars[i].title,
-				ft_strlen(name)) == 0)
+		if (ft_strcmp(name, g_minishell->env.vars[i].title,
+				true))
 			return (i);
 		i++;
 	}

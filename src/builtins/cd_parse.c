@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/19 17:18:47 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:09:06 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ char	*ft_old_cd(void)
 bool	ft_look_for_old(char *words)
 {
 	if (!(words[0] == '-' && words[1] == '\0'))
-	    return (false);
-    ft_old_cd();
-    return (true);
+		return (false);
+	ft_old_cd();
+	return (true);
 }
 
 /*
@@ -51,9 +51,9 @@ bool	ft_look_for_old(char *words)
 */
 void	ft_go_home(void)
 {
-    update_env_var("OLDPWD", get_env_var("PWD"));
-    update_env_var("PWD", get_env_var("HOME"));
-    chdir(get_env_var("HOME"));
+	update_env_var("OLDPWD", get_env_var("PWD"));
+	update_env_var("PWD", get_env_var("HOME"));
+	chdir(get_env_var("HOME"));
 }
 
 /*
@@ -75,7 +75,7 @@ bool	ft_get_home_dir(char *words)
 * Nos dan : cd /
 * Y nada mas, implica que nos vamos a la raiz
 */
-bool ft_look_for_root(char **words)
+bool	ft_look_for_root(char **words)
 {
 	char	**path_split;
 	int		cont;
@@ -98,12 +98,12 @@ bool ft_look_for_root(char **words)
 * Nos dan solamente : cd
 * Y nada mas, implica que nos vamos a home
 */
-bool ft_look_for_home(char **words)
+bool	ft_look_for_home(char **words)
 {
 	if (words[1] == NULL)
 	{
-        ft_go_home();
-        return (true);
+		ft_go_home();
+		return (true);
 	}
 	return (false);
 }

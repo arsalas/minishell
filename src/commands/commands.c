@@ -17,7 +17,6 @@ void	ft_execute(t_pipe builting)
 	g_minishell->last_command = builting.command;
 	if (builting.command == C_ENV)
 		return (ft_env());
-	//? que hace el string de exit
 	if (builting.command == C_EXIT)
 		return (ft_exit(builting.input));
 	if (builting.command == C_PWD)
@@ -28,4 +27,7 @@ void	ft_execute(t_pipe builting)
 		return (ft_echo(builting.input));
 	if (builting.command == C_CD)
 		return (ft_cd(builting.input));
+	if (builting.command == C_OTHERS)
+		// ft_get_redir(builting.input);
+		ft_others(builting.input, NULL);
 }

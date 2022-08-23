@@ -44,7 +44,7 @@ bool	is_var(char *str)
 
 /**
  * @brief Printa la variable de entorno 
- * y devuelve el numero de caracteres de el literal de la variablde con $ 
+ * y devuelve el numero de caracteres de el literal de la variable con $ 
  * 
  * @param input nombre variable de entorno
  * @return numero de caracteres de la variable de entorno
@@ -58,7 +58,7 @@ int	print_env_var(char *input)
 	while (input[end] && (input[end] != ' ' && input[end] != ','))
 		end++;
 	name = ft_substr(input, 1, end - 1);
-	if (ft_strncmp(name, "?", 1) == 0)
+	if (ft_strcmp(name, "?", true))
 		printf("%i", g_minishell->last_process);
 	else
 		printf("%s", get_env_var(name));
@@ -77,7 +77,9 @@ void	print_echo_token(char *token)
 		{
 			i += print_env_var(&token[i]);
 		}
-		if (token[i] != '\\' || (token[i] == '\\' && i > 0 && token[i - 1] == '\\'))
+		if (token[i]
+			&& (token[i] != '\\'
+				|| (token[i] == '\\' && i > 0 && token[i - 1] == '\\')))
 			printf("%c", token[i]);
 		i++;
 	}

@@ -2,7 +2,7 @@
 #include "test.h"
 
 t_minishell *g_minishell;
-
+/*
 int main(int argc, char *argv[], char *envp[])
 {
     (void)argc;
@@ -25,8 +25,31 @@ int main(int argc, char *argv[], char *envp[])
     // printf("%s\n", extract_next_echo_token("\'Hola Mundo $\""));
     // parse_echo("\\\"Hola Mundo \"Como estamos\"");
     // parse_echo("\"Hola Mundo\"Como estamos'Todo' Bien");
-    char *arr[] = {"System", "Volumes", "Data", "sgoinfre", "Perso", "aramirez", "minishell", NULL};
-    char *str = ft_join(arr, '/');
-    printf("%s\n", str);
+    // char *arr[] = {"System", "Volumes", "Data", "sgoinfre", "Perso", "aramirez", "minishell", NULL};
+    // char *str = ft_join(arr, '/');
+    // printf("%s\n", str);
+
+    return (0);
+}*/
+
+int main(int argc, char *argv[], char *envp[])
+{
+    (void)argc;
+    (void)argv;
+    (void)envp;
+    // char *input;
+    // int fd1;
+    // int cont = 1;
+
+
+
+    printf("%s\n", extract_content_input("echo > gd.txt"));
+    // input = ft_get_input();
+    // if (input[cont] == '>' && input[cont + 1] == ' ')
+    // {
+    //     fd1 = open("/System/Volumes/Data/sgoinfre/Perso/amurcia-/minishell/prueba.txt", O_CREAT | O_RDWR | O_APPEND, 0666);
+    //     ft_putstr_fd("hello", 2);
+    //     close (fd1);
+    // }
     return (0);
 }

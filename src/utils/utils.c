@@ -45,3 +45,16 @@ bool	is_scaped_char(char c)
 		return (true);
 	return (false);
 }
+
+/**
+ * @brief Indica si el caracter pasado es una redireccion
+ * 
+ * @param c 
+ * @return bool 
+ */
+bool	is_redirect(char c)
+{
+	if (c == '>' || c == '<')
+		return (true);
+	return (false);
+}
