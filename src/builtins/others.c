@@ -41,13 +41,23 @@ bool	is_path(char *str)
  */
 void	ft_others(char *path, char**argv)
 {
+	pid_t	pid;
+	int		status;
+
 	if (access(path, X_OK) == -1)
 	{
 		if (is_path(path))
 			printf("%s: No such file or directory\n", path);
 		else
 			printf("%s: command not found\n", path);
+		return ;
 	}
 	// TODO --> generar la array de str del env
-	execve(path, argv, argv);
+	pid = fork();
+	if (pid == 0)
+	{
+		execve(path, argv, argv);
+		exit(1);
+	}
+	waitpid(pid, &status, 0);
 }
