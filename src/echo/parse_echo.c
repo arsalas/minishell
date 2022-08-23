@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:14:08 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/18 13:16:06 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:21:21 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ char	*extract_next_echo_token(char *input)
 	start = i;
 	if (quote)
 	{
-		while ((input[i] && input[i] != quote) || (input[i] == quote && input[i - 1] == '\\'))
+		while ((input[i] && input[i] != quote) || (input[i] == quote))
 			i++;
 	}
 	else
 	{
-		while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]) && input[i - 1] == '\\') ))
+		while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]))))
 			i++;
 	}
 	return (ft_substr(input, start, i - start));
@@ -73,12 +73,12 @@ int	get_next_echo_token_start(char *input)
 		quote = '\0';
 	if (quote)
 	{
-		while ((input[i] && input[i] != quote) || (input[i] == quote && input[i - 1] == '\\'))
+		while ((input[i] && input[i] != quote) || (input[i] == quote))
 			i++;
 	}
 	else
 	{
-		while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]) && input[i - 1] == '\\') ))
+		while (input[i] && (!is_quote(input[i]) || (is_quote(input[i]))))
 			i++;
 	}
 	if (quote == '\'' || quote == '"')

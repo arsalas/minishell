@@ -43,7 +43,14 @@ int main(int argc, char *argv[], char *envp[])
 
 
 
-    printf("%s\n", extract_content_input("echo > gd.txt"));
+    // printf("%s\n", extract_content_input("echo > gd.txt"));
+    // get_redirect_quantity("echo > gd.txt") == 1 ? printf(GRN"OK\n") : printf(RED"OK\n");
+    // get_redirect_quantity("echo \\> gd.txt") == 0 ? printf(GRN"OK\n") : printf(RED"OK\n");
+    // get_redirect_quantity("echo >> gd.txt") == 1 ? printf(GRN"OK\n") : printf(RED"OK\n");
+    printf("%s\n", get_input_redirect("echo holacaracola > gd.txt"));
+    printf("%s\n", get_input_redirect("echo holacaracola \\> gd.txt"));
+    printf("%s\n", get_input_redirect("echo holacaracola \">\" gd.txt"));
+    printf("%s\n", get_input_redirect("'echo holacaracola \\'>\\' gd.txt'"));
     // input = ft_get_input();
     // if (input[cont] == '>' && input[cont + 1] == ' ')
     // {

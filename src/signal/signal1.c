@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/15 13:46:18 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:13:00 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static void	ft_bloq(int signal)
 		if (signal == SIGINT)
 		{
 			ft_putchar_fd('\n', 1);
-			g_minishell->status = 131;
+			g_minishell->status = CNT_C;
 		}
 		if (signal == SIGQUIT)
 		{
 			ft_putstr_fd("Quit: 3\n", 1);
-			g_minishell->status = 131;
+			g_minishell->status = CNT_C;
 		}
 //	}
 }
@@ -57,7 +57,7 @@ static void	ft_handle_d(int signal)
 static void	ft_handle_slash(int signal)
 {
 	if (signal == SIGQUIT
-		&& (g_minishell->status != 0 && g_minishell->status != 131))
+		&& (g_minishell->status != 0 && g_minishell->status != CNT_C))
 		ft_bloq(signal);
 	else if (signal == SIGQUIT)
 	{
@@ -75,7 +75,7 @@ static void	ft_handle_slash(int signal)
 static void	ft_handle_c(int signal)
 {
 	if (signal == SIGINT
-		&& (g_minishell->status != 0 && g_minishell->status != 131))
+		&& (g_minishell->status != 0 && g_minishell->status != CNT_C))
 		ft_bloq(signal);
 	else if (signal == SIGINT)
 	{
@@ -83,12 +83,12 @@ static void	ft_handle_c(int signal)
 		rl_replace_line("", 1);
 		rl_on_new_line();
 		rl_redisplay();
-		g_minishell->status = 1;
+		g_minishell->status = GENERAL;
 	}
 }
 
 /*
-* Enviamos una senal
+* Enviamos una señal
 */
 int	ft_get_signal(void)
 {

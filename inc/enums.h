@@ -71,8 +71,9 @@ typedef struct s_pipe
 {
 	t_builtins	command; // C_OTHERS
 	char		*raw;	// /bin/wc < test2.txt < test
-	char		*input; // /bin/wc -> hola adios
-	t_redirs	*redirs;
+	char		*input; // /bin/wc
+	t_redirs	redirs;
+	 // echo hola < test1.txt < echo adios < test2.txt
 
 }	t_pipe;
 

@@ -44,7 +44,7 @@ void	get_process_content(void)
 	while (i < g_minishell->process.quantity)
 	{
 		g_minishell->process.content[i].command = ft_get_command(g_minishell->input);
-		g_minishell->process.content[i].input = extract_content_process_input(g_minishell->input);
+		g_minishell->process.content[i].raw = extract_content_process_input(g_minishell->input);
 		g_minishell->input = extract_others_process_input(g_minishell->input);
 		i++;
 	}
