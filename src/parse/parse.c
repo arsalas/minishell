@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/24 14:02:01 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:26:09 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,16 +159,13 @@ char	*extract_content_input(char *raw)
 	count = 0;
 	i = 0;
 	text = malloc(sizeof(char) * ft_strlen(raw) + 1);
-	while (raw[count] == ' ' || raw[count] == '\t' || raw[count] == '\n')
-		count++;
-	while (raw[count] && (raw[count] != ' ' && raw[count] != '\t' && raw[count] != '\n'))
-		count++;
-	while (raw[count] == ' ' || raw[count] == '\t' || raw[count] == '\n')
-		count++;
+	count = ft_skip_one_word(raw)
 	if (raw[count] == '>' || raw[count] == '<')
 		return (NULL);
-	while (raw[count] && (raw[count] != ' ' && raw[count] != '\t' && raw[count] != '\n'))
+	while (raw[count] && (raw[count] != '>' && raw[count] != '<'))
 	{
+		if (is_quote(raw[count]))
+			count++;
 		text[i] = raw[count];
 		i++;
 		count++;

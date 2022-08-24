@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse_global.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/19 17:19:50 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:21:29 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	ft_is_absolute(char **words)
+{
+	if (words[1][0] == '/' && words[1][1] != '\0')
+	{
+		update_env_var("OLDPWD", get_env_var("PWD"));
+		chdir(words[1]);
+		update_env_var("PWD", getcwd(NULL, 0));
+		return (true);
+	}
+	return (false);
+}
 
 /*
 * Input es aquello que hay entre pipes en el momento en que me dan CD como comando
@@ -28,6 +40,8 @@ void	ft_parse_cd(char *input)
 	if (ft_look_for_home(words))
 		return ;
 	if (ft_look_for_root(words))
+		return ;
+	if (ft_is_absolute(words))
 		return ;
 	given_path = ft_split(words[1], '/');
 	while (given_path[count] != NULL)
