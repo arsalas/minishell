@@ -37,19 +37,9 @@ int main(int argc, char *argv[], char *envp[])
     (void)argc;
     (void)argv;
     (void)envp;
-    // char *input;
-    // int fd1;
-    // int cont = 1;
 
-
-
-    printf("%s\n", extract_content_input("echo > gd.txt"));
-    // input = ft_get_input();
-    // if (input[cont] == '>' && input[cont + 1] == ' ')
-    // {
-    //     fd1 = open("/System/Volumes/Data/sgoinfre/Perso/amurcia-/minishell/prueba.txt", O_CREAT | O_RDWR | O_APPEND, 0666);
-    //     ft_putstr_fd("hello", 2);
-    //     close (fd1);
-    // }
+    chdir("/System/Volumes/Data/sgoinfre/Perso/amurcia-");
+    update_env_var("PWD", getcwd(NULL, 0));
+    printf("WE ARE IN %s\n", get_env_var("PWD"));
     return (0);
 }
