@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/23 19:36:54 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:02:01 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,12 @@ bool    have_redirect(char *raw)
 t_redir_type get_redirect_type(char *raw, int number)
 {
 	int		count;
-	int		redir;
+	int		q_redir;
 	bool	open_quote;
 	char	quote;
 
-	(void) number;
 	count = 0;
-	redir = 0;
+	q_redir = 1;
 	open_quote = false;
 	while (raw[count])
 	{
@@ -71,16 +70,40 @@ t_redir_type get_redirect_type(char *raw, int number)
 		if (is_quote(raw[count]) && raw[count] == quote)
 			open_quote = !open_quote;
 		if (raw[count] == '>' && raw[count + 1] == '>' && !open_quote)
-			return (DOUBBLE_REIN);
-		if (raw[count] == '<' && raw[count + 1] == '<' && !open_quote)
-			return (DOUBBLE_REOUT);
-		if (raw[count] == '<' && !open_quote)
-			return (REOUT);
-		if (raw[count] == '>' && !open_quote)
-			return (REIN);
+		{
+			if (q_redir == number)
+				return (DOUBBLE_REOUT);
+			else
+				q_redir++;
+			if (raw[count] == '>' && raw[count + 1] == '>') 
+				count++;
+		}
+		else if (raw[count] == '<' && raw[count + 1] == '<' && !open_quote)
+		{
+			if (q_redir == number)
+				return (DOUBBLE_REIN);
+			else
+				q_redir++;
+			if (raw[count] == '<' && raw[count + 1] == '<') 
+				count++;
+		}
+		else if (raw[count] == '<' && !open_quote)
+		{
+			if (q_redir == number)
+				return (REIN);
+			else
+				q_redir++;
+		}
+		else if (raw[count] == '>' && !open_quote)
+		{
+			if (q_redir == number)
+				return (REOUT);
+			else
+				q_redir++;
+		}
 		count++;
 	}
-	return (REIN);
+	return (REOUT);
 }
 
 /**
@@ -162,15 +185,16 @@ char	*extract_content_input(char *raw)
  */
 char    *get_filename_redirect(char *raw, int number)
 {
-	(void) number;
 	int		count;
 	int		i;
 	bool	open_quote;
 	char	quote;
 	char	*files;
+	int		q_files;
 
 	count = 0;
 	i = 0;
+	q_files = 1;
 	open_quote = false;
 	files = malloc(sizeof(char) * ft_strlen(raw) + 1);
 	while (raw[count])
@@ -183,7 +207,14 @@ char    *get_filename_redirect(char *raw, int number)
 		else if (is_quote(raw[count]) && raw[count] == quote)
 			open_quote = !open_quote;
 		else if ((raw[count] == '>' || raw[count] == '<') && !open_quote)
-			break ;
+		{
+			if ((raw[count] == '>' && raw[count + 1] == '>') || (raw[count] == '<' && raw[count + 1] == '<')) 
+				count++;
+			if (q_files == number)
+				break ;
+			else	
+				q_files++;
+		}
 		count++;
 	}
 	while (raw[count] == '>' || raw[count] == '<'
@@ -212,7 +243,6 @@ char	*get_input_redirect(char *raw)
 	{
 		if (is_quote(raw[count]) && !open_quote)
 		{
-			exit(0);
 			quote = raw[count];
 		}
 		else if (is_quote(raw[count]) && raw[count] == quote)
@@ -230,6 +260,7 @@ void	get_input_parsed(char *raw, int process)
 
 	g_minishell->process.content[process].redirs.quantity = 0;
 	g_minishell->process.content->input = get_input_redirect(raw);
+	printf("input: %s\n",g_minishell->process.content->input);
 	if (have_redirect(raw))
 	{
 		g_minishell->process.content[process].redirs.quantity = get_redirect_quantity(raw);

@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/22 16:01:12 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:17:30 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_process_memory(void)
 	i = 0;
 	while (i < g_minishell->process.quantity)
 	{
-		free(g_minishell->process.content[i].input);
+		free(g_minishell->process.content[i].raw);
 		i++;
 	}
 	free(g_minishell->process.content);
