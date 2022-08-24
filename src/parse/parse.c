@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/22 20:35:49 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/24 09:17:48 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ bool    have_redirect(char *raw)
 		else if (is_quote(raw[i]) && raw[i] == quote)
 			open_quote = !open_quote;
 		if (is_redirect(raw[i]) && !open_quote)
-		{
-			if (i > 0 && raw[i - 1] != '\\')
-				return (true);
-		}
+			return (true);
 		i++;
 	}
 	return (false);
@@ -71,28 +68,16 @@ t_redir_type get_redirect_type(char *raw, int number)
 			open_quote = true;
 			quote = raw[count];
 		}
-		else if (is_quote(raw[count]) && raw[count] == quote)
+		if (is_quote(raw[count]) && raw[count] == quote)
 			open_quote = !open_quote;
-		else if (raw[count] == '>' && raw[count + 1] == '>' && !open_quote)
-		{
-			if (count > 0 &&  raw[count - 1] != '\\')
-				return (DOUBBLE_REIN);
-		}
-		else if (raw[count] == '<' && raw[count + 1] == '<' && !open_quote)
-		{
-			if (count > 0 &&  raw[count - 1] != '\\')
-				return (DOUBBLE_REOUT);
-		}
-		else if (raw[count] == '<'  && !open_quote)
-		{
-			if (count > 0 &&  raw[count - 1] != '\\')
-				return (REOUT);
-		}
-		else if (raw[count + 1] == '>' && !open_quote)
-		{
-			if (count > 0 &&  raw[count - 1] != '\\')
-				return (REIN);
-		}
+		if (raw[count] == '>' && raw[count + 1] == '>' && !open_quote)
+			return (DOUBBLE_REIN);
+		if (raw[count] == '<' && raw[count + 1] == '<' && !open_quote)
+			return (DOUBBLE_REOUT);
+		if (raw[count] == '<' && !open_quote)
+			return (REOUT);
+		if (raw[count] == '>' && !open_quote)
+			return (REIN);
 		count++;
 	}
 	return (REIN);
@@ -102,17 +87,17 @@ t_redir_type get_redirect_type(char *raw, int number)
  * @brief Comprueba el numero de redicciones
  * 
  * @param raw is all the input between pipes
- * @return redir (int)
+ * @return quantity (int)
  */
 int	get_redirect_quantity(char *raw)
 {
 	int		count;
-	int		redir;
+	int		quantity;
 	bool	open_quote;
 	char	quote;
 
 	count = 0;
-	redir = 0;
+	quantity = 0;
 	open_quote = false;
 	while (raw[count])
 	{
@@ -123,25 +108,15 @@ int	get_redirect_quantity(char *raw)
 		}
 		else if (is_quote(raw[count]) && raw[count] == quote)
 			open_quote = !open_quote;
-		else if ((raw[count] == '>' && raw[count + 1] == '>' && !open_quote)
-			|| (raw[count] == '<' && raw[count + 1] == '<' && !open_quote))
+		else if (is_redirect(raw[count]) && !open_quote)
 		{
-			if (count > 0 &&  raw[count - 1] != '\\')
-			{
-				redir++;
+			if (raw[count] == raw[count + 1])
 				count++;
-			}
-		}
-		else if ((raw[count] == '>' || raw[count] == '<') && !open_quote)
-		{
-			if (count > 0 &&  raw[count - 1] != '\\')
-			{
-				redir++;
-			}
+			quantity++;
 		}
 		count++;
 	}
-	return (redir);
+	return (quantity);
 }
 
 // FILES hace referencia a FILES de la estructura s_redir_info
@@ -161,16 +136,13 @@ char	*extract_content_input(char *raw)
 	count = 0;
 	i = 0;
 	text = malloc(sizeof(char) * ft_strlen(raw) + 1);
-	while (raw[count] == ' ' || raw[count] == '\t' || raw[count] == '\n')
-		count++;
-	while (raw[count] && (raw[count] != ' ' && raw[count] != '\t' && raw[count] != '\n'))
-		count++;
-	while (raw[count] == ' ' || raw[count] == '\t' || raw[count] == '\n')
-		count++;
-	if ((raw[count] == '>' || raw[count] == '<') && raw[count - 1] != '\\')
+	count = ft_skip_one_word(raw)
+	if (raw[count] == '>' || raw[count] == '<')
 		return (NULL);
-	while (raw[count] && (raw[count] != ' ' && raw[count] != '\t' && raw[count] != '\n'))
+	while (raw[count] && (raw[count] != '>' && raw[count] != '<'))
 	{
+		if (is_quote(raw[count]))
+			count++;
 		text[i] = raw[count];
 		i++;
 		count++;
@@ -214,7 +186,7 @@ char    *get_filename_redirect(char *raw, int number)
 	while (raw[count] == '>' || raw[count] == '<'
 		|| raw[count] == ' ' || raw[count] == '\t' || raw[count] == '\n')
 		count++;
-	while (raw[count] != ' ' && raw[count] != '\t' && raw[count] != '\n')
+	while (raw[count] && (raw[count] != ' ' && raw[count] != '\t' && raw[count] != '\n'))
 	{
 		files[i] = raw[count];
 		i++;
@@ -224,14 +196,49 @@ char    *get_filename_redirect(char *raw, int number)
 	return (files);
 }
 
-char    *get_input_parsed(char *raw) // 
+char	*get_input_redirect(char *raw)
 {
-	int	quantity;
+	int		count;
+	bool	open_quote;
+	char	quote;
 
+	count = 0;
+	open_quote = false
+	quote = '\0';
+	while (raw[count])
+	{
+		if (is_quote(raw[count]) && !open_quote)
+		{
+			exit(0);
+			quote = raw[count];
+		}
+		else if (is_quote(raw[count]) && raw[count] == quote)
+			open_quote = !open_quote;
+		if ((raw[count] == '>' || raw[count] == '<') && !open_quote)
+			break ;
+		count++;
+	}
+	return (ft_substr(raw, 0, count));
+}
+
+void	get_input_parsed(char *raw, int process)
+{
+	int	count;
+
+	g_minishell->process.content[process].redirs.quantity = 0;
+	g_minishell->process.content->input = get_input_redirect(raw);
 	if (have_redirect(raw))
 	{
-		quantity = get_redirect_quantity(raw);
-		get_redirect_type(raw, quantity);
+		g_minishell->process.content[process].redirs.quantity = get_redirect_quantity(raw);
+		g_minishell->process.content[process].redirs.info = get_memory(sizeof(t_redir_info)
+			* g_minishell->process.content[process].redirs.quantity, true);
+		count = 0;
+		while (count < g_minishell->process.content[process].redirs.quantity)
+		{
+			g_minishell->process.content[process].redirs.info[count].types = get_redirect_type(raw, count + 1);
+			g_minishell->process.content[process].redirs.info[count].files = get_filename_redirect(raw, count + 1);
+//			printf("filename: %s\ntype: %i\n",g_minishell->process.content[process].redirs.info[count].files,g_minishell->process.content[process].redirs.info[count].types);
+			count++;
+		}
 	}
-	return (NULL);
 }

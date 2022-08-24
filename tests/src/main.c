@@ -37,9 +37,5 @@ int main(int argc, char *argv[], char *envp[])
     (void)argc;
     (void)argv;
     (void)envp;
-
-    chdir("/System/Volumes/Data/sgoinfre/Perso/amurcia-");
-    update_env_var("PWD", getcwd(NULL, 0));
-    printf("WE ARE IN %s\n", get_env_var("PWD"));
     return (0);
 }
