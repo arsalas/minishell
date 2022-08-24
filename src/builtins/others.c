@@ -33,6 +33,27 @@ bool	is_path(char *str)
 	return (false);
 }
 
+void	ft_env_array(void)
+{
+	char	**env;
+	int		len;
+	int		i;
+
+	i = 0;
+	env = malloc(sizeof(char) * g_minishell->env.count);
+	env[g_minishell->env.count] = NULL;
+	while (i < g_minishell->env.count)
+	{
+		len = (ft_strlen(g_minishell->env.vars[i].title)
+				+ ft_strlen(g_minishell->env.vars[i].content));
+		env[i] = malloc(sizeof(char) * len + 1);
+		env[i] = ft_strjoin_three(g_minishell->env.vars[i].title,
+				"=", g_minishell->env.vars[i].content);
+		printf("%s\n", env[i]);
+		i++;
+	}
+}
+
 /**
  * @brief Ejecuta un programa
  * 
@@ -44,6 +65,7 @@ void	ft_others(char *path, char**argv)
 	pid_t	pid;
 	int		status;
 
+	ft_env_array();
 	if (access(path, X_OK) == -1)
 	{
 		if (is_path(path))
@@ -52,7 +74,6 @@ void	ft_others(char *path, char**argv)
 			printf("%s: command not found\n", path);
 		return ;
 	}
-	// TODO --> generar la array de str del env
 	pid = fork();
 	if (pid == 0)
 	{
