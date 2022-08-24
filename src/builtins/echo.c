@@ -220,11 +220,8 @@ char	*extract_echo_input(char *input)
 
 void	ft_echo(char *input)
 {
-	// char	*echo;
+	char	*echo;
 
-	get_input_parsed(input, 0);
-	printf("FIN\n");
-	exit(0);
-	// echo = extract_echo_input(input);
-	// execute_echo(echo, echo_have_flag(input));
+	echo = extract_echo_input(input);
+	execute_echo(echo, echo_have_flag(input));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 18:48:28 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/23 19:09:45 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:59:42 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	        get_redirect_quantity(char *raw);
 t_redir_type get_redirect_type(char *raw, int number);
 char        *extract_content_input(char *raw);
 char        *get_filename_redirect(char *raw, int number);
-void		get_input_parsed(char *raw, int process);
+void    	get_input_parsed(t_pipe *command);
 char		*get_input_redirect(char *raw);
 
 #endif

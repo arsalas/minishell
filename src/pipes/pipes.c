@@ -97,6 +97,7 @@ void	execute_pipe(t_process process)
 		return ;
 	if (process.quantity == 1)
 	{
+		get_input_parsed(&process.content[0]);
 		ft_execute(process.content[0]);
 		return ;
 	}

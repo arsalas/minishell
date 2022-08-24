@@ -22,6 +22,7 @@ void	first_pipe_child(int *fd, t_pipe command)
 	close(fd[READ_END]);
 	dup2(fd[WRITE_END], STDOUT_FILENO);
 	close(fd[WRITE_END]);
+	get_input_parsed(&command);
 	ft_execute(command);
 	exit(0);
 }
@@ -39,6 +40,7 @@ void	intermediate_pipe_child(int *fd1, int *fd2, t_pipe command)
 	close(fd1[READ_END]);
 	dup2(fd2[WRITE_END], STDOUT_FILENO);
 	close(fd2[WRITE_END]);
+	get_input_parsed(&command);
 	ft_execute(command);
 	exit(0);
 }
@@ -52,6 +54,7 @@ void	last_pipe_child(int *fd, t_pipe command)
 {
 	dup2(fd[READ_END], STDIN_FILENO);
 	close(fd[READ_END]);
+	get_input_parsed(&command);
 	ft_execute(command);
 	exit(0);
 }

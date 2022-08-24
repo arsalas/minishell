@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/24 17:26:09 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:59:17 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ char	*extract_content_input(char *raw)
 	count = 0;
 	i = 0;
 	text = malloc(sizeof(char) * ft_strlen(raw) + 1);
-	count = ft_skip_one_word(raw)
+	count = ft_skip_one_word(raw);
 	if (raw[count] == '>' || raw[count] == '<')
 		return (NULL);
 	while (raw[count] && (raw[count] != '>' && raw[count] != '<'))
@@ -251,25 +251,43 @@ char	*get_input_redirect(char *raw)
 	return (ft_substr(raw, 0, count));
 }
 
-void	get_input_parsed(char *raw, int process)
+void	get_input_parsed(t_pipe *command)
 {
 	int	count;
 
-	g_minishell->process.content[process].redirs.quantity = 0;
-	g_minishell->process.content->input = get_input_redirect(raw);
-	printf("input: %s\n",g_minishell->process.content->input);
-	if (have_redirect(raw))
+	command->redirs.quantity = 0;
+	command->input = get_input_redirect(command->raw);
+	if (have_redirect(command->raw))
 	{
-		g_minishell->process.content[process].redirs.quantity = get_redirect_quantity(raw);
-		g_minishell->process.content[process].redirs.info = get_memory(sizeof(t_redir_info)
-			* g_minishell->process.content[process].redirs.quantity, true);
+		command->redirs.quantity = get_redirect_quantity(command->raw);
+		command->redirs.info = get_memory(sizeof(t_redir_info)
+			* command->redirs.quantity, true);
 		count = 0;
-		while (count < g_minishell->process.content[process].redirs.quantity)
+		while (count < command->redirs.quantity)
 		{
-			g_minishell->process.content[process].redirs.info[count].types = get_redirect_type(raw, count + 1);
-			g_minishell->process.content[process].redirs.info[count].files = get_filename_redirect(raw, count + 1);
-			printf("filename: %s\ntype: %i\n",g_minishell->process.content[process].redirs.info[count].files,g_minishell->process.content[process].redirs.info[count].types);
+			command->redirs.info[count].types = get_redirect_type(command->raw, count + 1);
+			command->redirs.info[count].files = get_filename_redirect(command->raw, count + 1);
 			count++;
 		}
 	}
 }
+// void	get_input_parsed(char *raw, int process)
+// {
+// 	int	count;
+
+// 	g_minishell->process.content[process].redirs.quantity = 0;
+// 	g_minishell->process.content[process].input = get_input_redirect(raw);
+// 	if (have_redirect(raw))
+// 	{
+// 		g_minishell->process.content[process].redirs.quantity = get_redirect_quantity(raw);
+// 		g_minishell->process.content[process].redirs.info = get_memory(sizeof(t_redir_info)
+// 			* g_minishell->process.content[process].redirs.quantity, true);
+// 		count = 0;
+// 		while (count < g_minishell->process.content[process].redirs.quantity)
+// 		{
+// 			g_minishell->process.content[process].redirs.info[count].types = get_redirect_type(raw, count + 1);
+// 			g_minishell->process.content[process].redirs.info[count].files = get_filename_redirect(raw, count + 1);
+// 			count++;
+// 		}
+// 	}
+// }
