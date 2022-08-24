@@ -28,5 +28,6 @@ void	ft_execute(t_pipe builting)
 	if (builting.command == C_CD)
 		return (ft_cd(builting.input));
 	if (builting.command == C_OTHERS)
-		ft_get_redir(builting.input);
+		// ft_get_redir(builting.input);
+		ft_others(builting.input, NULL);
 }

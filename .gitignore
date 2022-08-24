@@ -3,6 +3,8 @@ libs/*/obj
 libs/*/bin
 tests/obj
 tests/bin
+libs
+bin
 .vscode
 *DS_Store
 .normignore
