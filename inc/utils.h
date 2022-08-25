@@ -27,5 +27,6 @@ char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3);
 bool	is_quote(char c);
 bool	is_scaped_char(char c);
 bool	is_redirect(char c);
+bool	is_doubble_redirect(char *raw, int count);
 
 #endif

@@ -41,7 +41,8 @@ bool	is_quote(char c)
  */
 bool	is_scaped_char(char c)
 {
-	if (c == '\'' || c == '"' || c == '\\' || c == '$' || c == '>'|| c == '<')
+	if (c == '\'' || c == '"' || c == '\\'
+		|| c == '$' || c == '>' || c == '<')
 		return (true);
 	return (false);
 }
@@ -55,6 +56,20 @@ bool	is_scaped_char(char c)
 bool	is_redirect(char c)
 {
 	if (c == '>' || c == '<')
+		return (true);
+	return (false);
+}
+
+/**
+ * @brief Indica si el caracter pasado es una redireccion
+ * 
+ * @param c 
+ * @return bool 
+ */
+bool	is_doubble_redirect(char *raw, int count)
+{
+	if ((raw[count] == '>' && raw[count + 1] == '>')
+		|| (raw[count] == '<' && raw[count + 1] == '<'))
 		return (true);
 	return (false);
 }

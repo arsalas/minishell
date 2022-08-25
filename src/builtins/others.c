@@ -33,6 +33,11 @@ bool	is_path(char *str)
 	return (false);
 }
 
+/**
+ * @brief Crea un array en el que esta el title y el content de env
+ * 
+ * @param void 
+ */
 void	ft_env_array(void)
 {
 	char	**env;
@@ -40,16 +45,16 @@ void	ft_env_array(void)
 	int		i;
 
 	i = 0;
-	env = malloc(sizeof(char) * g_minishell->env.count);
+	env = get_memory(sizeof(char) * g_minishell->env.count + 1, true);
 	env[g_minishell->env.count] = NULL;
 	while (i < g_minishell->env.count)
 	{
 		len = (ft_strlen(g_minishell->env.vars[i].title)
 				+ ft_strlen(g_minishell->env.vars[i].content));
-		env[i] = malloc(sizeof(char) * len + 1);
+		env[i] = get_memory(sizeof(char) * len + 1, true);
 		env[i] = ft_strjoin_three(g_minishell->env.vars[i].title,
 				"=", g_minishell->env.vars[i].content);
-		printf("%s\n", env[i]);
+//		printf("%s\n", env[i]);
 		i++;
 	}
 }
