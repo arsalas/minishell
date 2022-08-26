@@ -15,7 +15,7 @@ MAIN			= main.c
 SRCS 			= prompt.c utils.c process.c parse_utils.c \
 				errors.c \
 				cd.c cd_parse.c cd_parse_global.c echo.c env.c exit.c export.c pwd.c unset.c others.c \
-				env_aux1.c env_aux2.c env_aux3.c \
+				env_aux1.c env_aux2.c env_aux3.c expand.c \
 				pipes.c pipes_aux.c pipes_child.c pipes_father.c \
 				global_parse.c parse1.c parse2.c parse3.c parse4.c parse.c \
 				signal1.c \

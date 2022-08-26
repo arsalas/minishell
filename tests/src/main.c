@@ -58,7 +58,12 @@ int main(int argc, char *argv[], char *envp[])
     //     ft_putstr_fd("hello", 2);
     //     close (fd1);
     // }
-    char **arr = ft_split_quotes("\"Hola mundo\" Chao mundo'", ' ');
+    // char **arr = ft_split_quotes("\"Hola mundo\" Chao mundo'", ' ');
+    g_minishell = get_memory(sizeof(t_minishell), true);
+	g_minishell->last_command = C_OTHERS;
+	g_minishell->process.quantity = 0;
+	g_minishell->memory.quantity = 0;
+	init_env(envp);    char **arr = ft_split_quotes("\"Hola $USER\" Chao '$USER' $USER $?", ' ');
     int i = 0;
     while (arr[i])
     {
