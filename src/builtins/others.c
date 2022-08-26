@@ -41,23 +41,21 @@ bool	is_path(char *str)
  */
 void	ft_others(char *path, char**argv)
 {
-	pid_t	pid;
-	int		status;
-
-	if (access(path, X_OK) == -1)
+	if (!is_path(path))
 	{
-		if (is_path(path))
-			printf("%s: No such file or directory\n", path);
-		else
-			printf("%s: command not found\n", path);
+		printf("%s: command not found\n", path);
 		return ;
 	}
-	// TODO --> generar la array de str del env
-	pid = fork();
-	if (pid == 0)
+	if (access(path, F_OK) == -1)
 	{
-		execve(path, argv, argv);
-		exit(1);
+		printf("%s: No such file or directory\n", path);
+		return ;
 	}
-	waitpid(pid, &status, 0);
+	if (access(path, X_OK) == -1)
+	{
+		printf("permission denied: %s\n", path);
+		return ;
+	}
+	// TODO --> parsear los argumentos y enviarlos en argv
+	execve(path, argv, argv);
 }

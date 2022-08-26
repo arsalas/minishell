@@ -47,10 +47,10 @@ int main(int argc, char *argv[], char *envp[])
     // get_redirect_quantity("echo > gd.txt") == 1 ? printf(GRN"OK\n") : printf(RED"OK\n");
     // get_redirect_quantity("echo \\> gd.txt") == 0 ? printf(GRN"OK\n") : printf(RED"OK\n");
     // get_redirect_quantity("echo >> gd.txt") == 1 ? printf(GRN"OK\n") : printf(RED"OK\n");
-    printf("%s\n", get_input_redirect("echo holacaracola > gd.txt"));
-    printf("%s\n", get_input_redirect("echo holacaracola \\> gd.txt"));
-    printf("%s\n", get_input_redirect("echo holacaracola \">\" gd.txt"));
-    printf("%s\n", get_input_redirect("'echo holacaracola \\'>\\' gd.txt'"));
+    // printf("%s\n", get_input_redirect("echo holacaracola > gd.txt"));
+    // printf("%s\n", get_input_redirect("echo holacaracola \\> gd.txt"));
+    // printf("%s\n", get_input_redirect("echo holacaracola \">\" gd.txt"));
+    // printf("%s\n", get_input_redirect("'echo holacaracola \\'>\\' gd.txt'"));
     // input = ft_get_input();
     // if (input[cont] == '>' && input[cont + 1] == ' ')
     // {
@@ -58,5 +58,15 @@ int main(int argc, char *argv[], char *envp[])
     //     ft_putstr_fd("hello", 2);
     //     close (fd1);
     // }
+    char **arr = ft_split_quotes("\"Hola mundo\" Chao mundo'", ' ');
+    int i = 0;
+    while (arr[i])
+    {
+        printf("str_%i -> %s\n", i, arr[i]);
+        i++;
+    }
+
+
+
     return (0);
 }

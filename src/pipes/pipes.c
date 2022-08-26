@@ -86,6 +86,23 @@ void	execute_single_pipe(t_pipe *commands)
 	wait_pipes_process(2, pid);
 }
 
+void	execute_single_process(t_process process)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = create_process();
+	if (pid == 0)
+	{
+		get_input_parsed(&process.content[0]);
+		ft_execute(process.content[0]);
+		exit(0);
+	}
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		g_minishell->last_process = WEXITSTATUS(status);
+}
+
 /**
  * @brief Ejecuta los pipes
  * 
@@ -96,11 +113,7 @@ void	execute_pipe(t_process process)
 	if (process.quantity == 0)
 		return ;
 	if (process.quantity == 1)
-	{
-		get_input_parsed(&process.content[0]);
-		ft_execute(process.content[0]);
-		return ;
-	}
+		return (execute_single_process(process));
 	if (process.quantity == 2)
 		return (execute_single_pipe(process.content));
 	execute_multiple_pipe(process.quantity, process.content);
