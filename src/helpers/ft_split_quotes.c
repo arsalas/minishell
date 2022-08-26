@@ -98,6 +98,7 @@ static void
 	}
 }
 
+//TODO --> mirar cuando es un dolar para expandir el valor
 char	**ft_split_quotes(char const *s, char delimiter)
 {
 	char	**arr;
