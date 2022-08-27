@@ -37,6 +37,7 @@ void	memory_error(void)
  */
 void	cmd_not_found(char *cmd)
 {
+	g_minishell->status = 127;
 	printf("minishell: %s: command not found\n", cmd);
 }
 
@@ -56,6 +57,7 @@ void	fork_error(void)
  */
 void	ft_not_directory(char *path)
 {
+	g_minishell->status = 1;
 	printf("cd: not a directory: %s\n", path);
 }
 
@@ -76,6 +78,7 @@ void	ft_no_permission(char *path)
  */
 void	ft_no_file_dir(char *path)
 {
+	g_minishell->status = 1;
 	printf("cd: no such file or directory: %s\n", path);
 }
 

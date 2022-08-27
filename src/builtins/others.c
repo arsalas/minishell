@@ -75,7 +75,10 @@ void	ft_others(char *path, char**argv)
 		if (is_path(path))
 			printf("%s: No such file or directory\n", path);
 		else
+		{
+			g_minishell->status = 127;
 			printf("%s: command not found\n", path);
+		}
 		return ;
 	}
 	pid = fork();

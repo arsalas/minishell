@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:29:25 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/27 18:19:08 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,12 +160,14 @@ int ft_redir_errors(void)
 	if (g_minishell->tokens.token == 3 && access(g_minishell->tokens.path, R_OK) == -1)
 	{
 		ft_putstr_fd("Error 2\n", 2);
+		g_minishell->status = 1;
 		return (-1);
 	}
 	if ((g_minishell->tokens.token == 1 || g_minishell->tokens.token == 2)
 		&& access(g_minishell->tokens.path, W_OK) == -1 && access(g_minishell->tokens.path, F_OK) == 0)
 	{
 		ft_putstr_fd("Error 3\n", 2);
+		g_minishell->status = 1;
 		return (-1);
 	}
 	return (0);
@@ -196,7 +198,10 @@ int ft_trunc(int fd)
 		return (-1);
 	}
 	if (ft_error_fd(fd))
+	{
+		g_minishell->status = 1;
 		return (-1);
+	}
 	g_minishell->status = 2;
 	ft_putstr_fd(g_minishell->tokens.content, fd);
 	close (fd);

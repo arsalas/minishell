@@ -99,6 +99,37 @@ void	ft_export(char *input)
 }
 
 /**
+ * @brief Ordenamos en orden alfabetico un array de chars
+ * 
+ * @param environ
+ */
+char **ft_sort_array(char **array, int size)
+{
+    int		cont;
+	char	*temp;
+
+	cont = 0;
+	while (array[cont + 1] && cont < size)
+	{
+		if (ft_strncmp_mod(array[cont], array[cont + 1], size) > 0)
+		{
+			temp = array[cont];
+			array[cont] = array[cont + 1];
+			array[cont + 1] = temp;
+		}
+		cont++;
+	}
+	cont = 0;
+	while (array[cont + 1] && cont < size)
+	{
+		if (ft_strncmp_mod(array[cont], array[cont + 1], size) > 0)
+			ft_sort_array(array, size);
+		cont++;
+	}
+	return (array);
+}
+
+/**
  * @brief Nos pasan EXPORT sin nada mas, hay que añadir declare -x
  *			lista todas las variables exportadas
  * 
@@ -106,21 +137,29 @@ void	ft_export(char *input)
  */
 bool	ft_export_alone(char *input)
 {
-	int	i;
+	int		i;
+	char	**environ;
 
 	i = 0;
-	while (input[i] == ' ' || input[i] == '\t' || input[i] == '\n')
-		i++;
-	i += 6;
-	while (input[i] == ' ' || input[i] == '\t' || input[i] == '\n')
-		i++;
+	environ = malloc(sizeof(char) * g_minishell->env.count + 1);
+	environ[g_minishell->env.count] = NULL;
+	i = ft_skip_one_word(input);
 	if (input[i] == '\0')
 	{
 		i = 0;
 		while (i < g_minishell->env.count)
 		{
-			printf("declare -x %s=\"%s\"\n", g_minishell->env.vars[i].title,
-				g_minishell->env.vars[i].content);
+			environ[i] = malloc(sizeof(char) * ft_strlen(g_minishell->env.vars[i].title) + ft_strlen(g_minishell->env.vars[i].content) + 11);
+			environ[i] = ft_strjoin_three("declare -x ", g_minishell->env.vars[i].title, "=");
+			environ[i] = ft_strjoin_three(environ[i], "\"", g_minishell->env.vars[i].content);
+			environ[i] = ft_strjoin(environ[i], "\"");
+			i++;
+		}
+		environ = ft_sort_array(environ, g_minishell->env.count);
+		i = 2;
+		while (i < g_minishell->env.count - 1)
+		{
+			printf("%s\n", environ[i]);
 			i++;
 		}
 		return (true);

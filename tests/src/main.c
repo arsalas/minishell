@@ -32,31 +32,33 @@ int main(int argc, char *argv[], char *envp[])
     return (0);
 }*/
 
+char *ft_sort_array(void)
+{
+    int	cont;
+	char	*temp;
+    char    *array;
+
+	cont = 0;
+	while ((array[cont] <= array[cont + 1]) && (cont < size))
+	{
+		cont++;
+	}
+	if (cont == (size -1))
+		return ;
+	else
+	{
+		temp = array[cont];
+		array[cont] = array[cont + 1];
+		array[cont + 1] = temp;
+	}
+	ft_sort_array(array, size);
+}
+
 int main(int argc, char *argv[], char *envp[])
 {
     (void)argc;
     (void)argv;
     (void)envp;
-    // char *input;
-    // int fd1;
-    // int cont = 1;
 
-
-
-    // printf("%s\n", extract_content_input("echo > gd.txt"));
-    // get_redirect_quantity("echo > gd.txt") == 1 ? printf(GRN"OK\n") : printf(RED"OK\n");
-    // get_redirect_quantity("echo \\> gd.txt") == 0 ? printf(GRN"OK\n") : printf(RED"OK\n");
-    // get_redirect_quantity("echo >> gd.txt") == 1 ? printf(GRN"OK\n") : printf(RED"OK\n");
-    printf("%s\n", get_input_redirect("echo holacaracola > gd.txt"));
-    printf("%s\n", get_input_redirect("echo holacaracola \\> gd.txt"));
-    printf("%s\n", get_input_redirect("echo holacaracola \">\" gd.txt"));
-    printf("%s\n", get_input_redirect("'echo holacaracola \\'>\\' gd.txt'"));
-    // input = ft_get_input();
-    // if (input[cont] == '>' && input[cont + 1] == ' ')
-    // {
-    //     fd1 = open("/System/Volumes/Data/sgoinfre/Perso/amurcia-/minishell/prueba.txt", O_CREAT | O_RDWR | O_APPEND, 0666);
-    //     ft_putstr_fd("hello", 2);
-    //     close (fd1);
-    // }
-    return (0);
+    ft_sort_array();
 }
