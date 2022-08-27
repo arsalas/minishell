@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:01:43 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:29:25 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,10 +226,10 @@ int ft_redir_in(int fd)
 void    ft_get_redir(char *input)
 {
 	int fd;
-	int count = 1;
+
 	(void) input;
 	g_minishell->tokens.content = "hola";
-	char *fichero = redirs.info[count].files
+	// char *fichero = redirs.info[count].files
 	g_minishell->tokens.path = "/System/Volumes/Data/sgoinfre/Perso/amurcia-/minishell/prueba.txt";
 	if (ft_redir_errors() == -1)
 		return;

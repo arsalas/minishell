@@ -54,7 +54,6 @@ void	ft_env_array(void)
 		env[i] = get_memory(sizeof(char) * len + 1, true);
 		env[i] = ft_strjoin_three(g_minishell->env.vars[i].title,
 				"=", g_minishell->env.vars[i].content);
-//		printf("%s\n", env[i]);
 		i++;
 	}
 }
