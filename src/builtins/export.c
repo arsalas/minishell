@@ -84,6 +84,8 @@ void	ft_export(char *input)
 	char	*name;
 	char	*content;
 
+	if (ft_export_alone(input))
+		return ;
 	if (!have_correct_format(input))
 		return ;
 	name = get_export_name(input);
@@ -94,6 +96,36 @@ void	ft_export(char *input)
 		push_env(name, content);
 	free(name);
 	free(content);
+}
+
+/**
+ * @brief Nos pasan EXPORT sin nada mas, hay que añadir declare -x
+ *			lista todas las variables exportadas
+ * 
+ * @param environ
+ */
+bool	ft_export_alone(char *input)
+{
+	int	i;
+
+	i = 0;
+	while (input[i] == ' ' || input[i] == '\t' || input[i] == '\n')
+		i++;
+	i += 6;
+	while (input[i] == ' ' || input[i] == '\t' || input[i] == '\n')
+		i++;
+	if (input[i] == '\0')
+	{
+		i = 0;
+		while (i < g_minishell->env.count)
+		{
+			printf("declare -x %s=\"%s\"\n", g_minishell->env.vars[i].title,
+				g_minishell->env.vars[i].content);
+			i++;
+		}
+		return (true);
+	}
+	return (false);
 }
 
 /*

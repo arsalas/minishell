@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/19 17:23:34 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/27 18:09:34 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	unset(char *name);
 void    ft_others(char *path, char**argv);
 void    ft_echo(char *input);
 bool    ft_look_for_root(char **words);
+
+bool	ft_export_alone(char *input);
 
 // OTHERS
 bool	is_path(char *str);
