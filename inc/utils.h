@@ -15,7 +15,7 @@
 
 # include "stdbool.h"
 
-void	print_prompt(void);
+char	*get_prompt(void);
 void	not_implemented(void);
 void	memory_error(void);
 void	*get_memory(size_t size, bool is_permanent);

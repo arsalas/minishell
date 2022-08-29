@@ -17,8 +17,10 @@
 */
 char	*ft_get_input(void)
 {
-	print_prompt();
-	return (readline(" "));
+	char	*prompt;
+
+	prompt = get_prompt();
+	return (readline(prompt));
 }
 
 /*

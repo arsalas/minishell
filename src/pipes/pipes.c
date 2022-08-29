@@ -91,16 +91,22 @@ void	execute_single_process(t_process process)
 	pid_t	pid;
 	int		status;
 
-	pid = create_process();
-	if (pid == 0)
+	if (process.content->command != C_CD && process.content->command != C_EXIT)
 	{
-		get_input_parsed(&process.content[0]);
-		ft_execute(process.content[0]);
-		exit(0);
+		pid = create_process();
+		if (pid == 0)
+		{
+			get_input_parsed(&process.content[0]);
+			ft_execute(process.content[0]);
+			exit(0);
+		}
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			g_minishell->last_process = WEXITSTATUS(status);
+		return ;
 	}
-	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		g_minishell->last_process = WEXITSTATUS(status);
+	get_input_parsed(&process.content[0]);
+	ft_execute(process.content[0]);
 }
 
 /**
