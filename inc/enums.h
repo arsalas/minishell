@@ -27,6 +27,12 @@ typedef enum e_builtins
 	C_OTHERS
 }	t_builtins;
 
+typedef struct e_fd_redirs
+{
+	int	input;
+	int	output;
+}	t_fd_redirs;
+
 // REIN <
 // REOUT >
 // DOUBBLE_REIN <<

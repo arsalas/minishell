@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/27 18:19:08 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/29 18:50:08 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ int ft_fd(void)
 {
 	int fd;
 
-	if (g_minishell->tokens.token == 1)
-		fd = open(g_minishell->tokens.path, O_CREAT | O_RDWR | O_APPEND, 0666);
+	// if (g_minishell->tokens.token == 1)
+	// 	fd = open(g_minishell->tokens.path, O_CREAT | O_RDWR | O_APPEND, 0666);
 	if (g_minishell->tokens.token == 2)
 		fd = open(g_minishell->tokens.path, O_CREAT | O_RDWR | O_TRUNC, 0666);
 	if (g_minishell->tokens.token == 3)
@@ -228,7 +228,7 @@ int ft_redir_in(int fd)
 * Token 2 para >> trunc
 * Token 3 para <
 */
-void    ft_get_redir(char *input)
+void    ft_get_redir_old(char *input)
 {
 	int fd;
 
@@ -247,4 +247,30 @@ void    ft_get_redir(char *input)
 		ft_trunc(fd);
 	if (g_minishell->tokens.token == 3)
 		ft_redir_in(fd);
+}
+
+//TODO -> crear funcion que retorne el fed y gestione errores
+t_fd_redirs	ft_get_redir(t_pipe command)
+{
+	int			i;
+	t_fd_redirs	fds;
+
+	i = 0;
+	fds.input = 0;
+	fds.output = 0;
+	if (command.redirs.quantity == 0)
+		return (fds);
+	while (i < command.redirs.quantity)
+	{
+		if (command.redirs.info[i].types == REIN)
+			fds.input = open(command.redirs.info[i].files, O_RDONLY);
+		else if (command.redirs.info[i].types == DOUBBLE_REIN)
+			fds.input = open(command.redirs.info[i].files, O_RDONLY);
+		else if (command.redirs.info[i].types == REOUT)
+			fds.output = open(command.redirs.info[i].files, O_CREAT | O_RDWR | O_TRUNC, 0666);
+		else
+			fds.output = open(command.redirs.info[i].files, O_CREAT | O_RDWR | O_APPEND, 0666);
+		i++;
+	}
+	return (fds);
 }

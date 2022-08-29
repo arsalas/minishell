@@ -128,10 +128,10 @@ int		ft_get_signal(void);
 void	ft_free_usual(void);
 
 //FILES IN REDIRECTIONS 
-void    ft_get_redir(char *input);
-int 	ft_redir_in(int fd);
-int 	ft_trunc(int fd);
-int 	ft_append(int fd);
-int 	ft_fd(void);
+t_fd_redirs	ft_get_redir(t_pipe command);
+int 		ft_redir_in(int fd);
+int 		ft_trunc(int fd);
+int 		ft_append(int fd);
+int 		ft_fd(void);
 
 #endif

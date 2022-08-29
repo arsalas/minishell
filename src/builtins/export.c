@@ -132,17 +132,11 @@ char **ft_sort_array(char **array, int size)
 char	**ft_create_environ(char **environ)
 {
 	int		i;
-	int		len;
 
 	i = 0;
-	len = ft_strlen(g_minishell->env.vars[i].title)
-		+ ft_strlen(g_minishell->env.vars[i].content) + 11;
 	while (i < g_minishell->env.count)
 	{
-		environ[i] = malloc(sizeof(char) * len + 1);
-		environ[i] = ft_strjoin_three("declare -x ", g_minishell->env.vars[i].title, "=");
-		environ[i] = ft_strjoin_three(environ[i], "\"", g_minishell->env.vars[i].content);
-		environ[i] = ft_strjoin(environ[i], "\"");
+		environ[i] = ft_strjoin(ft_strjoin(ft_strjoin(g_minishell->env.vars[i].title, "="), "\""), g_minishell->env.vars[i].content);
 		i++;
 	}
 	return (environ);
@@ -165,13 +159,14 @@ bool	ft_export_alone(char *input)
 	i = ft_skip_one_word(input);
 	if (input[i] == '\0')
 	{
-		i = 0;
 		environ = ft_create_environ(environ);
 		environ = ft_sort_array(environ, g_minishell->env.count);
-		i = 2;
+		i = 0;
 		while (i < g_minishell->env.count - 1)
 		{
-			printf("%s\n", environ[i]);
+			printf("declare -x ");
+			printf("%s", environ[i]);
+			printf("\"\n");
 			i++;
 		}
 		return (true);

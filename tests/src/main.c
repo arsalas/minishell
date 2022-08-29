@@ -32,28 +32,6 @@ int main(int argc, char *argv[], char *envp[])
     return (0);
 }*/
 
-char *ft_sort_array(void)
-{
-    int	cont;
-	char	*temp;
-    char    *array;
-
-	cont = 0;
-	while ((array[cont] <= array[cont + 1]) && (cont < size))
-	{
-		cont++;
-	}
-	if (cont == (size -1))
-		return ;
-	else
-	{
-		temp = array[cont];
-		array[cont] = array[cont + 1];
-		array[cont + 1] = temp;
-	}
-	ft_sort_array(array, size);
-}
-
 int main(int argc, char *argv[], char *envp[])
 {
     (void)argc;
