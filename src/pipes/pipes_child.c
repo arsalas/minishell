@@ -55,7 +55,6 @@ void	intermediate_pipe_child(int *fd1, int *fd2, t_pipe command)
 		dup2(fds.input, STDIN_FILENO);
 	if (fds.output != 0)
 		dup2(fds.output, STDOUT_FILENO);
-
 	ft_execute(command);
 	exit(0);
 }
