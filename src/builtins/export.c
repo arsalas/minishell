@@ -129,6 +129,25 @@ char **ft_sort_array(char **array, int size)
 	return (array);
 }
 
+char	**ft_create_environ(char **environ)
+{
+	int		i;
+	int		len;
+
+	i = 0;
+	len = ft_strlen(g_minishell->env.vars[i].title)
+		+ ft_strlen(g_minishell->env.vars[i].content) + 11;
+	while (i < g_minishell->env.count)
+	{
+		environ[i] = malloc(sizeof(char) * len + 1);
+		environ[i] = ft_strjoin_three("declare -x ", g_minishell->env.vars[i].title, "=");
+		environ[i] = ft_strjoin_three(environ[i], "\"", g_minishell->env.vars[i].content);
+		environ[i] = ft_strjoin(environ[i], "\"");
+		i++;
+	}
+	return (environ);
+}
+
 /**
  * @brief Nos pasan EXPORT sin nada mas, hay que añadir declare -x
  *			lista todas las variables exportadas
@@ -147,9 +166,37 @@ bool	ft_export_alone(char *input)
 	if (input[i] == '\0')
 	{
 		i = 0;
+		environ = ft_create_environ(environ);
+		environ = ft_sort_array(environ, g_minishell->env.count);
+		i = 2;
+		while (i < g_minishell->env.count - 1)
+		{
+			printf("%s\n", environ[i]);
+			i++;
+		}
+		return (true);
+	}
+	return (false);
+}
+/*
+bool	ft_export_alone(char *input)
+{
+	int		i;
+	int		len;
+	char	**environ;
+
+	i = 0;
+	len = ft_strlen(g_minishell->env.vars[i].title)
+		+ ft_strlen(g_minishell->env.vars[i].content) + 11;
+	environ = malloc(sizeof(char) * g_minishell->env.count + 1);
+	environ[g_minishell->env.count] = NULL;
+	i = ft_skip_one_word(input);
+	if (input[i] == '\0')
+	{
+		i = 0;
 		while (i < g_minishell->env.count)
 		{
-			environ[i] = malloc(sizeof(char) * ft_strlen(g_minishell->env.vars[i].title) + ft_strlen(g_minishell->env.vars[i].content) + 11);
+			environ[i] = malloc(sizeof(char) * len + 1);
 			environ[i] = ft_strjoin_three("declare -x ", g_minishell->env.vars[i].title, "=");
 			environ[i] = ft_strjoin_three(environ[i], "\"", g_minishell->env.vars[i].content);
 			environ[i] = ft_strjoin(environ[i], "\"");
@@ -165,7 +212,7 @@ bool	ft_export_alone(char *input)
 		return (true);
 	}
 	return (false);
-}
+}*/
 
 /*
 int	ft_end_export(int start, char *word)
