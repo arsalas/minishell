@@ -7,5 +7,4 @@ libs
 bin
 .vscode
 *DS_Store
-.normignore
 bin/

@@ -42,13 +42,7 @@ char	*get_prompt(void)
 {
 	char	*prompt[4];
 
-	// prompt[0] = BLU"┌──("BMAG;
-	// prompt[1] = get_user();
-	// prompt[2] = "@minishell"BLU")-["BWHT;
-	// prompt[3] = get_env_var("PWD");
-	// prompt[4] = BLU"] "BMAG""BLU"└─"BMAG"$ "RESET;
-	// prompt[5] = NULL;
-	prompt[0] = ft_strjoin(ft_strjoin(BMAG"",get_user()), "@minishell"BWHT);
+	prompt[0] = ft_strjoin(ft_strjoin(BMAG"", get_user()), "@minishell"BWHT);
 	prompt[1] = get_current_folder();
 	prompt[2] = BMAG"$ "RESET;
 	prompt[3] = NULL;
