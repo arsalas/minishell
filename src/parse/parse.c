@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/24 17:59:17 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:16:28 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,11 +205,11 @@ char    *get_filename_redirect(char *raw, int number)
 			open_quote = !open_quote;
 		else if ((raw[count] == '>' || raw[count] == '<') && !open_quote)
 		{
-			if ((raw[count] == '>' && raw[count + 1] == '>') || (raw[count] == '<' && raw[count + 1] == '<')) 
+			if (is_doubble_redirect(raw, count))
 				count++;
 			if (q_files == number)
 				break ;
-			else	
+			else
 				q_files++;
 		}
 		count++;
@@ -261,12 +261,14 @@ void	get_input_parsed(t_pipe *command)
 	{
 		command->redirs.quantity = get_redirect_quantity(command->raw);
 		command->redirs.info = get_memory(sizeof(t_redir_info)
-			* command->redirs.quantity, true);
+				* command->redirs.quantity, true);
 		count = 0;
 		while (count < command->redirs.quantity)
 		{
-			command->redirs.info[count].types = get_redirect_type(command->raw, count + 1);
-			command->redirs.info[count].files = get_filename_redirect(command->raw, count + 1);
+			command->redirs.info[count].types
+				= get_redirect_type(command->raw, count + 1);
+			command->redirs.info[count].files
+				= get_filename_redirect(command->raw, count + 1);
 			count++;
 		}
 	}

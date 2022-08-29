@@ -39,3 +39,20 @@ bool	ft_strcmp(const char *s1, const char *s2, bool strict)
 	}
 	return (true);
 }
+
+int	ft_strncmp_mod(const char *s1, const char *s2, size_t n)
+{
+	size_t	cont;
+
+	cont = 0;
+	while ((cont < n && s1[cont] != '\0')
+		|| (cont < n && s2[cont] != '\0'))
+	{
+		if (s1[cont] != s2[cont])
+			return ((unsigned char)s1[cont] - (unsigned char)s2[cont]);
+		cont++;
+	}
+	if (n == 0)
+		return (0);
+	return (0);
+}

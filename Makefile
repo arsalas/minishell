@@ -22,7 +22,7 @@ SRCS 			= prompt.c utils.c process.c parse_utils.c \
 				echo_aux.c  parse_echo.c\
 				history.c \
 				init.c \
-				ft_free_split.c ft_split_words.c ft_strstr.c ft_strcmp.c ft_trim.c ft_strcpy.c ft_join.c ft_split_quotes.c \
+				ft_free_split.c ft_split_words.c ft_strstr.c ft_strcmp.c ft_trim.c ft_strcpy.c ft_join.c ft_split_quotes.c ft_strjoin_three.c \
 				input.c input_aux1.c \
 				commands.c \
 				memory.c \

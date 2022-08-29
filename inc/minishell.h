@@ -127,7 +127,6 @@ int		ft_get_signal(void);
 //FILES IN MEMORY
 void	ft_free_usual(void);
 
-
 //FILES IN REDIRECTIONS 
 void    ft_get_redir(char *input);
 int 	ft_redir_in(int fd);

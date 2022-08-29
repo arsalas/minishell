@@ -54,7 +54,17 @@ void	last_pipe_child(int *fd, t_pipe command)
 {
 	dup2(fd[READ_END], STDIN_FILENO);
 	close(fd[READ_END]);
+
+
+	// int fd3 = open("/System/Volumes/Data/sgoinfre/Perso/amurcia-/minishell/test.txt", O_CREAT | O_RDWR | O_APPEND, 0666);
+	// ft_putstr_fd("prueba", fd2);
+	// printf("fd: %i\n", fd2);
+	// dup2(1, fd3);
+
 	get_input_parsed(&command);
+	// Comprobar si hay redirs y crear un fd para escribir y pasarselo a ft_execute
+	// Crear una funcion que return(fd) en el que habra que escribir, leer, etc
+	// Si hay 3 redirecciones, nos quedamos con el ultimo
 	ft_execute(command);
 	exit(0);
 }
