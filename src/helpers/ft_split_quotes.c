@@ -89,16 +89,29 @@ static void
 		if (is_in_quotes(aux[0], aux[ft_strlen(aux) - 1]))
 		{
 			arr[i] = ft_substr(aux, 1, ft_strlen(aux) - 2);
-			free(aux);
+			if (aux[0] == '"')
+			{
+				free(aux);
+				aux = expand_env_vars(arr[i]);
+				free(arr[i]);
+				arr[i] = aux;
+			}
+			else
+				free(aux);
 		}
 		else
+		{
 			arr[i] = aux;
+			aux = expand_env_vars(arr[i]);
+			free(arr[i]);
+			arr[i] = aux;
+		}
 		pos += last_position + 1;
 		i++;
 	}
 }
 
-//TODO --> mirar cuando es un dolar para expandir el valor
+//TODO --> mirar cuando es un $ para expandir el valor
 char	**ft_split_quotes(char const *s, char delimiter)
 {
 	char	**arr;

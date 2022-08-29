@@ -82,6 +82,10 @@ char	*get_env_var(char *name)
 	int	i;
 
 	i = get_index_by_var(name);
+    if (ft_strcmp(name, "?", true))
+    {
+        return (ft_itoa(g_minishell->last_process));
+    }
 	if (i == -1)
 		return ("");
 	return (g_minishell->env.vars[i].content);
