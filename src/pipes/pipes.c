@@ -88,8 +88,9 @@ void	execute_single_pipe(t_pipe *commands)
 
 void	execute_single_process(t_process process)
 {
-	pid_t	pid;
-	int		status;
+	pid_t		pid;
+	int			status;
+	t_fd_redirs	fds;
 
 	if (process.content->command != C_CD && process.content->command != C_EXIT)
 	{
@@ -97,6 +98,11 @@ void	execute_single_process(t_process process)
 		if (pid == 0)
 		{
 			get_input_parsed(&process.content[0]);
+			fds = ft_get_redir(process.content[0]);
+			if (fds.input != 0)
+				dup2(fds.input, STDIN_FILENO);
+			if (fds.output != 0)
+				dup2(fds.output, STDOUT_FILENO);
 			ft_execute(process.content[0]);
 			exit(0);
 		}
@@ -106,6 +112,11 @@ void	execute_single_process(t_process process)
 		return ;
 	}
 	get_input_parsed(&process.content[0]);
+	fds = ft_get_redir(process.content[0]);
+	if (fds.input != 0)
+		dup2(fds.input, STDIN_FILENO);
+	if (fds.output != 0)
+		dup2(fds.output, STDOUT_FILENO);
 	ft_execute(process.content[0]);
 }
 

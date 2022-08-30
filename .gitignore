@@ -3,6 +3,7 @@ libs/*/obj
 libs/*/bin
 tests/obj
 tests/bin
+tests_txt
 libs
 bin
 .vscode
