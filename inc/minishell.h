@@ -96,6 +96,7 @@ typedef struct s_minishell
 {
 	char			*input;
 	char			**traces;
+	char			*old_dir;
 	t_command		*command;
 	t_env			env;
 	t_parse			parse;

@@ -67,7 +67,7 @@ int	ft_set_directory(char *words)
 	if (ft_cant_go(words) != 0)
 	{
 		g_minishell->status = 1;
-		return (0);
+		return (-1);
 	}
 	ft_can_go(path);
 	return (0);
@@ -78,5 +78,6 @@ int	ft_set_directory(char *words)
 */
 void	ft_cd(char *input)
 {
+	g_minishell->old_dir = get_env_var("PWD");
 	ft_parse_cd(input);
 }
