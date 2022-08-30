@@ -62,10 +62,13 @@ void	ft_env_array(void)
  * @brief Ejecuta un programa
  * 
  * @param path 
- * @param argv 
  */
-void	ft_others(char *path, char**argv)
+void	ft_others(char *path)
 {
+	char	**argv;
+
+	argv = ft_split_quotes(ft_trim(path), ' ');
+	path = argv[0];
 	if (!is_path(path))
 	{
 		printf("%s: command not found\n", path);

@@ -6,13 +6,16 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:14:08 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/23 18:21:21 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:07:26 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//TODO --> escapar comillas
+char	**parse_echo(char *input)
+{
+	return (ft_split_quotes(input, ' '));
+}
 
 /**
  * @brief Obtiene la posicion inicial de el contenido de echo
@@ -92,7 +95,7 @@ int	get_next_echo_token_start(char *input)
  * @param input 
  * @return char** 
  */
-char	**parse_echo(char *input)
+char	**parse_echo3(char *input)
 {
 	char	**tokens;
 	int		i;

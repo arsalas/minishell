@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 18:48:28 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/24 17:59:42 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:06:33 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			ft_is_env(char **words);
 int			ft_is_pwd(char **words);
 
 char        *extract_next_echo_token(char *input);
-char        **parse_echo(char *input);
+// char        **parse_echo(char *input);
 bool        have_redirect(char *raw);
 int	        get_redirect_quantity(char *raw);
 t_redir_type get_redirect_type(char *raw, int number);

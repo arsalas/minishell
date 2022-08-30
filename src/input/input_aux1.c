@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 13:53:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/16 18:57:01 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:30:57 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ char	*extract_others_process_input(char *input)
 	len = ft_strlen(input);
 	str = ft_substr(input, start + get_ignore_chars_process(&input[start]), len);
 	free(g_minishell->input);
+	// str = ft_trim(str);
 	return (str);
 }

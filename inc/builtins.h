@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/27 18:09:34 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:48:56 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ void	ft_make_exit(char *str);
 void	ft_cd(char *input);
 void	ft_parse_cd(char *input);
 bool	ft_look_for_old(char *words);
-int	    ft_no_more_data(char **words);
+int		ft_no_more_data(char **words);
 bool	ft_get_home_dir(char *words);
 void	ft_go_home(void);
-int	    ft_change_pos(char *path);
+int		ft_change_pos(char *path);
 void	ft_can_go(char *path);
-int	    ft_cant_go(char *path);
-bool    ft_look_for_home(char **words);
+int		ft_cant_go(char *path);
+bool	ft_look_for_home(char **words);
 int		ft_set_directory(char *words);
 
 void	pwd(void);
 void	ft_env(void);
 void	ft_export(char *input);
 void	unset(char *name);
-void    ft_others(char *path, char**argv);
-void    ft_echo(char *input);
-bool    ft_look_for_root(char **words);
+void	ft_others(char *path);
+void	ft_echo(char *input);
+bool	ft_look_for_root(char **words);
 
 bool	ft_export_alone(char *input);
 
