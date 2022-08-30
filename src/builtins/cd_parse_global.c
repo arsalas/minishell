@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/30 21:30:35 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:51:46 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,33 @@ bool	ft_is_absolute(char **words)
 * Words es el input separado por espacio, \t o \n
 * Parseamos para comprobar si lo que nos pasan es ir a home
 */
+void	ft_parse_cd(char *input)
+{
+	char	**words;
+	int		count;
+
+	count = 1;
+	words = ft_split_words(input);
+	if (ft_look_for_home(words))
+		return ;
+	if (ft_look_for_root(words))
+		return ;
+	if (ft_is_absolute(words))
+		return ;
+	while (words[count])
+	{
+		if (ft_get_home_dir(words[count]))
+			count++;
+		else if (ft_look_for_old(words[count]))
+			count ++;
+		else if (ft_set_directory(words[count]))
+		{
+			g_minishell->status = 3;
+			count++;
+		}
+	}
+}
+/*
 void	ft_parse_cd(char *input)
 {
 	char	**words;
@@ -58,3 +85,4 @@ void	ft_parse_cd(char *input)
 	}
 	g_minishell->status = 3;
 }
+*/
