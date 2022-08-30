@@ -83,7 +83,7 @@ char	*get_env_var(char *name)
 	i = get_index_by_var(name);
 	if (ft_strcmp(name, "?", true))
 	{
-		return (ft_itoa(g_minishell->last_process));
+		return (ft_itoa(g_minishell->status));
 	}
 	if (i == -1)
 		return ("");

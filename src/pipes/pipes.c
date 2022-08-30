@@ -28,7 +28,7 @@ static void	wait_pipes_process(int process, int *pid)
 	{
 		waitpid(pid[i], &status, 0);
 		if (WIFEXITED(status))
-			g_minishell->last_process = WEXITSTATUS(status);
+			g_minishell->status = WEXITSTATUS(status);
 		i++;
 	}
 }
@@ -108,7 +108,7 @@ void	execute_single_process(t_process process)
 		}
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
-			g_minishell->last_process = WEXITSTATUS(status);
+			g_minishell->status = WEXITSTATUS(status);
 		return ;
 	}
 	get_input_parsed(&process.content[0]);

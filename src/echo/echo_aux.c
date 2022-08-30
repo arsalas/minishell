@@ -59,7 +59,7 @@ int	print_env_var(char *input)
 		end++;
 	name = ft_substr(input, 1, end - 1);
 	if (ft_strcmp(name, "?", true))
-		printf("%i", g_minishell->last_process);
+		printf("%i", g_minishell->status);
 	else
 		printf("%s", get_env_var(name));
 	free(name);
