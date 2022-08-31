@@ -66,6 +66,7 @@ int	ft_set_directory(char *words)
 	path = words;
 	if (ft_cant_go(words) != 0)
 	{
+		chdir(g_minishell->old_dir);
 		g_minishell->status = 1;
 		return (-1);
 	}
