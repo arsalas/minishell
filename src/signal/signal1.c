@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/31 20:02:46 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:10:35 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@
 * SIGTERM para CONTROL D - salimos
 * Tenemos que utilizar la variable global, y status va a ser el resultado del ultimo pipe
 */
-/*
-* En caso de estar en un comando bloqueante, como es el cat, status varia
-*/
-
-static void	ft_bloq(int signal)
-{
-	if (signal == SIGQUIT)
-	{
-		ft_putstr_fd("Quit: 3\n", 1);
-		g_minishell->status = CNT_C;
-	}
-}
 
 /*
 * Control + D
@@ -48,16 +36,15 @@ static void	ft_handle_d(int signal)
 */
 static void	ft_handle_slash(int signal)
 {
-	if (signal == SIGQUIT
-		&& (g_minishell->status == CNT_C))
+	if (signal == SIGQUIT && g_minishell->bloq)
 	{
-		printf("BLOQUEANTE\n");
-		ft_bloq(signal);
-	}
-	else if (signal == SIGQUIT && g_minishell->status != CNT_C)
-	{
-		rl_replace_line("", 1);
+		ft_putstr_fd("^\\Quit: 3\n", 1);
 		rl_on_new_line();
+		g_minishell->status = 130;
+	}
+	else if (signal == SIGQUIT && !g_minishell->bloq)
+	{
+		printf("%s", get_prompt());
 		g_minishell->status = 0;
 	}
 }
