@@ -84,6 +84,5 @@ void	ft_others(char *path)
 		printf("permission denied: %s\n", path);
 		return ;
 	}
-	// TODO --> parsear los argumentos y enviarlos en argv
 	execve(path, argv, argv);
 }

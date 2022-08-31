@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/30 22:15:14 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/08/31 20:02:46 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@
 
 static void	ft_bloq(int signal)
 {
-	if (signal == SIGINT)
-	{
-		ft_putchar_fd('\n', 1);
-		g_minishell->status = CNT_C;
-	}
 	if (signal == SIGQUIT)
 	{
 		ft_putstr_fd("Quit: 3\n", 1);
@@ -54,25 +49,16 @@ static void	ft_handle_d(int signal)
 static void	ft_handle_slash(int signal)
 {
 	if (signal == SIGQUIT
-		&& (g_minishell->status != CNT_C))
+		&& (g_minishell->status == CNT_C))
 	{
 		printf("BLOQUEANTE\n");
 		ft_bloq(signal);
 	}
-	else if (signal == SIGQUIT)
+	else if (signal == SIGQUIT && g_minishell->status != CNT_C)
 	{
 		rl_replace_line("", 1);
 		rl_on_new_line();
 		g_minishell->status = 0;
-	}
-}
-
-void	ft_handle_c_previous_block(int signal)
-{
-	if (signal == SIGINT
-		&& (g_minishell->status == CNT_C))
-	{
-		rl_replace_line("", 1);
 	}
 }
 
@@ -83,13 +69,13 @@ void	ft_handle_c_previous_block(int signal)
 */
 static void	ft_handle_c(int signal)
 {
-	if (signal == SIGINT
-		&& (g_minishell->status == CNT_C))
+	if (signal == SIGINT && g_minishell->bloq)
 	{
-		ft_bloq(signal);
-		return ;
+		ft_putstr_fd("^C\n", 2);
+		rl_on_new_line();
+		g_minishell->status = CNT_C;
 	}
-	if (signal == SIGINT && g_minishell->status != CNT_C)
+	else if (signal == SIGINT && !g_minishell->bloq)
 	{
 		ft_putstr_fd("\n", 1);
 		rl_replace_line("", 1);

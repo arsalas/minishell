@@ -80,10 +80,12 @@ void	execute_single_pipe(t_pipe *commands)
 	if (pid[0] == 0)
 		first_pipe_child(fd, commands[0]);
 	close(fd[WRITE_END]);
+	g_minishell->bloq = true;
 	pid[1] = create_process();
 	if (pid[1] == 0)
 		last_pipe_child(fd, commands[1]);
 	wait_pipes_process(2, pid);
+	g_minishell->bloq = false;
 }
 
 void	execute_single_process(t_process process)
@@ -94,6 +96,7 @@ void	execute_single_process(t_process process)
 
 	if (process.content->command != C_CD && process.content->command != C_EXIT)
 	{
+		g_minishell->bloq = true;
 		pid = create_process();
 		if (pid == 0)
 		{
@@ -107,6 +110,7 @@ void	execute_single_process(t_process process)
 			exit(0);
 		}
 		waitpid(pid, &status, 0);
+		g_minishell->bloq = false;
 		if (WIFEXITED(status))
 			g_minishell->status = WEXITSTATUS(status);
 		return ;
@@ -133,5 +137,7 @@ void	execute_pipe(t_process process)
 		return (execute_single_process(process));
 	if (process.quantity == 2)
 		return (execute_single_pipe(process.content));
+	g_minishell->bloq = true;
 	execute_multiple_pipe(process.quantity, process.content);
+	g_minishell->bloq = false;
 }
