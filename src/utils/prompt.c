@@ -28,6 +28,8 @@ static char	*get_current_folder(void)
 	int		i;
 	// char	*folder;
 
+	if (ft_strcmp(get_env_var("PWD"), "/", true))
+		return ("/");
 	paths = ft_split(get_env_var("PWD"), '/');
 	i = 0;
 	while (paths[i])
