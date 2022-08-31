@@ -110,3 +110,4 @@ $(BIN_DIR):
 
 -include $(DEPS)
 
+.PHONY: all clean fclean re leaks run test
