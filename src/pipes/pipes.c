@@ -104,9 +104,7 @@ void	execute_single_process(t_process process)
 			get_input_parsed(&process.content[0]);
 			fds = ft_get_redir(process.content[0]);
 			if (fds.input != 0)
-			{
 				dup2(fds.input, STDIN_FILENO);
-			}
 			if (fds.output != 0)
 				dup2(fds.output, STDOUT_FILENO);
 			ft_execute(process.content[0]);

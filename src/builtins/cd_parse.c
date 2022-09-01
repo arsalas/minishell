@@ -97,9 +97,6 @@ bool	ft_look_for_root(char *words)
 */
 bool	ft_look_for_root(char *words)
 {
-	int		cont;
-
-	cont = 0;
 	if (words[0] == '/' && words[1] == '\0')
 	{
 		update_env_var("OLDPWD", get_env_var("PWD"));

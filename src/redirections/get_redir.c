@@ -60,10 +60,14 @@ int	read_doublerein(char *delimiter)
 	{
 		free(readed);
 		readed = get_next_line(1);
-		ft_putstr_fd(readed, fd);
+        if (!ft_strcmp(readed, delim, true))
+		    ft_putstr_fd(readed, fd);
 	}
 	free(readed);
 	free(delim);
+    close(fd);
+	fd = open(".redirs.txt", O_RDWR);
+    // printf("%s", get_next_line(fd)) ;
 	return (fd);
 }
 
