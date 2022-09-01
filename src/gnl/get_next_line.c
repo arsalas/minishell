@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:31:00 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/06/11 17:37:25 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:26:39 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "minishell.h"
 
 // return 0 if EOF has been reached
 // return -1 if an error happens
 // return 1 if you read one line
-char	*ft_cutword(char *prt)
+static char	*ft_cutword(char *prt)
 {
 	int		i;
 	int		j;
@@ -42,7 +42,7 @@ char	*ft_cutword(char *prt)
 	return (dest);
 }
 
-char	*ft_read(int fd, char *ptr)
+static char	*ft_read_g(int fd, char *ptr)
 {
 	int		bytes;
 	char	*temp;
@@ -78,7 +78,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!ptr)
 		ptr = ft_strdup("");
-	ptr = ft_read(fd, ptr);
+	ptr = ft_read_g(fd, ptr);
 	if (!ptr)
 	{
 		free(ptr);
