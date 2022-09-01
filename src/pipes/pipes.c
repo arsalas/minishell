@@ -116,6 +116,8 @@ void	execute_single_process(t_process process)
 		g_minishell->bloq = false;
 		if (WIFEXITED(status))
 			g_minishell->status = WEXITSTATUS(status);
+		close(fds.input);
+		close(fds.output);
 		return ;
 	}
 	get_input_parsed(&process.content[0]);

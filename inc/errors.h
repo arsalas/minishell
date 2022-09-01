@@ -20,6 +20,6 @@ void	fork_error(void);
 void	ft_no_file_dir(char *path);
 void	ft_no_permission(char *path);
 void	ft_not_directory(char *path);
-bool	ft_error_fd(int fd);
+void	ft_error_fd(char *file);
 
 #endif

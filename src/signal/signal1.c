@@ -6,20 +6,18 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/31 21:10:35 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/01 23:28:57 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//FALTA modificar el PID
 /*
 * SIGINT para CONTROL C - termina el proceso
-* SIGQUIT para CONTROL \ - ni idea
+* SIGQUIT para CONTROL \ - nada. Si estamos en comando bloqueante, salimos y escribe Quit
 * SIGTERM para CONTROL D - salimos
 * Tenemos que utilizar la variable global, y status va a ser el resultado del ultimo pipe
 */
-
 /*
 * Control + D
 */
@@ -51,8 +49,6 @@ static void	ft_handle_slash(int signal)
 
 /*
 * Control + C
-* TODO
-* Tenemos que encontrar la manera de que si hay dos Control C seguidos no se vaya al comando bloqueante
 */
 static void	ft_handle_c(int signal)
 {

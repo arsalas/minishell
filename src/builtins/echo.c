@@ -191,7 +191,6 @@ void	ft_make_echo(t_minishell *minishell, char *inside_pipes)
 }
 */
 
-//TODO --> detectar si hay flag
 bool	echo_have_flag(char *input)
 {
 	(void)input;

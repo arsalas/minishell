@@ -82,12 +82,7 @@ void	ft_no_file_dir(char *path)
 	printf("cd: no such file or directory: %s\n", path);
 }
 
-bool	ft_error_fd(int fd)
+void	ft_error_fd(char *file)
 {
-	if (fd == -1)
-	{
-		g_minishell->status = 1;
-		return (true);
-	}
-	return (false);
+	printf("%s: Permission denied\n", file);
 }
