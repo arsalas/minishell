@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   path.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 18:54:44 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/01 18:24:20 by aramirez         ###   ########.fr       */
+/*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
+/*   Updated: 2022/09/02 23:54:20 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef PATH_H
+# define PATH_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <limits.h>
+# include "minishell.h"
 
-# define BUFFER_SIZE 1000
-
-char	*get_next_line(int fd);
+void    path_init(void);
+char    *get_valid_path(char *command);
 
 #endif

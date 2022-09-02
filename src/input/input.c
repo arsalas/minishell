@@ -70,6 +70,7 @@ void	req_new_input(void)
 	char	*input;
 
 	input = ft_get_input();
+    printf("input: %s\n", input);
 	if (!input)
 	{
 		printf("exit\n");

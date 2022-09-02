@@ -40,7 +40,7 @@
 # include "input.h"
 # include "commands.h"
 # include "helpers.h"
-# include "get_next_line.h"
+# include "path.h"
 
 # define READ_END 0
 # define WRITE_END 1
@@ -110,6 +110,7 @@ typedef struct s_minishell
 	t_process		process;
 	t_memory		memory;
 	t_tokens		tokens;
+    char            **paths;
 }	t_minishell;
 
 extern t_minishell	*g_minishell;

@@ -66,27 +66,36 @@ void	ft_env_array(void)
 void	ft_others(char *path)
 {
 	char	**argv;
+    char    *absolute_path;
+    char    *aux;
 
 	g_minishell->status = DEFAULT;
 	argv = ft_split_quotes(ft_trim(path), ' ');
-	path = argv[0];
-	if (!is_path(path))
+    aux = get_valid_path(argv[0]);
+    if (aux)
+    {
+        absolute_path = ft_strjoin(ft_strjoin(aux, "/"), path);
+        free(aux);
+    }
+    else
+	    absolute_path = argv[0];
+	if (!is_path(absolute_path))
 	{
-		printf("%s: command not found\n", path);
+		printf("%s: command not found\n", absolute_path);
 		g_minishell->status = CN_FOUND;
 		return ;
 	}
-	if (access(path, F_OK) == -1)
+	if (access(absolute_path, F_OK) == -1)
 	{
-		printf("%s: No such file or directory\n", path);
+		printf("%s: No such file or directory\n", absolute_path);
 		g_minishell->status = CN_FOUND;
 		return ;
 	}
-	if (access(path, X_OK) == -1)
+	if (access(absolute_path, X_OK) == -1)
 	{
-		printf("permission denied: %s\n", path);
+		printf("permission denied: %s\n", absolute_path);
 		g_minishell->status = GENERAL;
 		return ;
 	}
-	execve(path, argv, get_env_arr());
+	execve(absolute_path, argv, get_env_arr());
 }

@@ -27,13 +27,18 @@ SRCS 			= prompt.c utils.c process.c parse_utils.c \
 				commands.c \
 				memory.c \
 				get_redir.c \
+				path.c
 
 
 # LIBS
 LIBS_PATH		:= libs
 LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
 
+ifeq ($(shell uname),Linux)
+READ_FLAGS		:= -L $(LIBS_PATH)/readline_brew/opt/readline/lib -I $(LIBS_PATH)/readline_brew/opt/readline/include -lreadline
+else
 READ_FLAGS		:= -L $(LIBS_PATH)/readline/lib -I $(LIBS_PATH)/readline/include/readline -lreadline 
+endif
 
 # FOLDERS
 OBJS_DIR		:= obj
@@ -60,7 +65,7 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell src/input src/commands src/echo src/memory src/helpers src/redirections src/gnl
+vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell src/input src/commands src/echo src/memory src/helpers src/redirections src/path
 
 .SECONDEXPANSION:
 
