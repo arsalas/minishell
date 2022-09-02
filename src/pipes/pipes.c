@@ -124,6 +124,8 @@ void	execute_single_process(t_process process)
 
 	i = 0;
 	g_minishell->bloq = 1;
+    fds.input = 0;
+    fds.output = 0;
 	get_input_parsed(&process.content[0]);
 	if (process.content[0].redirs.quantity > 0)
 	{

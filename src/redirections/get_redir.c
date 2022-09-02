@@ -28,8 +28,9 @@ void	empty_trash(void)
 	{
 		pid = create_process();
 		if (pid == 0)
-			ft_others("/bin/rm "REDIR_FILE);
+			ft_others(path);
 	}
+    free(path);
 }
 
 
