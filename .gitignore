@@ -1,6 +1,4 @@
 obj/*
-libs/*/obj
-libs/*/bin
 tests/obj
 tests/bin
 tests_txt
@@ -9,3 +7,5 @@ bin
 .vscode
 *DS_Store
 bin/
+examples/get_next_line/
+libs/*
