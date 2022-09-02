@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/02 18:46:17 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:14:15 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	ft_handle_slash(int signal)
 	{
 		ft_putstr_fd("^\\Quit: 3\n", 1);
 		rl_on_new_line();
-		g_minishell->status = 130;
+		g_minishell->status = 131;
 	}
 	else if (signal == SIGQUIT && !g_minishell->bloq)
 	{

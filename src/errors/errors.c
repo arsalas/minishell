@@ -47,6 +47,7 @@ void	cmd_not_found(char *cmd)
 void	fork_error(void)
 {
 	perror("Error in process fork\n");
+	g_minishell->status = GENERAL;
 	close_minishell();
 }
 
@@ -57,7 +58,7 @@ void	fork_error(void)
  */
 void	ft_not_directory(char *path)
 {
-	g_minishell->status = 1;
+	g_minishell->status = GENERAL;
 	printf("cd: not a directory: %s\n", path);
 }
 
@@ -68,6 +69,7 @@ void	ft_not_directory(char *path)
  */
 void	ft_no_permission(char *path)
 {
+	g_minishell->status = GENERAL;
 	printf("cd: permission denied: %s\n", path);
 }
 
@@ -78,11 +80,12 @@ void	ft_no_permission(char *path)
  */
 void	ft_no_file_dir(char *path)
 {
-	g_minishell->status = 1;
+	g_minishell->status = GENERAL;
 	printf("cd: no such file or directory: %s\n", path);
 }
 
 void	ft_error_fd(char *file)
 {
+	g_minishell->status = GENERAL;
 	printf("%s: Permission denied\n", file);
 }
