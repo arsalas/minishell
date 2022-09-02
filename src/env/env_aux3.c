@@ -64,10 +64,10 @@ void	move_envmem(int position)
 {
 	int	i;
 
-	i = position + 1;
+	i = position;
 	while (i < g_minishell->env.count)
 	{
-		g_minishell->env.vars[i] = g_minishell->env.vars[i - 1];
+		g_minishell->env.vars[i] = g_minishell->env.vars[i + 1];
 		i++;
 	}
 }

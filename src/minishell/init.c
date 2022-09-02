@@ -68,6 +68,7 @@ void	ft_execute_minishell(void)
 	{
 		req_new_input();
 		// free_memory();
+		empty_trash();
 	}
 }
 

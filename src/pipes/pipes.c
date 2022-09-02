@@ -80,13 +80,14 @@ void	execute_single_pipe(t_pipe *commands)
 	if (pid[0] == 0)
 		first_pipe_child(fd, commands[0]);
 	close(fd[WRITE_END]);
-	g_minishell->bloq = true;
+	g_minishell->bloq = 1;
 	pid[1] = create_process();
 	if (pid[1] == 0)
 		last_pipe_child(fd, commands[1]);
 	wait_pipes_process(2, pid);
-	g_minishell->bloq = false;
+	g_minishell->bloq = 0;
 }
+
 
 void	execute_single_process(t_process process)
 {
@@ -95,25 +96,23 @@ void	execute_single_process(t_process process)
 	t_fd_redirs	fds;
 
 	if (process.content->command != C_CD && process.content->command != C_EXIT
-		&& process.content->command != C_EXPORT)
+		&& process.content->command != C_EXPORT && process.content->command != C_UNSET)
 	{
-		g_minishell->bloq = true;
+		g_minishell->bloq = 1;
 		pid = create_process();
 		if (pid == 0)
 		{
 			get_input_parsed(&process.content[0]);
 			fds = ft_get_redir(process.content[0]);
 			if (fds.input != 0)
-			{
 				dup2(fds.input, STDIN_FILENO);
-			}
 			if (fds.output != 0)
 				dup2(fds.output, STDOUT_FILENO);
 			ft_execute(process.content[0]);
 			exit(0);
 		}
 		waitpid(pid, &status, 0);
-		g_minishell->bloq = false;
+		g_minishell->bloq = 0;
 		if (WIFEXITED(status))
 			g_minishell->status = WEXITSTATUS(status);
 		close(fds.input);
@@ -142,7 +141,7 @@ void	execute_pipe(t_process process)
 		return (execute_single_process(process));
 	if (process.quantity == 2)
 		return (execute_single_pipe(process.content));
-	g_minishell->bloq = true;
+	g_minishell->bloq = 1;
 	execute_multiple_pipe(process.quantity, process.content);
-	g_minishell->bloq = false;
+	g_minishell->bloq = 0;
 }

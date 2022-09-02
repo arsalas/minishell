@@ -33,9 +33,7 @@ bool	ft_is_absolute(char **words)
 void	ft_parse_cd(char *input)
 {
 	char	**words;
-	int		count;
 
-	count = 1;
 	words = ft_split_words(input);
 	if (ft_look_for_home(words))
 		return ;
