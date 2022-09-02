@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/31 21:10:35 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:16:02 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,26 @@ static void	ft_handle_slash(int signal)
 * Control + C
 * TODO
 * Tenemos que encontrar la manera de que si hay dos Control C seguidos no se vaya al comando bloqueante
+* 0 para comando no bloqueante
+* 1 para comando bloqueante
+* 2 para comando bloqueante dentro de redireccion
 */
 static void	ft_handle_c(int signal)
 {
-	if (signal == SIGINT && g_minishell->bloq)
+	(void) signal;
+	if (g_minishell->bloq == 2)
 	{
+		ft_putstr_fd("1b\n", 2);
+		ft_exit(0);
+	}
+	else if (g_minishell->bloq == 1)
+	{
+		ft_putstr_fd("2\n", 2);
 		ft_putstr_fd("^C\n", 2);
 		rl_on_new_line();
 		g_minishell->status = CNT_C;
 	}
-	else if (signal == SIGINT && !g_minishell->bloq)
+	else if (g_minishell->bloq == 0)
 	{
 		ft_putstr_fd("\n", 1);
 		rl_replace_line("", 1);
@@ -70,6 +80,7 @@ static void	ft_handle_c(int signal)
 		rl_redisplay();
 		g_minishell->status = GENERAL;
 	}
+
 }
 
 /*
@@ -80,15 +91,15 @@ int	ft_get_signal(void)
 	struct termios	term;
 
 	if (tcgetattr(STDIN_FILENO, &term) == -1)
-		return (1);
+		exit (1);
 	term.c_lflag &= ~(ECHOCTL);
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &term) == -1)
-		return (1);
+		exit (1);	
 	if (signal(SIGINT, ft_handle_c) == SIG_ERR)
-		return (1);
+		exit (1);
 	if (signal(SIGQUIT, ft_handle_slash) == SIG_ERR)
-		return (1);
+		exit (1);
 	if (signal(SIGTERM, ft_handle_d) == SIG_ERR)
-		return (1);
+		exit (1);
 	return (0);
 }

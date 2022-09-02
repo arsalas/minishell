@@ -103,7 +103,8 @@ typedef struct s_minishell
 	t_env			env;
 	t_parse			parse;
 	int				status;
-	bool			bloq;
+	int				bloq;
+	bool			finish;
 	struct termios	term;
 	t_builtins		last_command;
 	t_process		process;

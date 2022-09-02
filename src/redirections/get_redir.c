@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/02 16:33:47 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:49:45 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,19 @@
 * STDERR - error output fd = 2 - terminal
 */
 
+
 void	empty_trash(void)
 {
-		char *path;
+	char	*path;
+	int		pid;
 
-		path = ft_strjoin("/bin/rm ", REDIR_FILE);
-		if (access(REDIR_FILE, F_OK) != -1)
+	path = ft_strjoin("/bin/rm ", REDIR_FILE);
+	if (access(REDIR_FILE, F_OK) != -1)
+	{
+		pid = create_process();
+		if (pid == 0)
 			ft_others("/bin/rm "REDIR_FILE);
+	}
 }
 
 
@@ -98,7 +104,10 @@ t_fd_redirs	ft_get_redir(t_pipe command)
 		else if (command.redirs.info[i].types == DOUBBLE_REOUT)
 			fds.output = open(command.redirs.info[i].files, O_CREAT | O_RDWR | O_APPEND, 0666);
 		else
+		{
+			g_minishell->bloq = 2;
 			fds.input = read_doublerein(command.redirs.info[i].files);
+		}
 		ft_redir_errors(command.redirs.info[i].types, command.redirs.info[i].files);
 		i++;
 	}
