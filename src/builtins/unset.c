@@ -21,6 +21,7 @@ void	ft_unset(char *input)
 {
 	char	**tokens;
 
+	g_minishell->status = DEFAULT;
 	tokens = ft_split(input, ' ');
 	delete_env(tokens[1]);
 }

@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/02 18:20:19 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:02:31 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int	read_doublerein(char *delimiter)
 			ft_putstr_fd("\n", fd);
 		}
 	}
-	// close (fd);
-	// fd = open(".redirs.txt", O_CREAT | O_RDWR | O_TRUNC, 0666);
 	free(readed);
 	close(fd);
 	fd = open(REDIR_FILE, O_RDWR);
@@ -105,6 +103,7 @@ t_fd_redirs	ft_get_redir(t_pipe command)
 		else
 		{
 			g_minishell->bloq = 2;
+			g_minishell->finish = true;
 			fds.input = read_doublerein(command.redirs.info[i].files);
 		}
 		ft_redir_errors(command.redirs.info[i].types, command.redirs.info[i].files);

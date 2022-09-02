@@ -67,22 +67,26 @@ void	ft_others(char *path)
 {
 	char	**argv;
 
+	g_minishell->status = DEFAULT;
 	argv = ft_split_quotes(ft_trim(path), ' ');
 	path = argv[0];
 	if (!is_path(path))
 	{
 		printf("%s: command not found\n", path);
+		g_minishell->status = CN_FOUND;
 		return ;
 	}
 	if (access(path, F_OK) == -1)
 	{
 		printf("%s: No such file or directory\n", path);
+		g_minishell->status = CN_FOUND;
 		return ;
 	}
 	if (access(path, X_OK) == -1)
 	{
 		printf("permission denied: %s\n", path);
+		g_minishell->status = GENERAL;
 		return ;
 	}
-	execve(path, argv, argv);
+	execve(path, argv, get_env_arr());
 }

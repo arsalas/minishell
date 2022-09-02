@@ -65,6 +65,7 @@ void	print_env(void)
 	int	i;
 
 	i = 0;
+	g_minishell->status = DEFAULT;
 	while (i < g_minishell->env.count)
 	{
 		printf("%s=%s\n", g_minishell->env.vars[i].title,

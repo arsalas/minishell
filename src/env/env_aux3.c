@@ -102,3 +102,20 @@ void	free_all_env(void)
 		i++;
 	}
 }
+
+char	**get_env_arr(void)
+{
+	char	**arr;
+	int		i;
+
+	i = 0;
+	arr = get_memory(sizeof(char *) * (g_minishell->env.count + 1), true);
+	arr[g_minishell->env.count] = NULL;
+	while (i < g_minishell->env.count)
+	{
+		arr[i] = ft_strjoin(ft_strjoin(g_minishell->env.vars[i].title, "="),
+				g_minishell->env.vars[i].content);
+		i++;
+	}
+	return (arr);
+}

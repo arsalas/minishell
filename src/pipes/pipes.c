@@ -43,7 +43,21 @@ void	execute_multiple_pipe(int process, t_pipe *commands)
 	int	**fd;
 	int	*pid;
 	int	i;
+	int	j;
 
+	j = 0;
+	i = 0;
+	g_minishell->bloq = 1;
+	get_input_parsed(commands);
+	if (commands->redirs.quantity > 0)
+	{
+		while (j < commands->redirs.quantity)
+		{
+			if (commands->redirs.info[i].types == DOUBBLE_REIN)
+				g_minishell->bloq = 2;
+			j++;
+		}
+	}
 	i = 1;
 	fd = create_fd(process - 1);
 	pid = create_pid(process);
@@ -72,7 +86,20 @@ void	execute_single_pipe(t_pipe *commands)
 {
 	int	fd[2];
 	int	*pid;
+	int	i;
 
+	i = 0;
+	g_minishell->bloq = 1;
+	get_input_parsed(commands);
+	if (commands->redirs.quantity > 0)
+	{
+		while (i < commands->redirs.quantity)
+		{
+			if (commands->redirs.info[i].types == DOUBBLE_REIN)
+				g_minishell->bloq = 2;
+			i++;
+		}
+	}
 	pid = create_pid(2);
 	// TODO --> comprobar que los pipes salgan bien
 	pipe(fd);
@@ -80,7 +107,6 @@ void	execute_single_pipe(t_pipe *commands)
 	if (pid[0] == 0)
 		first_pipe_child(fd, commands[0]);
 	close(fd[WRITE_END]);
-	g_minishell->bloq = 1;
 	pid[1] = create_process();
 	if (pid[1] == 0)
 		last_pipe_child(fd, commands[1]);
@@ -94,22 +120,33 @@ void	execute_single_process(t_process process)
 	pid_t		pid;
 	int			status;
 	t_fd_redirs	fds;
+	int			i;
 
+	i = 0;
+	g_minishell->bloq = 1;
+	get_input_parsed(&process.content[0]);
+	if (process.content[0].redirs.quantity > 0)
+	{
+		while (i < process.content[0].redirs.quantity)
+		{
+			if (process.content[0].redirs.info[i].types == DOUBBLE_REIN)
+				g_minishell->bloq = 2;
+			i++;
+		}
+	}
 	if (process.content->command != C_CD && process.content->command != C_EXIT
 		&& process.content->command != C_EXPORT && process.content->command != C_UNSET)
 	{
-		g_minishell->bloq = 1;
 		pid = create_process();
 		if (pid == 0)
 		{
-			get_input_parsed(&process.content[0]);
 			fds = ft_get_redir(process.content[0]);
 			if (fds.input != 0)
 				dup2(fds.input, STDIN_FILENO);
 			if (fds.output != 0)
 				dup2(fds.output, STDOUT_FILENO);
 			ft_execute(process.content[0]);
-			exit(0);
+			exit(g_minishell->status);
 		}
 		waitpid(pid, &status, 0);
 		g_minishell->bloq = 0;

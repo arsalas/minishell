@@ -19,8 +19,8 @@ char	*ft_get_input(void)
 {
 	char	*prompt;
 
-	// prompt = get_prompt();
-	prompt = BMAG"minishell: "RESET;
+	prompt = get_prompt();
+	// prompt = BMAG"minishell: "RESET;
 	return (readline(prompt));
 }
 
@@ -68,7 +68,7 @@ void	ft_execute_minishell(void)
 	{
 		req_new_input();
 		// free_memory();
-		empty_trash();
+		// empty_trash();
 	}
 }
 

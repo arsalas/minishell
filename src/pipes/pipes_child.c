@@ -31,7 +31,7 @@ void	first_pipe_child(int *fd, t_pipe command)
 	if (fds.output != 0)
 		dup2(fds.output, STDOUT_FILENO);
 	ft_execute(command);
-	exit(0);
+	exit(g_minishell->status);
 }
 
 /**
@@ -56,7 +56,7 @@ void	intermediate_pipe_child(int *fd1, int *fd2, t_pipe command)
 	if (fds.output != 0)
 		dup2(fds.output, STDOUT_FILENO);
 	ft_execute(command);
-	exit(0);
+	exit(g_minishell->status);
 }
 
 /**
@@ -77,5 +77,5 @@ void	last_pipe_child(int *fd, t_pipe command)
 	if (fds.output != 0 && fds.output != -1)
 		dup2(fds.output, STDOUT_FILENO);
 	ft_execute(command);
-	exit(0);
+	exit(g_minishell->status);
 }

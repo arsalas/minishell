@@ -29,5 +29,6 @@ void	update_env_var(char *name, char *content);
 void	free_all_env(void);
 char    *expand_env_vars(char *str);
 char	*get_export_name(char *input);
+char	**get_env_arr(void);
 
 #endif

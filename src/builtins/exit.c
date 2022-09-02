@@ -83,5 +83,6 @@ void	ft_make_exit(char *str)
 
 void	ft_exit(char *str)
 {
+	g_minishell->status = DEFAULT;
 	ft_make_exit(str);
 }

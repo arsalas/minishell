@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/31 18:57:08 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:25:58 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_parse_cd(char *input)
 {
 	char	**words;
 
+	g_minishell->status = DEFAULT;
 	words = ft_split_words(input);
 	if (ft_look_for_home(words))
 		return ;
@@ -46,39 +47,5 @@ void	ft_parse_cd(char *input)
 	if (ft_look_for_old(words[1]))
 		return ;
 	if (ft_set_directory(words[1]))
-	{
-		g_minishell->status = 3;
 		return ;
-	}
 }
-/*
-void	ft_parse_cd(char *input)
-{
-	char	**words;
-	char	**given_path;
-	int		count;
-
-	count = 0;
-	g_minishell->old_dir = get_env_var("PWD");
-	words = ft_split_words(input);
-	if (ft_look_for_home(words))
-		return ;
-	if (ft_look_for_root(words))
-		return ;
-	if (ft_is_absolute(words))
-		return ;
-	given_path = ft_split(words[1], '/');
-	while (given_path[count] != NULL)
-	{
-		if (ft_get_home_dir(given_path[count]))
-			count++;
-		else if (ft_look_for_old(given_path[count]))
-			count++;
-		else
-		{
-			ft_set_directory(given_path[count]);
-			count++;
-		}
-	}
-	g_minishell->status = 3;
-}*/

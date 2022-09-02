@@ -55,14 +55,15 @@ typedef enum e_redir_type
 // 255*		-> Exit status out of range
 typedef enum e_exit_status
 {
-	GENERAL=1,
-	MISUE=2,
-	CN_EXEC=126,
-	CN_FOUND=127,
-	INV_ARG=128,
-	FATAL_SIGNAL=128,
-	CNT_C=130,
-	OUT_RANGE=255
+	DEFAULT = 0,
+	GENERAL = 1,
+	MISUE = 2,
+	CN_EXEC = 126,
+	CN_FOUND = 127,
+	INV_ARG = 128,
+	FATAL_SIGNAL = 128,
+	CNT_C = 130,
+	OUT_RANGE = 255
 }	t_exit_status;
 
 typedef struct s_redir_info

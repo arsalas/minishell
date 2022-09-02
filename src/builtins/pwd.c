@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:48:03 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/15 12:46:40 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:21:13 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	pwd(void)
 
 	getcwd(cwd, sizeof(cwd));
 	printf("%s\n", cwd);
+	g_minishell->status = DEFAULT;
 }

@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/02 18:20:32 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:46:17 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,18 @@ static void	ft_handle_slash(int signal)
 static void	ft_handle_c(int signal)
 {
 	(void) signal;
-	if (g_minishell->bloq == 2)
+	if (g_minishell->bloq == 2 && g_minishell->finish)
 	{
-		ft_putstr_fd("1b\n", 2);
+		ft_putstr_fd(">\n", 2);
 		ft_exit(0);
 	}
-	else if (g_minishell->bloq == 1)
+	else if (g_minishell->bloq == 1 && !g_minishell->finish)
 	{
-		ft_putstr_fd("2\n", 2);
 		ft_putstr_fd("^C\n", 2);
 		rl_on_new_line();
 		g_minishell->status = CNT_C;
 	}
-	else if (g_minishell->bloq == 0)
+	else if (g_minishell->bloq == 0 && !g_minishell->finish)
 	{
 		ft_putstr_fd("\n", 1);
 		rl_replace_line("", 1);
@@ -78,7 +77,6 @@ static void	ft_handle_c(int signal)
 		rl_redisplay();
 		g_minishell->status = GENERAL;
 	}
-
 }
 
 /*
