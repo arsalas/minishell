@@ -33,13 +33,7 @@ SRCS 			= prompt.c utils.c process.c parse_utils.c \
 LIBS_PATH		:= libs
 LIBS 			:= $(LIBS_PATH)/libft/bin/libft.a
 
-ifeq ($(shell uname),Linux)
-READ_FLAGS		:= -L $(LIBS_PATH)/readline_brew/opt/readline/lib -I $(LIBS_PATH)/readline_brew/opt/readline/include -lreadline
-else ifeq ($(USER),amurcia-)
-READ_FLAGS		:= -L $(LIBS_PATH)/readline_alicia/opt/readline/lib -I $(LIBS_PATH)/readline_alicia/opt/readline/include -lreadline
-else
 READ_FLAGS		:= -L $(LIBS_PATH)/readline/lib -I $(LIBS_PATH)/readline/include/readline -lreadline 
-endif
 
 # FOLDERS
 OBJS_DIR		:= obj
