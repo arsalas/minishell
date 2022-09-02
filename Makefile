@@ -27,7 +27,6 @@ SRCS 			= prompt.c utils.c process.c parse_utils.c \
 				commands.c \
 				memory.c \
 				get_redir.c \
-				get_next_line.c \
 
 
 # LIBS
