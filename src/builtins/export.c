@@ -46,7 +46,7 @@ static int	get_start_export(char *input)
 	return (i);
 }
 
-static char	*get_export_name(char *input)
+char	*get_export_name(char *input)
 {
 	int	len;
 	int	start;

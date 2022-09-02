@@ -95,7 +95,7 @@ void	execute_single_process(t_process process)
 	t_fd_redirs	fds;
 
 	if (process.content->command != C_CD && process.content->command != C_EXIT
-		&& process.content->command != C_EXPORT)
+		&& process.content->command != C_EXPORT && process.content->command != C_UNSET)
 	{
 		g_minishell->bloq = true;
 		pid = create_process();

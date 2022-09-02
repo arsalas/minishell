@@ -44,6 +44,7 @@
 
 # define READ_END 0
 # define WRITE_END 1
+# define REDIR_FILE ".redirs.txt"
 
 typedef struct s_env_details
 {
@@ -135,5 +136,7 @@ int 		ft_redir_in(int fd);
 int 		ft_trunc(int fd);
 int 		ft_append(int fd);
 int 		ft_fd(void);
+void		empty_trash(void);
+
 
 #endif

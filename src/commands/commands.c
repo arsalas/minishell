@@ -23,6 +23,8 @@ void	ft_execute(t_pipe builting)
 		return (pwd());
 	if (builting.command == C_EXPORT)
 		return (ft_export(builting.input));
+	if (builting.command == C_UNSET)
+		return (ft_unset(builting.input));
 	if (builting.command == C_ECHO)
 		return (ft_echo(builting.input));
 	if (builting.command == C_CD)

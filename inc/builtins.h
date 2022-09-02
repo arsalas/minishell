@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/31 18:57:17 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:40:53 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		ft_set_directory(char *words);
 void	pwd(void);
 void	ft_env(void);
 void	ft_export(char *input);
-void	unset(char *name);
+void	ft_unset(char *input);
 void	ft_others(char *path);
 void	ft_echo(char *input);
 bool	ft_look_for_root(char *words);

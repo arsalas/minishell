@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/01 19:30:57 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:33:47 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 * STDOUT - standard output fd = 1 - terminal
 * STDERR - error output fd = 2 - terminal
 */
+
+void	empty_trash(void)
+{
+		char *path;
+
+		path = ft_strjoin("/bin/rm ", REDIR_FILE);
+		if (access(REDIR_FILE, F_OK) != -1)
+			ft_others("/bin/rm "REDIR_FILE);
+}
+
 
 // OUTPUT ES PARA ESCRIBIR
 // INPUT ES PARA LEER
@@ -45,29 +55,26 @@ void	ft_redir_errors(t_redir_type type, char *file)
 * Token 2 para >> trunc
 * Token 3 para <
 */
-
-
 int	read_doublerein(char *delimiter)
 {
 	char	*readed;
-	char	*delim;
 	int		fd;
 
-	fd = open(".redirs.txt", O_CREAT | O_RDWR | O_TRUNC, 0666);
-	delim = ft_strjoin(delimiter, "\n");
+	fd = open(REDIR_FILE, O_CREAT | O_RDWR | O_TRUNC, 0666);
 	readed = ft_strcpy("");
-	while (!ft_strcmp(readed, delim, true))
+	while (!ft_strcmp(readed, delimiter, true))
 	{
 		free(readed);
-		readed = get_next_line(1);
-        if (!ft_strcmp(readed, delim, true))
-		    ft_putstr_fd(readed, fd);
+		readed = readline("> ");
+		if (!ft_strcmp(readed, delimiter, true))
+		{
+			ft_putstr_fd(readed, fd);
+			ft_putstr_fd("\n", fd);
+		}
 	}
 	free(readed);
-	free(delim);
-    close(fd);
-	fd = open(".redirs.txt", O_RDWR);
-    // printf("%s", get_next_line(fd)) ;
+	close(fd);
+	fd = open(REDIR_FILE, O_RDWR);
 	return (fd);
 }
 
@@ -97,3 +104,4 @@ t_fd_redirs	ft_get_redir(t_pipe command)
 	}
 	return (fds);
 }
+

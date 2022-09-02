@@ -17,7 +17,10 @@
  * 
  * @param name 
  */
-void	unset(char *name)
+void	ft_unset(char *input)
 {
-	delete_env(name);
+	char	**tokens;
+
+	tokens = ft_split(input, ' ');
+	delete_env(tokens[1]);
 }
