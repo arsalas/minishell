@@ -83,7 +83,7 @@ void	ft_init_minishell(char **env)
 	g_minishell->process.quantity = 0;
 	g_minishell->memory.quantity = 0;
 	init_env(env);
-//	path_init();
+	path_init();
 	// update_env_var("PWD", "minishell");
 	ft_signal();
 	// ft_read();

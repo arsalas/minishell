@@ -70,6 +70,7 @@ void	req_new_input(void)
 	char	*input;
 
 	input = ft_get_input();
+    printf("input: %s\n", input);
 	if (!input)
 	{
 		printf("exit\n");
@@ -80,6 +81,6 @@ void	req_new_input(void)
 		return ;
 	ft_read_history();
 	free(input);
-	// create_proces_data();
+	create_proces_data();
 	// free_process_memory();
 }
