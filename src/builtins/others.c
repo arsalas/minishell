@@ -74,7 +74,7 @@ void	ft_others(char *path)
     aux = get_valid_path(argv[0]);
     if (aux)
     {
-        absolute_path = ft_strjoin(ft_strjoin(aux, "/"), path);
+        absolute_path = ft_strjoin(ft_strjoin(aux, "/"), argv[0]);
         free(aux);
     }
     else
