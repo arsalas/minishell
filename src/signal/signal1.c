@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/02 20:14:15 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:06:23 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ static void	ft_handle_slash(int signal)
 
 /*
 * Control + C
-* TODO
-* Tenemos que encontrar la manera de que si hay dos Control C seguidos no se vaya al comando bloqueante
 * 0 para comando no bloqueante
 * 1 para comando bloqueante
 * 2 para comando bloqueante dentro de redireccion
