@@ -176,6 +176,9 @@ bool	ft_export_alone(char *input)
 			printf("\"\n");
 			i++;
 		}
+		printf("declare -x ");
+		printf("%s", environ[i]);
+		printf("\"\n");
 		ft_free_split(environ);
 		return (true);
 	}

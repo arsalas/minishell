@@ -17,11 +17,15 @@
  * 
  * @param name 
  */
-void	ft_unset(char *input)
+void	ft_unset(char **tokens)
 {
-	char	**tokens;
+	int	count;
 
+	count = 1;
 	g_minishell->status = DEFAULT;
-	tokens = ft_split(input, ' ');
-	delete_env(tokens[1]);
+	while (tokens[count])
+	{
+		delete_env(tokens[count]);
+		count++;
+	}
 }

@@ -23,7 +23,7 @@ void	free_memory(void);
 int		create_process(void);
 int	    ft_skip_one_word(char *str);
 char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3);
-int	ft_strncmp_mod(const char *s1, const char *s2, size_t n);
+int	    ft_strncmp_mod(const char *s1, const char *s2, size_t n);
 
 bool	is_quote(char c);
 bool	is_scaped_char(char c);
