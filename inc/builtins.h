@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/05 19:22:42 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:41:24 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	ft_look_for_home(char **words);
 int		ft_set_directory(char *words);
 
 void	pwd(void);
-void	ft_env(void);
+void	ft_env(char **tokens);
 void	ft_export(char **tokens);
 void	ft_unset(char **tokens);
 void	ft_others(char *path);

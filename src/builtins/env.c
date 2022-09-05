@@ -17,7 +17,13 @@
  * 
  * @param env 
  */
-void	ft_env(void)
+void	ft_env(char **tokens)
 {
+	if (tokens[1])
+	{
+		printf("env: %s: No such file or directory\n", tokens[1]);
+		g_minishell->status = CN_FOUND;
+		return ;
+	}
 	print_env();
 }
