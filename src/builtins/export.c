@@ -36,34 +36,29 @@ static int	get_finish_position(char *input)
 	return (i);
 }
 
-static int	get_start_export(char *input)
-{
-	int	i;
-
-	i = 6;
-	while (input[i] == ' ')
-		i++;
-	return (i);
-}
 
 char	*get_export_name(char *input)
 {
 	int	len;
 	int	start;
 
-	start = get_start_export(input);
+	start = 0;
 	len = get_finish_position(input);
 	return (ft_substr(input, start, len - start));
 }
 
 static char	*get_export_content(char *input)
 {
-	int	len;
-	int	start;
+	int		len;
+	int		start;
+	char	*str;
+	char	**parse_arr;
 
 	start = get_finish_position(input) + 1;
 	len = ft_strlen(input);
-	return (ft_substr(input, start, len));
+	str = ft_substr(input, start, len);
+	parse_arr = parse(str);
+	return (ft_join(parse_arr, ' '));
 }
 
 bool	exist_env_var(char *name)
@@ -73,36 +68,51 @@ bool	exist_env_var(char *name)
 	return (true);
 }
 
-/**
- * @brief Crea una nueva variable de entorno
- * 
- * @param name 
- * @param content 
- */
-void	ft_export(char *input)
+void	export_env_var(char *token)
 {
 	char	*name;
 	char	*content;
 
-	g_minishell->status = DEFAULT;
-	if (ft_export_alone(input))
+	if (!have_correct_format(token))
 		return ;
-	if (!have_correct_format(input))
-		return ;
-	name = get_export_name(input);
+	name = get_export_name(token);
 	if (!is_valid_env_name(name))
 	{
-		printf("export: not an identifier: %s\n", name);
+		printf("export: `%s': not a valid identifier\n", name);
 		free(name);
 		return ;
 	}
-	content = get_export_content(input);
+	content = get_export_content(token);
 	if (exist_env_var(name))
 		update_env_var(name, content);
 	else
 		push_env(name, content);
 	free(name);
 	free(content);
+}
+
+/**
+ * @brief Crea una nueva variable de entorno
+ * 
+ * @param name 
+ * @param content 
+ */
+void	ft_export(char **tokens)
+{
+	int		count;
+
+	g_minishell->status = DEFAULT;
+	if (tokens[1] == NULL)
+	{
+		export_alone();
+		return ;
+	}
+	count = 1;
+	while (tokens[count])
+	{
+		export_env_var(tokens[count]);
+		count++;
+	}
 }
 
 /**
@@ -155,33 +165,20 @@ char	**ft_create_environ(char **environ)
  * 
  * @param environ
  */
-bool	ft_export_alone(char *input)
+void	export_alone(void)
 {
 	int		i;
 	char	**environ;
 
-	i = 0;
 	environ = malloc(sizeof(char *) * g_minishell->env.count + 1);
 	environ[g_minishell->env.count] = NULL;
-	i = ft_skip_one_word(input);
-	if (input[i] == '\0')
+	environ = ft_create_environ(environ);
+	environ = ft_sort_array(environ, g_minishell->env.count);
+	i = 0;
+	while (i < g_minishell->env.count)
 	{
-		environ = ft_create_environ(environ);
-		environ = ft_sort_array(environ, g_minishell->env.count);
-		i = 0;
-		while (i < g_minishell->env.count - 1)
-		{
-			printf("declare -x ");
-			printf("%s", environ[i]);
-			printf("\"\n");
-			i++;
-		}
-		printf("declare -x ");
-		printf("%s", environ[i]);
-		printf("\"\n");
-		ft_free_split(environ);
-		return (true);
+		printf("declare -x %s\"\n", environ[i]);
+		i++;
 	}
-	free (environ);
-	return (false);
+	ft_free_split(environ);
 }

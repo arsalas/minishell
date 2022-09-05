@@ -25,7 +25,7 @@ void	ft_execute(t_pipe builting)
 	if (builting.command == C_PWD)
 		return (pwd());
 	if (builting.command == C_EXPORT)
-		return (ft_export(builting.input));
+		return (ft_export(tokens));
 	if (builting.command == C_UNSET)
 		return (ft_unset(tokens));
 	if (builting.command == C_ECHO)
