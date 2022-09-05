@@ -155,7 +155,7 @@ bool	ft_export_alone(char *input)
 	char	**environ;
 
 	i = 0;
-	environ = malloc(sizeof(char) * g_minishell->env.count + 1);
+	environ = malloc(sizeof(char *) * g_minishell->env.count + 1);
 	environ[g_minishell->env.count] = NULL;
 	i = ft_skip_one_word(input);
 	if (input[i] == '\0')
@@ -163,7 +163,7 @@ bool	ft_export_alone(char *input)
 		environ = ft_create_environ(environ);
 		environ = ft_sort_array(environ, g_minishell->env.count);
 		i = 0;
-		while (i < g_minishell->env.count - 1)
+		while (i < g_minishell->env.count)
 		{
 			printf("declare -x ");
 			printf("%s", environ[i]);
