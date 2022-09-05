@@ -31,5 +31,3 @@ void	ft_execute(t_pipe builting)
 		return (ft_cd(builting.input));
 	return (ft_others(builting.input));
 }
-
-

@@ -18,7 +18,7 @@
 void	close_minishell(int code)
 {
 	free_memory();
-	exit(0);
+	exit(code);
 }
 
 /**
