@@ -78,9 +78,27 @@ void	ft_make_exit(char *str)
 	}
 	free (str);
 	printf("exit\n");
-	close_minishell();
+	close_minishell(0);
 }
 
+/**
+ * @brief Obtiene el codigo de error a partir 
+ * del codigo introducido por el usuario
+ * 
+ * @param code_s 
+ * @return int 
+ */
+int	get_exit_code(char *code_s)
+{
+	int	code;
+
+	code = ft_atoi(code_s);
+	if (code < 0)
+		code *= -255;
+	return (code % 256);
+}
+
+//TODO: -> comprobar si tiene un formato correcto
 void	ft_exit(char *str)
 {
 	g_minishell->status = DEFAULT;

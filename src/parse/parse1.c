@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/17 15:53:18 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:45:23 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	ft_pipe_errors(int count)
 	if (g_minishell->input[0] == 124 && g_minishell->input[1] == '\0')
 	{
 		printf("syntax error near unexpected token `|'\n");
-		close_minishell();
+		close_minishell(0);
 	}
 	else if (g_minishell->input[count] == 124
 		&& g_minishell->input[count + 1] == '\0')
 	{
 		printf("Error\nDame un comando\n");
-		close_minishell();
+		close_minishell(0);
 	}
 }
 

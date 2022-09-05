@@ -35,7 +35,7 @@ void	ft_read(void)
 		if (!g_minishell->input)
 		{
 			printf("exit\n");
-			close_minishell();
+			close_minishell(0);
 		}
 		else if (*g_minishell->input != '\0')
 		{

@@ -13,7 +13,7 @@
 #ifndef ERRORS_H
 # define ERRORS_H
 
-void	close_minishell(void);
+void	close_minishell(int code);
 void	memory_error(void);
 void	cmd_not_found(char *cmd);
 void	fork_error(void);

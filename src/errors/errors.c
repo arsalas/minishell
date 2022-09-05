@@ -15,7 +15,7 @@
 /**
  * @brief Cierra el minishell y libera toda la memoria reservada
  */
-void	close_minishell(void)
+void	close_minishell(int code)
 {
 	free_memory();
 	exit(0);
@@ -26,8 +26,8 @@ void	close_minishell(void)
  */
 void	memory_error(void)
 {
-	perror("Memory error\n");
-	close_minishell();
+	perror("Cannot allocate memory\n");
+	close_minishell(12);
 }
 
 /**
@@ -48,7 +48,7 @@ void	fork_error(void)
 {
 	perror("Error in process fork\n");
 	g_minishell->status = GENERAL;
-	close_minishell();
+	close_minishell(0);
 }
 
 /**
