@@ -73,3 +73,17 @@ bool	is_doubble_redirect(char *raw, int count)
 		return (true);
 	return (false);
 }
+
+bool	is_strdigit(char *str)
+{
+	int		count;
+
+	count = 0;
+	while (str[count])
+	{
+		if (ft_isdigit(str[count]) != 1)
+			return (false);
+		count++;
+	}
+	return (true);
+}

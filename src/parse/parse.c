@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/24 21:16:28 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:24:29 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,23 +273,9 @@ void	get_input_parsed(t_pipe *command)
 		}
 	}
 }
-// void	get_input_parsed(char *raw, int process)
-// {
-// 	int	count;
 
-// 	g_minishell->process.content[process].redirs.quantity = 0;
-// 	g_minishell->process.content[process].input = get_input_redirect(raw);
-// 	if (have_redirect(raw))
-// 	{
-// 		g_minishell->process.content[process].redirs.quantity = get_redirect_quantity(raw);
-// 		g_minishell->process.content[process].redirs.info = get_memory(sizeof(t_redir_info)
-// 			* g_minishell->process.content[process].redirs.quantity, true);
-// 		count = 0;
-// 		while (count < g_minishell->process.content[process].redirs.quantity)
-// 		{
-// 			g_minishell->process.content[process].redirs.info[count].types = get_redirect_type(raw, count + 1);
-// 			g_minishell->process.content[process].redirs.info[count].files = get_filename_redirect(raw, count + 1);
-// 			count++;
-// 		}
-// 	}
-// }
+
+char	**parse(char *input)
+{
+	return (ft_split_quotes(input, ' '));
+}

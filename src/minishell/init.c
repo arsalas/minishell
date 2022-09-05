@@ -64,7 +64,8 @@ void	ft_signal(void)
  */
 void	ft_execute_minishell(void)
 {
-	while (g_minishell->last_command != C_EXIT)
+	// while (g_minishell->last_command != C_EXIT)
+	while (true)
 	{
 		req_new_input();
 		// free_memory();

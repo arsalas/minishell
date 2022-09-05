@@ -14,11 +14,14 @@
 
 void	ft_execute(t_pipe builting)
 {
+	char	**tokens;
+
+	tokens = parse(builting.input);
 	g_minishell->last_command = builting.command;
 	if (builting.command == C_ENV)
 		return (ft_env());
 	if (builting.command == C_EXIT)
-		return (ft_exit(builting.input));
+		return (ft_exit(tokens));
 	if (builting.command == C_PWD)
 		return (pwd());
 	if (builting.command == C_EXPORT)

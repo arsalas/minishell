@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/02 16:40:53 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:28:10 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include "minishell.h"
 
 //EXIT
-void	ft_exit(char *str);
+void	ft_exit(char **str);
 int		ft_its_not_digit(char *str, int len);
 int		ft_after_exit(char *str, int count);
 int		ft_empty_piece(char *str, int count);
-void	ft_make_exit(char *str);
+void	ft_make_exit(void);
 
 //CD
 void	ft_cd(char *input);

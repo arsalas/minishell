@@ -12,73 +12,49 @@
 
 #include "minishell.h"
 
-/*
-* Nos saltamos los espacios, \t o \n que haya en el string
-*/
-int	ft_empty_piece(char *str, int count)
-{
-	while (str[count] && (str[count] == '\n'
-			|| str[count] == '\t' || str[count] == ' '))
-		count++;
-	return (count);
-}
-
-/*
-* Nos posicionamos despues de la palabra exit y los espacios
-*/
-int	ft_after_exit(char *str, int count)
-{
-	count = ft_empty_piece(str, count);
-	count += 4;
-	count = ft_empty_piece(str, count);
-	return (count);
-}
-
-/*
-* Damos error en caso de que nos den un no digit despues de exit
-*/
-int	ft_its_not_digit(char *str, int len)
+bool	is_correct_structure_exit(char **str)
 {
 	int		count;
-	char	*str_error;
 
-	count = ft_strlen(str);
-	str_error = (char *)malloc((sizeof(char) * count + 1));
 	count = 0;
-	while (str[len] && !(ft_isdigit(str[len])))
+	if (str[1] == NULL)
+		return (true);
+	if (str[1][0] == '-' && is_strdigit(&str[1][1]))
+		return (true);
+	if (!is_strdigit(str[1]))
+		return (false);
+	if (str[2] != NULL)
+		return (false);
+	return (true);
+}
+
+/**
+ * @brief 
+ * 
+ * @param str 
+ * @return true si tiene que hacer exit
+ * @return false no tiene que hacer exit
+ */
+bool	manage_errors_exit(char **str)
+{
+	if (!is_strdigit(str[1]))
 	{
-		str_error[count] = str[len];
-		len++;
-		count++;
+		printf("exit: %s: numeric argument required\n", str[1]);
+		g_minishell->status = OUT_RANGE;
+		return (true);
 	}
-	printf("exit: %s: numeric argument required\n", str_error);
-	return (-1);
+	printf("exit: too many arguments\n");
+	g_minishell->status = GENERAL;
+	return (false);
 }
 
 /*
 * Realizamos la funcion exit
 */
-void	ft_make_exit(char *str)
+void	ft_make_exit(void)
 {
-	int		count;
-
-	count = 0;
-	while (str[count])
-	{
-		count = ft_after_exit(str, count);
-		while (str[count])
-		{
-			if (!(ft_isdigit(str[count])))
-			{
-				if (ft_its_not_digit(str, count) == -1)
-					return ;
-			}
-			count++;
-		}
-	}
-	free (str);
 	printf("exit\n");
-	close_minishell(0);
+	close_minishell(g_minishell->status);
 }
 
 /**
@@ -98,9 +74,20 @@ int	get_exit_code(char *code_s)
 	return (code % 256);
 }
 
-//TODO: -> comprobar si tiene un formato correcto
-void	ft_exit(char *str)
+void	ft_exit(char **str)
 {
-	g_minishell->status = DEFAULT;
-	ft_make_exit(str);
+	bool	is_exit;
+
+	is_exit = true;
+	if (!is_correct_structure_exit(str))
+		is_exit = manage_errors_exit(str);
+	else
+	{
+		if (str[1])
+			g_minishell->status = get_exit_code(str[1]);
+		else
+			g_minishell->status = GENERAL;
+	}
+	if (is_exit)
+		ft_make_exit();
 }
