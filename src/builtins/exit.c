@@ -14,9 +14,6 @@
 
 bool	is_correct_structure_exit(char **str)
 {
-	int		count;
-
-	count = 0;
 	if (str[1] == NULL)
 		return (true);
 	if (str[1][0] == '-' && is_strdigit(&str[1][1]))

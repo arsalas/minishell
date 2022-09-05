@@ -12,7 +12,7 @@ RM 				:= rm -f
 # SRC
 MAIN			= main.c 
 
-SRCS 			= prompt.c utils.c process.c parse_utils.c \
+SRCS 			= prompt.c utils.c process.c parse_utils.c string.c \
 				errors.c \
 				cd.c cd_parse.c cd_parse_global.c echo.c env.c exit.c export.c pwd.c unset.c others.c \
 				env_aux1.c env_aux2.c env_aux3.c expand.c \

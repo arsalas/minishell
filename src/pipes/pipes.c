@@ -121,6 +121,8 @@ void	execute_single_process(t_process process)
 	int			status;
 	t_fd_redirs	fds;
 	int			i;
+    int saved_stdout;
+    int saved_stdin;
 
 	i = 0;
 	g_minishell->bloq = 1;
@@ -143,9 +145,9 @@ void	execute_single_process(t_process process)
 		if (pid == 0)
 		{
 			fds = ft_get_redir(process.content[0]);
-			if (fds.input != 0)
+			if (fds.input != -1)
 				dup2(fds.input, STDIN_FILENO);
-			if (fds.output != 0)
+			if (fds.output != -1)
 				dup2(fds.output, STDOUT_FILENO);
 			ft_execute(process.content[0]);
 			exit(g_minishell->status);
@@ -158,17 +160,17 @@ void	execute_single_process(t_process process)
 		close(fds.output);
 		return ;
 	}
+    saved_stdout = dup(STDOUT_FILENO);
+    saved_stdin = dup(STDIN_FILENO);
 	// get_input_parsed(&process.content[0]);
 	fds = ft_get_redir(process.content[0]);
-	if (fds.input != 0)
+	if (fds.input != -1)
 		dup2(fds.input, STDIN_FILENO);
-	if (fds.output != 0)
+	if (fds.output != -1)
 		dup2(fds.output, STDOUT_FILENO);
 	ft_execute(process.content[0]);
-	if (fds.input != 0)
-		dup2(STDIN_FILENO, fds.input);
-	if (fds.output != 0)
-		dup2(STDOUT_FILENO, fds.output);
+    dup2(saved_stdout, STDOUT_FILENO);
+    dup2(saved_stdin, STDIN_FILENO);
 }
 
 /**
