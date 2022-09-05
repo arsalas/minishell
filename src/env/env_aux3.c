@@ -119,3 +119,27 @@ char	**get_env_arr(void)
 	}
 	return (arr);
 }
+
+/**
+ * @brief Comprueba si el nombre de la variable de entorno es valido
+ * a-z, A-Z, _ and 0-9
+ * May NOT begin with a number
+ * 
+ * @param name 
+ * @return boolean 
+ */
+bool	is_valid_env_name(char *name)
+{
+	int	i;
+
+	if (!name || !(ft_isalpha(name[0]) == 1 || name[0] == '_'))
+		return (false);
+	i = 1;
+	while (name[i])
+	{
+		if (!(ft_isalnum(name[i]) == 1 || (name[i]) == '_'))
+			return (false);
+		i++;
+	}
+	return (true);
+}

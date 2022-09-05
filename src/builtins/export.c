@@ -90,6 +90,12 @@ void	ft_export(char *input)
 	if (!have_correct_format(input))
 		return ;
 	name = get_export_name(input);
+	if (!is_valid_env_name(name))
+	{
+		printf("export: not an identifier: %s\n", name);
+		free(name);
+		return ;
+	}
 	content = get_export_content(input);
 	if (exist_env_var(name))
 		update_env_var(name, content);

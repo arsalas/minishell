@@ -2,7 +2,7 @@ obj/*
 tests/obj
 tests/bin
 tests_txt
-libs
+libs/
 bin
 .vscode
 *DS_Store
