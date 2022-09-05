@@ -42,12 +42,5 @@ char	*get_current_folder(void)
  */
 char	*get_prompt(void)
 {
-	// char	*prompt[4];
-
-	// prompt[0] = ft_strjoin(ft_strjoin(BMAG"", get_user()), "@minishell"BWHT);
-	// prompt[1] = get_current_folder();
-	// prompt[2] = BMAG"$ "RESET;
-	// prompt[3] = NULL;
-	// return (ft_join(prompt, ' '));
 	return (BMAG"minishell: "RESET);
 }
