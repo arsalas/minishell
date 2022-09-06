@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse_global.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/02 19:25:58 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:55:50 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	ft_is_absolute(char **words)
+bool	ft_is_absolute(char *words)
 {
-	if (words[1][0] == '/' && words[1][1] != '\0')
+	if (words[0] == '/' && words[1] != '\0')
 	{
 		update_env_var("OLDPWD", get_env_var("PWD"));
-		chdir(words[1]);
+		chdir(words);
 		update_env_var("PWD", getcwd(NULL, 0));
 		return (true);
 	}
@@ -32,20 +32,18 @@ bool	ft_is_absolute(char **words)
 
 void	ft_parse_cd(char *input)
 {
-	char	**words;
 
 	g_minishell->status = DEFAULT;
-	words = ft_split_words(input);
-	if (ft_look_for_home(words))
+	if (ft_look_for_home(input))
 		return ;
-	if (ft_look_for_root(words[1]))
+	if (ft_look_for_root(input))
 		return ;
-	if (ft_is_absolute(words))
+	if (ft_is_absolute(input))
 		return ;
-	if (ft_get_home_dir(words[1]))
+	if (ft_get_home_dir(input))
 		return ;
-	if (ft_look_for_old(words[1]))
+	if (ft_look_for_old(input))
 		return ;
-	if (ft_set_directory(words[1]))
+	if (ft_set_directory(input))
 		return ;
 }

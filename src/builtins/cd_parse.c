@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/08/31 18:59:34 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:56:14 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,9 @@ bool	ft_look_for_root(char *words)
 * Nos dan solamente : cd
 * Y nada mas, implica que nos vamos a home
 */
-bool	ft_look_for_home(char **words)
+bool	ft_look_for_home(char *words)
 {
-	if (words[1] == NULL)
+	if (words == NULL)
 	{
 		ft_go_home();
 		return (true);
