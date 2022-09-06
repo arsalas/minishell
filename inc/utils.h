@@ -31,5 +31,6 @@ bool	is_redirect(char c);
 bool	is_doubble_redirect(char *raw, int count);
 
 bool	is_strdigit(char *str);
+char    *get_next_token2(char *input);
 
 #endif

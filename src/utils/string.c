@@ -6,21 +6,21 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:11:54 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/06 00:41:37 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:48:42 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "minishell.h"
+#include "minishell.h"
 
-// int get_array_len(char **arr)
-// {
-//     int i;
+int get_array_len(char **arr)
+{
+    int i;
 
-//     i = 0;
-//     while (arr[i])
-//         i++;
-//     return (i);
-// }
+    i = 0;
+    while (arr[i])
+        i++;
+    return (i);
+}
 
 // char    **push_string(char **arr, char *string)
 // {
@@ -32,72 +32,59 @@
 //     return (new_arr);
 // }
 
-// bool    is_token_delim(char c)
-// {
-//     if (c == '\'' || c == '"' || c == '$' || c == ' ')
-//         return (true);
-//     return (false);
-// }
+bool    is_delim(char c)
+{
+    if (c == '\'' || c == '"' || c == '$')
+        return (true);
+    return (false);
+}
 
-// int get_finish_token(char *input, char del)
-// {
-//     bool    can_expand;
-//     int     len;
+char    *parse_token(char *input)
+{
+    char    delim;
+    int     start;
+    int     i;
+    int     end;
+    char    *str;
 
-//     can_expand = false;
-//     if (del != '\'')
-//         can_expand = true;
-//     while (input[len] != del)
-//         len++;
-//     return (len);
+    str = malloc(sizeof(char));
+    start = 0;
+    delim = 0;
+    i = 0;
     
-// }
+    if (is_delim(input[i]))
+    {
+        start = i + 1;
+        delim = input[i];
+        while (input[i] != delim)
+            i++;
+        end = i - 1;
+        str = ft_strjoin(str, ft_substr(input, start, end - start));
+        i++;                
+    }
+    
+}
 
+// TODO: cambiar el parseo hasta el espacio despues de cerrar quotes
+char    *get_next_token2(char *input)
+{
+    int     i;
+    char    quote;
 
-// char	*expand(char * token)
-// {
-	
-// }
+    i = 0;
+    if (!input)
+        return (NULL);
+    while (input[i] && input[i] != ' ')
+    {
+        if (is_quote(input[i]))
+        {
+            quote = input[i];
+            i++;
+            while (input[i] != quote)
+                i++;
+        }
+        i++;
+    }
+    return (ft_substr(input, 0, i));
+}
 
-// char    *get_next_token(char *input, char del)
-// {
-// 	int		i;
-// 	char	*str;
-
-// 	i = 0;
-// 	while (!is_token_delim(input[i]))
-// 		i++;
-// 	str = ft_substr(input, 0, i);
-// 	if (del == '$')
-// 		str = expand(str);
-// 	return (str);
-// }
-
-// void    ft_parse(char *input)
-// {
-//     int     i;
-//     bool    can_expand;
-// 	char	**tokens;
-// 	char	*token;
-// 	char	delim;
-
-// 	tokens = get_memory(sizeof(char *), true);
-//     i = 0;
-// 	delim = 0;
-//     can_expand = true;
-//     while (input[i])
-//     {
-// 		token = get_next_token(&input[i], delim);
-// 		push_string(tokens, token);
-// 		while (!is_token_delim(input[i]))
-// 			i++;
-// 		if (is_token_delim(input[i]))
-// 		{
-// 			delim = input[i];
-// 			if (input[i] == '\'')
-// 				can_expand = !can_expand;
-// 			while(input[i] == delim)
-// 				i++;
-// 		}
-//     }   
-// }

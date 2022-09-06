@@ -56,19 +56,20 @@ int main(int argc, char *argv[], char *envp[])
     //     close (fd1);
     // }
     // char **arr = ft_split_quotes("\"Hola mundo\" Chao mundo'", ' ');
-    g_minishell = get_memory(sizeof(t_minishell), true);
-	g_minishell->last_command = C_OTHERS;
-	g_minishell->process.quantity = 0;
-	g_minishell->memory.quantity = 0;
-	init_env(envp);    char **arr = ft_split_quotes("\"Hola $USER\" Chao '$USER' $USER $?", ' ');
-    int i = 0;
-    while (arr[i])
-    {
-        printf("str_%i -> %s\n", i, arr[i]);
-        i++;
-    }
+    // g_minishell = get_memory(sizeof(t_minishell), true);
+	// g_minishell->last_command = C_OTHERS;
+	// g_minishell->process.quantity = 0;
+	// g_minishell->memory.quantity = 0;
+	// init_env(envp);    char **arr = ft_split_quotes("\"Hola $USER\" Chao '$USER' $USER $?", ' ');
+    // int i = 0;
+    // while (arr[i])
+    // {
+    //     printf("str_%i -> %s\n", i, arr[i]);
+    //     i++;
+    // }
 
-
+    printf("%s\n", get_next_token2("''hola mundo'' hola"));
+    
 
     return (0);
 }
