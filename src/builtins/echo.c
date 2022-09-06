@@ -14,7 +14,18 @@
 
 bool	echo_have_flag(char *input)
 {
-	(void)input;
+	int	count;
+
+	if (!input)
+		return (false);
+	count = 1;
+	if (input[0] == '-')
+	{
+		while (input[count] == 'N' || input[count] == 'n')
+			count++;
+		if (!input[count])
+			return (true);
+	}
 	return (false);
 }
 
@@ -38,27 +49,44 @@ char	*extract_echo_input(char *input)
 	return (ft_substr(input, start, end - start));
 }
 
-void	ft_echo(char *input)
+void	ft_echo(char **input)
 {
-	char	*echo;
-	char	**tokens;
 	int		i;
 	bool	have_flag;
 
-	have_flag = false;
-	echo = extract_echo_input(input);
-	tokens = parse_echo(echo);
-	i = 0;
-	while (tokens[i])
+	i = 1;
+	have_flag = echo_have_flag(input[1]);
+	if (have_flag)
+		i++;
+	while (input[i])
 	{
-		if (i == 0 && ft_strcmp(tokens[i], "-n", true))
-			have_flag = true;
-		else
-			printf("%s ", tokens[i]);
+		printf("%s", input[i]);
+		if (input[i + 1])
+			printf(" ");
 		i++;
 	}
 	if (!have_flag)
 		printf("\n");
 	g_minishell->status = DEFAULT;
+	
+	// char	*echo;
+	// int		i;
+	// bool	have_flag;
+
+	// have_flag = false;
+	// echo = extract_echo_input(input);
+	// tokens = parse_echo(echo);
+	// i = 0;
+	// while (tokens[i])
+	// {
+	// 	if (i == 0 && ft_strcmp(tokens[i], "-n", true))
+	// 		have_flag = true;
+	// 	else
+	// 		printf("%s ", tokens[i]);
+	// 	i++;
+	// }
+	// if (!have_flag)
+	// 	printf("\n");
+	// g_minishell->status = DEFAULT;
 	// execute_echo(echo, echo_have_flag(input));
 }

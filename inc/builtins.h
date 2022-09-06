@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/05 19:41:24 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:08:45 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_env(char **tokens);
 void	ft_export(char **tokens);
 void	ft_unset(char **tokens);
 void	ft_others(char *path);
-void	ft_echo(char *input);
+void	ft_echo(char **input);
 bool	ft_look_for_root(char *words);
 
 void	export_alone(void);

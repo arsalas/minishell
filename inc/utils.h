@@ -32,5 +32,7 @@ bool	is_doubble_redirect(char *raw, int count);
 
 bool	is_strdigit(char *str);
 char    *get_next_token2(char *input);
+char	*parse_token2(char *input);
+char	**get_tokens2(char *input);
 
 #endif

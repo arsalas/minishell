@@ -1,11 +1,10 @@
-obj/*
-tests/obj
-tests/bin
+obj/
+tests/obj/
+tests/bin/
 tests_txt
 libs/
-bin
 .vscode
 *DS_Store
 bin/
 examples/get_next_line/
-libs/*
+libs/

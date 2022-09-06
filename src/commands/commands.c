@@ -16,7 +16,7 @@ void	ft_execute(t_pipe builting)
 {
 	char	**tokens;
 
-	tokens = parse(builting.input);
+	tokens = get_tokens2(builting.input);
 	g_minishell->last_command = builting.command;
 	if (builting.command == C_ENV)
 		return (ft_env(tokens));
@@ -29,7 +29,7 @@ void	ft_execute(t_pipe builting)
 	if (builting.command == C_UNSET)
 		return (ft_unset(tokens));
 	if (builting.command == C_ECHO)
-		return (ft_echo(builting.input));
+		return (ft_echo(tokens));
 	if (builting.command == C_CD)
 		return (ft_cd(builting.input));
 	return (ft_others(builting.input));
