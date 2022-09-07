@@ -45,13 +45,13 @@ void	ft_env_array(void)
 	int		i;
 
 	i = 0;
-	env = get_memory(sizeof(char) * g_minishell->env.count + 1, true);
+	env = ft_malloc(sizeof(char) * g_minishell->env.count + 1, true);
 	env[g_minishell->env.count] = NULL;
 	while (i < g_minishell->env.count)
 	{
 		len = (ft_strlen(g_minishell->env.vars[i].title)
 				+ ft_strlen(g_minishell->env.vars[i].content));
-		env[i] = get_memory(sizeof(char) * len + 1, true);
+		env[i] = ft_malloc(sizeof(char) * len + 1, true);
 		env[i] = ft_strjoin_three(g_minishell->env.vars[i].title,
 				"=", g_minishell->env.vars[i].content);
 		i++;
@@ -63,22 +63,22 @@ void	ft_env_array(void)
  * 
  * @param path 
  */
-void	ft_others(char *path)
+void	ft_others(char **tokens)
 {
-	char	**argv;
+	char	*path;
     char    *absolute_path;
     char    *aux;
 
+	path = tokens[0];
 	g_minishell->status = DEFAULT;
-	argv = ft_split_quotes(ft_trim(path), ' ');
-    aux = get_valid_path(argv[0]);
+    aux = get_valid_path(tokens[0]);
     if (aux)
     {
-        absolute_path = ft_strjoin(ft_strjoin(aux, "/"), argv[0]);
+        absolute_path = ft_strjoin(ft_strjoin(aux, "/"), tokens[0]);
         free(aux);
     }
     else
-	    absolute_path = argv[0];
+	    absolute_path = tokens[0];
 	if (!is_path(absolute_path))
 	{
 		printf("%s: command not found\n", absolute_path);
@@ -97,5 +97,5 @@ void	ft_others(char *path)
 		g_minishell->status = GENERAL;
 		return ;
 	}
-	execve(absolute_path, argv, get_env_arr());
+	execve(absolute_path, tokens, get_env_arr());
 }

@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 15:58:52 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/18 16:25:07 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:36:58 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_join(char **elements, char c)
 	char	*str;
 
 	len = get_strlen(elements) + get_elements(elements);
-	str = get_memory(sizeof(char) * len, true);
+	str = ft_malloc(sizeof(char) * len, true);
 	cpy_content(elements, str, c);
 	// ft_free_split(elements);
 	return (str);

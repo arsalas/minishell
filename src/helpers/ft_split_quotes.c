@@ -117,7 +117,7 @@ char	**ft_split_quotes(char const *s, char delimiter)
 	int		fragments;
 
 	fragments = get_quantity_fragments(s, delimiter);
-	arr = get_memory(sizeof(char *) * fragments + 1, true);
+	arr = ft_malloc(sizeof(char *) * fragments + 1, true);
 	arr[fragments] = NULL;
 	complete_arr(arr, s, fragments, delimiter);
 	return (arr);

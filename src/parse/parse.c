@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/05 18:24:29 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:36:02 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ void	get_input_parsed(t_pipe *command)
 	if (have_redirect(command->raw))
 	{
 		command->redirs.quantity = get_redirect_quantity(command->raw);
-		command->redirs.info = get_memory(sizeof(t_redir_info)
+		command->redirs.info = ft_malloc(sizeof(t_redir_info)
 				* command->redirs.quantity, true);
 		count = 0;
 		while (count < command->redirs.quantity)

@@ -18,7 +18,7 @@
 char	*get_prompt(void);
 void	not_implemented(void);
 void	memory_error(void);
-void	*get_memory(size_t size, bool is_permanent);
+void	*ft_malloc(size_t size, bool is_permanent);
 void	free_memory(void);
 int		create_process(void);
 int	    ft_skip_one_word(char *str);
@@ -34,5 +34,6 @@ bool	is_strdigit(char *str);
 char    *get_next_token2(char *input);
 char	*parse_token2(char *input);
 char	**get_tokens2(char *input);
+bool	is_correct_tokens(char *raw);
 
 #endif

@@ -25,10 +25,10 @@ int	**create_fd(int pipes)
 	int	**fd;
 
 	i = 0;
-	fd = get_memory(sizeof(int *) * pipes, true);
+	fd = ft_malloc(sizeof(int *) * pipes, true);
 	while (i < pipes)
 	{
-		fd[i] = get_memory(sizeof(int) * 2, true);
+		fd[i] = ft_malloc(sizeof(int) * 2, true);
 		i++;
 	}
 	return (fd);
@@ -42,5 +42,5 @@ int	**create_fd(int pipes)
  */
 int	*create_pid(int process)
 {
-	return (get_memory(sizeof(int) * process, true));
+	return (ft_malloc(sizeof(int) * process, true));
 }

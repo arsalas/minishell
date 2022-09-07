@@ -36,7 +36,7 @@ int	get_env_elements(char **env)
 void	init_env(char **env)
 {
 	g_minishell->env.count = get_env_elements(env);
-	g_minishell->env.vars = get_memory(sizeof(t_env_details)
+	g_minishell->env.vars = ft_malloc(sizeof(t_env_details)
 			* g_minishell->env.count, true);
 	complete_env_info(env);
 	increment_shlvl();

@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/05 15:45:07 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:37:29 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	get_process_content(void)
 	int	i;
 
 	i = 0;
-	g_minishell->process.content = get_memory(sizeof(t_pipe) * g_minishell->process.quantity, true);
+	g_minishell->process.content = ft_malloc(sizeof(t_pipe) * g_minishell->process.quantity, true);
 	while (i < g_minishell->process.quantity)
 	{
 		g_minishell->process.content[i].command = ft_get_command(g_minishell->input);
@@ -65,6 +65,7 @@ void	create_proces_data(void)
  * @brief Peticion de un nuevo input al usuario
  *
  */
+//VALIDATE
 void	req_new_input(void)
 {
 	char	*input;

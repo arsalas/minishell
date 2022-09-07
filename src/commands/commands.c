@@ -32,5 +32,5 @@ void	ft_execute(t_pipe builting)
 		return (ft_echo(tokens));
 	if (builting.command == C_CD)
 		return (ft_cd(tokens[1]));
-	return (ft_others(builting.input));
+	return (ft_others(tokens));
 }

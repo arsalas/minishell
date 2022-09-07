@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/02 19:02:31 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:00:08 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	empty_trash(void)
 	if (access(REDIR_FILE, F_OK) != -1)
 	{
 		pid = create_process();
-		if (pid == 0)
-			ft_others(path);
+		// if (pid == 0)
+		// 	ft_others(path);
 	}
     free(path);
 }

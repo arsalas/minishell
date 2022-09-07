@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:14:08 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/30 14:07:26 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:36:58 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	**parse_echo3(char *input)
 	int		start;
 
 	start = 0;
-	tokens = get_memory(sizeof(char *), true);
+	tokens = ft_malloc(sizeof(char *), true);
 	i = 0;
 	tokens[i] = extract_next_echo_token(input);
 	while (ft_strlen(tokens[i]) > 0)

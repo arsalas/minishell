@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/06 17:00:05 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:39:42 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	add_memory(void *pnt)
  * @param size Memoria a reservar
  * @return void* puntero a la memoria reservada
  */
-void	*get_memory(size_t size, bool is_permanent)
+void	*ft_malloc(size_t size, bool is_permanent)
 {
 	void	*mem;
 
@@ -50,10 +50,10 @@ void	*ft_realloc(void *ptr, size_t size)
 	void	*new_ptr;
 
 	if (ptr == NULL)
-		return (get_memory(size, true));
+		return (ft_malloc(size, true));
 	if (!size)
 		return (ptr);
-	new_ptr = get_memory(size, true);
+	new_ptr = ft_malloc(size, true);
 	ft_memcpy(new_ptr, ptr, size);
 	free(ptr);
 	return (new_ptr);
@@ -63,6 +63,7 @@ void	*ft_realloc(void *ptr, size_t size)
  * @brief Libera toda la memoria reservada
  * Falta hacer free de g_minishell->traces
  */
+//VALIDATE
 void	free_memory(void)
 {
 	int	i;
@@ -74,7 +75,6 @@ void	free_memory(void)
 		i--;
 	}
 	// free_all_env();
-	// TODO --> free de minishell deja 1 leak
 	// free(g_minishell);
 }
 

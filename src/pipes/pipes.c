@@ -180,6 +180,20 @@ void	execute_single_process(t_process process)
  */
 void	execute_pipe(t_process process)
 {
+	int	i;
+
+	i = 0;
+	while (i < process.quantity)
+	{
+		if (ft_strlen(process.content[i].raw) == 0 || ft_strcmp(process.content[i].raw, "|", false) || ft_strcmp(process.content[i].raw, "| ", false))
+		{
+			printf("syntax error near unexpected token: `|\'\n");
+			return ;
+		}
+		if (!is_correct_tokens(process.content[i].raw))
+			return ;
+		i++;
+	}
 	if (process.quantity == 0)
 		return ;
 	if (process.quantity == 1)

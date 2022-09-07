@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:38:30 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/24 15:04:20 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:36:58 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ char	*ft_substring(char const *s, unsigned int start, size_t len)
 		l = str_l - start + 1;
 	if (len == 0 || str_l == 0 || start > str_l)
 	{
-		str = get_memory(sizeof(char), true);
+		str = ft_malloc(sizeof(char), true);
 		if (str == NULL)
 			return (NULL);
 		str[0] = '\0';
 		return (str);
 	}
-	str = get_memory(sizeof(char) * l, true);
+	str = ft_malloc(sizeof(char) * l, true);
 	if (str == NULL)
 		return (NULL);
 	ft_strlcpy(str, (s + start), l);

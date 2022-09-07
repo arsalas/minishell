@@ -6,12 +6,13 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 23:49:20 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/03 00:02:25 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:43:32 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//VALIDATE
 void    path_init(void)
 {
     g_minishell->paths = ft_split(get_env_var("PATH"), ':');

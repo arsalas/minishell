@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/06 18:57:29 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:59:35 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	pwd(void);
 void	ft_env(char **tokens);
 void	ft_export(char **tokens);
 void	ft_unset(char **tokens);
-void	ft_others(char *path);
+void	ft_others(char **tokens);
 void	ft_echo(char **input);
 bool	ft_look_for_root(char *words);
 

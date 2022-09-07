@@ -15,6 +15,7 @@
 /**
  * @brief Cierra el minishell y libera toda la memoria reservada
  */
+//VALIDATE
 void	close_minishell(int code)
 {
 	free_memory();

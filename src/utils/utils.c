@@ -87,3 +87,41 @@ bool	is_strdigit(char *str)
 	}
 	return (true);
 }
+
+bool	is_correct_tokens(char *raw)
+{
+	int		count;
+	bool	open_quote;
+	char	quote;
+
+	count = 0;
+	open_quote = false;
+	while (raw[count])
+	{
+		if (is_quote(raw[count]) && !open_quote)
+		{
+			open_quote = true;
+			quote = raw[count];
+		}
+		if (is_quote(raw[count]) && raw[count] == quote)
+			open_quote = !open_quote;
+		if (raw[count] == '>' && raw[count + 1] == '>' && !open_quote)
+		{
+			if (raw[count + 2] == '>' || raw[count + 2] == '<' || raw[count + 2] == '&')
+			{
+				printf("syntax error near unexpected token: `%c\'\n", raw[count + 2]);
+				return (false);
+			}
+		}
+		else if (raw[count] == '<' && raw[count + 1] == '<' && !open_quote)
+		{
+			if (raw[count + 2] == '>' || raw[count + 2] == '<' || raw[count + 2] == '&')
+			{
+				printf("syntax error near unexpected token: `%c\'\n", raw[count + 2]);
+				return (false);
+			}
+		}
+		count++;
+	}
+	return (true);
+}

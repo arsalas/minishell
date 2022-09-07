@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/05 15:45:23 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:36:58 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	ft_search_command_in_pipe(void)
 	t_pipe	*commands;
 
 	i = 0;
-	commands = get_memory(sizeof(t_pipe) * (g_minishell->parse.pipe) + 1, true);
+	commands = ft_malloc(sizeof(t_pipe) * (g_minishell->parse.pipe) + 1, true);
 	while (i < g_minishell->parse.pipe + 1)
 	{
 		commands[i].command = ft_command_in_pipe();
