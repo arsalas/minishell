@@ -24,7 +24,6 @@ char	*ft_get_input(void)
 	return (readline(prompt));
 }
 
-
 /*
 * Cuando comenzamos el programa, status = 0
 * Iniciamos las senales antes de leer

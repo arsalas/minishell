@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/07 17:00:08 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:06:12 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ t_fd_redirs	ft_get_redir(t_pipe command)
 			g_minishell->finish = true;
 			fds.input = read_doublerein(command.redirs.info[i].files);
 		}
-		ft_redir_errors(command.redirs.info[i].types, command.redirs.info[i].files);
+		ft_redir_errors(command.redirs.info[i].types,
+			command.redirs.info[i].files);
 		i++;
 	}
 	return (fds);
 }
-

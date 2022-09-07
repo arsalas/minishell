@@ -26,7 +26,7 @@
 extern "C" {
 #endif
 
-# include <stdio.h>
+#include <stdio.h>
 
 #if defined (READLINE_LIBRARY)
 #  include "rlstdc.h"
