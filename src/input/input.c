@@ -48,6 +48,7 @@ void	get_process_content(void)
 			= ft_get_command(g_minishell->input);
 		g_minishell->process.content[i].raw
 			= extract_content_process_input(g_minishell->input);
+        //TODO->no se si esto esta bien
 		g_minishell->input = extract_others_process_input(g_minishell->input);
 		i++;
 	}

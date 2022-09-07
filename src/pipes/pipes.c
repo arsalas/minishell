@@ -149,6 +149,7 @@ void	execute_single_process(t_process process)
 				dup2(fds.input, STDIN_FILENO);
 			if (fds.output != -1)
 				dup2(fds.output, STDOUT_FILENO);
+            
 			ft_execute(process.content[0]);
 			exit(g_minishell->status);
 		}

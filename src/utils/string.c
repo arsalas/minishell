@@ -100,14 +100,12 @@ char	*parse_double_quote(char *input)
 char	*parse_double_quotes(char *input)
 {
 	int		start;
-	int		end;
 	int		i;
 	char	*str;
 	char	*aux;
 
 	str = malloc(sizeof(char));
 	start = 0;
-	end = 0;
 	i = 0;
 	while (input[i])
 	{
@@ -137,14 +135,12 @@ char	*parse_double_quotes(char *input)
 char	*parse_token2(char *input)
 {
 	int		start;
-	int		end;
 	int		i;
 	char	*str;
 	char	*aux;
 
 	str = malloc(sizeof(char));
 	start = 0;
-	end = 0;
 	i = 0;
 	while (input[i])
 	{

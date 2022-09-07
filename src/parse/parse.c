@@ -256,7 +256,7 @@ void	get_input_parsed(t_pipe *command)
 	int	count;
 
 	command->redirs.quantity = 0;
-	command->input = get_input_redirect(command->raw);
+	command->input = ft_trim(get_input_redirect(command->raw));
 	if (have_redirect(command->raw))
 	{
 		command->redirs.quantity = get_redirect_quantity(command->raw);

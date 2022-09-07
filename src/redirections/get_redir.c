@@ -21,12 +21,12 @@
 void	empty_trash(void)
 {
 	char	*path;
-	int		pid;
+	// int		pid;
 
 	path = ft_strjoin("/bin/rm ", REDIR_FILE);
 	if (access(REDIR_FILE, F_OK) != -1)
 	{
-		pid = create_process();
+		// pid = create_process();
 		// if (pid == 0)
 		// 	ft_others(path);
 	}
@@ -87,8 +87,8 @@ t_fd_redirs	ft_get_redir(t_pipe command)
 	t_fd_redirs	fds;
 
 	i = 0;
-	fds.input = 0;
-	fds.output = 0;
+	fds.input = -1;
+	fds.output = -1;
 	if (command.redirs.quantity == 0)
 		return (fds);
 	while (i < command.redirs.quantity)

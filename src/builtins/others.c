@@ -65,11 +65,9 @@ void	ft_env_array(void)
  */
 void	ft_others(char **tokens)
 {
-	char	*path;
     char    *absolute_path;
     char    *aux;
 
-	path = tokens[0];
 	g_minishell->status = DEFAULT;
     aux = get_valid_path(tokens[0]);
     if (aux)
