@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:16:06 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/07 16:36:58 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:37:55 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,5 @@ void	ft_odd_quotes(char *traces)
 		else if (traces[count] == 39)
 			g_minishell->parse.simple_quo++;
 		count++;
-	}
-}
-
-/*
-* Guardamos en traces
-* Aqui tambien iniciamos traces?
-*/
-void	ft_search_command_in_pipe(void)
-{
-	int		i;
-	t_pipe	*commands;
-
-	i = 0;
-	commands = ft_malloc(sizeof(t_pipe) * (g_minishell->parse.pipe) + 1, true);
-	while (i < g_minishell->parse.pipe + 1)
-	{
-		commands[i].command = ft_command_in_pipe();
-		// commands[i].content = g_minishell->traces[i];
-		i++;
 	}
 }

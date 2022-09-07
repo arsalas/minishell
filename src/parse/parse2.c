@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/05 18:31:04 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:37:06 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,4 @@ t_builtins	ft_get_command(char *inside_pipes)
 		command = C_OTHERS;
 	ft_free_split(words);
 	return (command);
-}
-
-/*
-* Obtenemos el comando que hay entre pipes
-*/
-t_builtins	ft_command_in_pipe(void)
-{
-	// if (ft_get_command(g_minishell->traces[0]) == C_ECHO)
-	// 	return (C_ECHO);
-	// if (ft_get_command(g_minishell->traces[0]) == C_CD)
-	// 	ft_cd(g_minishell->traces[0]);
-	// //	return (C_CD);
-	// if (ft_get_command(g_minishell->traces[0]) == C_EXPORT)
-	// 	return (C_EXPORT);
-	// if (ft_get_command(g_minishell->traces[0]) == C_ENV)
-	// 	return (C_ENV);
-	// if (ft_get_command(g_minishell->traces[0]) == C_EXIT)
-	// 	ft_exit(g_minishell->traces[0]);
-	// //	return (C_EXIT);
-	// if (ft_get_command(g_minishell->traces[0]) == C_PWD)
-	// 	pwd();
-	// //	return (C_PWD);
-	// if (ft_get_command(g_minishell->traces[0]) == C_UNSET)
-	// 	return (C_UNSET);
-	return (C_OTHERS);
 }
