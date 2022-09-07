@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/07 18:38:30 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:45:55 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ void	get_process_content(void)
 	int	i;
 
 	i = 0;
-	g_minishell->process.content = ft_malloc(sizeof(t_pipe) * g_minishell->process.quantity, true);
+	g_minishell->process.content = ft_malloc(sizeof(t_pipe)
+			* g_minishell->process.quantity, true);
 	while (i < g_minishell->process.quantity)
 	{
-		g_minishell->process.content[i].command = ft_get_command(g_minishell->input);
-		g_minishell->process.content[i].raw = extract_content_process_input(g_minishell->input);
+		g_minishell->process.content[i].command
+			= ft_get_command(g_minishell->input);
+		g_minishell->process.content[i].raw
+			= extract_content_process_input(g_minishell->input);
 		g_minishell->input = extract_others_process_input(g_minishell->input);
 		i++;
 	}
@@ -56,7 +59,8 @@ void	get_process_content(void)
  */
 void	create_proces_data(void)
 {
-	g_minishell->process.quantity = get_quantity_process_in_input(g_minishell->input);
+	g_minishell->process.quantity
+		= get_quantity_process_in_input(g_minishell->input);
 	get_process_content();
 	execute_pipe(g_minishell->process);
 }

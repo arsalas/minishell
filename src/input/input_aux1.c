@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   input_aux1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 13:53:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/30 15:30:57 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:56:03 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// bool	get_quotes_open(char *input, int i, bool is_slash, bool is_open_quote, char quote)
+// {
+// 	if (input[i] == '\\')
+// 		is_slash = !is_slash;
+// 	if (((input[i] == '"' || input[i] == '\'') && !is_slash
+// 			&& is_open_quote && quote == input[i]))
+// 		is_open_quote = false;
+// 	return (is_open_quote);
+// }
 
 /**
  * @brief Obtiene la cantidad de procesos que tiene el input
@@ -35,9 +45,11 @@ int	get_quantity_process_in_input(char *input)
 	{
 		if (input[i] == '\\')
 			is_slash = !is_slash;
-		if (((input[i] == '"' || input[i] == '\'') && !is_slash && is_open_quote && quote == input[i]))
+		if (((input[i] == '"' || input[i] == '\'') && !is_slash
+				&& is_open_quote && quote == input[i]))
 			is_open_quote = false;
-		else if (!is_open_quote && !is_slash && (input[i] == '"' || input[i] == '\''))
+		else if (!is_open_quote && !is_slash
+			&& (input[i] == '"' || input[i] == '\''))
 		{
 			is_open_quote = true;
 			quote = input[i];
@@ -71,9 +83,11 @@ int	get_finish_process_in_input(char *input)
 	{
 		if (input[i] == '\\')
 			is_slash = !is_slash;
-		if (((input[i] == '"' || input[i] == '\'') && !is_slash && is_open_quote && quote == input[i]))
+		if (((input[i] == '"' || input[i] == '\'') && !is_slash
+				&& is_open_quote && quote == input[i]))
 			is_open_quote = false;
-		else if (!is_open_quote && !is_slash && (input[i] == '"' || input[i] == '\''))
+		else if (!is_open_quote && !is_slash
+			&& (input[i] == '"' || input[i] == '\''))
 		{
 			is_open_quote = true;
 			quote = input[i];
@@ -130,8 +144,8 @@ char	*extract_others_process_input(char *input)
 
 	start = get_finish_process_in_input(input);
 	len = ft_strlen(input);
-	str = ft_substr(input, start + get_ignore_chars_process(&input[start]), len);
+	str = ft_substr(input, start
+			+ get_ignore_chars_process(&input[start]), len);
 	free(g_minishell->input);
-	// str = ft_trim(str);
 	return (str);
 }
