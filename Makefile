@@ -65,7 +65,7 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/minishell src/input src/commands src/echo src/memory src/helpers src/redirections src/path
+vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/echo src/history src/init src/input src/commands src/echo src/memory src/helpers src/redirections src/path
 
 .SECONDEXPANSION:
 
@@ -91,6 +91,9 @@ test: all
 	@echo "$(GREEN)Executing tests...$(NC)"
 	@make run -e -C tests/ OBJS_SRC="$(OBJS_SRC)"
 
+check_ft:
+	@nm -u ./$(BIN)
+
 clean:
 	@make fclean -C $(LIBS_PATH)/libft
 	@$(RM) $(OBJS) $(DEPS)
@@ -109,4 +112,4 @@ $(BIN_DIR):
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re leaks run test
+.PHONY: all clean fclean re leaks run test check_ft
