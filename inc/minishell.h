@@ -129,9 +129,6 @@ void	ft_signal(void);
 void	rl_replace_line(const char *text, int clear_undo);
 int		ft_get_signal(void);
 
-//FILES IN MEMORY
-void	ft_free_usual(void);
-
 //FILES IN REDIRECTIONS 
 t_fd_redirs	ft_get_redir(t_pipe command);
 int 		ft_redir_in(int fd);

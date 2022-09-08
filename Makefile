@@ -85,7 +85,7 @@ run: all
 	@./$(BIN)
 
 leaks: $(BIN)
-	@leaks -atExit -- ./$(BIN)
+	leaks -atExit -- ./$(BIN)
 
 leaks_test: all
 	@echo "$(GREEN)Executing tests...$(NC)"
