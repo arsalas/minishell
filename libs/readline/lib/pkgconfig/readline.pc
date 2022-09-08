@@ -1,4 +1,4 @@
-prefix=/System/Volumes/Data/sgoinfre/Perso/aramirez/minishell/libs/readline
+prefix=/System/Volumes/Data/sgoinfre/Perso/amurcia-/minishell/libs/readline
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

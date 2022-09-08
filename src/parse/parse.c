@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/07 19:49:01 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:40:04 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,6 +274,50 @@ void	get_input_parsed(t_pipe *command)
 	}
 }
 
+/**
+ * @brief Contamos la cantidad de comillas, siempre y cuando no esten despues del \
+ * 
+ **/
+bool	is_odd_quotes(char *raw)
+{
+	int		count;
+	int		q_simple;
+	int		q_doubble;
+	bool	open_quote;
+	char	quote;
+
+	count = 0;
+	open_quote = false;
+	q_simple = 0;
+	q_doubble = 0;
+	while (raw[count])
+	{
+		if (is_quote(raw[count]) && !open_quote)
+		{
+			open_quote = true;
+			quote = raw[count];
+			if (raw[count] == '"' && quote == '"')
+				q_doubble++;
+			else if (raw[count] == '\'' && quote == '\'')
+				q_simple++;
+		}
+		else if (is_quote(raw[count]) && raw[count] == quote)
+		{
+			if (raw[count] == '"' && quote == '"')
+				q_doubble++;
+			else if (raw[count] == '\'' && quote == '\'')
+				q_simple++;
+			open_quote = !open_quote;
+		}
+		count++;
+	}
+	if (q_doubble % 2 == 0 && q_simple % 2 == 0)
+	{
+		return (false);
+	}
+	printf("Quotes not closed\n");
+	return (true);
+}
 
 char	**parse(char *input)
 {

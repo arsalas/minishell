@@ -191,6 +191,8 @@ void	execute_pipe(t_process process)
 			printf("syntax error near unexpected token: `|\'\n");
 			return ;
 		}
+		if(is_odd_quotes(process.content[i].raw))
+			return;
 		if (!is_correct_tokens(process.content[i].raw))
 			return ;
 		i++;

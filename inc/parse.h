@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 18:48:28 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/07 18:58:48 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:18:14 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char        *extract_content_input(char *raw);
 char        *get_filename_redirect(char *raw, int number);
 void    	get_input_parsed(t_pipe *command);
 char		*get_input_redirect(char *raw);
-
+bool	is_odd_quotes(char *raw);
 char	**parse(char *input);
 
 #endif
