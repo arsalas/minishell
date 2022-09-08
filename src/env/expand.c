@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 19:41:44 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/26 20:05:30 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:07:23 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static bool	have_env_var(char *str)
 {
+	printf("1\n");
 	if(str[0] == '$')
 		return (true);
 	return (false);
@@ -25,6 +26,7 @@ char	*expand_env_vars(char *str)
 	char	*aux;
 	int		i;
 	
+	printf("1\n");
 	split = ft_split_words(str);
 	i = 0;
 	while (split[i])

@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/06 18:55:50 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:32:46 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 bool	ft_is_absolute(char *words)
 {
+	printf("1\n");
 	if (words[0] == '/' && words[1] != '\0')
 	{
 		update_env_var("OLDPWD", get_env_var("PWD"));
@@ -32,6 +33,7 @@ bool	ft_is_absolute(char *words)
 
 void	ft_parse_cd(char *input)
 {
+	printf("1\n");
 
 	g_minishell->status = DEFAULT;
 	if (ft_look_for_home(input))
