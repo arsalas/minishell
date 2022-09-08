@@ -52,13 +52,11 @@ static char	*get_export_content(char *input)
 	int		len;
 	int		start;
 	char	*str;
-	char	**parse_arr;
 
 	start = get_finish_position(input) + 1;
 	len = ft_strlen(input);
 	str = ft_substr(input, start, len);
-	parse_arr = parse(str);
-	return (ft_join(parse_arr, ' '));
+	return (str);
 }
 
 bool	exist_env_var(char *name)

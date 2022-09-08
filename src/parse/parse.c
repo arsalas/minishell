@@ -326,7 +326,7 @@ bool	is_odd_quotes(char *raw)
 	return (true);
 }
 
-char	**parse(char *input)
-{
-	return (ft_split_quotes(input, ' '));
-}
+// char	**parse(char *input)
+// {
+// 	return (ft_split_quotes(input, ' '));
+// }

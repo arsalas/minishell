@@ -12,9 +12,15 @@
 
 #include "minishell.h"
 
+/**
+ * @brief 
+ * 
+ * @param str 
+ * @return true 
+ */
+//VALIDATE
 static bool	have_env_var(char *str)
 {
-	printf("1\n");
 	if(str[0] == '$')
 		return (true);
 	return (false);
@@ -26,7 +32,6 @@ char	*expand_env_vars(char *str)
 	char	*aux;
 	int		i;
 	
-	printf("1\n");
 	split = ft_split_words(str);
 	i = 0;
 	while (split[i])
