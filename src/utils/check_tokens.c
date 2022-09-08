@@ -50,8 +50,11 @@ bool	is_correct_tokens(char *raw)
 			open_quote = true;
 			quote = raw[count];
 		}
-		if (is_quote(raw[count]) && raw[count] == quote)
+		else if (is_quote(raw[count]) && raw[count] == quote)
+        {
 			open_quote = !open_quote;
+            quote = '\0';
+        }
 		if (!check_redirs(raw, count, open_quote))
 			return (false);
 		count++;

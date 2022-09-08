@@ -35,7 +35,10 @@ bool    have_redirect(char *raw)
 			quote  = raw[i];
 		}
 		else if (is_quote(raw[i]) && raw[i] == quote)
+        {
 			open_quote = !open_quote;
+            quote = '\0';
+        }
 		if (is_redirect(raw[i]) && !open_quote)
 			return (true);
 		i++;
@@ -241,9 +244,13 @@ char	*get_input_redirect(char *raw)
 		if (is_quote(raw[count]) && !open_quote)
 		{
 			quote = raw[count];
+            open_quote = true;
 		}
 		else if (is_quote(raw[count]) && raw[count] == quote)
+        {
 			open_quote = !open_quote;
+	        quote = '\0';
+        }
 		if ((raw[count] == '>' || raw[count] == '<') && !open_quote)
 			break ;
 		count++;
