@@ -62,13 +62,12 @@ int main(int argc, char *argv[], char *envp[])
 	g_minishell->memory.quantity = 0;
 	// init_env(envp);    
 
-    ft_malloc(sizeof(char) * 5, false);
-    ft_malloc(sizeof(char) * 5, false);
-    ft_malloc(sizeof(char) * 5, false);
-    ft_malloc(sizeof(char) * 5, false);
-    ft_malloc(sizeof(char) * 5, false);
-    ft_malloc(sizeof(char) * 5, false);
-    ft_malloc(sizeof(char) * 5, false);
+    for (size_t i = 0; i < 5000; i++)
+    {
+        ft_malloc(sizeof(char) * 5, false);
+    }
+
+
 
      free_memory();
 

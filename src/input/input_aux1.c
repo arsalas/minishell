@@ -6,21 +6,11 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 13:53:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/07 19:56:03 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:12:51 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// bool	get_quotes_open(char *input, int i, bool is_slash, bool is_open_quote, char quote)
-// {
-// 	if (input[i] == '\\')
-// 		is_slash = !is_slash;
-// 	if (((input[i] == '"' || input[i] == '\'') && !is_slash
-// 			&& is_open_quote && quote == input[i]))
-// 		is_open_quote = false;
-// 	return (is_open_quote);
-// }
 
 /**
  * @brief Obtiene la cantidad de procesos que tiene el input
