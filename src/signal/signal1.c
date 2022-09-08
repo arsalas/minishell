@@ -6,21 +6,17 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/03 18:06:23 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:44:52 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-* SIGINT para CONTROL C - termina el proceso
-* SIGQUIT para CONTROL \ - nada. Si estamos en comando bloqueante, salimos y escribe Quit
-* SIGTERM para CONTROL D - salimos
-* Tenemos que utilizar la variable global, y status va a ser el resultado del ultimo pipe
-*/
-/*
-* Control + D
-*/
+/**
+ * @brief Control + D
+ * 
+ * Exit
+ */
 static void	ft_handle_d(int signal)
 {
 	(void) signal;
@@ -29,9 +25,11 @@ static void	ft_handle_d(int signal)
 	exit (0);
 }
 
-/*
-* Control + slash
-*/
+/**
+ * @brief Control + \
+ * Si estamos en comando bloqueante, salimos y escribe Quit
+ * 
+ */
 static void	ft_handle_slash(int signal)
 {
 	if (signal == SIGQUIT && g_minishell->bloq)
@@ -47,12 +45,13 @@ static void	ft_handle_slash(int signal)
 	}
 }
 
-/*
-* Control + C
-* 0 para comando no bloqueante
-* 1 para comando bloqueante
-* 2 para comando bloqueante dentro de redireccion
-*/
+/**
+ * @brief Control + C
+ * 0 para comando no bloqueante - Termina el proceso
+ * 1 para comando bloqueante - Pone ^C y termina el proceso
+ * 2 para comando bloqueante dentro de redireccion - Pone ^C y termina el proceso
+ *
+ */
 static void	ft_handle_c(int signal)
 {
 	(void) signal;
@@ -77,9 +76,11 @@ static void	ft_handle_c(int signal)
 	}
 }
 
-/*
-* Enviamos una señal
-*/
+/**
+ * @brief Enviamos una señal
+ * 
+ * Tenemos que utilizar la variable global, y status va a ser el resultado del ultimo pipe
+ */
 int	ft_get_signal(void)
 {
 	struct termios	term;

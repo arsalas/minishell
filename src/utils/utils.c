@@ -13,14 +13,6 @@
 #include "minishell.h"
 
 /**
- * @brief Gestion de los metodos no implementados
- */
-void	not_implemented(void)
-{
-	printf("Not implemented yet\n");
-}
-
-/**
  * @brief Indica si el caracter pasado es una comilla
  * 
  * @param c character
@@ -33,19 +25,20 @@ bool	is_quote(char c)
 	return (false);
 }
 
-/**
- * @brief Indica si el caracter pasado es un caracter escapado
- * 
- * @param c character
- * @return bool 
- */
-bool	is_scaped_char(char c)
-{
-	if (c == '\'' || c == '"' || c == '\\'
-		|| c == '$' || c == '>' || c == '<')
-		return (true);
-	return (false);
-}
+// /**
+//  * @brief Indica si el caracter pasado es un caracter escapado
+//  * 
+//  * @param c character
+//  * @return bool 
+//  */
+// bool	is_scaped_char(char c)
+// {
+// 	printf("USO 1\n");
+// 	if (c == '\'' || c == '"' || c == '\\'
+// 		|| c == '$' || c == '>' || c == '<')
+// 		return (true);
+// 	return (false);
+// }
 
 /**
  * @brief Indica si el caracter pasado es una redireccion
@@ -83,44 +76,6 @@ bool	is_strdigit(char *str)
 	{
 		if (ft_isdigit(str[count]) != 1)
 			return (false);
-		count++;
-	}
-	return (true);
-}
-
-bool	is_correct_tokens(char *raw)
-{
-	int		count;
-	bool	open_quote;
-	char	quote;
-
-	count = 0;
-	open_quote = false;
-	while (raw[count])
-	{
-		if (is_quote(raw[count]) && !open_quote)
-		{
-			open_quote = true;
-			quote = raw[count];
-		}
-		if (is_quote(raw[count]) && raw[count] == quote)
-			open_quote = !open_quote;
-		if (raw[count] == '>' && raw[count + 1] == '>' && !open_quote)
-		{
-			if (raw[count + 2] == '>' || raw[count + 2] == '<' || raw[count + 2] == '&')
-			{
-				printf("syntax error near unexpected token: `%c\'\n", raw[count + 2]);
-				return (false);
-			}
-		}
-		else if (raw[count] == '<' && raw[count + 1] == '<' && !open_quote)
-		{
-			if (raw[count + 2] == '>' || raw[count + 2] == '<' || raw[count + 2] == '&')
-			{
-				printf("syntax error near unexpected token: `%c\'\n", raw[count + 2]);
-				return (false);
-			}
-		}
 		count++;
 	}
 	return (true);

@@ -12,10 +12,10 @@
 
 #include "minishell.h"
 
-/*
-* Obtenemos el mensaje que pasamos por la shell
-*/
-// VALIDATE
+/**
+ * @brief Obtenemos el mensaje que pasamos por la shell
+ * 
+ */
 char	*ft_get_input(void)
 {
 	char	*prompt;
@@ -24,11 +24,10 @@ char	*ft_get_input(void)
 	return (readline(prompt));
 }
 
-/*
-* Cuando comenzamos el programa, status = 0
-* Iniciamos las senales antes de leer
-*/
-//VALIDATE
+/**
+ * @brief Al comenzar el programa el status es 0
+ * Iniciamos las señales antes de leer
+ */
 void	ft_signal(void)
 {
 	g_minishell->status = 0;
@@ -39,7 +38,6 @@ void	ft_signal(void)
  * @brief Ejecucion del programa minishell
  * 
  */
-// VALIDATE
 void	ft_execute_minishell(void)
 {
 	while (true)
@@ -56,7 +54,6 @@ void	ft_execute_minishell(void)
  * Iniciamos environment
  * @param env 
  */
-// VALIDATE
 void	ft_init_minishell(char **env)
 {
 	g_minishell = ft_malloc(sizeof(t_minishell), true);

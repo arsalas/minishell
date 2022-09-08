@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:11:54 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/06 18:06:39 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:56:23 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	get_array_len(char **arr)
 
 char	**push_string(char **arr, char *string)
 {
-    int		len;
-    char	**new_arr;
+	int		len;
+	char	**new_arr;
 
-    len = get_array_len(arr);
-    new_arr = ft_realloc(arr, sizeof(char *) * (len + 2));
+	len = get_array_len(arr);
+	new_arr = ft_realloc(arr, sizeof(char *) * (len + 2));
 	new_arr[len] = string;
 	new_arr[len + 1] = NULL;
-    return (new_arr);
+	return (new_arr);
 }
 
 bool	is_delim(char c)
@@ -112,8 +112,6 @@ char	*parse_double_quotes(char *input)
 		if (input[i] == '$')
 		{
 			i++;
-			// if (input[i] == ' ' || input[i] == '\0')
-				// return("$");
 			aux = parse_expand_var(&input[i]);
 			if (!(ft_isalpha(input[i]) == 1 || input[i] == ' '))
 				i++;

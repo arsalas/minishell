@@ -36,4 +36,7 @@ char	*parse_token2(char *input);
 char	**get_tokens2(char *input);
 bool	is_correct_tokens(char *raw);
 
+char	*parse_double_quotes(char *input);
+char	*parse_quotes_more(char *input, char aux, char *str, int start);
+
 #endif

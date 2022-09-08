@@ -12,17 +12,19 @@
 
 #include "minishell.h"
 
-/*
-* Creamos un historial
-*/
+/**
+ * @brief Creamos un historial
+ * 
+ */
 void	ft_read_history(void)
 {
 	add_history(g_minishell->input);
 }
 
-/*
-* Limpiamos el historial
-*/
+/**
+ * @brief Limpiamos el historial
+ * 
+ */
 void	ft_clear_history(void)
 {
 	clear_history();
