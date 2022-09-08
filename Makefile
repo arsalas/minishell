@@ -87,6 +87,10 @@ run: all
 leaks: $(BIN)
 	@leaks -atExit -- ./$(BIN)
 
+leaks_test: all
+	@echo "$(GREEN)Executing tests...$(NC)"
+	@make leaks -e -C tests/ OBJS_SRC="$(OBJS_SRC)"
+
 test: all
 	@echo "$(GREEN)Executing tests...$(NC)"
 	@make run -e -C tests/ OBJS_SRC="$(OBJS_SRC)"

@@ -60,23 +60,19 @@ int main(int argc, char *argv[], char *envp[])
 	g_minishell->last_command = C_OTHERS;
 	g_minishell->process.quantity = 0;
 	g_minishell->memory.quantity = 0;
-	init_env(envp);    
-    // char **arr = ft_split_quotes("\"Hola $USER\" Chao '$USER' $USER $?", ' ');
-    // int i = 0;
-    // while (arr[i])
-    // {
-    //     printf("str_%i -> %s\n", i, arr[i]);
-    //     i++;
-    // }
+	// init_env(envp);    
 
-    // char *str = get_next_token2("'hola mundo' hola");
-    // char *str = get_next_token2("$?$USER");
-    // char *str = "\"'$USER'\"$9USER? Hola Mundo";
-    char *str = "echo $ $&USER";
-    get_tokens2(str);
-    // printf("%s\n", str);
-    // printf("|%s|\n", parse_token2(str));
-    
+    ft_malloc(sizeof(char) * 5, false);
+    ft_malloc(sizeof(char) * 5, false);
+    ft_malloc(sizeof(char) * 5, false);
+    ft_malloc(sizeof(char) * 5, false);
+    ft_malloc(sizeof(char) * 5, false);
+    ft_malloc(sizeof(char) * 5, false);
+    ft_malloc(sizeof(char) * 5, false);
+
+     free_memory();
+
+    // free(g_minishell);
 
     return (0);
 }

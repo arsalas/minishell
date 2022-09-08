@@ -65,8 +65,8 @@ $(BIN): $(OBJS) $(BIN_DIR) $(LIBS)
 run: all
 	@./$(BIN)
 
-leaks: $(BIN)
-	@leaks -atExit -- ./$(NAME)
+leaks: all
+	@leaks -atExit -- ./$(BIN)
 
 clean:
 	@make fclean -C $(LIBS_PATH)/libft
