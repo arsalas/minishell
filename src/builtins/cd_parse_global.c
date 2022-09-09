@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/08 18:32:46 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/09 13:17:35 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ bool	ft_is_absolute(char *words)
 * Words es el input separado por espacio, \t o \n
 * Parseamos para comprobar si lo que nos pasan es ir a home
 */
-
 void	ft_parse_cd(char *input)
 {
-	printf("1\n");
+	printf("2\n");
 
 	g_minishell->status = DEFAULT;
 	if (ft_look_for_home(input))
