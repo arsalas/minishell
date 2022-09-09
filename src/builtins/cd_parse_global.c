@@ -6,15 +6,14 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/09 13:17:35 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/09 13:20:02 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+//VALIDATE
 bool	ft_is_absolute(char *words)
 {
-	printf("1\n");
 	if (words[0] == '/' && words[1] != '\0')
 	{
 		update_env_var("OLDPWD", get_env_var("PWD"));
@@ -30,10 +29,9 @@ bool	ft_is_absolute(char *words)
 * Words es el input separado por espacio, \t o \n
 * Parseamos para comprobar si lo que nos pasan es ir a home
 */
+//VALIDATE
 void	ft_parse_cd(char *input)
 {
-	printf("2\n");
-
 	g_minishell->status = DEFAULT;
 	if (ft_look_for_home(input))
 		return ;
