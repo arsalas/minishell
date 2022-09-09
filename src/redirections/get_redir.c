@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/07 19:06:12 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/09 13:37:57 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 * STDERR - error output fd = 2 - terminal
 */
 
-
+//TODO --> demomento no se usa
 void	empty_trash(void)
 {
 	char	*path;
@@ -30,9 +30,8 @@ void	empty_trash(void)
 		// if (pid == 0)
 		// 	ft_others(path);
 	}
-    free(path);
+	free(path);
 }
-
 
 // OUTPUT ES PARA ESCRIBIR
 // INPUT ES PARA LEER

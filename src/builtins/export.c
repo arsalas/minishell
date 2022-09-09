@@ -36,7 +36,6 @@ static int	get_finish_position(char *input)
 	return (i);
 }
 
-
 char	*get_export_name(char *input)
 {
 	int	len;

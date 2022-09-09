@@ -49,7 +49,7 @@ void	fork_error(void)
 {
 	perror("Error in process fork\n");
 	g_minishell->status = GENERAL;
-	close_minishell(0);
+	close_minishell(g_minishell->status);
 }
 
 /**

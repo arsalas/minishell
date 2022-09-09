@@ -65,18 +65,18 @@ void	ft_env_array(void)
  */
 void	ft_others(char **tokens)
 {
-    char    *absolute_path;
-    char    *aux;
+	char	*absolute_path;
+	char	*aux;
 
 	g_minishell->status = DEFAULT;
-    aux = get_valid_path(tokens[0]);
-    if (aux)
-    {
-        absolute_path = ft_strjoin(ft_strjoin(aux, "/"), tokens[0]);
-        free(aux);
-    }
-    else
-	    absolute_path = tokens[0];
+	aux = get_valid_path(tokens[0]);
+	if (aux)
+	{
+		absolute_path = ft_strjoin(ft_strjoin(aux, "/"), tokens[0]);
+		free(aux);
+	}
+	else
+		absolute_path = tokens[0];
 	if (!is_path(absolute_path))
 	{
 		printf("%s: command not found\n", absolute_path);
