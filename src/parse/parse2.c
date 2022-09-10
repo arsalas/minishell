@@ -6,29 +6,16 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/07 18:57:29 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:20:47 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_is_empty(char *str)
-{
-	int	cont;
-
-	cont = 0;
-	while (str[cont] && (str[cont] == '\n'
-			|| str[cont] == '\t' || str[cont] == ' '))
-	{
-		cont++;
-	}
-	return (cont);
-}
-
-/*
-* Comprobamos el input con echo, cd, export, etc
-* Si hay coincidencia, command = comando
-*/
+/**
+ * @brief Comprobamos el comando que nos escriben
+ * 
+ */
 t_builtins	ft_get_command(char *inside_pipes)
 {
 	char		**words;

@@ -52,3 +52,22 @@ char	*ft_trim(char *str)
 	new_str = ft_substr(str, start, len);
 	return (new_str);
 }
+
+/**
+ * @brief Eliminamos los espacios vacíos
+ * 
+ * @param str 
+ * @return int 
+ */
+int	ft_is_empty(char *str)
+{
+	int	cont;
+
+	cont = 0;
+	while (str[cont] && (str[cont] == '\n'
+			|| str[cont] == '\t' || str[cont] == ' '))
+	{
+		cont++;
+	}
+	return (cont);
+}

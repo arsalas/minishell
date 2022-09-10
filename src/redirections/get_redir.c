@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/09 13:37:57 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:14:37 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 * STDOUT - standard output fd = 1 - terminal
 * STDERR - error output fd = 2 - terminal
 */
-
 //TODO --> demomento no se usa
 void	empty_trash(void)
 {
@@ -33,9 +32,13 @@ void	empty_trash(void)
 	free(path);
 }
 
-// OUTPUT ES PARA ESCRIBIR
-// INPUT ES PARA LEER
-// SE QUE ESTO LO QUIERES EN ERRORS.C, PERO PRIMERO VERIFICAR QUE ESTE BIEN
+
+/**
+ * @brief Errores de lectura, escritura y existencia
+ * 
+ * @param type 
+ * @param file 
+ */
 void	ft_redir_errors(t_redir_type type, char *file)
 {
 	if ((type == REIN)
@@ -79,6 +82,13 @@ int	read_doublerein(char *delimiter)
 	fd = open(REDIR_FILE, O_RDWR);
 	return (fd);
 }
+
+/**
+ * @brief Obtenemos el fd input u output en función del tipo de redirección
+ * 
+ * @param command 
+ * @return t_fd_redirs 
+ */
 
 t_fd_redirs	ft_get_redir(t_pipe command)
 {
