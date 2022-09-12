@@ -65,19 +65,52 @@ bool	exist_env_var(char *name)
 	return (true);
 }
 
-void	export_env_var(char *token)
+/**
+ * @brief Miamos que tenga el formato correcto y que el nombre de la variable sea correcto
+ * Tambien asignamos el nombre a la variable
+ * 
+ * @param token 
+ */
+// void	export_env_var(char *token)
+// {
+// 	char	*name;
+// 	char	*content;
+
+// 	if (!have_correct_format(token))
+// 		return ;
+// 	name = get_export_name(token);
+// 	printf("TOKEN IS %s\n", token);
+// 	printf("NAME IS %s\n", token);
+// 	if (!is_valid_env_name(name))
+// 	{
+// 		printf("export: `%s': not a valid identifier\n", name);
+// 		free(name);
+// 		return ;
+// 	}
+// 	content = get_export_content(token);
+// 	if (exist_env_var(name))
+// 		update_env_var(name, content);
+// 	else
+// 		push_env(name, content);
+// 	free(name);
+// 	free(content);
+// }
+
+bool	export_env_var(char *token)
 {
 	char	*name;
 	char	*content;
 
 	if (!have_correct_format(token))
-		return ;
+		return (true);
 	name = get_export_name(token);
+	printf("TOKEN IS %s\n", token);
+	printf("NAME IS %s\n", token);
 	if (!is_valid_env_name(name))
 	{
-		printf("export: `%s': not a valid identifier\n", name);
+	//	printf("export: `%s': not a valid identifier\n", name);
 		free(name);
-		return ;
+		return (false);
 	}
 	content = get_export_content(token);
 	if (exist_env_var(name))
@@ -86,6 +119,7 @@ void	export_env_var(char *token)
 		push_env(name, content);
 	free(name);
 	free(content);
+	return (true);
 }
 
 /**
@@ -107,7 +141,14 @@ void	ft_export(char **tokens)
 	count = 1;
 	while (tokens[count])
 	{
-		export_env_var(tokens[count]);
+		if (!export_env_var(tokens[count]))
+		{
+			while (tokens[count])
+			{
+				printf("export: `%s': not a valid identifier\n", tokens[count]);
+				count++;
+			}
+		}
 		count++;
 	}
 }
