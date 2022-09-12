@@ -104,11 +104,8 @@ bool	export_env_var(char *token)
 	if (!have_correct_format(token))
 		return (true);
 	name = get_export_name(token);
-	printf("TOKEN IS %s\n", token);
-	printf("NAME IS %s\n", token);
 	if (!is_valid_env_name(name))
 	{
-	//	printf("export: `%s': not a valid identifier\n", name);
 		free(name);
 		return (false);
 	}

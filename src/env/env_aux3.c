@@ -132,7 +132,6 @@ bool	is_valid_env_name(char *name)
 {
 	int	i;
 
-	printf("NAME IS %s\n", name);
 	if (!name || !(ft_isalpha(name[0]) == 1 || name[0] == '_'))
 		return (false);
 	i = 1;
