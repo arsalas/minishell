@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_three.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 20:39:27 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/09 13:39:46 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:28:34 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,5 @@ char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3)
 	s4[conts4] = '\0';
 	return (s4);
 }
+
+

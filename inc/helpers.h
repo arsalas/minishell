@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/08/26 15:27:43 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:18:51 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "minishell.h"
 
 void	ft_free_split(char **words);
-char	*ft_join(char **elements, char c);
+// char	*ft_join(char **elements, char c);
 char	**ft_split_words(char *str);
 bool	ft_strcmp(const char *s1, const char *s2, bool strict);
 void	*ft_realloc(void *ptr, size_t size);

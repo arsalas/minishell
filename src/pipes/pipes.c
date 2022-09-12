@@ -102,7 +102,11 @@ void	execute_single_pipe(t_pipe *commands)
 	}
 	pid = create_pid(2);
 	// TODO --> comprobar que los pipes salgan bien
-	pipe(fd);
+	if (pipe(fd) == -1)
+	{
+		printf("Error in pipe\n");
+		return ;
+	}
 	pid[0] = create_process();
 	if (pid[0] == 0)
 		first_pipe_child(fd, commands[0]);
@@ -161,8 +165,8 @@ void	execute_single_process(t_process process)
 		return ;
 	}
 	g_minishell->bloq = 0;
-    saved_stdout = dup(STDOUT_FILENO);
-    saved_stdin = dup(STDIN_FILENO);
+	saved_stdout = dup(STDOUT_FILENO);
+	saved_stdin = dup(STDIN_FILENO);
 	// get_input_parsed(&process.content[0]);
 	fds = ft_get_redir(process.content[0]);
 	if (fds.input != -1)
@@ -170,8 +174,8 @@ void	execute_single_process(t_process process)
 	if (fds.output != -1)
 		dup2(fds.output, STDOUT_FILENO);
 	ft_execute(process.content[0]);
-    dup2(saved_stdout, STDOUT_FILENO);
-    dup2(saved_stdin, STDIN_FILENO);
+	dup2(saved_stdout, STDOUT_FILENO);
+	dup2(saved_stdin, STDIN_FILENO);
 }
 
 /**
@@ -191,8 +195,8 @@ void	execute_pipe(t_process process)
 			printf("syntax error near unexpected token: `|\'\n");
 			return ;
 		}
-		if(is_odd_quotes(process.content[i].raw))
-			return;
+		if (is_odd_quotes(process.content[i].raw))
+			return ;
 		if (!is_correct_tokens(process.content[i].raw))
 			return ;
 		i++;
