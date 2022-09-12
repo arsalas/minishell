@@ -121,13 +121,13 @@ void	execute_single_process(t_process process)
 	int			status;
 	t_fd_redirs	fds;
 	int			i;
-    int saved_stdout;
-    int saved_stdin;
+    int			saved_stdout;
+    int			saved_stdin;
 
 	i = 0;
 	g_minishell->bloq = 1;
-    fds.input = -1;
-    fds.output = -1;
+	fds.input = -1;
+	fds.output = -1;
 	get_input_parsed(&process.content[0]);
 	if (process.content[0].redirs.quantity > 0)
 	{
@@ -149,7 +149,6 @@ void	execute_single_process(t_process process)
 				dup2(fds.input, STDIN_FILENO);
 			if (fds.output != -1)
 				dup2(fds.output, STDOUT_FILENO);
-            
 			ft_execute(process.content[0]);
 			exit(g_minishell->status);
 		}
@@ -161,6 +160,7 @@ void	execute_single_process(t_process process)
 		close(fds.output);
 		return ;
 	}
+	g_minishell->bloq = 0;
     saved_stdout = dup(STDOUT_FILENO);
     saved_stdin = dup(STDIN_FILENO);
 	// get_input_parsed(&process.content[0]);
