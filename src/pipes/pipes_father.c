@@ -23,7 +23,7 @@ int	first_pipe_father(int *fd)
 	if (pipe(fd) == -1)
 	{
 		printf("Error in pipe\n");
-		return ;
+		return (-1);
 	}
 	return (create_process());
 }
