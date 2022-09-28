@@ -6,11 +6,13 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/08 18:52:18 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:43:35 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+//AQUI NO HAY QUE HACER NINGUN FREE PORQUE TODO SE VA A LA ESTRUCTURA GLOBAL
 
 /**
  * @brief Comprueba si hay redirecciones
@@ -325,8 +327,3 @@ bool	is_odd_quotes(char *raw)
 	printf("Quotes not closed\n");
 	return (true);
 }
-
-// char	**parse(char *input)
-// {
-// 	return (ft_split_quotes(input, ' '));
-// }

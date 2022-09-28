@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/10 17:20:47 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:44:15 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ t_builtins	ft_get_command(char *inside_pipes)
 	else
 		command = C_OTHERS;
 	ft_free_split(words);
+	free(inside_pipes);
 	return (command);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/07 16:39:42 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:59:00 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,15 @@ void	free_memory(void)
 	while (i >= 0)
 	{
 		free(g_minishell->memory.memory[i]);
+		i--;
+	}
+	// LIBERAMOS T_PROCESS
+	//DENTRO DE PROCESS HAY T_PIPE
+	i = g_minishell->process.quantity -1;
+	while (i >= 0)
+	{
+		free(g_minishell->process.content[i].raw);
+		free(g_minishell->process.content[i].input);
 		i--;
 	}
 	// free_all_env();
