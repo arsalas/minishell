@@ -73,7 +73,7 @@ void	ft_others(char **tokens)
 	aux = get_valid_path(tokens[0]);
 	if (aux)
 	{
-		absolute_path = ft_strjoin(ft_strjoin(aux, "/"), tokens[0]);
+		absolute_path = ft_strjoin_three(aux, "/", tokens[0]);
 		free(aux);
 	}
 	else

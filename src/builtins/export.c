@@ -181,6 +181,19 @@ char **ft_sort_array(char **array, int size)
 	return (array);
 }
 
+// char	**ft_create_environ(char **environ)
+// {
+// 	int		i;
+
+// 	i = 0;
+// 	while (i < g_minishell->env.count)
+// 	{
+// 		environ[i] = ft_strjoin(ft_strjoin(ft_strjoin(g_minishell->env.vars[i].title, "="), "\""), g_minishell->env.vars[i].content);
+// 		i++;
+// 	}
+// 	return (environ);
+// }
+
 char	**ft_create_environ(char **environ)
 {
 	int		i;
@@ -188,7 +201,7 @@ char	**ft_create_environ(char **environ)
 	i = 0;
 	while (i < g_minishell->env.count)
 	{
-		environ[i] = ft_strjoin(ft_strjoin(ft_strjoin(g_minishell->env.vars[i].title, "="), "\""), g_minishell->env.vars[i].content);
+		environ[i] = ft_strjoin_four(g_minishell->env.vars[i].title, "=", "\"", g_minishell->env.vars[i].content);
 		i++;
 	}
 	return (environ);

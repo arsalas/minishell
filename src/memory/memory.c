@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/28 17:59:00 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:49:34 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	free_memory(void)
 		free(g_minishell->process.content[i].input);
 		i--;
 	}
+	// LIBERAMOS EL ARRAY DE EXPORT
 	// free_all_env();
 	// free(g_minishell);
 }

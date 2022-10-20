@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/12 12:18:51 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:38:11 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@ char	*ft_strcpy(const char *s1);
 char	*ft_strstr(const char *haystack, const char *needle);
 char	*ft_trim(char *str);
 char	**ft_split_quotes(char const *s, char delimiter);
+char	*ft_strjoin_four(char *s1, char *s2, char *s3, char *s4);
+
 #endif
