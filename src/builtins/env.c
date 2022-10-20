@@ -25,5 +25,6 @@ void	ft_env(char **tokens)
 		g_minishell->status = CN_FOUND;
 		return ;
 	}
+	ft_free_split(tokens);
 	print_env();
 }

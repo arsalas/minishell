@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/09 13:27:48 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/10/20 17:47:04 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,6 @@ bool	ft_get_home_dir(char *words)
 	return (false);
 }
 
-/*
-* Nos dan : cd /
-* Y nada mas, implica que nos vamos a la raiz
-*/
-/*
-bool	ft_look_for_root(char *words)
-{
-	char	**path_split;
-	int		cont;
-
-	cont = 0;
-	if (words[0] == '/' && words[1] == '\0')
-	{
-		path_split = ft_split(getcwd(NULL, 0), '/');
-		while (path_split[cont])
-		{
-			ft_can_go("..");
-			cont++;
-		}
-		return (true);
-	}
-	return (false);
-}
-*/
 bool	ft_look_for_root(char *words)
 {
 	if (words[0] == '/' && words[1] == '\0')

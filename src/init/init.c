@@ -56,7 +56,7 @@ void	ft_execute_minishell(void)
  */
 void	ft_init_minishell(char **env)
 {
-	g_minishell = ft_malloc(sizeof(t_minishell), true);
+	g_minishell = malloc(sizeof(t_minishell));
 	g_minishell->last_command = C_OTHERS;
 	g_minishell->process.quantity = 0;
 	g_minishell->memory.quantity = 0;

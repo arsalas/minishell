@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse_global.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/09 13:20:02 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/10/20 17:53:36 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void	ft_parse_cd(char *input)
 		return ;
 	if (ft_set_directory(input))
 		return ;
+	// printf("INPUT IS %s\n", input);
 }

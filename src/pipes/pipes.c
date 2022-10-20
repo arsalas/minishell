@@ -118,7 +118,6 @@ void	execute_single_pipe(t_pipe *commands)
 	g_minishell->bloq = 0;
 }
 
-
 void	execute_single_process(t_process process)
 {
 	pid_t		pid;

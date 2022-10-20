@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/07 19:45:55 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/10/20 18:48:28 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,15 @@ void	req_new_input(void)
 	if (!input)
 	{
 		printf("exit\n");
+		free(input);
 		close_minishell(0);
 	}
 	g_minishell->input = ft_trim(input);
 	if (ft_strlen(g_minishell->input) == 0)
+	{
+		free(input);
 		return ;
+	}
 	ft_read_history();
 	free(input);
 	create_proces_data();

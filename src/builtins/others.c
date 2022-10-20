@@ -77,7 +77,10 @@ void	ft_others(char **tokens)
 		free(aux);
 	}
 	else
+	{
 		absolute_path = tokens[0];
+		free(aux);
+	}
 	if (!is_path(absolute_path))
 	{
 		printf("%s: command not found\n", absolute_path);
@@ -97,4 +100,5 @@ void	ft_others(char **tokens)
 		return ;
 	}
 	execve(absolute_path, tokens, get_env_arr());
+	free(absolute_path);
 }

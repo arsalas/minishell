@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/10/20 15:49:34 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/10/20 18:45:37 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	add_memory(void *pnt)
 {
 	g_minishell->memory.quantity++;
 	g_minishell->memory.memory = ft_realloc(g_minishell->memory.memory,
-		sizeof(void *) * (g_minishell->memory.quantity));
+			sizeof(void *) * (g_minishell->memory.quantity));
 	g_minishell->memory.memory[g_minishell->memory.quantity - 1] = pnt;
 }
 
@@ -67,6 +67,7 @@ void	*ft_realloc(void *ptr, size_t size)
 void	free_memory(void)
 {
 	int	i;
+	int	j;
 
 	i = g_minishell->memory.quantity - 1;
 	while (i >= 0)
@@ -81,8 +82,29 @@ void	free_memory(void)
 	{
 		free(g_minishell->process.content[i].raw);
 		free(g_minishell->process.content[i].input);
+		j = g_minishell->process.content[i].redirs.quantity - 1;
+		while (j >= 0)
+		{
+			free(g_minishell->process.content[i].redirs.info[j].files);
+			j--;
+		}
 		i--;
 	}
+	i = g_minishell->env.count -1;
+	while (i >= 0)
+	{
+		free(g_minishell->env.vars[i].title);
+		free(g_minishell->env.vars[i].content);
+		i--;
+	}
+	if (g_minishell->input)
+		free(g_minishell->input);
+	if (g_minishell->traces)
+		ft_free_split(g_minishell->traces);
+	if (g_minishell->paths)
+		ft_free_split(g_minishell->paths);
+	// if (g_minishell->old_dir)
+	// 	free(g_minishell->old_dir);
 	// LIBERAMOS EL ARRAY DE EXPORT
 	// free_all_env();
 	// free(g_minishell);

@@ -103,4 +103,5 @@ void    increment_shlvl(void)
 	lvl_i++;
 	lvl = ft_itoa(lvl_i);
 	update_env_var("SHLVL", lvl);
+	free (lvl);
 }
