@@ -39,6 +39,7 @@ char	*get_env_title(char *env)
 	int	title_len;
 
 	title_len = get_title_len(env);
+	// TODO substr
 	return (ft_substr(env, 0, title_len));
 }
 
@@ -53,6 +54,7 @@ char	*get_env_content(char *env)
 	int	title_len;
 
 	title_len = get_title_len(env) + 1;
+	// TODO substr
 	return (ft_substr(env, title_len, ft_strlen(env) - title_len));
 }
 

@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:18:49 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/08 19:23:35 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:39:08 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	*parse_double_quote(char *input)
 	while (input[i] && input[i] != '"')
 		i++;
 	end = i;
+	// TODO substr
 	if (end > 0)
 		str = ft_substr(input, 0, end);
 	return (str);
@@ -52,6 +53,7 @@ char	*parse_quotes_more(char *input, char aux, char *str, int start)
 			aux = ft_substr(input, start, i - start);
 		}
 		str = ft_strjoin(str, aux);
+		printf("YO NO TE USO\n");
 	}
 }
 
@@ -61,7 +63,7 @@ char	*parse_double_quotes(char *input)
 	char	*str;
 	char	*aux;
 
-	str = malloc(sizeof(char));
+	str = ft_malloc(sizeof(char), false);
 	start = 0;
 	str = parse_quotes_more(input, str, start);
 	return (str);

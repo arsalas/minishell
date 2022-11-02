@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse_global.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/09 13:20:02 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:07:37 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-//VALIDATE
+
 bool	ft_is_absolute(char *words)
 {
 	if (words[0] == '/' && words[1] != '\0')
@@ -29,7 +29,6 @@ bool	ft_is_absolute(char *words)
 * Words es el input separado por espacio, \t o \n
 * Parseamos para comprobar si lo que nos pasan es ir a home
 */
-//VALIDATE
 void	ft_parse_cd(char *input)
 {
 	g_minishell->status = DEFAULT;

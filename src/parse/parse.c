@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/08 18:52:18 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:37:31 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,7 @@ char	*get_input_redirect(char *raw)
 			break ;
 		count++;
 	}
+	//TODO substr
 	return (ft_substr(raw, 0, count));
 }
 
@@ -263,7 +264,9 @@ void	get_input_parsed(t_pipe *command)
 	int	count;
 
 	command->redirs.quantity = 0;
-	command->input = ft_trim(get_input_redirect(command->raw));
+	char *aux = get_input_redirect(command->raw);
+	command->input = ft_trim(aux);
+	free(aux);
 	if (have_redirect(command->raw))
 	{
 		command->redirs.quantity = get_redirect_quantity(command->raw);

@@ -28,4 +28,5 @@ void	ft_unset(char **tokens)
 		delete_env(tokens[count]);
 		count++;
 	}
+	ft_free_split(tokens);
 }

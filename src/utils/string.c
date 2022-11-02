@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:11:54 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/08 19:56:23 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/02 20:07:18 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ char	*parse_simple_quote(char *input)
 	int		end;
 	char	*str;
 
-	str = malloc(sizeof(char));
+	// str = malloc(sizeof(char));
+	str = NULL;
 	i = 0;
 	while (input[i] != '\'')
 		i++;
@@ -87,7 +88,8 @@ char	*parse_double_quote(char *input)
 	int		end;
 	char	*str;
 
-	str = malloc(sizeof(char));
+	// str = malloc(sizeof(char));
+	str = NULL;
 	i = 0;
 	while (input[i] && input[i] != '"')
 		i++;

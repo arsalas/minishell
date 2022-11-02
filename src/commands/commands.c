@@ -25,7 +25,10 @@ void	ft_execute(t_pipe builting)
 	if (builting.command == C_EXIT)
 		return (ft_exit(tokens));
 	if (builting.command == C_PWD)
+	{
+		ft_free_split(tokens);
 		return (pwd());
+	}
 	if (builting.command == C_EXPORT)
 		return (ft_export(tokens));
 	if (builting.command == C_UNSET)
@@ -33,6 +36,6 @@ void	ft_execute(t_pipe builting)
 	if (builting.command == C_ECHO)
 		return (ft_echo(tokens));
 	if (builting.command == C_CD)
-		return (ft_cd(tokens[1]));
+		return (ft_cd(tokens));
 	return (ft_others(tokens));
 }

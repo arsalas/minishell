@@ -85,6 +85,7 @@ void	ft_exit(char **str)
 		else
 			g_minishell->status = GENERAL;
 	}
+	ft_free_split(str);
 	if (is_exit)
 		ft_make_exit();
 }

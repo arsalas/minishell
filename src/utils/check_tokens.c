@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:04:52 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/08 19:11:34 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:03:19 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	check_redirs(char *raw, int count, bool open_quote)
 			|| raw[count + 2] == '&')
 		{
 			printf("syntax error near unexpected token: `%c\'\n", raw[count + 2]);
-			return (false);
+			return (false); 
 		}
 	}
 	else if (raw[count] == '<' && raw[count + 1] == '<' && !open_quote)

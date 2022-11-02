@@ -26,4 +26,5 @@ void	ft_env(char **tokens)
 		return ;
 	}
 	print_env();
+	ft_free_split(tokens);
 }

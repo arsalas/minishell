@@ -97,4 +97,5 @@ void	ft_others(char **tokens)
 		return ;
 	}
 	execve(absolute_path, tokens, get_env_arr());
+	ft_free_split(tokens);
 }

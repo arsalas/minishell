@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/07 16:59:35 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:28:13 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_empty_piece(char *str, int count);
 void	ft_make_exit(void);
 
 //CD
-void	ft_cd(char *input);
+void	ft_cd(char **tokens);
 void	ft_parse_cd(char *input);
 bool	ft_look_for_old(char *words);
 int		ft_no_more_data(char **words);

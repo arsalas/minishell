@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/07 16:39:42 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:18:19 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	*ft_malloc(size_t size, bool is_permanent)
 		memory_error();
 	if (!is_permanent)
 		add_memory(mem);
+	printf("malloc: %p\n", mem);
 	return (mem);
 }
 

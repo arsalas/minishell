@@ -68,25 +68,5 @@ void	ft_echo(char **input)
 	if (!have_flag)
 		printf("\n");
 	g_minishell->status = DEFAULT;
-	
-	// char	*echo;
-	// int		i;
-	// bool	have_flag;
-
-	// have_flag = false;
-	// echo = extract_echo_input(input);
-	// tokens = parse_echo(echo);
-	// i = 0;
-	// while (tokens[i])
-	// {
-	// 	if (i == 0 && ft_strcmp(tokens[i], "-n", true))
-	// 		have_flag = true;
-	// 	else
-	// 		printf("%s ", tokens[i]);
-	// 	i++;
-	// }
-	// if (!have_flag)
-	// 	printf("\n");
-	// g_minishell->status = DEFAULT;
-	// execute_echo(echo, echo_have_flag(input));
+	ft_free_split(input);
 }

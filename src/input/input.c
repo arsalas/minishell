@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/07 19:45:55 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:21:51 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,37 @@ void	create_proces_data(void)
 void	req_new_input(void)
 {
 	char	*input;
+	int i, j = 0;
 
 	input = ft_get_input();
 	if (!input)
 	{
+		free(input);
 		printf("exit\n");
 		close_minishell(0);
 	}
 	g_minishell->input = ft_trim(input);
 	if (ft_strlen(g_minishell->input) == 0)
+	{
+		free(input);
 		return ;
+	}
 	ft_read_history();
-	free(input);
 	create_proces_data();
 	// free_process_memory();
+	i = g_minishell->process.quantity -1;
+	while (i >= 0)
+	{
+		// printf("pointer: %p\n", g_minishell->process.content[i].raw);
+		free(g_minishell->process.content[i].raw);
+		free(g_minishell->process.content[i].input);
+		j = g_minishell->process.content[i].redirs.quantity - 1;
+		while (j >= 0)
+		{
+			free(g_minishell->process.content[i].redirs.info[j].files);
+			j--;
+		}
+		i--;
+	}
+	free(input);
 }

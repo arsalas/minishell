@@ -32,11 +32,11 @@ int	ft_cant_go(char *path)
 {
 	char	*long_path;
 
-	long_path = ft_strjoin((get_env_var("PWD")), "/");
-	long_path = ft_strjoin(long_path, path);
+	long_path = ft_strjoin_three(get_env_var("PWD"), "/", path);
 	if (chdir(path) != 0)
 	{
 		ft_no_file_dir(long_path);
+		free (long_path);
 		return (1);
 	}
 	if (access(long_path, X_OK) == -1)
@@ -44,14 +44,17 @@ int	ft_cant_go(char *path)
 		if (is_path(long_path))
 		{
 			ft_not_directory(long_path);
+			free (long_path);
 			return (2);
 		}
 	}
 	if (access(long_path, R_OK) == -1)
 	{
 		ft_no_permission(long_path);
+		free (long_path);
 		return (3);
 	}
+	free (long_path);
 	chdir(get_env_var("PWD"));
 	return (0);
 }
@@ -71,14 +74,16 @@ int	ft_set_directory(char *words)
 		return (-1);
 	}
 	ft_can_go(path);
+	free (path);
 	return (0);
 }
 
 /*
 * Realizamos la funcion CD
 */
-void	ft_cd(char *input)
+void	ft_cd(char **tokens)
 {
 	g_minishell->old_dir = get_env_var("PWD");
-	ft_parse_cd(input);
+	ft_parse_cd(tokens[1]);
+	ft_free_split(tokens);
 }

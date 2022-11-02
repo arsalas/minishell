@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/09 13:27:48 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:57:20 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-* El comando cd - nos lleva al directorio de trabajo anterior
-*/
-
-// char	*ft_old_cd(void)
-// {
-// 	char	*old_path;
-// 	char	*new_path;
-// 	new_path = get_env_var("OLDPWD");
-// 	old_path = get_env_var("PWD");
-// 	if (new_path == NULL)
-// 	{
-// 		printf("cd: OLDPWD not set\n");
-// 		return (0);
-// 	}
-// 	chdir(new_path);
-// 	update_env_var("OLDPWD", old_path);
-// 	update_env_var("PWD", getcwd(NULL, 0));
-// 	return (new_path);
-// }
 
 /*
 * Comprobamos si nos dan un solo guion, porque implica que nos vamos al
@@ -42,7 +21,6 @@ bool	ft_look_for_old(char *words)
 {
 	if (!(words[0] == '-' && words[1] == '\0'))
 		return (false);
-	// ft_old_cd();
 	return (true);
 }
 
@@ -71,30 +49,6 @@ bool	ft_get_home_dir(char *words)
 	return (false);
 }
 
-/*
-* Nos dan : cd /
-* Y nada mas, implica que nos vamos a la raiz
-*/
-/*
-bool	ft_look_for_root(char *words)
-{
-	char	**path_split;
-	int		cont;
-
-	cont = 0;
-	if (words[0] == '/' && words[1] == '\0')
-	{
-		path_split = ft_split(getcwd(NULL, 0), '/');
-		while (path_split[cont])
-		{
-			ft_can_go("..");
-			cont++;
-		}
-		return (true);
-	}
-	return (false);
-}
-*/
 bool	ft_look_for_root(char *words)
 {
 	if (words[0] == '/' && words[1] == '\0')

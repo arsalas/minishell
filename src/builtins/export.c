@@ -35,7 +35,7 @@ static int	get_finish_position(char *input)
 		i++;
 	return (i);
 }
-
+//TODO substr
 char	*get_export_name(char *input)
 {
 	int	len;
@@ -54,6 +54,7 @@ static char	*get_export_content(char *input)
 
 	start = get_finish_position(input) + 1;
 	len = ft_strlen(input);
+	// TODO substr
 	str = ft_substr(input, start, len);
 	return (str);
 }
@@ -148,6 +149,7 @@ void	ft_export(char **tokens)
 		}
 		count++;
 	}
+	ft_free_split(tokens);
 }
 
 /**
