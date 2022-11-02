@@ -18,7 +18,7 @@
 //VALIDATE
 void	close_minishell(int code)
 {
-	free_memory();
+	// free_memory();
 	ft_clear_history();
 	exit(code);
 }

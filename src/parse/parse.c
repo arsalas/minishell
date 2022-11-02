@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/28 18:43:35 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:36:50 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,7 @@ int	get_redirect_quantity(char *raw)
 	return (quantity);
 }
 
-// FILES hace referencia a FILES de la estructura s_redir_info
-// AQUI NO ESTOY TENIENDO EN CUENTA SI ESTA ENTRE COMILLAS, ERA DEMASIADO
+
 /**
  * @brief Extrae el contenido del input (el texto)
  * 

@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/10/20 18:48:28 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:43:11 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	get_process_content(void)
 			= ft_get_command(g_minishell->input);
 		g_minishell->process.content[i].raw
 			= extract_content_process_input(g_minishell->input);
-        //TODO->no se si esto esta bien
 		g_minishell->input = extract_others_process_input(g_minishell->input);
 		i++;
 	}

@@ -137,5 +137,4 @@ int 		ft_append(int fd);
 int 		ft_fd(void);
 void		empty_trash(void);
 
-
 #endif

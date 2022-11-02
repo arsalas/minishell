@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 13:53:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/08 18:12:51 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:51:26 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,6 @@ char	*extract_others_process_input(char *input)
 	len = ft_strlen(input);
 	str = ft_substr(input, start
 			+ get_ignore_chars_process(&input[start]), len);
-	free(g_minishell->input);
+	// free(g_minishell->input);
 	return (str);
 }

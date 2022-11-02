@@ -64,4 +64,5 @@ void	ft_init_minishell(char **env)
 	path_init();
 	ft_signal();
 	ft_execute_minishell();
+	exit (0);
 }
