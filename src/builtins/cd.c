@@ -78,12 +78,24 @@ int	ft_set_directory(char *words)
 	return (0);
 }
 
-/*
-* Realizamos la funcion CD
-*/
+int ft_strlen_array(char **tokens)
+{
+	int i = 0;
+	while (tokens[i] != NULL)
+		i++;
+	return (i);
+}
+
+/**
+ * @brief Realizamos la funcion CD
+ * Descomentar la función ft_free_split para quitar leaks
+ * 
+ * @param tokens 
+ */
 void	ft_cd(char **tokens)
 {
 	g_minishell->old_dir = get_env_var("PWD");
 	ft_parse_cd(tokens[1]);
-	ft_free_split(tokens);
+	// ft_free_split(tokens);
+	// free(tokens);
 }
