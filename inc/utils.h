@@ -15,6 +15,8 @@
 
 # include "stdbool.h"
 
+char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3);
+char	*ft_strjoin_four(char *s1, char *s2, char *s3, char *s4);
 char	*get_prompt(void);
 void	not_implemented(void);
 void	memory_error(void);
@@ -22,7 +24,6 @@ void	*ft_malloc(size_t size, bool is_permanent);
 void	free_memory(void);
 int		create_process(void);
 int	    ft_skip_one_word(char *str);
-char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3);
 int	    ft_strncmp_mod(const char *s1, const char *s2, size_t n);
 
 bool	is_quote(char c);

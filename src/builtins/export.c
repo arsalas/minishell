@@ -188,7 +188,7 @@ char	**ft_create_environ(char **environ)
 	i = 0;
 	while (i < g_minishell->env.count)
 	{
-		environ[i] = ft_strjoin(ft_strjoin(ft_strjoin(g_minishell->env.vars[i].title, "="), "\""), g_minishell->env.vars[i].content);
+		environ[i] = ft_strjoin_four(g_minishell->env.vars[i].title, "=", "\"", g_minishell->env.vars[i].content);
 		i++;
 	}
 	return (environ);
