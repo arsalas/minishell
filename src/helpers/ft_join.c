@@ -6,11 +6,66 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 15:58:52 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/02 18:19:57 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:06:30 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*ft_substr_mod(char *s, unsigned int start, size_t len)
+{
+	char	*str;
+	size_t	str_l;
+	size_t	l;
+
+	str_l = ft_strlen(s);
+	if (str_l - start >= len)
+		l = len + 1;
+	else
+		l = str_l - start + 1;
+	if (len == 0 || str_l == 0 || start > str_l)
+	{
+		str = malloc(sizeof(char));
+		printf("substr: %p\nstr: %s\n", str, s);
+		if (str == NULL)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
+	}
+	str = malloc(sizeof(char) * l);
+	printf("substr: %p\nstr: %s\n", str, s);
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, (s + start), l);
+	return (str);
+}
+
+char	*ft_strjoin_mod(char *s1, char *s2)
+{
+	char	*str;
+	int		l_s1;
+	int		l_s2;
+	int		c;
+
+	l_s1 = ft_strlen((char *)s1);
+	l_s2 = ft_strlen((char *)s2);
+	str = malloc(sizeof(char) * (l_s1 + l_s2 + 1));
+	if (str == NULL)
+		return (NULL);
+	c = 0;
+	while (c < l_s2 || c < l_s1)
+	{
+		if (c < l_s1)
+			str[c] = s1[c];
+		if (c < l_s2)
+			str[l_s1 + c] = s2[c];
+		c++;
+	}
+	str[l_s1 + l_s2] = '\0';
+	free(s1);
+	free(s2);
+	return (str);
+}
 
 char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3)
 {

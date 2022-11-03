@@ -44,7 +44,6 @@ void	ft_env_array(void)
 	int		len;
 	int		i;
 
-	printf("I USE U\n");
 	i = 0;
 	env = ft_malloc(sizeof(char) * g_minishell->env.count + 1, true);
 	env[g_minishell->env.count] = NULL;

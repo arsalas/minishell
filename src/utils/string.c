@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:11:54 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/03 19:09:29 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:12:12 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,12 +182,11 @@ char	*parse_token2(char *input)
 			while (input[i]
 				&& (input[i] != '"' && input[i] != '$' && input[i] != '\''))
 				i++;
+			printf(BLU"AHORA HAGO EL SUBSTR\n");
 			aux = ft_substr(input, start, i - start);
 		}
-		aux2 = str;
-		str = ft_strjoin(aux2, aux);
-		free(aux);
-		free(aux2);
+		aux2 = ft_strdup(str);
+		str = ft_strjoin_mod(aux2, aux);
 	}
 	return (str);
 }

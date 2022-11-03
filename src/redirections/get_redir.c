@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/09/10 17:14:37 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/03 19:50:26 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,6 @@
 * STDOUT - standard output fd = 1 - terminal
 * STDERR - error output fd = 2 - terminal
 */
-//TODO --> demomento no se usa
-void	empty_trash(void)
-{
-	char	*path;
-	// int		pid;
-
-	path = ft_strjoin("/bin/rm ", REDIR_FILE);
-	if (access(REDIR_FILE, F_OK) != -1)
-	{
-		// pid = create_process();
-		// if (pid == 0)
-		// 	ft_others(path);
-	}
-	free(path);
-}
-
 
 /**
  * @brief Errores de lectura, escritura y existencia
