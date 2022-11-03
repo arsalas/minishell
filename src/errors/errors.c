@@ -21,6 +21,7 @@ void	close_minishell(int code)
 
 	// free_memory();
 	ft_clear_history();
+	system("leaks minishell");
 	exit(code);
 }
 

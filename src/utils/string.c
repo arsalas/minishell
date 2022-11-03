@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:11:54 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/03 16:51:18 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:57:28 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ char	*parse_token2(char *input)
 	int		i;
 	char	*str;
 	char	*aux;
+	char	*aux2;
 
 	str = malloc(sizeof(char));
 	start = 0;
@@ -181,7 +182,10 @@ char	*parse_token2(char *input)
 				i++;
 			aux = ft_substr(input, start, i - start);
 		}
-		str = ft_strjoin(str, aux);
+		aux2 = str;
+		str = ft_strjoin(aux2, aux);
+		free(aux);
+		free(aux2);
 	}
 	return (str);
 }

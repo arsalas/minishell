@@ -17,9 +17,14 @@
 */
 void	ft_can_go(char *path)
 {
+	char	*aux;
+
+	aux = getcwd(NULL, 0);
+
 	update_env_var("OLDPWD", get_env_var("PWD"));
 	chdir(path);
-	update_env_var("PWD", getcwd(NULL, 0));
+	update_env_var("PWD", aux);
+	free(aux);
 }
 
 /*
@@ -72,17 +77,18 @@ int	ft_set_directory(char *words)
 {
 	char	*path;
 
-	path = words;
+	path = ft_strdup(words);
 	if (ft_cant_go(words) != 0)
 	{
 		chdir(g_minishell->old_dir);
 		g_minishell->status = 1;
+		free(path);
 		return (-1);
 	}
 	ft_can_go(path);
+	free(path);
 	return (0);
 }
-
 
 /**
  * @brief Realizamos la funcion CD
