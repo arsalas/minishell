@@ -59,9 +59,15 @@ int	ft_cant_go(char *path)
 	return (0);
 }
 
-/*
-* Mandamos a una funcion u otra segun pueda o no ir
-*/
+
+/**
+ * @brief Mandamos a una funcion u otra segun pueda o no ir
+ * No hacemos free de path porque al igualarla a words estamos 
+ * igualando también la dirección de memoria
+ * 
+ * @param words 
+ * @return int 
+ */
 int	ft_set_directory(char *words)
 {
 	char	*path;
@@ -74,17 +80,9 @@ int	ft_set_directory(char *words)
 		return (-1);
 	}
 	ft_can_go(path);
-	free (path);
 	return (0);
 }
 
-int ft_strlen_array(char **tokens)
-{
-	int i = 0;
-	while (tokens[i] != NULL)
-		i++;
-	return (i);
-}
 
 /**
  * @brief Realizamos la funcion CD
@@ -96,6 +94,5 @@ void	ft_cd(char **tokens)
 {
 	g_minishell->old_dir = get_env_var("PWD");
 	ft_parse_cd(tokens[1]);
-	// ft_free_split(tokens);
-	// free(tokens);
+	ft_free_split(tokens);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:11:54 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/02 20:31:22 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:51:18 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,7 @@ char	**get_tokens2(char *input)
 		if (!token)
 			break ;
 		arr = push_string(arr, parse_token2(token));
+		free(token);
 		len += get_next_token_len2(&input[len]);
 		while (input[len] == ' ' || input[len] == '\t')
 			len++;
