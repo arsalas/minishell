@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:11:54 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/03 16:57:28 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/03 19:09:29 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*parse_expand_var(char *input)
 	int		start;
 	int		end;
 	char	*str;
+	char	*aux;
 
 	i = 0;
 	start = 0;
@@ -77,8 +78,9 @@ char	*parse_expand_var(char *input)
 	while (input[i] && (ft_isalnum(input[i]) == 1 || input[i] == '_'))
 		i++;
 	end = i;
-	str = ft_substr(input, start, end - start);
-	str = ft_strdup(get_env_var(str));
+	aux = ft_substr(input, start, end - start);
+	str = ft_strdup(get_env_var(aux));
+	free(aux);
 	return (str);
 }
 

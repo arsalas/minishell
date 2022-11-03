@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/03 17:28:43 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/03 19:21:42 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 bool	ft_is_absolute(char *words)
 {
+	char	*aux;
+
+	aux = getcwd(NULL, 0);
 	if (words[0] == '/' && words[1] != '\0')
 	{
 		update_env_var("OLDPWD", get_env_var("PWD"));
 		chdir(words);
-		update_env_var("PWD", getcwd(NULL, 0));
+		update_env_var("PWD", aux);
+		free(aux);
 		return (true);
 	}
+	free(aux);
 	return (false);
 }
 

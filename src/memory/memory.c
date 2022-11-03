@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/02 18:18:19 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/03 19:22:46 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	*ft_malloc(size_t size, bool is_permanent)
 		memory_error();
 	if (!is_permanent)
 		add_memory(mem);
-	printf("malloc: %p\n", mem);
 	return (mem);
 }
 
@@ -62,9 +61,7 @@ void	*ft_realloc(void *ptr, size_t size)
 
 /**
  * @brief Libera toda la memoria reservada
- * Falta hacer free de g_minishell->traces
  */
-//VALIDATE
 void	free_memory(void)
 {
 	int	i;
@@ -75,8 +72,6 @@ void	free_memory(void)
 		free(g_minishell->memory.memory[i]);
 		i--;
 	}
-	// free_all_env();
-	// free(g_minishell);
 }
 
 void	ft_free_usual(void)

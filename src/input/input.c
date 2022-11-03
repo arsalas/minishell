@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/02 19:21:51 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/03 19:07:17 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_process_memory(void)
  */
 void	get_process_content(void)
 {
-	int	i;
+	int			i;
 
 	i = 0;
 	g_minishell->process.content = ft_malloc(sizeof(t_pipe)
@@ -73,29 +73,34 @@ void	create_proces_data(void)
 //VALIDATE
 void	req_new_input(void)
 {
+	static int n = 0;
 	char	*input;
 	int i, j = 0;
 
+	i = g_minishell->process.quantity -1;
 	input = ft_get_input();
 	if (!input)
 	{
-		free(input);
+		// free(input);
+		// free(g_minishell->input);
 		printf("exit\n");
+		ft_clear_history();
 		close_minishell(0);
 	}
 	g_minishell->input = ft_trim(input);
+	free(input);
 	if (ft_strlen(g_minishell->input) == 0)
 	{
-		free(input);
+		free(g_minishell->input);
 		return ;
 	}
 	ft_read_history();
+	// if(n == 1) close_minishell(0);
 	create_proces_data();
 	// free_process_memory();
 	i = g_minishell->process.quantity -1;
 	while (i >= 0)
 	{
-		// printf("pointer: %p\n", g_minishell->process.content[i].raw);
 		free(g_minishell->process.content[i].raw);
 		free(g_minishell->process.content[i].input);
 		j = g_minishell->process.content[i].redirs.quantity - 1;
@@ -106,5 +111,7 @@ void	req_new_input(void)
 		}
 		i--;
 	}
-	free(input);
+	free(g_minishell->process.content);
+	n++;
+	free(g_minishell->input);
 }
