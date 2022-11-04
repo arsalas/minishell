@@ -19,10 +19,9 @@ void	ft_can_go(char *path)
 {
 	char	*aux;
 
-	aux = getcwd(NULL, 0);
-
 	update_env_var("OLDPWD", get_env_var("PWD"));
 	chdir(path);
+	aux = getcwd(NULL, 0);
 	update_env_var("PWD", aux);
 	free(aux);
 }
@@ -38,13 +37,19 @@ int	ft_cant_go(char *path)
 	char	*long_path;
 
 	long_path = ft_strjoin_three(get_env_var("PWD"), "/", path);
-	if (chdir(path) != 0)
+	if (access(long_path, F_OK) == -1)
 	{
-		ft_no_file_dir(long_path);
+		ft_no_file_dir(path);
 		free (long_path);
 		return (1);
 	}
-	if (access(long_path, X_OK) == -1)
+	if (access(long_path, R_OK) == -1)
+	{
+		ft_no_permission(path);
+		free (long_path);
+		return (3);
+	}
+	if (access(path, X_OK) == -1)
 	{
 		if (is_path(long_path))
 		{
@@ -52,12 +57,6 @@ int	ft_cant_go(char *path)
 			free (long_path);
 			return (2);
 		}
-	}
-	if (access(long_path, R_OK) == -1)
-	{
-		ft_no_permission(long_path);
-		free (long_path);
-		return (3);
 	}
 	free (long_path);
 	chdir(get_env_var("PWD"));

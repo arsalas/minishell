@@ -16,8 +16,6 @@ void	ft_execute(t_pipe builting)
 {
 	char	**tokens;
 
-	// printf("input: %s\nraw: %s\n", builting.input, builting.raw);
-	// tokens = get_tokens2(builting.input);
 	tokens = get_tokens2(builting.input);
 	g_minishell->last_command = builting.command;
 	if (builting.command == C_ENV)

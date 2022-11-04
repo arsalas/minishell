@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_parse_global.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:06:46 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/03 19:21:42 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:03:29 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@ bool	ft_is_absolute(char *words)
 	return (false);
 }
 
-/*
-* Input es aquello que hay entre pipes en el momento en que me dan CD como comando
-* Words es el input separado por espacio, \t o \n
-* Parseamos para comprobar si lo que nos pasan es ir a home
-*/
+/**
+ * @brief Input es aquello que hay entre pipes en el momento 
+ * en que me dan CD como comando
+ * Words es el input separado por espacio, \t o \n
+ * Parseamos para comprobar si lo que nos pasan es ir a home
+ * 
+ * @param input 
+ */
 void	ft_parse_cd(char *input)
 {
 	g_minishell->status = DEFAULT;

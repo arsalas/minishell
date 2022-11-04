@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/02 19:28:13 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:04:20 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_can_go(char *path);
 int		ft_cant_go(char *path);
 bool	ft_look_for_home(char *words);
 int		ft_set_directory(char *words);
+bool	ft_is_absolute(char *words);
 
 void	pwd(void);
 void	ft_env(char **tokens);

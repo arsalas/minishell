@@ -6,13 +6,12 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 23:49:20 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/02 17:57:46 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:40:44 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//VALIDATE
 void	path_init(void)
 {
 	g_minishell->paths = ft_split(get_env_var("PATH"), ':');

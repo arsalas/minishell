@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:18:49 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/04 17:19:14 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:45:40 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*parse_quotes_more(char *input, char aux, char *str, int start)
 			aux = ft_substr_mod(input, start, i - start);
 		}
 		str = ft_strjoin(str, aux);
-		printf("YO NO TE USO\n");
 	}
 }
 

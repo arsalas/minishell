@@ -101,7 +101,6 @@ void	execute_single_pipe(t_pipe *commands)
 		}
 	}
 	pid = create_pid(2);
-	// TODO --> comprobar que los pipes salgan bien
 	if (pipe(fd) == -1)
 	{
 		printf("Error in pipe\n");
@@ -167,7 +166,6 @@ void	execute_single_process(t_process process)
 	g_minishell->bloq = 0;
 	saved_stdout = dup(STDOUT_FILENO);
 	saved_stdin = dup(STDIN_FILENO);
-	// get_input_parsed(&process.content[0]);
 	fds = ft_get_redir(process.content[0]);
 	if (fds.input != -1)
 		dup2(fds.input, STDIN_FILENO);

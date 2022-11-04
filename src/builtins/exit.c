@@ -12,6 +12,13 @@
 
 #include "minishell.h"
 
+/**
+ * @brief Saber si la estructura del exit es correcta
+ * 
+ * @param str 
+ * @return true 
+ * @return false 
+ */
 bool	is_correct_structure_exit(char **str)
 {
 	if (str[1] == NULL)

@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:57:45 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/04 17:06:00 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:38:52 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	add_memory(void *pnt)
 {
 	g_minishell->memory.quantity++;
 	g_minishell->memory.memory = ft_realloc(g_minishell->memory.memory,
-		sizeof(void *) * (g_minishell->memory.quantity));
+			sizeof(void *) * (g_minishell->memory.quantity));
 	g_minishell->memory.memory[g_minishell->memory.quantity - 1] = pnt;
 }
 

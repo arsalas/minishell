@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/02 18:57:20 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:17:32 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 * Comprobamos si nos dan un solo guion, porque implica que nos vamos al
 * puesto de trabajo anterior (no es lo mismo que cd ..)
 */
-//TODO --> no se si el ft_old se hace
 bool	ft_look_for_old(char *words)
 {
 	if (!(words[0] == '-' && words[1] == '\0'))
 		return (false);
+	ft_is_absolute(get_env_var("OLDPWD"));
 	return (true);
 }
 
@@ -29,9 +29,10 @@ bool	ft_look_for_old(char *words)
 */
 void	ft_go_home(void)
 {
-	update_env_var("OLDPWD", get_env_var("PWD"));
-	update_env_var("PWD", get_env_var("HOME"));
-	chdir(get_env_var("HOME"));
+	ft_can_go(get_env_var("HOME"));
+	// update_env_var("OLDPWD", get_env_var("PWD"));
+	// update_env_var("PWD", get_env_var("HOME"));
+	// chdir(get_env_var("HOME"));
 }
 
 /*
