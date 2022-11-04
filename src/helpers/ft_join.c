@@ -6,39 +6,11 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 15:58:52 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/03 20:06:30 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:07:47 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*ft_substr_mod(char *s, unsigned int start, size_t len)
-{
-	char	*str;
-	size_t	str_l;
-	size_t	l;
-
-	str_l = ft_strlen(s);
-	if (str_l - start >= len)
-		l = len + 1;
-	else
-		l = str_l - start + 1;
-	if (len == 0 || str_l == 0 || start > str_l)
-	{
-		str = malloc(sizeof(char));
-		printf("substr: %p\nstr: %s\n", str, s);
-		if (str == NULL)
-			return (NULL);
-		str[0] = '\0';
-		return (str);
-	}
-	str = malloc(sizeof(char) * l);
-	printf("substr: %p\nstr: %s\n", str, s);
-	if (str == NULL)
-		return (NULL);
-	ft_strlcpy(str, (s + start), l);
-	return (str);
-}
 
 char	*ft_strjoin_mod(char *s1, char *s2)
 {

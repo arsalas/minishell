@@ -1,11 +1,9 @@
-substr: 0x7f8799104090
+substr: 0x7f9f08c05dd0
 str: echo a
-substr: 0x7f87991040b0
+substr: 0x7f9f08c05e10
 str: echo
-AHORA HAGO EL SUBSTR
-substr: 0x7f8799104090
+substr: 0x7f9f08c05dd0
 str: a
-substr: 0x7f87991040c0
+substr: 0x7f9f08c05e20
 str: a
-AHORA HAGO EL SUBSTR
 a

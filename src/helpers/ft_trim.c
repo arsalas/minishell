@@ -49,7 +49,7 @@ char	*ft_trim(char *str)
 	start = get_start(str);
 	finish = get_end(str);
 	len = finish - start;
-	new_str = ft_substr(str, start, len);
+	new_str = ft_substr_mod(str, start, len);
 	return (new_str);
 }
 

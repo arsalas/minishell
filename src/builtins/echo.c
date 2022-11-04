@@ -29,25 +29,7 @@ bool	echo_have_flag(char *input)
 	return (false);
 }
 
-// int	get_start_echo_input(char *input)
-// {
-// 	int	i;
 
-// 	i = 4;
-// 	while (input[i] == ' ')
-// 		i++;
-// 	return (i);
-// }
-
-// char	*extract_echo_input(char *input)
-// {
-// 	int	start;
-// 	int	end;
-
-// 	start = get_start_echo_input(input);
-// 	end = ft_strlen(input);
-// 	return (ft_substr(input, start, end - start));
-// }
 
 void	ft_echo(char **input)
 {

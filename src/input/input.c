@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/03 19:07:17 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:07:34 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ void	req_new_input(void)
 	input = ft_get_input();
 	if (!input)
 	{
-		// free(input);
-		// free(g_minishell->input);
 		printf("exit\n");
 		ft_clear_history();
 		close_minishell(0);
@@ -95,9 +93,7 @@ void	req_new_input(void)
 		return ;
 	}
 	ft_read_history();
-	// if(n == 1) close_minishell(0);
 	create_proces_data();
-	// free_process_memory();
 	i = g_minishell->process.quantity -1;
 	while (i >= 0)
 	{

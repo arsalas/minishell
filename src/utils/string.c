@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:11:54 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/03 20:12:12 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:12:51 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*parse_simple_quote(char *input)
 		i++;
 	end = i;
 	if (end > 0)
-		str = ft_substr(input, 0, end);
+		str = ft_substr_mod(input, 0, end);
 	return (str);
 }
 
@@ -78,7 +78,7 @@ char	*parse_expand_var(char *input)
 	while (input[i] && (ft_isalnum(input[i]) == 1 || input[i] == '_'))
 		i++;
 	end = i;
-	aux = ft_substr(input, start, end - start);
+	aux = ft_substr_mod(input, start, end - start);
 	str = ft_strdup(get_env_var(aux));
 	free(aux);
 	return (str);
@@ -97,7 +97,7 @@ char	*parse_double_quote(char *input)
 		i++;
 	end = i;
 	if (end > 0)
-		str = ft_substr(input, 0, end);
+		str = ft_substr_mod(input, 0, end);
 	return (str);
 }
 
@@ -127,7 +127,7 @@ char	*parse_double_quotes(char *input)
 			start = i;
 			while (input[i] && input[i] != '$')
 				i++;
-			aux = ft_substr(input, start, i - start);
+			aux = ft_substr_mod(input, start, i - start);
 		}
 		str = ft_strjoin(str, aux);
 	}
@@ -182,10 +182,10 @@ char	*parse_token2(char *input)
 			while (input[i]
 				&& (input[i] != '"' && input[i] != '$' && input[i] != '\''))
 				i++;
-			printf(BLU"AHORA HAGO EL SUBSTR\n");
-			aux = ft_substr(input, start, i - start);
+			aux = ft_substr_mod(input, start, i - start);
 		}
 		aux2 = ft_strdup(str);
+		free(str);
 		str = ft_strjoin_mod(aux2, aux);
 	}
 	return (str);
@@ -238,7 +238,7 @@ char	*get_next_token2(char *input)
 		}
 		i++;
 	}
-	return (ft_substr(input, 0, i));
+	return (ft_substr_mod(input, 0, i));
 }
 
 char	**get_tokens2(char *input)

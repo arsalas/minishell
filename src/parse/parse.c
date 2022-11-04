@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/02 18:37:31 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:12:28 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ char	*extract_content_input(char *raw)
 
 	count = 0;
 	i = 0;
-	text = malloc(sizeof(char) * ft_strlen(raw) + 1);
+	text = ft_malloc(sizeof(char) * ft_strlen(raw) + 1, false);
 	//count = ft_skip_one_word(raw); MIRAR SI USAMOS
 	if (raw[count] == '>' || raw[count] == '<')
 		return (NULL);
@@ -196,7 +196,7 @@ char    *get_filename_redirect(char *raw, int number)
 	i = 0;
 	q_files = 1;
 	open_quote = false;
-	files = malloc(sizeof(char) * ft_strlen(raw) + 1);
+	files = ft_malloc(sizeof(char) * ft_strlen(raw) + 1, false);
 	while (raw[count])
 	{
 		if (is_quote(raw[count]) && !open_quote)
@@ -255,23 +255,23 @@ char	*get_input_redirect(char *raw)
 			break ;
 		count++;
 	}
-	//TODO substr
-	return (ft_substr(raw, 0, count));
+	return (ft_substr_mod(raw, 0, count));
 }
 
 void	get_input_parsed(t_pipe *command)
 {
 	int	count;
+	char *aux;
 
 	command->redirs.quantity = 0;
-	char *aux = get_input_redirect(command->raw);
+	aux = get_input_redirect(command->raw);
 	command->input = ft_trim(aux);
 	free(aux);
 	if (have_redirect(command->raw))
 	{
 		command->redirs.quantity = get_redirect_quantity(command->raw);
 		command->redirs.info = ft_malloc(sizeof(t_redir_info)
-				* command->redirs.quantity, true);
+				* command->redirs.quantity, false);
 		count = 0;
 		while (count < command->redirs.quantity)
 		{

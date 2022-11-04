@@ -35,7 +35,7 @@ static int	get_finish_position(char *input)
 		i++;
 	return (i);
 }
-//TODO substr
+
 char	*get_export_name(char *input)
 {
 	int	len;
@@ -43,7 +43,7 @@ char	*get_export_name(char *input)
 
 	start = 0;
 	len = get_finish_position(input);
-	return (ft_substr(input, start, len - start));
+	return (ft_substr_mod(input, start, len - start));
 }
 
 static char	*get_export_content(char *input)
@@ -54,8 +54,7 @@ static char	*get_export_content(char *input)
 
 	start = get_finish_position(input) + 1;
 	len = ft_strlen(input);
-	// TODO substr
-	str = ft_substr(input, start, len);
+	str = ft_substr_mod(input, start, len);
 	return (str);
 }
 
@@ -134,6 +133,7 @@ void	ft_export(char **tokens)
 	if (tokens[1] == NULL)
 	{
 		export_alone();
+		ft_free_split(tokens);
 		return ;
 	}
 	count = 1;

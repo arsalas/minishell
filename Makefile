@@ -19,10 +19,10 @@ SRCS 			= check_tokens.c prompt.c utils.c process.c parse_utils.c string.c \
 				pipes.c pipes_aux.c pipes_child.c pipes_father.c \
 				parse1.c parse2.c parse.c \
 				signal1.c \
-				echo_aux.c  parse_echo.c\
+				echo_aux.c  parse_echo.c \
 				history.c \
 				init.c \
-				ft_free_split.c ft_split_words.c ft_strstr.c ft_strcmp.c ft_trim.c ft_strcpy.c ft_join.c ft_split_quotes.c \
+				ft_free_split.c ft_split_words.c ft_substring.c ft_strstr.c ft_strcmp.c ft_trim.c ft_strcpy.c ft_join.c \
 				input.c input_aux1.c \
 				commands.c \
 				memory.c \
