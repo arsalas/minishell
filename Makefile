@@ -13,9 +13,9 @@ RM 				:= rm -f
 MAIN			= main.c 
 
 SRCS 			= check_tokens.c prompt.c utils.c process.c string.c \
-				errors.c \
+				errors_1.c errors_2.c \
 				cd.c cd_parse.c cd_parse_global.c echo.c env.c exit.c export_1.c export_2.c pwd.c unset.c others.c \
-				env_aux1.c env_aux2.c env_aux3.c expand.c \
+				env_aux1.c env_aux2.c env_aux3.c env_aux4.c expand.c \
 				pipes.c pipes_aux.c pipes_child.c pipes_father.c \
 				parse1.c parse2.c parse.c \
 				signal1.c \
@@ -27,7 +27,6 @@ SRCS 			= check_tokens.c prompt.c utils.c process.c string.c \
 				memory.c \
 				get_redir.c \
 				path.c
-
 
 # LIBS
 LIBS_PATH		:= libs

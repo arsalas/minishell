@@ -90,18 +90,3 @@ char	*get_env_var(char *name)
 		return ("");
 	return (g_minishell->env.vars[i].content);
 }
-
-void    increment_shlvl(void)
-{
-	char    *lvl;
-	int     lvl_i;
-
-	lvl = get_env_var("SHLVL");
-	lvl_i = ft_atoi(lvl);
-	if (lvl_i < 0)
-		lvl_i = 0;
-	lvl_i++;
-	lvl = ft_itoa(lvl_i);
-	update_env_var("SHLVL", lvl);
-	free (lvl);
-}

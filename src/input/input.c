@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/04 17:37:31 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 20:16:23 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,15 @@ void	create_proces_data(void)
  * @brief Peticion de un nuevo input al usuario
  *
  */
-//VALIDATE
 void	req_new_input(void)
 {
-	static int n = 0;
-	char	*input;
-	int i, j = 0;
+	static int	n = 0;
+	char		*input;
+	int			i;
+	int			j;
 
+	i = 0;
+	j = 0;
 	i = g_minishell->process.quantity -1;
 	input = ft_get_input();
 	if (!input)

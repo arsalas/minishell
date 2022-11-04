@@ -29,8 +29,9 @@ void	update_env_var(char *name, char *content);
 void	free_all_env(void);
 char	*expand_env_vars(char *str);
 char	*get_export_name(char *input);
-char	**get_env_arr(void);
 void	increment_shlvl(void);
 bool	is_valid_env_name(char *name);
+char	**get_env_arr(void);
+void	free_env(int position);
 
 #endif

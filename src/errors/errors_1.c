@@ -15,7 +15,6 @@
 /**
  * @brief Cierra el minishell y libera toda la memoria reservada
  */
-//VALIDATE
 void	close_minishell(int code)
 {
 	ft_clear_history();
@@ -51,43 +50,4 @@ void	fork_error(void)
 	perror("Error in process fork\n");
 	g_minishell->status = GENERAL;
 	close_minishell(g_minishell->status);
-}
-
-/**
- * @brief Printa por pantalla que no es un directorio
- * 
- * @param path sitio al que hemos intentado ir
- */
-void	ft_not_directory(char *path)
-{
-	g_minishell->status = GENERAL;
-	printf("cd: not a directory: %s\n", path);
-}
-
-/**
- * @brief Printa por pantalla que no tenemos permiso de acceso
- * 
- * @param path sitio al que hemos intentado ir
- */
-void	ft_no_permission(char *path)
-{
-	g_minishell->status = GENERAL;
-	printf("cd: permission denied: %s\n", path);
-}
-
-/**
- * @brief Printa por pantalla que no se ha encontrado el archivo o directorio
- * 
- * @param path sitio al que hemos intentado ir
- */
-void	ft_no_file_dir(char *path)
-{
-	g_minishell->status = GENERAL;
-	printf("cd: no such file or directory: %s\n", path);
-}
-
-void	ft_error_fd(char *file)
-{
-	g_minishell->status = GENERAL;
-	printf("%s: Permission denied\n", file);
 }
