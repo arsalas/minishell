@@ -58,6 +58,29 @@ void	ft_env_array(void)
 	}
 }
 
+bool	access_others(char *absolute_path)
+{
+	if (!is_path(absolute_path))
+	{
+		printf("%s: command not found\n", absolute_path);
+		g_minishell->status = CN_FOUND;
+		return (true);
+	}
+	if (access(absolute_path, F_OK) == -1)
+	{
+		printf("%s: No such file or directory\n", absolute_path);
+		g_minishell->status = CN_FOUND;
+		return (true);
+	}
+	if (access(absolute_path, X_OK) == -1)
+	{
+		printf("permission denied: %s\n", absolute_path);
+		g_minishell->status = GENERAL;
+		return (true);
+	}
+	return (false);
+}
+
 /**
  * @brief Ejecuta un programa
  * 
@@ -77,24 +100,8 @@ void	ft_others(char **tokens)
 	}
 	else
 		absolute_path = tokens[0];
-	if (!is_path(absolute_path))
-	{
-		printf("%s: command not found\n", absolute_path);
-		g_minishell->status = CN_FOUND;
+	if (access_others(absolute_path))
 		return ;
-	}
-	if (access(absolute_path, F_OK) == -1)
-	{
-		printf("%s: No such file or directory\n", absolute_path);
-		g_minishell->status = CN_FOUND;
-		return ;
-	}
-	if (access(absolute_path, X_OK) == -1)
-	{
-		printf("permission denied: %s\n", absolute_path);
-		g_minishell->status = GENERAL;
-		return ;
-	}
 	execve(absolute_path, tokens, get_env_arr());
 	ft_free_split(tokens);
 }

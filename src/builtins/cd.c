@@ -26,6 +26,32 @@ void	ft_can_go(char *path)
 	free(aux);
 }
 
+bool	check_access(char *long_path, char *path)
+{
+	if (access(long_path, F_OK) == -1)
+	{
+		ft_no_file_dir(path);
+		free (long_path);
+		return (true);
+	}
+	if (access(long_path, R_OK) == -1)
+	{
+		ft_no_permission(path);
+		free (long_path);
+		return (true);
+	}
+	if (access(path, X_OK) == -1)
+	{
+		if (is_path(long_path))
+		{
+			ft_not_directory(long_path);
+			free (long_path);
+			return (true);
+		}
+	}
+	return (false);
+}
+
 /*
 * No podemos acceder a este directorio, por diversos motivos
 * 1 - No es un directorio
@@ -37,32 +63,12 @@ int	ft_cant_go(char *path)
 	char	*long_path;
 
 	long_path = ft_strjoin_three(get_env_var("PWD"), "/", path);
-	if (access(long_path, F_OK) == -1)
-	{
-		ft_no_file_dir(path);
-		free (long_path);
-		return (1);
-	}
-	if (access(long_path, R_OK) == -1)
-	{
-		ft_no_permission(path);
-		free (long_path);
-		return (3);
-	}
-	if (access(path, X_OK) == -1)
-	{
-		if (is_path(long_path))
-		{
-			ft_not_directory(long_path);
-			free (long_path);
-			return (2);
-		}
-	}
+	if (check_access(long_path, path))
+		return (0);
 	free (long_path);
 	chdir(get_env_var("PWD"));
 	return (0);
 }
-
 
 /**
  * @brief Mandamos a una funcion u otra segun pueda o no ir

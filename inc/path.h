@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/02 23:54:20 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/04 19:31:56 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "minishell.h"
 
-void    path_init(void);
-char    *get_valid_path(char *command);
+void	path_init(void);
+char	*get_valid_path(char *command);
 
 #endif

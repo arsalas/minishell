@@ -110,32 +110,31 @@ typedef struct s_minishell
 	t_process		process;
 	t_memory		memory;
 	t_tokens		tokens;
-    char            **paths;
+	char			**paths;
 }	t_minishell;
 
 extern t_minishell	*g_minishell;
 
 //FILES IN HISTORY
-void	ft_clear_history(void);
-void	ft_read_history(void);
-char	*ft_get_input(void);
+void		ft_clear_history(void);
+void		ft_read_history(void);
+char		*ft_get_input(void);
 
 //FILES IN MINISHELL: INIT
-void	ft_init_minishell(char **env);
-void	ft_read(void);
-void	ft_signal(void);
+void		ft_init_minishell(char **env);
+void		ft_read(void);
+void		ft_signal(void);
 
 //FILES IN SIGNAL
-void	rl_replace_line(const char *text, int clear_undo);
-int		ft_get_signal(void);
+void		rl_replace_line(const char *text, int clear_undo);
+int			ft_get_signal(void);
 
 //FILES IN REDIRECTIONS 
 t_fd_redirs	ft_get_redir(t_pipe command);
-int 		ft_redir_in(int fd);
-int 		ft_trunc(int fd);
-int 		ft_append(int fd);
-int 		ft_fd(void);
+int			ft_redir_in(int fd);
+int			ft_trunc(int fd);
+int			ft_append(int fd);
+int			ft_fd(void);
 void		empty_trash(void);
-
 
 #endif

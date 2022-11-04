@@ -14,12 +14,11 @@ MAIN			= main.c
 
 SRCS 			= check_tokens.c prompt.c utils.c process.c string.c \
 				errors.c \
-				cd.c cd_parse.c cd_parse_global.c echo.c env.c exit.c export.c pwd.c unset.c others.c \
+				cd.c cd_parse.c cd_parse_global.c echo.c env.c exit.c export_1.c export_2.c pwd.c unset.c others.c \
 				env_aux1.c env_aux2.c env_aux3.c expand.c \
 				pipes.c pipes_aux.c pipes_child.c pipes_father.c \
 				parse1.c parse2.c parse.c \
 				signal1.c \
-				echo_aux.c \
 				history.c \
 				init.c \
 				ft_free_split.c ft_split_words.c ft_substring.c ft_strstr.c ft_strcmp.c ft_trim.c ft_strcpy.c ft_join.c \
@@ -65,7 +64,7 @@ NAME 			:= minishell
 # BINARY PATH
 BIN = $(BIN_DIR)/$(NAME)
 
-vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/history src/init src/input src/commands src/echo src/memory src/helpers src/redirections src/path
+vpath %.c src src/utils src/errors src/builtins src/env src/pipes src/parse src/signal src/history src/init src/input src/commands src/memory src/helpers src/redirections src/path
 
 .SECONDEXPANSION:
 
@@ -98,6 +97,9 @@ test: all
 check_ft:
 	@nm -u ./$(BIN)
 
+norm:
+	norminette | sh ./tests/norminette.sh
+
 clean:
 	@make fclean -C $(LIBS_PATH)/libft
 	@$(RM) $(OBJS) $(DEPS)
@@ -116,4 +118,4 @@ $(BIN_DIR):
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re leaks run test check_ft
+.PHONY: all clean fclean re leaks run test check_ft norm

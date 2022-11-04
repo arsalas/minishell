@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:35 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/04 18:17:32 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 19:33:50 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ bool	ft_look_for_old(char *words)
 void	ft_go_home(void)
 {
 	ft_can_go(get_env_var("HOME"));
-	// update_env_var("OLDPWD", get_env_var("PWD"));
-	// update_env_var("PWD", get_env_var("HOME"));
-	// chdir(get_env_var("HOME"));
 }
 
 /*

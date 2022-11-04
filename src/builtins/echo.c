@@ -29,8 +29,6 @@ bool	echo_have_flag(char *input)
 	return (false);
 }
 
-
-
 void	ft_echo(char **input)
 {
 	int		i;

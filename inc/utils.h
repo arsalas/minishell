@@ -23,8 +23,8 @@ void	memory_error(void);
 void	*ft_malloc(size_t size, bool is_permanent);
 void	free_memory(void);
 int		create_process(void);
-int	    ft_skip_one_word(char *str);
-int	    ft_strncmp_mod(const char *s1, const char *s2, size_t n);
+int		ft_skip_one_word(char *str);
+int		ft_strncmp_mod(const char *s1, const char *s2, size_t n);
 
 bool	is_quote(char c);
 bool	is_scaped_char(char c);
@@ -32,7 +32,7 @@ bool	is_redirect(char c);
 bool	is_doubble_redirect(char *raw, int count);
 
 bool	is_strdigit(char *str);
-char    *get_next_token2(char *input);
+char	*get_next_token2(char *input);
 char	*parse_token2(char *input);
 char	**get_tokens2(char *input);
 bool	is_correct_tokens(char *raw);

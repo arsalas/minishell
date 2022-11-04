@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:04:00 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/04 18:04:20 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/04 19:54:12 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	ft_echo(char **input);
 bool	ft_look_for_root(char *words);
 
 void	export_alone(void);
+char	*get_export_content(char *input);
+bool	have_correct_format(char *input);
+int		get_finish_position(char *input);
+bool	export_env_var(char *token);
+bool	exist_env_var(char *name);
 
 // OTHERS
 bool	is_path(char *str);
