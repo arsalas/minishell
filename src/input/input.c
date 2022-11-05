@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/04 20:16:23 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/05 16:59:09 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,31 @@ void	create_proces_data(void)
 	execute_pipe(g_minishell->process);
 }
 
+void	free_process_content(void)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = g_minishell->process.quantity -1;
+	if (i != 0)
+	{
+		while (i >= 0)
+		{
+			free(g_minishell->process.content[i].raw);
+			free(g_minishell->process.content[i].input);
+			j = g_minishell->process.content[i].redirs.quantity - 1;
+			while (j >= 0)
+			{
+				free(g_minishell->process.content[i].redirs.info[j].files);
+				j--;
+			}
+			i--;
+		}
+	}
+	free(g_minishell->process.content);
+}
+
 /**
  * @brief Peticion de un nuevo input al usuario
  *
@@ -74,10 +99,8 @@ void	req_new_input(void)
 	static int	n = 0;
 	char		*input;
 	int			i;
-	int			j;
 
 	i = 0;
-	j = 0;
 	i = g_minishell->process.quantity -1;
 	input = ft_get_input();
 	if (!input)
@@ -95,20 +118,7 @@ void	req_new_input(void)
 	}
 	ft_read_history();
 	create_proces_data();
-	i = g_minishell->process.quantity -1;
-	while (i >= 0)
-	{
-		free(g_minishell->process.content[i].raw);
-		free(g_minishell->process.content[i].input);
-		j = g_minishell->process.content[i].redirs.quantity - 1;
-		while (j >= 0)
-		{
-			free(g_minishell->process.content[i].redirs.info[j].files);
-			j--;
-		}
-		i--;
-	}
-	free(g_minishell->process.content);
+	free_process_content();
 	n++;
 	free(g_minishell->input);
 }

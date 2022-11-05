@@ -6,11 +6,28 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 13:53:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/04 17:24:35 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/05 17:14:27 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	check_open_quote(bool is_open_quote, bool is_slash, char *input, int i)
+{
+	if (!is_open_quote && !is_slash && (input[i] == '"' || input[i] == '\''))
+		return (true);
+	return (false);
+}
+
+bool	check_slash(char *input, int i, bool is_slash)
+{
+	if (input[i] == '\\')
+	{
+		is_slash = !is_slash;
+		return (false);
+	}
+	return (is_slash);
+}
 
 /**
  * @brief Obtiene la cantidad de procesos que tiene el input
@@ -33,27 +50,23 @@ int	get_quantity_process_in_input(char *input)
 	i = 0;
 	while (input[i++])
 	{
-		if (input[i] == '\\')
-			is_slash = !is_slash;
-		if (((input[i] == '"' || input[i] == '\'') && !is_slash
-				&& is_open_quote && quote == input[i]))
+		is_slash = check_slash(input, i, is_slash);
+		if (((input[i] == '"' || input[i] == '\'') && !is_slash && is_open_quote && quote == input[i]))
 			is_open_quote = false;
-		else if (!is_open_quote && !is_slash
-			&& (input[i] == '"' || input[i] == '\''))
+		else if (check_open_quote(is_open_quote, is_slash, input, i))
 		{
 			is_open_quote = true;
 			quote = input[i];
 		}
 		else if (input[i] == '|' && !is_slash && !is_open_quote)
 			pipes++;
-		if (input[i] != '\\')
-			is_slash = false;
+		is_slash = check_slash(input, i, is_slash);
 	}
 	return (pipes + 1);
 }
 
 /**
- * @brief Obtiene la posicion donde termina un proceso
+ * @brief Obtiene la posición donde termina un proceso
  * 
  * @param input 
  * @return int 
@@ -71,21 +84,18 @@ int	get_finish_process_in_input(char *input)
 	i = 0;
 	while (input[i++])
 	{
-		if (input[i] == '\\')
-			is_slash = !is_slash;
-		if (((input[i] == '"' || input[i] == '\'') && !is_slash
-				&& is_open_quote && quote == input[i]))
+		is_slash = check_slash(input, i, is_slash);
+		if (((input[i] == '"' || input[i] == '\'')
+				&& !is_slash && is_open_quote && quote == input[i]))
 			is_open_quote = false;
-		else if (!is_open_quote && !is_slash
-			&& (input[i] == '"' || input[i] == '\''))
+		else if (check_open_quote(is_open_quote, is_slash, input, i))
 		{
 			is_open_quote = true;
 			quote = input[i];
 		}
 		else if (input[i] == '|' && !is_slash && !is_open_quote)
 			return (i);
-		if (input[i] != '\\')
-			is_slash = false;
+		is_slash = check_slash(input, i, is_slash);
 	}
 	return (i);
 }
@@ -102,40 +112,4 @@ char	*extract_content_process_input(char *input)
 
 	len = get_finish_process_in_input(input);
 	return (ft_substr_mod(input, 0, len));
-}
-
-/**
- * @brief Obtiene cuantos caracteres se han de ignorar en el input del proceso
- * 
- * @param str 
- * @return int 
- */
-int	get_ignore_chars_process(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] == '|' || str[i] == ' ')
-		i++;
-	return (i);
-}
-
-/**
- * @brief Extrae el input de los procesos
- * 
- * @param input 
- * @return char* 
- */
-char	*extract_others_process_input(char *input)
-{
-	int		len;
-	int		start;
-	char	*str;
-
-	start = get_finish_process_in_input(input);
-	len = ft_strlen(input);
-	str = ft_substr_mod(input, start
-			+ get_ignore_chars_process(&input[start]), len);
-	free(g_minishell->input);
-	return (str);
 }

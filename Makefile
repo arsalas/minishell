@@ -22,7 +22,7 @@ SRCS 			= check_tokens.c prompt.c utils.c process.c string.c \
 				history.c \
 				init.c \
 				ft_free_split.c ft_split_words.c ft_substring.c ft_strstr.c ft_strcmp.c ft_trim.c ft_strcpy.c ft_join.c \
-				input.c input_aux1.c \
+				input.c input_aux1.c input_aux2.c \
 				commands.c \
 				memory.c \
 				get_redir.c \
