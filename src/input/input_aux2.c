@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 16:37:27 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/05 16:37:44 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:06:57 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,18 @@ char	*extract_others_process_input(char *input)
 			+ get_ignore_chars_process(&input[start]), len);
 	free(g_minishell->input);
 	return (str);
+}
+
+/**
+ * @brief Obtiene el contenido de un proceso a partir del input
+ * 
+ * @param input 
+ * @return char* 
+ */
+char	*extract_content_process_input(char *input)
+{
+	int	len;
+
+	len = get_finish_process_in_input(input);
+	return (ft_substr_mod(input, 0, len));
 }

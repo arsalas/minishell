@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:48:44 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/04 19:51:05 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/05 17:37:22 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char	**ft_create_environ(char **environ)
 
 /**
  * @brief Nos pasan EXPORT sin nada mas, hay que añadir declare -x
- *			lista todas las variables exportadas
+ *			y lista todas las variables exportadas
  * 
  * @param environ
  */
