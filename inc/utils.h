@@ -39,5 +39,9 @@ bool	is_correct_tokens(char *raw);
 
 char	*parse_double_quotes(char *input);
 char	*parse_quotes_more(char *input, char aux, char *str, int start);
+char	*parse_simple_quote(char *input);
+char	**push_string(char **arr, char *string);
+char	*parse_expand_var(char *input);
+char	*parse_double_quote(char *input);
 
 #endif
