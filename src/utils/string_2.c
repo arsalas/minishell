@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:04:27 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/05 19:07:36 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/05 19:13:21 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*parse_double_quotes(char *input)
 				i++;
 			aux = ft_substr_mod(input, start, i - start);
 		}
-		str = ft_strjoin(str, aux);
+		str = ft_strjoin_mod(str, aux);
 	}
 	return (str);
 }
