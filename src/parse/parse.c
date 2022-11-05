@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/04 17:39:16 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/05 19:37:20 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
  * @return true 
  * @return false 
  */
-bool    have_redirect(char *raw)
+bool	have_redirect(char *raw)
 {
-	int     i;
-	bool    open_quote;
-	char    quote;
+	int		i;
+	bool	open_quote;
+	char	quote;
 
 	open_quote = false;
 	i = 0;
@@ -32,13 +32,13 @@ bool    have_redirect(char *raw)
 		if (is_quote(raw[i]) && !open_quote)
 		{
 			open_quote = true;
-			quote  = raw[i];
+			quote = raw[i];
 		}
 		else if (is_quote(raw[i]) && raw[i] == quote)
-        {
+		{
 			open_quote = !open_quote;
             quote = '\0';
-        }
+		}
 		if (is_redirect(raw[i]) && !open_quote)
 			return (true);
 		i++;
@@ -53,7 +53,7 @@ bool    have_redirect(char *raw)
  * @param number of redirections
  * @return the redirection type
  */
-t_redir_type get_redirect_type(char *raw, int number)
+t_redir_type	get_redirect_type(char *raw, int number)
 {
 	int		count;
 	int		q_redir;
@@ -160,7 +160,6 @@ char	*extract_content_input(char *raw)
 	count = 0;
 	i = 0;
 	text = ft_malloc(sizeof(char) * ft_strlen(raw) + 1, false);
-	//count = ft_skip_one_word(raw); MIRAR SI USAMOS
 	if (raw[count] == '>' || raw[count] == '<')
 		return (NULL);
 	while (raw[count] && (raw[count] != '>' && raw[count] != '<'))
@@ -258,8 +257,8 @@ char	*get_input_redirect(char *raw)
 
 void	get_input_parsed(t_pipe *command)
 {
-	int	count;
-	char *aux;
+	int		count;
+	char	*aux;
 
 	command->redirs.quantity = 0;
 	aux = get_input_redirect(command->raw);
