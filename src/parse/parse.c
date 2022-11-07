@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:39:43 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/05 19:37:20 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:12:50 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	have_redirect(char *raw)
 		else if (is_quote(raw[i]) && raw[i] == quote)
 		{
 			open_quote = !open_quote;
-            quote = '\0';
+			quote = '\0';
 		}
 		if (is_redirect(raw[i]) && !open_quote)
 			return (true);
@@ -78,7 +78,7 @@ t_redir_type	get_redirect_type(char *raw, int number)
 				return (DOUBBLE_REOUT);
 			else
 				q_redir++;
-			if (raw[count] == '>' && raw[count + 1] == '>') 
+			if (raw[count] == '>' && raw[count + 1] == '>')
 				count++;
 		}
 		else if (raw[count] == '<' && raw[count + 1] == '<' && !open_quote)
@@ -87,7 +87,7 @@ t_redir_type	get_redirect_type(char *raw, int number)
 				return (DOUBBLE_REIN);
 			else
 				q_redir++;
-			if (raw[count] == '<' && raw[count + 1] == '<') 
+			if (raw[count] == '<' && raw[count + 1] == '<')
 				count++;
 		}
 		else if (raw[count] == '<' && !open_quote)
@@ -180,7 +180,7 @@ char	*extract_content_input(char *raw)
  * @param number
  * @return files (char *)
  */
-char    *get_filename_redirect(char *raw, int number)
+char	*get_filename_redirect(char *raw, int number)
 {
 	int		count;
 	int		i;
