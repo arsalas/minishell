@@ -117,15 +117,14 @@ void	execute_single_pipe(t_pipe *commands)
 	g_minishell->bloq = 0;
 }
 
-
 void	execute_single_process(t_process process)
 {
 	pid_t		pid;
 	int			status;
 	t_fd_redirs	fds;
 	int			i;
-    int			saved_stdout;
-    int			saved_stdin;
+	int			saved_stdout;
+	int			saved_stdin;
 
 	i = 0;
 	g_minishell->bloq = 1;

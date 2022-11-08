@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/04 17:44:46 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:07:53 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ static void	ft_handle_c(int signal)
 
 /**
  * @brief Enviamos una señal
+ * Tenemos que utilizar la variable global, 
+ * y status va a ser el resultado del ultimo pipe
  * 
- * Tenemos que utilizar la variable global, y status va a ser el resultado del ultimo pipe
+ * @return int 
  */
 int	ft_get_signal(void)
 {
