@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/08 20:22:34 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:40:49 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 t_builtins	ft_get_command(char *inside_pipes)
 {
 	char		**words;
-	int			empty;
 	t_builtins	command;
 
-	empty = ft_is_empty(inside_pipes);
-	if (inside_pipes[empty] == '\0')
+	if (inside_pipes[ft_is_empty(inside_pipes)] == '\0')
 		return (C_OTHERS);
 	words = ft_split_words(inside_pipes);
 	if (ft_strcmp(words[0], "echo", false))

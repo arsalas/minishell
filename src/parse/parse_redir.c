@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:12:22 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/08 20:22:43 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:46:33 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,63 @@ bool	have_redirect(char *raw)
  * @param number of redirections
  * @return the redirection type
  */
+// t_redir_type	get_redirect_type(char *raw, int number)
+// {
+// 	int		count;
+// 	int		q_redir;
+// 	bool	open_quote;
+// 	char	quote;
+
+// 	count = 0;
+// 	q_redir = 1;
+// 	open_quote = false;
+// 	while (raw[count])
+// 	{
+// 		if (is_quote(raw[count]) && !open_quote)
+// 		{
+// 			open_quote = true;
+// 			quote = raw[count];
+// 		}
+// 		if (is_quote(raw[count]) && raw[count] == quote)
+// 			open_quote = !open_quote;
+// 		if (raw[count] == '>' && raw[count + 1] == '>' && !open_quote)
+// 		{
+// 			if (q_redir == number)
+// 				return (DOUBBLE_REOUT);
+// 			else
+// 				q_redir++;
+// 			if (raw[count] == '>' && raw[count + 1] == '>')
+// 				count++;
+// 		}
+// 		else if (raw[count] == '<' && raw[count + 1] == '<' && !open_quote)
+// 		{
+// 			if (q_redir == number)
+// 				return (DOUBBLE_REIN);
+// 			else
+// 				q_redir++;
+// 			if (raw[count] == '<' && raw[count + 1] == '<')
+// 				count++;
+// 		}
+// 		else if (raw[count] == '<' && !open_quote)
+// 		{
+// 			if (q_redir == number)
+// 				return (REIN);
+// 			else
+// 				q_redir++;
+// 		}
+// 		else if (raw[count] == '>' && !open_quote)
+// 		{
+// 			if (q_redir == number)
+// 				return (REOUT);
+// 			else
+// 				q_redir++;
+// 		}
+// 		count++;
+// 	}
+// 	return (REOUT);
+// }
+
+// LA VERSIÓN ORIGINAL ESTÁ ARRIBA
 t_redir_type	get_redirect_type(char *raw, int number)
 {
 	int		count;
@@ -90,20 +147,14 @@ t_redir_type	get_redirect_type(char *raw, int number)
 			if (raw[count] == '<' && raw[count + 1] == '<')
 				count++;
 		}
+		else if (raw[count] == '<' && !open_quote && q_redir == number)
+			return (REIN);
 		else if (raw[count] == '<' && !open_quote)
-		{
-			if (q_redir == number)
-				return (REIN);
-			else
 				q_redir++;
-		}
+		else if (raw[count] == '>' && !open_quote && q_redir == number)
+			return (REOUT);
 		else if (raw[count] == '>' && !open_quote)
-		{
-			if (q_redir == number)
-				return (REOUT);
-			else
-				q_redir++;
-		}
+			q_redir++;
 		count++;
 	}
 	return (REOUT);
