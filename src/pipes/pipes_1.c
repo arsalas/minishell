@@ -88,14 +88,8 @@ void	execute_multiple_pipe(int process, t_pipe *commands)
 	wait_pipes_process(process, pid);
 }
 
-/**
- * @brief Ejecuta los procesos de un unico pipe
- * 
- */
-void	execute_single_pipe(t_pipe *commands)
+void	get_pipes_redir(t_pipe *commands)
 {
-	int	fd[2];
-	int	*pid;
 	int	i;
 
 	i = 0;
@@ -110,6 +104,19 @@ void	execute_single_pipe(t_pipe *commands)
 			i++;
 		}
 	}
+}
+
+/**
+ * @brief Ejecuta los procesos de un unico pipe
+ * 
+ */
+void	execute_single_pipe(t_pipe *commands)
+{
+	int	fd[2];
+	int	*pid;
+	int	i;
+
+	get_pipes_redir(commands);
 	pid = create_pid(2);
 	if (pipe(fd) == -1)
 	{
@@ -128,52 +135,57 @@ void	execute_single_pipe(t_pipe *commands)
 }
 
 
-void	execute_single_process(t_process process)
+void	execute_command_fork(t_process process)
 {
 	pid_t		pid;
+
+	pid = create_process();
+	if (pid == 0)
+	{
+		fds = ft_get_redir(process.content[0]);
+		if (fds.input != -1)
+			dup2(fds.input, STDIN_FILENO);
+		if (fds.output != -1)
+			dup2(fds.output, STDOUT_FILENO);
+		ft_execute(process.content[0]);
+		exit(g_minishell->status);
+	}
+	waitpid(pid, &status, 0);
+	g_minishell->bloq = 0;
+	if (WIFEXITED(status))
+		g_minishell->status = WEXITSTATUS(status);
+	close(fds.input);
+	close(fds.output);
+	return ;
+}
+
+void	execute_single_process(t_process process)
+{
 	int			status;
 	t_fd_redirs	fds;
-	int			i;
+	// int			i;
     int			saved_stdout;
     int			saved_stdin;
 
-	i = 0;
-	g_minishell->bloq = 1;
+	// i = 0;
+	// g_minishell->bloq = 1;
 	fds.input = -1;
 	fds.output = -1;
-	get_input_parsed(&process.content[0]);
-	if (process.content[0].redirs.quantity > 0)
-	{
-		while (i < process.content[0].redirs.quantity)
-		{
-			if (process.content[0].redirs.info[i].types == DOUBBLE_REIN)
-				g_minishell->bloq = 2;
-			i++;
-		}
-	}
+	// get_input_parsed(&process.content[0]);
+	// if (process.content[0].redirs.quantity > 0)
+	// {
+	// 	while (i < process.content[0].redirs.quantity)
+	// 	{
+	// 		if (process.content[0].redirs.info[i].types == DOUBBLE_REIN)
+	// 			g_minishell->bloq = 2;
+	// 		i++;
+	// 	}
+	// }
+	get_pipes_redir(&process.content[0]);
 	if (process.content->command != C_CD && process.content->command != C_EXIT
 		&& process.content->command != C_EXPORT
 		&& process.content->command != C_UNSET)
-	{
-		pid = create_process();
-		if (pid == 0)
-		{
-			fds = ft_get_redir(process.content[0]);
-			if (fds.input != -1)
-				dup2(fds.input, STDIN_FILENO);
-			if (fds.output != -1)
-				dup2(fds.output, STDOUT_FILENO);
-			ft_execute(process.content[0]);
-			exit(g_minishell->status);
-		}
-		waitpid(pid, &status, 0);
-		g_minishell->bloq = 0;
-		if (WIFEXITED(status))
-			g_minishell->status = WEXITSTATUS(status);
-		close(fds.input);
-		close(fds.output);
-		return ;
-	}
+		execute_command_fork(process);
 	g_minishell->bloq = 0;
 	saved_stdout = dup(STDOUT_FILENO);
 	saved_stdin = dup(STDIN_FILENO);
