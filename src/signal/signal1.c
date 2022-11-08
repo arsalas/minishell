@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/07 16:37:33 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:17:42 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int	ft_get_signal(void)
 	if (tcgetattr(STDIN_FILENO, &term) == -1)
 		exit (1);
 	term.c_lflag &= ~(ECHOCTL);
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &term) == -1)
-		exit (1);	
+	if (tcsetattr(STDIN_FILENO, TCSANOW,&term) == -1)
+		exit (1);
 	if (signal(SIGINT, ft_handle_c) == SIG_ERR)
 		exit (1);
 	if (signal(SIGQUIT, ft_handle_slash) == SIG_ERR)

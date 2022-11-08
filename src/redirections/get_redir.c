@@ -3,23 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/04 17:04:31 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:12:09 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-* STDIN - standard input fd = 0 - keyboard
-* STDOUT - standard output fd = 1 - terminal
-* STDERR - error output fd = 2 - terminal
-*/
 
 /**
  * @brief Errores de lectura, escritura y existencia
- * 
+* STDIN - standard input fd = 0 - keyboard
+* STDOUT - standard output fd = 1 - terminal
+* STDERR - error output fd = 2 - terminal
  * @param type 
  * @param file 
  */
@@ -67,6 +64,26 @@ int	read_doublerein(char *delimiter)
 	return (fd);
 }
 
+void	create_files_redirs(t_pipe command, int i, t_fd_redirs *fds)
+{
+	if (command.redirs.info[i].types == REIN)
+		fds->input = open(command.redirs.info[i].files, O_RDONLY);
+	else if (command.redirs.info[i].types == REOUT)
+		fds->output = open(command.redirs.info[i].files,
+				O_CREAT | O_RDWR | O_TRUNC, 0666);
+	else if (command.redirs.info[i].types == DOUBBLE_REOUT)
+		fds->output = open(command.redirs.info[i].files,
+				O_CREAT | O_RDWR | O_APPEND, 0666);
+	else
+	{
+		g_minishell->bloq = 2;
+		g_minishell->finish = true;
+		fds->input = read_doublerein(command.redirs.info[i].files);
+	}
+	ft_redir_errors(command.redirs.info[i].types,
+		command.redirs.info[i].files);
+}
+
 /**
  * @brief Obtenemos el fd input u output en función del tipo de redirección
  * 
@@ -86,22 +103,7 @@ t_fd_redirs	ft_get_redir(t_pipe command)
 		return (fds);
 	while (i < command.redirs.quantity)
 	{
-		if (command.redirs.info[i].types == REIN)
-			fds.input = open(command.redirs.info[i].files, O_RDONLY);
-		else if (command.redirs.info[i].types == REOUT)
-			fds.output = open(command.redirs.info[i].files,
-					O_CREAT | O_RDWR | O_TRUNC, 0666);
-		else if (command.redirs.info[i].types == DOUBBLE_REOUT)
-			fds.output = open(command.redirs.info[i].files,
-					O_CREAT | O_RDWR | O_APPEND, 0666);
-		else
-		{
-			g_minishell->bloq = 2;
-			g_minishell->finish = true;
-			fds.input = read_doublerein(command.redirs.info[i].files);
-		}
-		ft_redir_errors(command.redirs.info[i].types,
-			command.redirs.info[i].files);
+		create_files_redirs(command, i, &fds);
 		i++;
 	}
 	return (fds);

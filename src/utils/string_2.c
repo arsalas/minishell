@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   string_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:04:27 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/05 19:13:21 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:34:54 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	expand_vars(int i, char *input)
+{
+	i++;
+	aux = parse_expand_var(&input[i]);
+	if (!(ft_isalpha(input[i]) == 1 || input[i] == ' '))
+		i++;
+	while (input[i] && (ft_isalnum(input[i]) == 1 || input[i] == '_'))
+		i++;
+	return (i);
+}
 
 char	*parse_double_quotes(char *input)
 {
@@ -19,20 +30,13 @@ char	*parse_double_quotes(char *input)
 	char	*str;
 	char	*aux;
 
-	str = malloc(sizeof(char));
+	str = ft_malloc(sizeof(char), false);
 	start = 0;
 	i = 0;
 	while (input[i])
 	{
 		if (input[i] == '$')
-		{
-			i++;
-			aux = parse_expand_var(&input[i]);
-			if (!(ft_isalpha(input[i]) == 1 || input[i] == ' '))
-				i++;
-			while (input[i] && (ft_isalnum(input[i]) == 1 || input[i] == '_'))
-				i++;
-		}
+			i = expand_vars(i, input);
 		else
 		{
 			start = i;
@@ -45,59 +49,35 @@ char	*parse_double_quotes(char *input)
 	return (str);
 }
 
-char	*parse_token2(char *input)
+int	parse_expand(char *input, int i)
 {
-	int		start;
-	int		i;
-	char	*str;
-	char	*aux;
-	char	*aux2;
+	i++;
+	if (!input[i])
+		aux = ft_strdup("$");
+	else
+		aux = parse_expand_var(&input[i]);
+	if (!(ft_isalpha(input[i]) == 1 || input[i] == '_'))
+		i++;
+	while (input[i] && (ft_isalnum(input[i]) == 1 || input[i] == '_'))
+		i++;
+	return (i);
+}
 
-	str = malloc(sizeof(char));
-	start = 0;
-	i = 0;
-	while (input[i])
-	{
-		if (input[i] == '\'')
-		{
-			i++;
-			aux = parse_simple_quote(&input[i]);
-			while (input[i] != '\'')
-				i++;
-			i++;
-		}
-		else if (input[i] == '$')
-		{
-			i++;
-			if (!input[i])
-				aux = ft_strdup("$");
-			else
-				aux = parse_expand_var(&input[i]);
-			if (!(ft_isalpha(input[i]) == 1 || input[i] == '_'))
-				i++;
-			while (input[i] && (ft_isalnum(input[i]) == 1 || input[i] == '_'))
-				i++;
-		}
-		else if (input[i] == '"')
-		{
-			i++;
-			aux = parse_double_quote(&input[i]);
-			aux = parse_double_quotes(aux);
-			while (input[i] != '"')
-				i++;
-			i++;
-		}
-		else
-		{
-			start = i;
-			while (input[i]
-				&& (input[i] != '"' && input[i] != '$' && input[i] != '\''))
-				i++;
-			aux = ft_substr_mod(input, start, i - start);
-		}
-		aux2 = ft_strdup(str);
-		free(str);
-		str = ft_strjoin_mod(aux2, aux);
-	}
-	return (str);
+int	parse_quotes(char *input, int i)
+{
+	i++;
+	aux = parse_double_quote(&input[i]);
+	aux = parse_double_quotes(aux);
+	while (input[i] != '"')
+		i++;
+	i++;
+	return (i);
+}
+
+int	get_substr_pos(char *input, int i)
+{
+	while (input[i]
+		&& (input[i] != '"' && input[i] != '$' && input[i] != '\''))
+	i++;
+	return (i);
 }
