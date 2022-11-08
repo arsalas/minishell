@@ -25,4 +25,8 @@ void	intermediate_pipe_child(int *fd1, int *fd2, t_pipe command);
 void	last_pipe_child(int *fd, t_pipe command);
 void	execute_pipe(t_process process);
 
+void	get_pipes_redir(t_pipe *commands);
+void	wait_pipes_process(int process, int *pid);
+void	execute_multiple_pipe(int process, t_pipe *commands);
+
 #endif

@@ -20,7 +20,6 @@ void	execute_single_pipe(t_pipe *commands)
 {
 	int	fd[2];
 	int	*pid;
-	int	i;
 
 	get_pipes_redir(commands);
 	pid = create_pid(2);
@@ -40,7 +39,7 @@ void	execute_single_pipe(t_pipe *commands)
 	g_minishell->bloq = 0;
 }
 
-void	execute_command_fork(t_process process)
+void	execute_command_fork(t_process process, t_fd_redirs	fds, int status)
 {
 	pid_t		pid;
 
@@ -73,11 +72,12 @@ void	execute_single_process(t_process process)
 
 	fds.input = -1;
 	fds.output = -1;
+	status = 0;
 	get_pipes_redir(&process.content[0]);
 	if (process.content->command != C_CD && process.content->command != C_EXIT
 		&& process.content->command != C_EXPORT
 		&& process.content->command != C_UNSET)
-		execute_command_fork(process);
+		execute_command_fork(process, fds, status);
 	g_minishell->bloq = 0;
 	saved_stdout = dup(STDOUT_FILENO);
 	saved_stdin = dup(STDIN_FILENO);
@@ -91,7 +91,7 @@ void	execute_single_process(t_process process)
 	dup2(saved_stdin, STDIN_FILENO);
 }
 
-bool	is_correct_input(t_process process)
+bool	is_correct_input(t_process process, int i)
 {
 	if (ft_strlen(process.content[i].raw) == 0
 		|| ft_strcmp(process.content[i].raw, "|", false)
@@ -119,7 +119,7 @@ void	execute_pipe(t_process process)
 	i = 0;
 	while (i < process.quantity)
 	{
-		if (!is_correct_input(process))
+		if (!is_correct_input(process, i))
 			return ;
 		i++;
 	}

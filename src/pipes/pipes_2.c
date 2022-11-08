@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:58:05 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/08 15:58:35 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:59:52 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * @param process 
  * @param pid 
  */
-static void	wait_pipes_process(int process, int *pid)
+void	wait_pipes_process(int process, int *pid)
 {
 	int	status;
 	int	i;
@@ -46,7 +46,7 @@ void	calc_redirs(t_pipe *commands)
 	}
 }
 
-void	iterate_process(int process, t_pipe *commands, int	**fd)
+void	iterate_process(int process, t_pipe *commands, int	**fd, int *pid)
 {
 	int	i;
 
@@ -69,7 +69,6 @@ void	execute_multiple_pipe(int process, t_pipe *commands)
 {
 	int	**fd;
 	int	*pid;
-	int	i;
 
 	g_minishell->bloq = 1;
 	get_input_parsed(commands);
@@ -80,7 +79,7 @@ void	execute_multiple_pipe(int process, t_pipe *commands)
 	pid[0] = first_pipe_father(fd[0]);
 	if (pid[0] == 0)
 		first_pipe_child(fd[0], commands[0]);
-	iterate_process(process, commands, fd);
+	iterate_process(process, commands, fd, pid);
 	pid[process - 1] = last_pipe_father(fd[process - 3], fd[process - 2]);
 	if (pid[process - 1] == 0)
 		last_pipe_child(fd[process - 2], commands[process - 1]);

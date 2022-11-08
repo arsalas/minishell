@@ -44,4 +44,8 @@ char	**push_string(char **arr, char *string);
 char	*parse_expand_var(char *input);
 char	*parse_double_quote(char *input);
 
+int		parse_expand(char *input, int i, char *aux);
+int		parse_quotes(char *input, int i, char *aux);
+int		get_substr_pos(char *input, int i);
+
 #endif

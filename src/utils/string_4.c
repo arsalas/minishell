@@ -6,13 +6,13 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:34:17 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/08 17:34:36 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:52:26 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	parse_quotes_bucle(char *input, int i)
+int	parse_quotes_bucle(char *input, int i, char *aux)
 {
 	i++;
 	aux = parse_simple_quote(&input[i]);
@@ -32,11 +32,11 @@ char	*get_str_parse(char *input, int start, char *str)
 	while (input[i])
 	{
 		if (input[i] == '\'')
-			i = parse_quotes_bucle(input, i);
+			i = parse_quotes_bucle(input, i, aux);
 		else if (input[i] == '$')
-			i = parse_expand(input, i);
+			i = parse_expand(input, i, aux);
 		else if (input[i] == '"')
-			i = parse_quotes(input, i);
+			i = parse_quotes(input, i, aux);
 		else
 		{
 			start = i;

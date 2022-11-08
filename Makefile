@@ -73,7 +73,7 @@ $(OBJS_DIR)/%.o: %.c | $$(@D)
 	@$(CC) $(FLAGS) $(INC) -c $< -o $@ $(DEPFLAGS) $(patsubst %.o, %.d, $@) 
 
 make_libs:
-	make -C $(LIBS_PATH)/libft
+	@make -C $(LIBS_PATH)/libft
 
 $(BIN): $(OBJS) $(BIN_DIR) $(LIBS)
 	@$(CC) $(FLAGS) $(INC) $(OBJS) $(LIBS) -o $(BIN) $(READ_FLAGS)

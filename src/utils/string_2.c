@@ -6,13 +6,13 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:04:27 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/08 17:34:54 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:49:37 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	expand_vars(int i, char *input)
+int	expand_vars(int i, char *input, char *aux)
 {
 	i++;
 	aux = parse_expand_var(&input[i]);
@@ -36,7 +36,7 @@ char	*parse_double_quotes(char *input)
 	while (input[i])
 	{
 		if (input[i] == '$')
-			i = expand_vars(i, input);
+			i = expand_vars(i, input, aux);
 		else
 		{
 			start = i;
@@ -49,7 +49,7 @@ char	*parse_double_quotes(char *input)
 	return (str);
 }
 
-int	parse_expand(char *input, int i)
+int	parse_expand(char *input, int i, char *aux)
 {
 	i++;
 	if (!input[i])
@@ -63,7 +63,7 @@ int	parse_expand(char *input, int i)
 	return (i);
 }
 
-int	parse_quotes(char *input, int i)
+int	parse_quotes(char *input, int i, char *aux)
 {
 	i++;
 	aux = parse_double_quote(&input[i]);
