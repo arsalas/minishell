@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:33:23 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/04 17:04:31 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:18:34 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	read_doublerein(char *delimiter)
 	char	*readed;
 	int		fd;
 
+	g_minishell->bloq = 2;
+	g_minishell->finish = true;
 	fd = open(REDIR_FILE, O_CREAT | O_RDWR | O_TRUNC, 0666);
 	readed = ft_strcpy("");
 	while (!ft_strcmp(readed, delimiter, true))
@@ -95,11 +97,7 @@ t_fd_redirs	ft_get_redir(t_pipe command)
 			fds.output = open(command.redirs.info[i].files,
 					O_CREAT | O_RDWR | O_APPEND, 0666);
 		else
-		{
-			g_minishell->bloq = 2;
-			g_minishell->finish = true;
 			fds.input = read_doublerein(command.redirs.info[i].files);
-		}
 		ft_redir_errors(command.redirs.info[i].types,
 			command.redirs.info[i].files);
 		i++;
