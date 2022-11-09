@@ -44,9 +44,9 @@ char	**push_string(char **arr, char *string);
 char	*parse_expand_var(char *input);
 char	*parse_double_quote(char *input);
 
-char	*parse_token2(char *input, int i);
-char	*parse_token3(char *input, int i);
-char	*parse_token4(char *input, int i);
-char	*parse_token5(char *input, int i);
+char	*parse_token2(char *input, int *i);
+char	*parse_token3(char *input, int *i);
+char	*parse_token4(char *input, int *i);
+char	*parse_token5(char *input, int *i);
 
 #endif
