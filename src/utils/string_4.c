@@ -12,56 +12,56 @@
 
 #include "minishell.h"
 
-char	*parse_token2(char *input, int i)
+char	*parse_token2(char *input, int *i)
 {
 	char	*aux;
 
-	*i = *i + 1;
-	aux = parse_simple_quote(&input[i]);
-	while (input[i] != '\'')
-		*i = *i + 1;
-	*i = *i + 1;
+	i[0]++;
+	aux = parse_simple_quote(&input[i[0]]);
+	while (input[i[0]] != '\'')
+		i[0]++;
+	i[0]++;
 	return (aux);
 }
 
-char	*parse_token3(char *input, int i)
+char	*parse_token3(char *input, int *i)
 {
 	char	*aux;
 
-	*i = *i + 1;
-	if (!input[i])
+	i[0]++;
+	if (!input[i[0]])
 		aux = ft_strdup("$");
 	else
-		aux = parse_expand_var(&input[i]);
-	if (!(ft_isalpha(input[i]) == 1 || input[i] == '_'))
-		*i = *i + 1;
-	while (input[i] && (ft_isalnum(input[i]) == 1 || input[i] == '_'))
-		*i = *i + 1;
+		aux = parse_expand_var(&input[i[0]]);
+	if (!(ft_isalpha(input[i[0]]) == 1 || input[i[0]] == '_'))
+		i++;
+	while (input[i[0]] && (ft_isalnum(input[i[0]]) == 1 || input[i[0]] == '_'))
+		i[0]++;
 	return (aux);
 }
 
-char	*parse_token4(char *input, int i)
+char	*parse_token4(char *input, int *i)
 {
 	char	*aux;
 
-	*i = *i + 1;
-	aux = parse_double_quote(&input[i]);
+	i[0]++;
+	aux = parse_double_quote(&input[i[0]]);
 	aux = parse_double_quotes(aux);
-	while (input[i] != '"')
-		*i = *i + 1;
-	*i = *i + 1;
+	while (input[i[0]] != '"')
+		i[0]++;
+	i[0]++;
 	return (aux);
 }
 
-char	*parse_token5(char *input, int i)
+char	*parse_token5(char *input, int *i)
 {
 	char	*aux;
 	int		start;
 
-	start = i;
-	while (input[i]
-		&& (input[i] != '"' && input[i] != '$' && input[i] != '\''))
-		*i = *i + 1;
-	aux = ft_substr_mod(input, start, i - start);
+	start = i[0];
+	while (input[i[0]]
+		&& (input[i[0]] != '"' && input[i[0]] != '$' && input[i[0]] != '\''))
+		i[0]++;
+	aux = ft_substr_mod(input, start, i[0] - start);
 	return (aux);
 }
