@@ -17,7 +17,7 @@ SRCS 			= check_tokens.c prompt.c utils.c process.c string_1.c string_2.c string
 				cd.c cd_parse.c cd_parse_global.c echo.c env.c exit.c export_1.c export_2.c pwd.c unset.c others.c \
 				env_aux1.c env_aux2.c env_aux3.c env_aux4.c expand.c \
 				pipes_1.c pipes_2.c pipes_3.c pipes_aux.c pipes_child.c pipes_father.c \
-				parse1.c parse2.c parse.c parse_redir.c \
+				parse1.c parse2.c parse3.c parse.c parse_redir.c \
 				signal1.c \
 				history.c \
 				init.c \
