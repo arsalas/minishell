@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:04:27 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/09 20:41:31 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/09 21:02:35 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ char	*parse_token(char *input)
 	i[0] = 0;
 	while (input[i[0]])
 	{
-		printf("INSIDE BUCLE\n");
 		if (input[i[0]] == '\'')
 			aux = parse_token2(input, i);
 		else if (input[i[0]] == '$')
@@ -76,8 +75,6 @@ char	*parse_token(char *input)
 		free(str);
 		str = ft_strjoin_mod(aux2, aux);
 	}
-	printf("OUTSIDE BUCLE\n");
-	printf("STR IS %s\n", str);
 	return (str);
 }
 
