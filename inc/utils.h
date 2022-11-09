@@ -33,8 +33,8 @@ bool	is_doubble_redirect(char *raw, int count);
 
 bool	is_strdigit(char *str);
 char	*get_next_token2(char *input);
-char	*parse_token2(char *input);
-char	**get_tokens2(char *input);
+char	*parse_token(char *input);
+char	**get_tokens(char *input);
 bool	is_correct_tokens(char *raw);
 
 char	*parse_double_quotes(char *input);
@@ -43,5 +43,10 @@ char	*parse_simple_quote(char *input);
 char	**push_string(char **arr, char *string);
 char	*parse_expand_var(char *input);
 char	*parse_double_quote(char *input);
+
+char	*parse_token2(char *input, int i);
+char	*parse_token3(char *input, int i);
+char	*parse_token4(char *input, int i);
+char	*parse_token5(char *input, int i);
 
 #endif

@@ -19,7 +19,7 @@ void	ft_execute(t_pipe builting)
 	g_minishell->last_command = builting.command;
 	if (builting.command == C_PWD)
 		return (pwd());
-	tokens = get_tokens2(builting.input);
+	tokens = get_tokens(builting.input);
 	if (builting.command == C_ENV)
 		return (ft_env(tokens));
 	if (builting.command == C_EXIT)
