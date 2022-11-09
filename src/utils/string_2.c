@@ -54,24 +54,24 @@ char	*parse_double_quotes(char *input)
 
 char	*parse_token(char *input)
 {
-	int		i;
+	int		i[1];
 	char	*str;
 	char	*aux;
 	char	*aux2;
 
 	str = ft_malloc(sizeof(char), false);
-	i = 0;
+	i[0] = 0;
 	while (input[i])
 	{
 		printf("INSIDE BUCLE\n");
 		if (input[i] == '\'')
-			aux = parse_token2(input, &i);
+			aux = parse_token2(input, i);
 		else if (input[i] == '$')
-			aux = parse_token3(input, &i);
+			aux = parse_token3(input, i);
 		if (input[i] == '"')
-			aux = parse_token4(input, &i);
+			aux = parse_token4(input, i);
 		else
-			aux = parse_token5(input, &i);
+			aux = parse_token5(input, i);
 		aux2 = ft_strdup(str);
 		free(str);
 		str = ft_strjoin_mod(aux2, aux);
