@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_aux1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 13:53:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/05 18:06:29 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:26:05 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 bool	is_open_quo(bool is_open_quote, bool is_slash, char *input, int i)
 {
+	is_slash = false;
 	if (!is_open_quote && !is_slash && (input[i] == '"' || input[i] == '\''))
 		return (true);
 	return (false);
@@ -29,10 +30,10 @@ bool	check_slash(char *input, int i, bool is_slash)
 	return (is_slash);
 }
 
-int	increment_pipes(char pos, bool is_slash, bool is_open_quote, int pipes)
+int	increment_pipes(char pos, bool is_open_quote, int pipes)
 {
-	if (pos == '|' && !is_slash && !is_open_quote)
-		return (++pipes);
+	if (pos == '|' && !is_open_quote)
+		return (pipes + 1);
 	return (pipes);
 }
 
@@ -58,14 +59,14 @@ int	get_quantity_process_in_input(char *input)
 	while (input[i++])
 	{
 		is_slash = check_slash(input, i, is_slash);
-		if (is_open_quo(is_open_quote, is_slash, input, i) && quote == input[i])
+		if (is_open_quote && quote == input[i])
 			is_open_quote = false;
-		if (is_open_quo(is_open_quote, is_slash, input, i))
+		else if (!is_open_quote && quote == input[i])
 		{
 			is_open_quote = true;
 			quote = input[i];
 		}
-		pipes = increment_pipes(input[i], is_slash, is_open_quote, pipes);
+		pipes = increment_pipes(input[i], is_open_quote, pipes);
 		is_slash = check_slash(input, i, is_slash);
 	}
 	return (pipes + 1);

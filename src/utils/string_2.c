@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:04:27 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/09 21:07:28 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:43:09 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*parse_token(char *input)
 			aux = parse_token2(input, i);
 		else if (input[i[0]] == '$')
 			aux = parse_token3(input, i);
-		if (input[i[0]] == '"')
+		else if (input[i[0]] == '"')
 			aux = parse_token4(input, i);
 		else
 			aux = parse_token5(input, i);
