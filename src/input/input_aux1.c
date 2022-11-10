@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_aux1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 13:53:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/10 17:26:05 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/10 23:13:50 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	get_quantity_process_in_input(char *input)
 		is_slash = check_slash(input, i, is_slash);
 		if (is_open_quote && quote == input[i])
 			is_open_quote = false;
-		else if (!is_open_quote && quote == input[i])
+		else if (!is_open_quote)
 		{
 			is_open_quote = true;
 			quote = input[i];
