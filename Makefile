@@ -97,7 +97,10 @@ check_ft:
 	@nm -u ./$(BIN)
 
 norm:
-	norminette src/$(SRC)
+	@norminette src/$(SRC) inc/ | sh ./tests/norminette.sh
+
+norm2:
+	@norminette src/$(SRC) inc/
 
 clean:
 	@make fclean -C $(LIBS_PATH)/libft
