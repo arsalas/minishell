@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/08 20:07:53 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:11:22 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	ft_get_signal(void)
 		exit (1);
 	term.c_lflag &= ~(ECHOCTL);
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &term) == -1)
-		exit (1);	
+		exit (1);
 	if (signal(SIGINT, ft_handle_c) == SIG_ERR)
 		exit (1);
 	if (signal(SIGQUIT, ft_handle_slash) == SIG_ERR)
