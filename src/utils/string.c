@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:11:54 by aramirez          #+#    #+#             */
-/*   Updated: 2022/09/08 19:56:23 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:00:12 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ char	**push_string(char **arr, char *string)
 	return (new_arr);
 }
 
-bool	is_delim(char c)
-{
-	if (c == '\'' || c == '"' || c == '$')
-		return (true);
-	return (false);
-}
+// bool	is_delim(char c)
+// {
+// 	if (c == '\'' || c == '"' || c == '$')
+// 		return (true);
+// 	return (false);
+// }
 
 char	*parse_simple_quote(char *input)
 {
