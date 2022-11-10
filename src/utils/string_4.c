@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:23:15 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/10 17:41:20 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:38:11 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*parse_token3(char *input, int *i)
 	else
 		aux = parse_expand_var(&input[i[0]]);
 	if (!(ft_isalpha(input[i[0]]) == 1 || input[i[0]] == '_'))
-		i++;
+		i[0]++;
 	while (input[i[0]] && (ft_isalnum(input[i[0]]) == 1 || input[i[0]] == '_'))
 		i[0]++;
 	return (aux);
