@@ -69,7 +69,13 @@ void	execute_multiple_pipe(int process, t_pipe *commands)
 	pid[0] = first_pipe_father(fd[0]);
 	if (pid[0] == 0)
 		first_pipe_child(fd[0], commands[0]);
-	iterate_process(process, commands, fd);
+	while (i < process - 1)
+	{
+		pid[i] = intermediate_pipe_father(fd[i - 1], fd[i]);
+		if (pid[i] == 0)
+			intermediate_pipe_child(fd[i - 1], fd[i], commands[i]);
+		i++;
+	}
 	pid[process - 1] = last_pipe_father(fd[process - 3], fd[process - 2]);
 	if (pid[process - 1] == 0)
 		last_pipe_child(fd[process - 2], commands[process - 1]);
