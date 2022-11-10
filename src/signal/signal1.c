@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/10 16:11:22 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/10 21:49:17 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_handle_slash(int signal)
 {
 	if (signal == SIGQUIT && g_minishell->bloq)
 	{
-		ft_putstr_fd("^\\Quit: 3\n", 1);
+		ft_putstr_fd("Quit: 3\n", 1);
 		rl_on_new_line();
 		g_minishell->status = 131;
 	}
@@ -62,7 +62,7 @@ static void	ft_handle_c(int signal)
 	}
 	else if (g_minishell->bloq == 1 && !g_minishell->finish)
 	{
-		ft_putstr_fd("^C\n", 2);
+		ft_putstr_fd("\n", 1);
 		rl_on_new_line();
 		g_minishell->status = CNT_C;
 	}

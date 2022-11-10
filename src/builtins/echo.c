@@ -21,7 +21,11 @@ bool	echo_have_flag(char *input)
 	count = 1;
 	if (input[0] == '-')
 	{
-		while (input[count] == 'N' || input[count] == 'n')
+		while (input[count] == 'N')
+			count++;
+		if (!input[count])
+			return (true);
+		while (input[count] == 'n')
 			count++;
 		if (!input[count])
 			return (true);
