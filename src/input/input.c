@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:59 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/05 16:59:09 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:59:02 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,6 @@ void	create_proces_data(void)
 
 void	free_process_content(void)
 {
-	int	i;
-	int	j;
-
-	j = 0;
-	i = g_minishell->process.quantity -1;
-	if (i != 0)
-	{
-		while (i >= 0)
-		{
-			free(g_minishell->process.content[i].raw);
-			free(g_minishell->process.content[i].input);
-			j = g_minishell->process.content[i].redirs.quantity - 1;
-			while (j >= 0)
-			{
-				free(g_minishell->process.content[i].redirs.info[j].files);
-				j--;
-			}
-			i--;
-		}
-	}
 	free(g_minishell->process.content);
 }
 

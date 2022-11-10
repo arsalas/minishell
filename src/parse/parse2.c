@@ -6,16 +6,12 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 20:10:01 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/07 15:53:37 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:04:04 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief Comprobamos el comando que nos escriben
- * 
- */
 t_builtins	ft_get_command(char *inside_pipes)
 {
 	char		**words;

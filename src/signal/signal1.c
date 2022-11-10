@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:58:09 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/07 16:37:33 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:04:26 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ static void	ft_handle_c(int signal)
 
 /**
  * @brief Enviamos una señal
- * Tenemos que utilizar la variable global, y status va a ser el 
- * resultado del ultimo pipe
+ * Tenemos que utilizar la variable global, 
+ * y status va a ser el resultado del ultimo pipe
+ * 
+ * @return int 
  */
 int	ft_get_signal(void)
 {
@@ -89,7 +91,7 @@ int	ft_get_signal(void)
 		exit (1);
 	term.c_lflag &= ~(ECHOCTL);
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &term) == -1)
-		exit (1);	
+		exit (1);
 	if (signal(SIGINT, ft_handle_c) == SIG_ERR)
 		exit (1);
 	if (signal(SIGQUIT, ft_handle_slash) == SIG_ERR)
