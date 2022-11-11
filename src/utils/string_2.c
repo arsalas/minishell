@@ -6,7 +6,7 @@
 /*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:04:27 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/11 12:03:53 by aramirez         ###   ########.fr       */
+/*   Updated: 2022/11/11 18:28:12 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,16 @@ char	*parse_double_quotes(char *input)
 	str = ft_malloc(sizeof(char), false);
 	i = 0;
 	start = 0;
-	str = parse_double_quote2(input, start, i, str);
+	if (input)
+		str = parse_double_quote2(input, start, i, str);
 	return (str);
+}
+
+static char	*create_string(char *aux, char *aux2, char *str)
+{
+	if (aux)
+		return (ft_strjoin_mod(aux2, aux));
+	return (ft_strdup(str));
 }
 
 /**
@@ -82,7 +90,7 @@ char	*parse_token(char *input)
 			aux = parse_token5(input, i);
 		aux2 = ft_strdup(str);
 		free(str);
-		str = ft_strjoin_mod(aux2, aux);
+		str = create_string(aux, aux2, str);
 	}
 	return (str);
 }

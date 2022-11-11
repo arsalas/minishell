@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 23:49:20 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/08 20:11:36 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/11 18:31:26 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	*get_valid_path(char *command)
 	char	*path;
 
 	i = 0;
+	path_init();
 	while (g_minishell->paths[i])
 	{
 		path = ft_strjoin_three(g_minishell->paths[i], "/", command);
