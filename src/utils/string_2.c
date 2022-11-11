@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aramirez <aramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:04:27 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/11/10 22:38:13 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:03:53 by aramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char	*parse_token(char *input)
 	char	*aux2;
 
 	str = ft_malloc(sizeof(char), false);
+	str[0] = '\0';
 	i[0] = 0;
 	while (input[i[0]])
 	{
