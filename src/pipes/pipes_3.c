@@ -6,7 +6,7 @@
 /*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:50:51 by aramirez          #+#    #+#             */
-/*   Updated: 2022/11/10 23:02:30 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:48:50 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	execute_pipe2(t_process process)
 	while (i < process.quantity)
 	{
 		if (ft_strlen(process.content[i].raw) == 0
-			|| ft_strcmp(process.content[i].raw, "|", true))
+			|| ft_strcmp(process.content[i].raw, "|", false))
 		{
 			printf("syntax error near unexpected token: `|\'\n");
 			return (false);
