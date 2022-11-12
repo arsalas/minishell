@@ -1,18 +1,14 @@
 # Minishell
 
-Compilar
+Compile code
 ```shell
 make
 ```
-Ejecutar tests
-```shell
-make test
-```
-Ejecutar minishell
+Ejecute minishell
 ```shell
 make run
 ```
-Instalar readline
+Intall readline
 ```shell
 sh readline.sh
 ```
