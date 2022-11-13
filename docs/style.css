@@ -1,0 +1,169 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+html {
+    overflow-y: auto;
+    background-color: inherit;
+
+}
+
+body {
+    margin: 0px;
+    font-size: 10px;
+    min-height: 100vh;
+    background-color: #ddd;
+    background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20201104/pngtree-technology-background-binary-computer-code-vector-design-image_458702.jpg);
+    background-image: url(https://images.hdqwalls.com/download/matrix-code-minimal-qz-1920x1080.jpg);
+    background-position: center;
+    background-size: cover;
+
+}
+
+header {
+    padding-top: 2rem;
+    color: #000;
+    font-weight: bolder;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    align-items: center;
+    font-family: 'Inconsolata', monospace;
+    text-align: center;
+}
+
+header div {
+    background-color: #fff;
+    width: fit-content;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 0rem 1rem;
+    border-radius: 4px;
+
+}
+
+header img {
+    width: 100px;
+}
+
+.shell-container {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    font-family: 'Inconsolata', monospace;
+
+}
+
+.shell {
+    width: 100%;
+    max-width: 800px;
+    background-color: #111;
+    padding: 1rem;
+    border-radius: 10px;
+    height: 8rem;
+    border: 0.15rem solid #999;
+    overflow: hidden;
+    transition: 300ms;
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+.prompt {
+    display: flex;
+    font-size: 1.5rem;
+}
+
+.prompt div {
+    font-weight: bold;
+    color: pink;
+}
+
+.prompt input {
+    font-size: 1.5rem;
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    padding-left: 1rem;
+    color: #eee;
+    overflow: hidden;
+    font-family: 'Inconsolata', monospace;
+
+}
+
+.prompt input:focus-visible {
+    border: none;
+    outline: none;
+}
+
+#result {
+    color: #eee;
+    font-size: 1.5rem;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Inconsolata', monospace;
+
+
+}
+
+.profile .media {
+    /* width: 50%; */
+    width: 100px;
+    border-radius: 50%;
+}
+
+.title {
+    font-size: 3rem;
+    text-align: center;
+    font-family: 'Inconsolata', monospace;
+    font-weight: bold;
+    color: #eee;
+}
+
+.profile {
+    color: #eee;
+    padding: 0rem 2rem;
+}
+
+.profile .logos img {
+    width: 100px;
+    border-radius: 0px;
+    border: 0px solid #333;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+}
+
+.profile .logos img:hover {
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(200, 200, 200, 0.75);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(200, 200, 200, 0.75);
+    box-shadow: 0px 0px 16px 0px rgba(200, 200, 200, 0.75);
+
+}
+
+.stats {
+    border-radius: 0px !important;
+    /* width: 100%; */
+}
+
+.column {
+    text-align: -webkit-center;
+}
+
+.video {
+    text-align: center;
+}
+
+.video video {
+    max-width: 500px;
+}
