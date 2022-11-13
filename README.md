@@ -19,7 +19,7 @@ sh readline.sh
 ```
 
 # Demo
-![SoLong](https://raw.githubusercontent.com/arsalas/42_Cursus/main/video/demo.gif)
+![SoLong](https://github.com/arsalas/minishell/blob/cecabfc9d03599eb0c904b8d87e8aa359a6f8894/video/demo.gif)
 
 
 # Authors
