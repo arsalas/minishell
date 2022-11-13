@@ -2,7 +2,7 @@
 
 [![aramirez's 42 minishell Score](https://badge42.vercel.app/api/v2/cl6y65hc100490gl7reg9ecj1/project/2866738)](https://github.com/JaeSeoKim/badge42)
 
-### [🌐 Web]([arsalas.github.io/minishell/](https://arsalas.github.io/minishell/)) 
+### [🌐 Web](https://arsalas.github.io/minishell) 
 
 # Instruccions
 Compile code
