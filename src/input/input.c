@@ -78,10 +78,7 @@ void	req_new_input(void)
 {
 	static int	n = 0;
 	char		*input;
-	int			i;
 
-	i = 0;
-	i = g_minishell->process.quantity -1;
 	input = ft_get_input();
 	if (!input)
 	{
